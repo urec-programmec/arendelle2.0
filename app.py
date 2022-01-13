@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 def home():
     # print([str(i.id) + ' ' + i.name for i in db.query(UserRole).all()])
     # print([i.nickname for i in db.query(Users).filter_by(user_role=3).all()])
-    return render_template('home.html')
+    return render_template('test.html')
 
 
 @app.route('/test')

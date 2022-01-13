@@ -18,7 +18,7 @@ $( document ).ready(function() {
     window.addEventListener('resize', restart, false);
 
     restart();
-    animate()
+    animate();
 
     function restart(){
         resetParameters();
@@ -66,6 +66,7 @@ $( document ).ready(function() {
             
             context.beginPath();
             context.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            // context.arc(p.x, p.y, 5, 0, Math.PI * 2);
 
             let gradient = context.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
             gradient.addColorStop(0, p.firstColor);
@@ -75,7 +76,6 @@ $( document ).ready(function() {
             context.fillStyle = gradient;
             // context.fillStyle = p.firstColor;
 
-            
             context.fill();
 
             // let p0 = points[(i + 1) % countPoints];
