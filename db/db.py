@@ -1,17 +1,12 @@
-import datetime
-import random
-import pytz
-
-from sqlalchemy import *
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey, LargeBinary, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from hashlib import md5
+from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("postgresql+psycopg2://postgres:admin@localhost/oop-db")
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/arendelle2.0'
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(bind=engine)
-session = Session()
+db = Session()
 Base = declarative_base()
-ist = pytz.timezone('UTC')
 
 class Championship(Base):
     __tablename__ = 'championship'
@@ -204,87 +199,3 @@ class UserRole(Base):
     __tablename__ = 'user_role'
     id = Column(BigInteger, primary_key=True)
     name = Column(String(100), primary_key=False)
-
-
-def main():
-    solve(1)
-
-    # inst = Institution(name='Nice place 1', sity=453, institution_status=1, institution_type=1, created_by=5)
-    # session.add(inst)
-    # session.commit()
-
-    # for i in range(50):
-    #     ttu = TeamTaskUser(team=16, task=random.randint(32, 36), user=random.randint(28, 31))
-    #     session.add(ttu)
-    #     session.commit()
-
-    # for i in range(5, 9):
-        # for j in range(1, 7):
-        #     chi = ChampionshipInstitution(championship=i, institution=j)
-        #     session.add(chi)
-
-    # for j in range(10, 19):
-    #     cht = ChampionshipTeam(championship=6, team=j)
-    #     session.add(cht)
-    #
-    # session.commit()
-
-    # for k in range(8):
-    #     for i in range(5):
-    #         task = Task(platform=k+1, task_type=1, task_content=random.randint(4, 103), task_status=1, created_by=5)
-    #         session.add(task)
-    # session.commit()
-
-    # users = session.query(Users).all()
-    # for i in range(len(users)):
-    #     users[i].color = users[i].color + str(i)
-    #
-    # session.commit()
-
-    # for i in range(100):
-    #     with open('test.txt', 'rb') as file:
-    #         admin_id = session.query(Users).filter_by(user_role=3).first().id
-    #         content = TaskContent(content=file.read(), answer='answer', type_of_response=1, created_by=admin_id)
-    #         session.add(content)
-    #     with open('test.txt', 'w') as file:
-    #         file.write(str(i))
-    # session.commit()
-
-    # noadmin1 = Users(color='color',
-    #             nickname='user5n1',
-    #             name='U',
-    #             surname='5n1',
-    #             password=md5(str('admin').encode('cp1252')).hexdigest(),
-    #             institution=5,
-    #             user_role=1)
-
-def solve(max_cnt):
-    try:
-        solve_tasks(max_cnt, 20, 42, 43)
-    except:
-        print(":(")
-
-    try:
-        solve_tasks(max_cnt, 21, 44, 45)
-
-    except:
-        print(":(")
-
-    try:
-        solve_tasks(max_cnt, 23, 51, 55)
-    except:
-        print(":(")
-
-def solve_tasks(max_try, team, user_min, user_max):
-    if max_try <= 0:
-        return
-    try:
-        for i in range(10):
-            ttu = TeamTaskUser(team=team, task=random.randint(37, 51), user=random.randint(user_min, user_max))
-            session.add(ttu)
-            session.commit()
-    except Exception:
-        solve_tasks(max_try - 1, team, user_min, user_max)
-
-if __name__ == '__main__':
-    main()

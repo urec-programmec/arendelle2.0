@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+дом
+{% endblock %}
+
+{% block body %}
+<!-- <div class="background center"> -->
+<canvas class="circle center" id="circle">
+
+</canvas>
+<!-- </div> -->
+
+<div class="dot" id="dot"></div>
+{% endblock %}
+
+{% block postinit %}
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}
