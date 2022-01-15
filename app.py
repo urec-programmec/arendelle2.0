@@ -20,9 +20,9 @@ def home():
     return render_template('test.html')
 
 
-@app.route('/test')
+@app.route('/oop')
 def test():
-    return render_template('test.html')
+    return render_template('oop.html')
 
 
 if __name__ == '__main__':

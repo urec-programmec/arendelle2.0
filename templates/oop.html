@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+стратегии уточек и не только
+{% endblock %}
+
+{% block body %}
+
+<!-- <div class="ex-container"> -->
+    <div class="container">
+        <div class="row border-bottom-row">
+            <div class="cell border-right-row flex-row">
+                <div class="duck" id="duck-1">
+                    <img src="{{url_for('static', filename='images/oop/duck-1.png')}}" style="max-width: 100%;max-height: 100%;">
+                </div>
+                <div class="panel" id="panel-1">
+                    <div>abstract class Утка</div>
+                    <div>{</div>
+                    <div>&nbsp;&nbsp;<span id="duck-1-go">void Идти();</span></div>
+                    <div>&nbsp;&nbsp;<span id="duck-1-attack">void Атаковать();</span></div>
+                    <div>}</div>
+                </div>
+            </div>
+            <div class="row2">
+                <div class="cell flex-column" style="margin: 15px;">
+                    <button id="go" class="button">идти</button>
+                    <button id="attack" class="button">атаковать</button>
+                </div>
+                <div class="panel" style="margin: 15px; overflow-y: scroll;" id="console">
+                    <div>Консоль:</div>
+                    <div>_</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell border-right-row flex-row">
+                <div class="duck" id="duck-2">
+                    <img src="{{url_for('static', filename='images/oop/duck-2.png')}}" style="max-width: 100%;max-height: 100%;">
+                </div>
+                <div class="panel" id="panel-1">
+                    <div>class РоботУтка extends Утка</div>
+                    <div>{</div>
+                    <div>&nbsp;&nbsp;<span id="duck-2-go">void Идти() {</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-go-1">ВключитьСистемыБега();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-go-2">Подготовиться();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-go-3">СуперБыстроПобежать();</span></div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>&nbsp;&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span id="duck-2-attack">void Атаковать() {</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-attack-1">РазработатьПлан();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-attack-2">СобратьКоманду();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-2-attack-3">АтаковатьКомандой();</span></div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>}</div>
+                </div>
+            </div>
+            <div class="cell border-right-row flex-row">
+                <div class="duck" id="duck-3">
+                    <img src="{{url_for('static', filename='images/oop/duck-3.png')}}" style="max-width: 100%;max-height: 100%;">
+                </div>
+                <div class="panel" id="panel-1">
+                    <div>class ОбычнаяУтка extends Утка</div>
+                    <div>{</div>
+                    <div>&nbsp;&nbsp;<span id="duck-3-go">void Идти() {</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-go-1">Топ();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-go-2">Топ();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-go-3">Топ();</span></div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>&nbsp;&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span id="duck-3-attack">void Атаковать() {</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-attack-1">Кря();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-attack-2">Кря();</span></div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span id="duck-3-attack-3">Кря();</span></div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+
+{% endblock %}
+
+{% block postinit %}
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}

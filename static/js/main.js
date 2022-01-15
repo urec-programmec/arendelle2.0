@@ -1,111 +1,185 @@
 $( document ).ready(function() {
-    const circle = $('#circle').get(0);
-    const context =  circle.getContext("2d");
-    var mouseX = 0;
-    var mouseY = 0;
+    var consolePrintFirstSymbol = "_";
+    var consolePrintSecondSymbol = "█";
+    var secCount = 3;
 
-    circle.addEventListener("mousemove", setMousePosition, false);
-    window.addEventListener('resize', resizeCircle, false);
-    resizeCircle();
+    var consolePrint = $("#console");
 
+    $(".row2").css({"max-height":$(".row2").get(0).offsetHeight});
 
-    // $('#dot').css({"left":$(document).outerWidth() / 2, "top":$(document).outerHeight() / 2});
-    function resizeCircle(){
-        circle.width = window.innerWidth;
-        circle.height = window.innerHeight;
-        draw();
-    }
-    
-    function draw() {
-        context.beginPath();
-        context.arc(window.innerWidth/2, 
-            window.innerHeight/2, 
-            Math.min(window.innerWidth, window.innerHeight)/3, 
-            0, 
-            2 * Math.PI, 
-            true);
-        context.stroke();
-    }  
-    
-    function setMousePosition(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        $("#dot").text("x:" + mouseX + " y:" + mouseY);
-        $("#dot").css({"left":mouseX, "top":mouseY});
+    window.addEventListener('resize', () => {
+        $(".row2").css({"max-height":$(".row2").get(0).offsetHeight});
+    }, false);
 
+    setInterval(() => {
+        let html = consolePrint.html();
+        let temp = consolePrintFirstSymbol;
+        consolePrintFirstSymbol = consolePrintSecondSymbol;
+        consolePrintSecondSymbol = temp;
+        html = html.replace(consolePrintFirstSymbol, consolePrintSecondSymbol);
+        consolePrint.html(html);
+    }, 500);
+
+    $("#go").on("click", (e) => {
+        e.srcElement.style.backgroundColor = "red";
+        e.srcElement.disabled = true;
+        let message = "";
+        $("#duck-1-go").addClass("mark-duck");
+        setTimeout(() => {
+            message = "[Утка] Не могу выполнить функцию Идти() - нет реализации, потому что Утка - абстрактный класс";
+            sendConsole(message);
+            $("#duck-1-go").addClass("half");
+            $("#duck-2-go").addClass("mark-duck");
+            $("#duck-3-go").addClass("mark-duck");
+            setTimeout(() => {
+                e.srcElement.style.backgroundColor = "rgb(11 15 175)";
+                $("#duck-2-go").removeClass("mark-duck");
+                $("#duck-3-go").removeClass("mark-duck");
+                $("#duck-2-go").addClass("mark-duck-2");
+                $("#duck-3-go").addClass("mark-duck-2");
+                message = "[РоботУтка] Реализация найдена, выполняю функцию Идти()";
+                sendConsole(message);
+                message = "[ОбычнаяУтка] Реализация найдена, выполняю функцию Идти()";
+                sendConsole(message);
+                setTimeout(() => {
+                    $("#duck-2-go").addClass("half");
+                    $("#duck-3-go").addClass("half");
+                    $("#duck-2-go-1").addClass("mark-duck-2");
+                    $("#duck-3-go-1").addClass("mark-duck-2");
+                    setTimeout(() => {
+                        message = "[РоботУтка] Выполняю включение системы бега";
+                        sendConsole(message);
+                        message = "[ОбычнаяУтка] *топ*";
+                        sendConsole(message);
+                        $("#duck-2-go-1").removeClass("mark-duck-2");
+                        $("#duck-3-go-1").removeClass("mark-duck-2");
+                        setTimeout(() => {
+                            $("#duck-2-go-2").addClass("mark-duck-2");
+                            $("#duck-3-go-2").addClass("mark-duck-2");
+                            setTimeout(() => {
+                                message = "[РоботУтка] Произвожу подготовку";
+                                sendConsole(message);
+                                message = "[ОбычнаяУтка] *топ*";
+                                sendConsole(message);
+                                $("#duck-2-go-2").removeClass("mark-duck-2");
+                                $("#duck-3-go-2").removeClass("mark-duck-2");
+                                setTimeout(() => {
+                                    $("#duck-2-go-3").addClass("mark-duck-2");
+                                    $("#duck-3-go-3").addClass("mark-duck-2");
+                                    setTimeout(() => {
+                                        message = "[РоботУтка] Начинаю супер быстро бежать";
+                                        sendConsole(message);
+                                        message = "[ОбычнаяУтка] *топ*";
+                                        sendConsole(message);
+                                        $("#duck-2-go-3").removeClass("mark-duck-2");
+                                        $("#duck-3-go-3").removeClass("mark-duck-2");
+                                        $("#duck-1-go").removeClass("mark-duck");
+                                        $("#duck-2-go").removeClass("mark-duck-2");
+                                        $("#duck-3-go").removeClass("mark-duck-2");
+                                        $("#duck-1-go").removeClass("half");
+                                        $("#duck-2-go").removeClass("half");
+                                        $("#duck-3-go").removeClass("half");
+                                        setTimeout(() => {
+                                            message = "[РоботУтка] Функция 'Идти()' выполнена успешно";
+                                            sendConsole(message);
+                                            message = "[ОбычнаяУтка] Функция 'Идти()' выполнена успешно";
+                                            sendConsole(message);
+                                            e.srcElement.style.backgroundColor = "";
+                                            e.srcElement.disabled = false;
+                                        }, 1000 * secCount);
+                                    }, 1000 * secCount);
+                                }, 1000 * secCount);
+                            }, 1000 * secCount);
+                        }, 1000 * secCount);
+                    }, 1000 * secCount);
+                }, 1000 * secCount);
+            }, 1000 * secCount);
+        }, 1000 * secCount);
+    });
+
+    $("#attack").on("click", (e) => {
+        e.srcElement.style.backgroundColor = "red";
+        e.srcElement.disabled = true;
+        let message = "";
+        $("#duck-1-attack").addClass("mark-duck");
+        setTimeout(() => {
+            message = "[Утка] Не могу выполнить функцию Атаковать() - нет реализации, потому что Утка - абстрактный класс";
+            sendConsole(message);
+            $("#duck-1-attack").addClass("half");
+            $("#duck-2-attack").addClass("mark-duck");
+            $("#duck-3-attack").addClass("mark-duck");
+            setTimeout(() => {
+                e.srcElement.style.backgroundColor = "rgb(11 15 175)";
+                $("#duck-2-attack").removeClass("mark-duck");
+                $("#duck-3-attack").removeClass("mark-duck");
+                $("#duck-2-attack").addClass("mark-duck-2");
+                $("#duck-3-attack").addClass("mark-duck-2");
+                message = "[РоботУтка] Реализация найдена, выполняю функцию Атаковать()";
+                sendConsole(message);
+                message = "[ОбычнаяУтка] Реализация найдена, выполняю функцию Атаковать()";
+                sendConsole(message);
+                setTimeout(() => {
+                    $("#duck-2-attack").addClass("half");
+                    $("#duck-3-attack").addClass("half");
+                    $("#duck-2-attack-1").addClass("mark-duck-2");
+                    $("#duck-3-attack-1").addClass("mark-duck-2");
+                    setTimeout(() => {
+                        message = "[РоботУтка] Выполнена разработка плана";
+                        sendConsole(message);
+                        message = "[ОбычнаяУтка] Кря!";
+                        sendConsole(message);
+                        $("#duck-2-attack-1").removeClass("mark-duck-2");
+                        $("#duck-3-attack-1").removeClass("mark-duck-2");
+                        setTimeout(() => {
+                            $("#duck-2-attack-2").addClass("mark-duck-2");
+                            $("#duck-3-attack-2").addClass("mark-duck-2");
+                            setTimeout(() => {
+                                message = "[РоботУтка] Производится сбор команды КРЯстителей";
+                                sendConsole(message);
+                                message = "[ОбычнаяУтка] Кря!";
+                                sendConsole(message);
+                                $("#duck-2-attack-2").removeClass("mark-duck-2");
+                                $("#duck-3-attack-2").removeClass("mark-duck-2");
+                                setTimeout(() => {
+                                    $("#duck-2-attack-3").addClass("mark-duck-2");
+                                    $("#duck-3-attack-3").addClass("mark-duck-2");
+                                    setTimeout(() => {
+                                        message = "[РоботУтка] Начинаю атаку супер крутой командой";
+                                        sendConsole(message);
+                                        message = "[ОбычнаяУтка] Кря!";
+                                        sendConsole(message);
+                                        $("#duck-2-attack-3").removeClass("mark-duck-2");
+                                        $("#duck-3-attack-3").removeClass("mark-duck-2");
+                                        $("#duck-1-attack").removeClass("mark-duck");
+                                        $("#duck-2-attack").removeClass("mark-duck-2");
+                                        $("#duck-3-attack").removeClass("mark-duck-2");
+                                        $("#duck-1-attack").removeClass("half");
+                                        $("#duck-2-attack").removeClass("half");
+                                        $("#duck-3-attack").removeClass("half");
+                                        setTimeout(() => {
+                                            message = "[РоботУтка] Функция 'Атаковать()' выполнена успешно";
+                                            sendConsole(message);
+                                            message = "[ОбычнаяУтка] Функция 'Атаковать()' выполнена успешно";
+                                            sendConsole(message);
+                                            e.srcElement.style.backgroundColor = "";
+                                            e.srcElement.disabled = false;
+                                        }, 1000 * secCount);
+                                    }, 1000 * secCount);
+                                }, 1000 * secCount);
+                            }, 1000 * secCount);
+                        }, 1000 * secCount);
+                    }, 1000 * secCount);
+                }, 1000 * secCount);
+            }, 1000 * secCount);
+        }, 1000 * secCount);
+    });
+
+    function sendConsole(message) {
+        let html = consolePrint.html();
+        html = html.replace(consolePrintFirstSymbol, "");
+        html = html.replace(consolePrintSecondSymbol, "");
+        html += "<div>" + message +"</div><br>" + consolePrintFirstSymbol;
+        consolePrint.html(html);
+        consolePrint.scrollTop(consolePrint.prop('scrollHeight'));
     }
 });
-
-
-
-
-function test2(){
-    var gravity = 0.1, 
-        friction = 0.9;
-
-    var points = [];
-    for(let i = 0; i < 100; i++){
-        let x = Math.random() * width | 0;
-        let y = Math.random() * height | 0;
-        let kx = 5 + Math.random() * 5 * (Math.random() > 0.5 ? 1 : -1);    
-        let ky = 5 + Math.random() * 5 * (Math.random() > 0.5 ? 1 : -1);    
-
-        points.push({
-            x: x, 
-            y: y,
-            oldx: x - kx,
-            oldy: y - ky
-        });
-    }
-
-
-    update();
-
-    function update() {
-        updatePoints();
-        renderPoints();
-        requestAnimationFrame(update);
-    }
-
-    function updatePoints(){
-        for (let i = 0; i < points.length; i++){
-            let p = points[i], 
-                vy = p.y - p.oldy,    
-                vx = p.x - p.oldx;
-                if(vy == 0){
-                    vx *= friction;
-                } 
-
-            p.oldx = p.x;
-            p.oldy = p.y;
-            p.x += vx;
-            p.y += vy + gravity;
-
-            if(p.x > width){
-                p.x = width;
-                p.oldx = p.x + vx;
-            } else if(p.x < 0){
-                p.x = 0;
-                p.oldx = vx;
-            }
-
-            if(p.y > height){
-                p.y = height;
-                p.oldy = p.y + vy;
-            } else if(p.y < 0){
-                p.y = 0;
-                p.oldy = vy;
-            }
-        }
-    }   
-
-    function renderPoints(){
-        context.clearRect(0, 0, width, height);
-        for (let i = 0; i < points.length; i++){
-            let p = points[i];
-            context.beginPath();
-            context.arc(p.x, p.y, 1, 0, Math.PI * 2);
-            context.stroke();
-        }
-    }
-}

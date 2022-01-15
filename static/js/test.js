@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     var canvas = $('#canvas').get(0),
         context =  canvas.getContext("2d"), 
-        countPoints = 30, 
+        countPoints = 100, 
         width, 
         height, 
         radius, 
@@ -13,16 +13,18 @@ $( document ).ready(function() {
         reflection = 1, 
         k = 0.04, 
         step = 0.1, 
-        vcoeff = 0.4;
+        vcoeff = 0.5;
 
-    window.addEventListener('resize', restart, false);
+    window.addEventListener('resize', resize, false);
 
-    restart();
+    resetParameters();
+    setPoints();
+    renderPoints();
     animate();
 
-    function restart(){
-        resetParameters();
+    function resize(){
         resetPoints();
+        resetParameters();
         renderPoints();
     }
 
@@ -41,6 +43,15 @@ $( document ).ready(function() {
     }
 
     function resetPoints(){
+        for(let i = 0; i < countPoints; i++){
+            points[i].x *= (window.innerWidth / width);
+            points[i].startX *= (window.innerWidth / width);
+            points[i].y *= (window.innerHeight / height);
+            points[i].startY *= (window.innerHeight / height);
+        }
+    }
+
+    function setPoints(){
         points = [];
         for(let i = 0; i < countPoints; i++){
             let y = centerY + ((getSin(i)) * (radius + radius * (i % 2 == 0 ? (Math.random() - 0.5) : 0)));
@@ -48,6 +59,8 @@ $( document ).ready(function() {
             let v = (Math.random() * 2 - 1) * radius * vcoeff;
 
             points.push({
+                startX: x,
+                startY: y,
                 x: x, 
                 y: y,
                 v : v,
@@ -58,32 +71,34 @@ $( document ).ready(function() {
         }
     }
 
+
+
     function renderPoints(){
         context.clearRect(0, 0, width, height);
 
-        for (let i = 0; i < countPoints; i+=2){
+        for (let i = 0; i < countPoints; i+=1){
             let p = points[i];
             
             context.beginPath();
-            context.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            context.arc(p.x, p.y, 5, 0, Math.PI * 2);
             // context.arc(p.x, p.y, 5, 0, Math.PI * 2);
 
-            let gradient = context.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
-            gradient.addColorStop(0, p.firstColor);
-            gradient.addColorStop(1, p.secondColor);
+            // let gradient = context.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+            // gradient.addColorStop(0, p.firstColor);
+            // gradient.addColorStop(1, p.secondColor);
             
-            context.globalCompositeOperation = `overlay`;
-            context.fillStyle = gradient;
-            // context.fillStyle = p.firstColor;
+            // context.globalCompositeOperation = `overlay`;
+            // context.fillStyle = gradient;
+            context.fillStyle = p.firstColor;
 
             context.fill();
 
             // let p0 = points[(i + 1) % countPoints];
             // let p2 = points[(i + 2) % countPoints];
             // context.lineWidth = 5;
-            // context.moveTo(p1.x, p1.y); 
+            // context.moveTo(p.startX, p.startY); 
 
-            // context.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p0.x, p0.y);
+            // context.bezierCurveTo(p.startX, p.startY, p2.x, p2.y, p0.x, p0.y);
             
             // context.quadraticCurveTo(p0.x, p0.y, p2.x, p2.y);
 
@@ -103,47 +118,32 @@ $( document ).ready(function() {
     }
 
     function updatePoints(){
-        for (let i = 0; i < countPoints; i+=2){
-            let p = points[i],
-                p1 = points[(i + 1) % countPoints];
+        for (let i = 0; i < countPoints; i++){
+            let p = points[i];
 
-            p.x += p.v * calculateDeltaX(p.x, p.y) * step;
-            p.y += p.v * calculateDeltaY(p.x, p.y) * step;
+            p.x += p.v * getCos(i) * step;
+            p.y += p.v * getSin(i) * step;
 
-            let dist = Math.sqrt((p.y - p1.y) ** 2 + (p.x - p1.x) ** 2);
-            p.v += (dist * k) * (p.y < p1.y && p1.y > centerY && Math.abs(p1.x - centerX) <= radius * Math.sqrt(2) / 2 || 
-                                p.y > p1.y && p1.y < centerY && Math.abs(p1.x - centerX) <= radius * Math.sqrt(2) / 2 ||
-                                p.x < p1.x && p1.x > centerX && Math.abs(p1.y - centerY) <= radius * Math.sqrt(2) / 2 ||
-                                p.x > p1.x && p1.x < centerX && Math.abs(p1.y - centerY) <= radius * Math.sqrt(2) / 2 ? 1 : -1);
+            let distSX = Math.sqrt((p.y - p.startY) ** 2 + (p.x - p.startX) ** 2);
+            let distCX = Math.sqrt((p.y - centerY) ** 2 + (p.x - centerX) ** 2);
+            let distCS = Math.sqrt((centerY - p.startY) ** 2 + (centerX - p.startX) ** 2);
+            
+            p.v += (distSX * k) * (Math.max(distCX, distSX, distCS) == distCX ? -1 : 1);
+            
+            // (p.y < p.startY && p.startY > centerY && Math.abs(p.startX - centerX) <= radius * Math.sqrt(3) / 2 || 
+            //                     p.y > p.startY && p.startY < centerY && Math.abs(p.startX - centerX) <= radius * Math.sqrt(3) / 2 ||
+            //                     p.x < p.startX && p.startX > centerX && Math.abs(p.startY - centerY) <= radius * Math.sqrt(3) / 2 ||
+            //                     p.x > p.startX && p.startX < centerX && Math.abs(p.startY - centerY) <= radius * Math.sqrt(3) / 2 ? 1 : -1);
             p.v *= reflection;
         }
     }
 
     function getCos(i){
-        return Math.cos(i * 360 / countPoints * (Math.PI / 180)) * (width / height);
+        return Math.cos(i * 360 / countPoints * (Math.PI / 180))// * (width / height);
     }
 
     function getSin(i){
-        return Math.sin(i * 360 / countPoints * (Math.PI / 180)) * (height / width);
-    }
-
-    function calculateDeltaX(x, y) {
-        xx = x - centerX;
-        return Math.abs(xx) / Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) * xx == 0 ? 1 : (xx / Math.abs(xx));
-    }
-
-    function calculateDeltaY(x, y) {
-        yy = y - centerY;
-        return Math.abs(yy) / Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) * yy == 0 ? 1 : (yy / Math.abs(yy));
-    }
-
-    function getColor() {
-
-        r = Math.random() * 255;
-        g = Math.random() * 255;
-        b = Math.random() * 255;
-    
-        return "rgb(" + (r|0) + "," + (g|0) + "," + (b|0) + ")";
+        return Math.sin(i * 360 / countPoints * (Math.PI / 180))// * (height / width);
     }
 });
 
