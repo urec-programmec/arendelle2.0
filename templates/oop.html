@@ -4,6 +4,12 @@
 стратегии уточек и не только
 {% endblock %}
 
+{% block init %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/oop.css')}}">
+{% endblock %}
+
+
+
 {% block body %}
 
 <!-- <div class="ex-container"> -->
@@ -82,5 +88,5 @@
 {% endblock %}
 
 {% block postinit %}
-<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script src="{{url_for('static', filename='js/oop.js')}}"></script>
 {% endblock %}
