@@ -52,5 +52,6 @@ module.exports = {
     'no-mixed-operators': 'off',
     'no-bitwise': 'off',
     'prefer-template': 'off',
+    'global-require': 'off',
   }
 }

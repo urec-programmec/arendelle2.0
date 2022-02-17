@@ -1,15 +1,25 @@
 <template>
   <main id="map-main">
+    <vue-draggable-resizable class="instrument-panel"
+                             :parent="true"
+                             :w="300"
+                             :h="300"
+                             :x="instrumentPanelX"
+                             :y="instrumentPanelY"
+                             :handles="['tl']"
+                             :resizable="true">
+    </vue-draggable-resizable>
+    <Menu/>
     <div class="container">
       <div class="map" v-bind:style="{ minWidth: maxMapSize * sliderValue / 100 + 'px',
-                                       maxWidth: maxMapSize * sliderValue / 100 + 'px',
-                                       minHeight: maxMapSize * sliderValue / 100 + 'px',
-                                       maxHeight: maxMapSize * sliderValue / 100 + 'px' }">
-          <div v-for="(row, rowIndex) in map" :key="rowIndex" class="row">
-            <div v-for="(item, itemIndex) in row" :key="itemIndex" class="item"
-                 v-bind:style="{'background-color': mapColors[item] }">
-            </div>
+                                         maxWidth: maxMapSize * sliderValue / 100 + 'px',
+                                         minHeight: maxMapSize * sliderValue / 100 + 'px',
+                                         maxHeight: maxMapSize * sliderValue / 100 + 'px' }">
+        <div v-for="(row, rowIndex) in map" :key="rowIndex" class="row">
+          <div v-for="(item, itemIndex) in row" :key="itemIndex" class="item"
+               v-bind:style="{'background-color': mapColors[item] }">
           </div>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -24,12 +34,15 @@
 
 <script>
 import 'vue-slider-component/theme/antd.css';
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 import VueSlider from 'vue-slider-component';
+import VueDraggableResizable from 'vue-draggable-resizable';
 import axios from 'axios';
+import Menu from './Menu';
 
 export default {
   name: 'Map',
-  components: { VueSlider },
+  components: { VueSlider, Menu, VueDraggableResizable },
   data() {
     return {
       mapSize: 0,
@@ -39,6 +52,8 @@ export default {
       minSliderValue: 0,
       sliderValue: 0,
       maxSliderValue: 100,
+      instrumentPanelX: window.innerWidth - 340,
+      instrumentPanelY: window.innerHeight - 380,
       percentFormatter: val => Math.round(this.maxMapSize * val / 100 / this.mapSize - 1) + ' px',
     };
   },
@@ -66,12 +81,12 @@ export default {
           console.error(error);
         });
     },
-    onResize() {
-      const newMaxMapSize = Math.min(window.innerHeight, window.innerWidth) * 0.8;
-      if (newMaxMapSize !== this.maxMapSize) {
-        this.maxMapSize = newMaxMapSize;
-      }
-    },
+  },
+  onResize() {
+    // const newMaxMapSize = Math.min(window.innerHeight, window.innerWidth) * 0.8;
+    // if (newMaxMapSize !== this.maxMapSize) {
+    //   this.maxMapSize = newMaxMapSize;
+    // }
   },
   mounted() {
     this.$nextTick(() => {
@@ -101,7 +116,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: scroll;
-  padding: 15px;
+  padding: 15px 15px 15px 93px;
 }
 .map{
   display: flex;
@@ -123,12 +138,17 @@ export default {
   margin: 0.5px;
 }
 .footer {
-  height: 10%;
+  min-height: 40px;
   border-top: 1px solid black;
   padding-left: 5%;
   padding-right: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.instrument-panel {
+  border-radius: 10px;
+  background: rgba(17, 16, 29, 0.85);
+  position: absolute;
 }
 </style>

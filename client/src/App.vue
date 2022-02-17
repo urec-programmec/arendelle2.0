@@ -14,10 +14,10 @@ export default {
 #app {
   width: 100%;
   height: 100%;
+  background-color: hsl(222, 25%, 20%);
 }
 * {
   font-family: "Courier New", serif !important;
-  background-color: hsl(222, 25%, 20%);
   /*scrollbar-color: hsl(210, 40%, 20%) hsl(222, 25%, 20%);*/
   /*scrollbar-face-color: #367CD2;*/
   /*scrollbar-shadow-color: #FFFFFF;*/
@@ -40,7 +40,7 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  margin: 15px;
+  margin: 15px 15px 15px 93px;
 }
 
 /* Handle */
@@ -55,5 +55,11 @@ export default {
 html, body {
   width: 100%;
   height: 100%;
+}
+
+.handle-tl {
+  top: -5px;
+  left: -5px;
+  border-radius: 3px;
 }
 </style>

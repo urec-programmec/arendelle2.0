@@ -5,4 +5,5 @@ npm install axios@0.18.0 --save
 npm i -S axios
 npm install bootstrap@4.1.1 --save
 npm install bootstrap-vue@2.0.0-rc.11 --save
-npm install @vueform/slider
+npm install vue-slider-component --save
+npm install --save vue-draggable-resizable
