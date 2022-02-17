@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+создание карт
+{% endblock %}
+
+{% block init %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+{% endblock %}
+
+{% block body %}
+<div id="app">
+    {{ message }}
+</div>
+{% endblock %}
+
+{% block postinit %}
+<script src="{{url_for('static', filename='js/mapcreator.js')}}"></script>
+{% endblock %}

@@ -66,7 +66,7 @@ class Application {
         this.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
         let radius = Math.min(window.innerWidth, window.innerHeight) * this.radiusCoeff;
 
-        for (let i = 0; i < this.countPoints; i+=1){
+        for (let i = 0; i < this.countPoints; i++){
             let point = this.points[i];
             let x = (window.innerWidth / 2) + point.x * radius;
             let y =  (window.innerHeight / 2) + point.y * radius;
@@ -74,21 +74,21 @@ class Application {
             this.context.beginPath();
 
             // градиент
-            // this.context.arc(x, y, point.radius, 0, Math.PI * 2);
-            // let gradient = this.context.createRadialGradient(x, y, 0, x, y, point.radius);
-            // gradient.addColorStop(0, point.firstColor);
-            // gradient.addColorStop(1, point.secondColor);
-            // this.context.globalCompositeOperation = `overlay`;
-            // this.context.fillStyle = gradient;
+            this.context.arc(x, y, point.radius, 0, Math.PI * 2);
+            let gradient = this.context.createRadialGradient(x, y, 0, x, y, point.radius);
+            gradient.addColorStop(0, point.firstColor);
+            gradient.addColorStop(1, point.secondColor);
+            this.context.globalCompositeOperation = `overlay`;
+            this.context.fillStyle = gradient;
 
             // точки
-            this.context.arc(x, y, 5, 0, Math.PI * 2);
-            this.context.fillStyle = point.firstColor;
+            // this.context.arc(x, y, 5, 0, Math.PI * 2);
+            // this.context.fillStyle = point.firstColor;
 
             // линии
-            // let p0 = points[(i + 1) % countPoints];
-            // let p2 = points[(i + 2) % countPoints];
-            // this.context.lineWidth = 5;
+            // let p0 = this.points[(i + 1) % this.countPoints];
+            // let p2 = this.points[(i + 2) % this.countPoints];
+            // this.context.lineWidth = 2;
             // this.context.moveTo(point.startX, point.startY); 
             // this.context.bezierCurveTo(point.startX, point.startY, p2.x, p2.y, p0.x, p0.y);
             // this.context.quadraticCurveTo(p0.x, p0.y, p2.x, p2.y);
@@ -114,9 +114,9 @@ class Application {
 
 $( document ).ready(function() {
     let canvas = $('#canvas').get(0);
-    let countPoints = 100;
-    let minR = 150;
-    let maxR = 300;
+    let countPoints = 50;
+    let minR = 40;
+    let maxR = 80;
     let startVelocity = 0.5;
     let reflectionCoeff = 1;
     let mainVelocityCoeff = 0.04;
