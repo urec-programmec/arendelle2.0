@@ -17,7 +17,8 @@ export default {
   background-color: hsl(222, 25%, 20%);
 }
 * {
-  font-family: "Courier New", serif !important;
+  /*font-family: "Courier New", serif !important;*/
+  font-family: 'Poppins', sans-serif !important;
   /*scrollbar-color: hsl(210, 40%, 20%) hsl(222, 25%, 20%);*/
   /*scrollbar-face-color: #367CD2;*/
   /*scrollbar-shadow-color: #FFFFFF;*/
@@ -61,5 +62,10 @@ html, body {
   top: -5px;
   left: -5px;
   border-radius: 3px;
+  transition: all 300ms linear;
+  cursor: nw-resize;
+}
+.handle-tl:hover {
+  transform: scale(1.4);
 }
 </style>

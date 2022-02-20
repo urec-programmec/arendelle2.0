@@ -53,5 +53,10 @@ module.exports = {
     'no-bitwise': 'off',
     'prefer-template': 'off',
     'global-require': 'off',
+    'quote-props': 'off',
+    'arrow-body-style': 'off',
+    'no-restricted-syntax': 'off',
+    'dot-notation': 'off',
+    'prefer-const': 'off',
   }
 }
