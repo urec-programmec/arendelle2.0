@@ -1,58 +1,58 @@
 <template>
-  <div
-    class="sidebar"
+  <div class="sidebar"
     :class="isOpened ? 'open' : ''"
     :style="cssVars">
-    <div
-      class="logo-details"
+    <div class="logo-details"
       style="margin: 6px 14px 0 14px;">
-      <img
-        v-if="menuLogo"
-        :src="menuLogo"
-        alt="menu-logo"
-        class="menu-logo icon">
-      <i
-        v-else
-        class="bx icon"
+      <i class="bx icon"
         :class="menuIcon"/>
       <div class="logo_name">
         {{ menuTitle }}
       </div>
-      <i
-        class="bx"
+      <i class="bx"
         :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
         id="btn"
-        @click="isOpened = !isOpened"/>
+        @click="openCloseMenu"/>
     </div>
 
     <div style="display: flex ; flex-direction:column; justify-content: space-between; flex-grow: 1; max-height: calc(100% - 60px); ">
-      <div
-        id="my-scroll"
+      <div id="my-scroll"
         style="margin: 6px 14px 0 14px;">
-        <ul
-          class="nav-list"
+        <ul class="nav-list"
           style="overflow: visible;">
-          <span
-            v-for="(menuItem, index) in menuItems"
-            :key="index">
+          <span v-for="(menuItem, menuIndex) in menuItems"
+                :key="menuIndex">
             <li>
-              <a :href="menuItem.link">
-                <i
-                  class="bx"
-                  :class="menuItem.icon || 'bx-square-rounded'"/>
-                <span class="links_name">{{ menuItem.name }}</span>
-              </a>
-              <span class="tooltip">{{ menuItem.tooltip || menuItem.name }}</span>
+              <div class="menu_item">
+                <div class="menu_item_row menu_item_title"
+                      @click="() => {isOpened = true; menuItem.isOpen = !menuItem.isOpen}">
+                  <i class="bx" :class="menuItem.icon"/>
+                  <span class="links_name">{{ menuItem.name }}</span>
+                </div>
+                <div :class="['menu_item_row', 'menu_item_content', {'menu_item_closed': !isOpened || !menuItem.isOpen}]"
+                     :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.length / 5) + 32) + 'px' }">
+                  <div v-for="(item, itemIndex) in menuItem.childs"
+                       :key="itemIndex"
+                       :style="{'background': item}"
+                       :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item && colorIndex === itemIndex }]"
+                       @click="changeColor(menuItem.type, item, itemIndex, menuItem.icon)"/>
+                </div>
+              </div>
             </li>
           </span>
         </ul>
       </div>
 
-      <div
-        class="profile">
-        <i
-          v-if="isExitButton"
-          class="bx bx-log-out"
+      <div class="exit"
+          v-show="colorValue !== ''">
+        <li style="height: 100%; width: 100%; margin: 0;">
+          <i class="bx" :class="[colorIcon, 'exit_menu_item']"/>
+          <i class="bx" :style="{background: colorValue, boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
+        </li>
+      </div>
+      <div class="exit secondaryColor">
+        <i v-if="isExitButton"
+          class="bx bx-log-out secondaryColor"
           id="log_out"
           @click.stop="$emit('button-exit-clicked')"/>
       </div>
@@ -63,6 +63,15 @@
 <script>
 export default {
   name: 'Menu',
+  data() {
+    return {
+      isOpened: false,
+      colorType: '',
+      colorValue: '',
+      colorIndex: -1,
+      colorIcon: '',
+    };
+  },
   props: {
     //! Menu settings
     isMenuOpen: {
@@ -73,13 +82,9 @@ export default {
       type: String,
       default: 'карта',
     },
-    menuLogo: {
-      type: String,
-      default: '',
-    },
     menuIcon: {
       type: String,
-      default: 'bxs-map-alt',
+      default: 'bx-terminal',
     },
     isPaddingLeft: {
       type: Boolean,
@@ -98,80 +103,34 @@ export default {
       type: Array,
       default: () => [
         {
-          link: '#',
-          name: 'Dashboard',
-          tooltip: 'Dashboard',
-          icon: 'bx-grid-alt',
+          name: 'комнаты подземелья',
+          icon: 'bxs-dashboard',
+          type: 'room',
+          childs: ['red', 'yellow', 'pink'],
+          isOpen: false,
         },
         {
-          link: '#',
-          name: 'User',
-          tooltip: 'User',
-          icon: 'bx-user',
+          name: 'стены подземелья',
+          icon: 'bx-border-radius',
+          type: 'border',
+          childs: ['red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink'],
+          isOpen: false,
         },
         {
-          link: '#',
-          name: 'Messages',
-          tooltip: 'Messages',
-          icon: 'bx-chat',
+          name: 'переходы',
+          icon: 'bx-trip',
+          type: 'trip',
+          childs: ['wheat', 'wheat', 'wheat', 'wheat', 'wheat', 'wheat'],
+          isOpen: false,
         },
         {
-          link: '#',
-          name: 'Analytics',
-          tooltip: 'Analytics',
-          icon: 'bx-pie-chart-alt-2',
-        },
-        {
-          link: '#',
-          name: 'File Manager',
-          tooltip: 'Files',
-          icon: 'bx-folder',
-        },
-        {
-          link: '#',
-          name: 'Order',
-          tooltip: 'Order',
-          icon: 'bx-cart-alt',
-        },
-        {
-          link: '#',
-          name: 'Saved',
-          tooltip: 'Saved',
-          icon: 'bx-heart',
-        },
-        {
-          link: '#',
-          name: 'Setting',
-          tooltip: 'Setting',
-          icon: 'bx-cog',
+          name: 'специальные места',
+          icon: 'bxs-flag-alt',
+          type: 'special',
+          childs: ['wheat', 'wheat', 'wheat', 'wheat'],
+          isOpen: false,
         },
       ],
-    },
-    //! Search
-    isSearch: {
-      type: Boolean,
-      default: true,
-    },
-    searchPlaceholder: {
-      type: String,
-      default: 'Search...',
-    },
-    searchTooltip: {
-      type: String,
-      default: 'Search',
-    },
-    //! Profile detailes
-    profileImg: {
-      type: String,
-      default: require('../assets/logo.png'),
-    },
-    profileName: {
-      type: String,
-      default: 'Fayzullo Saidakbarov',
-    },
-    profileRole: {
-      type: String,
-      default: 'Frontend vue developer',
     },
     isExitButton: {
       type: Boolean,
@@ -180,7 +139,7 @@ export default {
     //! Styles
     bgColor: {
       type: String,
-      default: '#11101d',
+      default: 'rgba(17, 16, 29, 0.85)',
     },
     secondaryColor: {
       type: String,
@@ -197,10 +156,6 @@ export default {
     iconsColor: {
       type: String,
       default: '#fff',
-    },
-    itemsTooltipColor: {
-      type: String,
-      default: '#e4e9f7',
     },
     searchInputTextColor: {
       type: String,
@@ -219,13 +174,31 @@ export default {
       default: '#fff',
     },
   },
-  data() {
-    return {
-      isOpened: false,
-    };
-  },
   mounted() {
     this.isOpened = this.isMenuOpen;
+  },
+  methods: {
+    openCloseMenu() {
+      if (this.isOpened) {
+        for (let i of this.menuItems) {
+          i['isOpen'] = false;
+        }
+      }
+      this.isOpened = !this.isOpened;
+    },
+    changeColor(type, color, index, icon) {
+      if (!(this.colorType === type && this.colorValue === color && this.colorIndex === index)){
+        this.colorType = type;
+        this.colorValue = color;
+        this.colorIndex = index;
+        this.colorIcon = icon;
+      } else {
+        this.colorType = '';
+        this.colorValue = '';
+        this.colorIndex = -1;
+        this.colorIcon = '';
+      }
+    },
   },
   computed: {
     cssVars() {
@@ -236,7 +209,6 @@ export default {
         '--home-section-color': this.homeSectionColor,
         '--logo-title-color': this.logoTitleColor,
         '--icons-color': this.iconsColor,
-        '--items-tooltip-color': this.itemsTooltipColor,
         '--serach-input-text-color': this.searchInputTextColor,
         '--menu-items-hover-color': this.menuItemsHoverColor,
         '--menu-items-text-color': this.menuItemsTextColor,
@@ -244,11 +216,6 @@ export default {
       };
     },
   },
-  // watch: {
-  //   isOpened() {
-  //     window.document.body.style.paddingLeft = this.isOpened && this.isPaddingLeft ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody;
-  //   },
-  // },
 };
 </script>
 
@@ -264,10 +231,6 @@ export default {
 }
 body {
   transition: all 0.5s ease;
-}
-.menu-logo {
-  width: 30px;
-  margin: 0 10px 0 10px;
 }
 .sidebar {
   display: flex;
@@ -341,32 +304,6 @@ body {
   margin: 8px 0;
   list-style: none;
 }
-.sidebar li .tooltip {
-  position: absolute;
-  top: -20px;
-  left: calc(100% + 15px);
-  z-index: 3;
-  background: var(--items-tooltip-color);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 400;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: 0s;
-}
-.sidebar li:hover .tooltip {
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.sidebar.open li .tooltip {
-  display: none;
-}
 .sidebar input {
   font-size: 15px;
   color: var(--serach-input-text-color);
@@ -401,8 +338,9 @@ body {
   background: var(--menu-items-hover-color);
   color: var(--bg-color);
 }
-.sidebar li a {
+.sidebar li .menu_item {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   border-radius: 12px;
@@ -411,10 +349,25 @@ body {
   transition: all 0.4s ease;
   background: var(--bg-color);
 }
-.sidebar li a:hover {
-  background: var(--menu-items-hover-color);
+.sidebar li .menu_item .menu_item_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  border-radius: 12px;
 }
-.sidebar li a .links_name {
+.sidebar li .menu_item .menu_item_content {
+  padding: 16px;
+  flex-wrap: wrap;
+  transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
+  overflow: hidden;
+}
+.sidebar li .menu_item .menu_item_title:hover {
+  background: var(--menu-items-hover-color);
+  cursor: pointer;
+}
+.sidebar li .menu_item .links_name {
   color: var(--menu-items-text-color);
   font-size: 15px;
   font-weight: 400;
@@ -423,12 +376,12 @@ body {
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open li a .links_name {
+.sidebar.open li .menu_item .links_name {
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
+.sidebar li .menu_item .menu_item_title:hover .links_name,
+.sidebar li .menu_item .menu_item_title:hover i {
   transition: all 0.5s ease;
   color: var(--bg-color);
 }
@@ -438,24 +391,23 @@ body {
   font-size: 18px;
   border-radius: 12px;
 }
-.sidebar div.profile {
+.sidebar div.exit {
   position: relative;
   height: 60px;
   width: 78px;
   /* left: 0;
   bottom: 0; */
   padding: 10px 14px;
-  background: var(--secondary-color);
   transition: all 0.5s ease;
   overflow: hidden;
 }
-.sidebar.open div.profile {
-  width: 250px;
+.sidebar div.secondaryColor,
+.sidebar div i.secondaryColor  {
+  background: var(--secondary-color);
 }
-.sidebar div .profile-details {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
+
+.sidebar.open div.exit {
+  width: 250px;
 }
 .sidebar div img {
   height: 45px;
@@ -464,41 +416,37 @@ body {
   border-radius: 6px;
   margin-right: 10px;
 }
-.sidebar div.profile .name,
-.sidebar div.profile .job {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--menu-footer-text-color);
-  white-space: nowrap;
+.sidebar .exit .exit_menu_item {
+  z-index: 1;
+  line-height: 2rem;
 }
-.sidebar div.profile .job {
-  font-size: 12px;
+.sidebar .exit .exit_menu_item::before {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
 }
-.sidebar .profile #log_out {
+.sidebar .exit i {
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  background: var(--secondary-color);
   width: 100%;
-  height: 60px;
+  height: 100%;
   line-height: 60px;
-  border-radius: 0px;
   transition: all 0.5s ease;
 }
-.sidebar.open .profile #log_out {
+.sidebar.open .exit #log_out {
   width: 50px;
   background: var(--secondary-color);
   opacity: 0.5;
 }
-.sidebar.open .profile:hover #log_out {
+.sidebar.open .exit:hover #log_out {
   opacity: 1;
 }
-.sidebar.open .profile #log_out:hover {
+.sidebar.open .exit #log_out:hover {
   opacity: 1;
   color: red;
 }
-.sidebar .profile #log_out:hover {
+.sidebar .exit #log_out:hover {
   color: red;
 }
 .home-section {
@@ -522,32 +470,39 @@ body {
   font-weight: 500;
   margin: 18px;
 }
-.my-scroll-active {
-  overflow-y: auto;
-}
 #my-scroll {
   overflow-y: auto;
   height: calc(100% - 60px);
 }
 #my-scroll::-webkit-scrollbar{
   display:none;
-  /* background-color: rgba(255, 255, 255, 0.2);
-  width: 10px;
-  border-radius:5px  */
 }
-/* #my-scroll::-webkit-scrollbar-thumb{
-  background-color: red;
-  border-radius:5px
+.ceil_item {
+  height: 32px;
+  width: 32px;
+  margin: 0px 0px 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-#my-scroll::-webkit-scrollbar-button:vertical:start:decrement{
-  display:none;
+.ceil_item_selected {
+  transform: scale(1.2);
+  box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
 }
-#my-scroll::-webkit-scrollbar-button:vertical:end:increment{
-  display:none;
-} */
-@media (max-width: 420px) {
-  .sidebar li .tooltip {
-    display: none;
-  }
+.ceil_item_selected:before {
+  content: "\ec9b";
+  position: absolute;
+  top: -3.5px;
+  right: -3.5px;
+  font-size: 9px;
+  color: rgb(225, 33, 33);
+  animation: scaling 2s cubic-bezier(0.4, 0, 1, 1) infinite alternate;
+}
+@keyframes scaling {
+  0%   { transform: scale(1); opacity: 0.8 }
+  100% { transform: scale(1.3); opacity: 1 }
+}
+.menu_item_closed {
+  max-height: 0 !important;
+  padding: 0 16px !important;
 }
 </style>

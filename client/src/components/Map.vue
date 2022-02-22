@@ -1,15 +1,19 @@
 <template>
   <main id="map-main">
-    <instrument-panel/>
+    <instrument-panel @changeParameters="changeParameters"/>
     <right-menu/>
     <div class="container">
-      <div class="map" style="display: none !important;" v-bind:style="{ minWidth: maxMapSize * mapSliderValue / 100 + 'px',
+      <div class="map" style="display: none !important;"
+           :style="{ minWidth: maxMapSize * mapSliderValue / 100 + 'px',
                                          maxWidth: maxMapSize * mapSliderValue / 100 + 'px',
                                          minHeight: maxMapSize * mapSliderValue / 100 + 'px',
                                          maxHeight: maxMapSize * mapSliderValue / 100 + 'px' }">
         <div v-for="(row, rowIndex) in map" :key="rowIndex" class="row">
-          <div v-for="(item, itemIndex) in row" :key="itemIndex" class="item"
-               v-bind:style="{'background-color': mapColors[item] }">
+          <div v-for="(item, itemIndex) in row"
+               :key="itemIndex"
+               :class="['item', { 'selected-item': isItemSelected(rowIndex, itemIndex), 'hovered-item': isItemHovered(rowIndex, itemIndex) }]"
+               :style="{'background-color': mapColors[item]}"
+               @mouseover="onItemHover(rowIndex, itemIndex)">
           </div>
         </div>
       </div>
@@ -45,6 +49,13 @@ export default {
       map: [],
       maxMapSize: 0,
 
+      selectedItems: [],
+      hoveredItem: '',
+      cursorSolid: false,
+      cursorSize: 1,
+      cursorSizeDelta: 1.5,
+      cursorForm: 'circle',
+
       minMapSliderValue: 0,
       mapSliderValue: 0,
       maxMapSliderValue: 100,
@@ -76,12 +87,55 @@ export default {
           console.error(error);
         });
     },
+    onItemHover(rowIndex, itemIndex) {
+      this.selectedItems = [];
+      let tempCursorSize = this.cursorSize - 1;
+      for (let i = rowIndex - tempCursorSize; i <= rowIndex + tempCursorSize; i++) {
+        for (let j = itemIndex - tempCursorSize; j <= itemIndex + tempCursorSize; j++) {
+          let delta = (rowIndex === i && itemIndex === j) ?
+            0 :
+            Math.sqrt((rowIndex - i) ** 2 + (itemIndex - j) ** 2);
+
+          let isCircle = this.cursorForm === 'circle' &&
+            (this.cursorSolid && delta <= tempCursorSize ||
+            !this.cursorSolid && tempCursorSize - delta <= this.cursorSizeDelta && tempCursorSize - delta >= 0 &&
+              !(tempCursorSize === 1 && (rowIndex === i && itemIndex === j)));
+
+          let isSquare = this.cursorForm !== 'circle' &&
+            (this.cursorSolid ||
+              i === rowIndex - tempCursorSize ||
+              i === rowIndex + tempCursorSize ||
+              j === itemIndex - tempCursorSize ||
+              j === itemIndex + tempCursorSize);
+
+          if (isCircle || isSquare) {
+            this.selectedItems.push(i + ' ' + j);
+          }
+        }
+      }
+      if (this.cursorSize !== 1) {
+        this.hoveredItem = rowIndex + ' ' + itemIndex;
+      } else {
+        this.hoveredItem = '';
+      }
+    },
+    changeParameters(data) {
+      this.cursorSolid = data['cursorSolid'];
+      this.cursorForm = data['cursorForm'];
+      this.cursorSize = data['cursorSize'];
+    },
   },
-  onResize() {
-    // const newMaxMapSize = Math.min(window.innerHeight, window.innerWidth) * 0.8;
-    // if (newMaxMapSize !== this.maxMapSize) {
-    //   this.maxMapSize = newMaxMapSize;
-    // }
+  computed: {
+    isItemSelected() {
+      return (rowIndex, itemIndex) => {
+        return this.selectedItems.includes(rowIndex + ' ' + itemIndex);
+      };
+    },
+    isItemHovered() {
+      return (rowIndex, itemIndex) => {
+        return this.hoveredItem === rowIndex + ' ' + itemIndex;
+      };
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -163,5 +217,19 @@ export default {
 .custom-dot-focus {
   box-shadow: 0 0 0 5px rgba(54, 171, 255, 0.2);
   border-color: #36abff;
+}
+.selected-item {
+  background-color: #9CC6FF !important;
+}
+.hovered-item:before {
+  content: "\ee18";
+}
+.x {
+/*  bxs-map-pin
+    bx-border-radius
+    bxs-dashboard
+    bx-terminal
+    bxs-flag-alt
+    bx-trip*/
 }
 </style>

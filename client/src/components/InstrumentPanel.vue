@@ -15,13 +15,14 @@
     <div class="instrument-panel-container">
       <div class="instrument-panel-title">размер</div>
       <div class="instrument-panel-item">
-        <vue-slider v-model="instrumentPanelSliderValue"
+        <vue-slider v-model="cursorSize"
                     :tooltip-formatter="blockFormatter"
                     :min="1"
-                    :max="50"
+                    :max="20"
                     :interval="1"
                     @drag-start="() => instrumentPanelDraggable = false"
-                    @drag-end="() => instrumentPanelDraggable = true">
+                    @drag-end="() => instrumentPanelDraggable = true"
+                    @change="() => sendParameters()">
           <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
             <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
           </template>
@@ -36,7 +37,7 @@
       </div>
       <div class="instrument-panel-item-right" @click="onSolidChange">
         <div class="instrument-panel-title instrument-panel-title-right">заливка</div>
-        <div :class="['instrument-panel-solid', { 'instrument-panel-solid-enable': solid } ]"/>
+        <div :class="['instrument-panel-solid', { 'instrument-panel-solid-enable': cursorSolid } ]"/>
       </div>
     </div>
   </vue-draggable-resizable>
@@ -53,7 +54,7 @@ export default {
   components: { VueSlider, VueDraggableResizable },
   data() {
     return {
-      instrumentPanelSliderValue: 1,
+      cursorSize: 1,
       instrumentPanelX: window.innerWidth - 170 - 40,
       instrumentPanelY: window.innerHeight - 130 - 80,
       instrumentPanelDraggable: true,
@@ -68,8 +69,8 @@ export default {
         }
         return val + ' блока';
       },
-      solid: false,
-      form: 'circle',
+      cursorSolid: false,
+      cursorForm: 'circle',
       forms: [{
         'key': 'circle',
         'class': 'bx-circle',
@@ -88,15 +89,25 @@ export default {
   },
   methods: {
     onFormChange(key) {
+      this.cursorForm = key;
       for (let form of this.forms) {
         form['selected'] = form['key'] === key;
       }
+      this.sendParameters();
     },
     onSolidChange() {
-      this.solid = !this.solid;
+      this.cursorSolid = !this.cursorSolid;
       for (let form of this.forms) {
-        form['class'] = this.solid ? form['solidClass'] : form['mainClass'];
+        form['class'] = this.cursorSolid ? form['solidClass'] : form['mainClass'];
       }
+      this.sendParameters();
+    },
+    sendParameters() {
+      this.$emit('changeParameters', {
+        'cursorSolid': this.cursorSolid,
+        'cursorForm': this.cursorForm,
+        'cursorSize': this.cursorSize,
+      });
     },
   },
 };
