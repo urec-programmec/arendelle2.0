@@ -33,7 +33,9 @@
                      :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.length / 5) + 32) + 'px' }">
                   <div v-for="(item, itemIndex) in menuItem.childs"
                        :key="itemIndex"
-                       :style="{'background': item}"
+                       :style="{'background-image': `url(${require('../assets/' + menuItem.type + '/' + item)})`,
+                                'background-repeat': 'no-repeat',
+                                'background-size': 'cover'}"
                        :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item && colorIndex === itemIndex }]"
                        @click="changeColor(menuItem.type, item, itemIndex, menuItem.icon)"/>
                 </div>
@@ -44,10 +46,12 @@
       </div>
 
       <div class="exit"
-          v-show="colorValue !== ''">
+          v-if="colorValue !== '' && colorType !== ''">
         <li style="height: 100%; width: 100%; margin: 0;">
           <i class="bx" :class="[colorIcon, 'exit_menu_item']"/>
-          <i class="bx" :style="{background: colorValue, boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
+          <i class="bx" :style="{'background-image': `url(${require('../assets/' + colorType + '/' + colorValue)})`,
+                                 borderRadius: '6px',
+                                 boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
         </li>
       </div>
       <div class="exit secondaryColor">
@@ -70,6 +74,7 @@ export default {
       colorValue: '',
       colorIndex: -1,
       colorIcon: '',
+      img: '../assets/waves.png',
     };
   },
   props: {
@@ -86,48 +91,36 @@ export default {
       type: String,
       default: 'bx-terminal',
     },
-    isPaddingLeft: {
-      type: Boolean,
-      default: true,
-    },
-    menuOpenedPaddingLeftBody: {
-      type: String,
-      default: '250px',
-    },
-    menuClosedPaddingLeftBody: {
-      type: String,
-      default: '78px',
-    },
     //! Menu items
     menuItems: {
       type: Array,
       default: () => [
         {
-          name: 'комнаты подземелья',
+          name: 'комнаты',
           icon: 'bxs-dashboard',
           type: 'room',
-          childs: ['red', 'yellow', 'pink'],
+          childs: ['1.png', '2.png'],
           isOpen: false,
         },
         {
-          name: 'стены подземелья',
+          name: 'стены',
           icon: 'bx-border-radius',
           type: 'border',
-          childs: ['red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink', 'red', 'yellow', 'pink'],
+          childs: ['1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg'],
           isOpen: false,
         },
         {
           name: 'переходы',
           icon: 'bx-trip',
           type: 'trip',
-          childs: ['wheat', 'wheat', 'wheat', 'wheat', 'wheat', 'wheat'],
+          childs: ['1.png'],
           isOpen: false,
         },
         {
           name: 'специальные места',
           icon: 'bxs-flag-alt',
           type: 'special',
-          childs: ['wheat', 'wheat', 'wheat', 'wheat'],
+          childs: ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg'],
           isOpen: false,
         },
       ],
@@ -203,10 +196,8 @@ export default {
   computed: {
     cssVars() {
       return {
-        // '--padding-left-body': this.isOpened ? this.menuOpenedPaddingLeftBody : this.menuClosedPaddingLeftBody,
         '--bg-color': this.bgColor,
         '--secondary-color': this.secondaryColor,
-        '--home-section-color': this.homeSectionColor,
         '--logo-title-color': this.logoTitleColor,
         '--icons-color': this.iconsColor,
         '--serach-input-text-color': this.searchInputTextColor,
@@ -215,6 +206,13 @@ export default {
         '--menu-footer-text-color': this.menuFooterTextColor,
       };
     },
+    styles() {
+      return {
+        'background-image': `url(${this.img})`,
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover'
+      }
+    }
   },
 };
 </script>
@@ -247,14 +245,13 @@ body {
   transition: all 0.5s ease;
 }
 .sidebar.open {
-  width: 250px;
+  width: 238px;
 }
 .sidebar .logo-details {
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
-  overflow-x: hidden;
 }
 .sidebar .logo-details .icon {
   opacity: 0;
@@ -359,7 +356,7 @@ body {
   border-radius: 12px;
 }
 .sidebar li .menu_item .menu_item_content {
-  padding: 16px;
+  padding: 12px;
   flex-wrap: wrap;
   transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
   overflow: hidden;
@@ -394,11 +391,11 @@ body {
 }
 .sidebar div.exit {
   position: relative;
-  height: 60px;
+  min-height: 60px;
   width: 78px;
   /* left: 0;
   bottom: 0; */
-  padding: 10px 14px;
+  padding: 14px 23px;
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -408,7 +405,7 @@ body {
 }
 
 .sidebar.open div.exit {
-  width: 250px;
+  width: 238px;
 }
 .sidebar div img {
   height: 45px;
@@ -434,6 +431,7 @@ body {
   height: 100%;
   line-height: 60px;
   transition: all 0.5s ease;
+  min-width: 32px;
 }
 .sidebar.open .exit #log_out {
   width: 50px;
@@ -450,27 +448,6 @@ body {
 .sidebar .exit #log_out:hover {
   color: red;
 }
-.home-section {
-  position: relative;
-  background: var(--home-section-color);
-  min-height: 100vh;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-}
-.sidebar.open ~ .home-section {
-  left: 250px;
-  width: calc(100% - 250px);
-}
-.home-section .text {
-  display: inline-block;
-  color: var(--bg-color);
-  font-size: 25px;
-  font-weight: 500;
-  margin: 18px;
-}
 #my-scroll {
   overflow-y: auto;
   height: calc(100% - 60px);
@@ -481,7 +458,7 @@ body {
 .ceil_item {
   height: 32px;
   width: 32px;
-  margin: 0px 0px 5px 5px;
+  margin: 0 5px 5px 0;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -504,6 +481,6 @@ body {
 }
 .menu_item_closed {
   max-height: 0 !important;
-  padding: 0 16px !important;
+  padding: 0 12px !important;
 }
 </style>
