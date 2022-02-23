@@ -187,7 +187,7 @@ export default {
       this.isOpened = !this.isOpened;
     },
     changeColor(type, color, index, icon) {
-      if (!(this.colorType === type && this.colorValue === color && this.colorIndex === index)){
+      if (!(this.colorType === type && this.colorValue === color && this.colorIndex === index)) {
         this.colorType = type;
         this.colorValue = color;
         this.colorIndex = index;
@@ -254,6 +254,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  overflow-x: hidden;
 }
 .sidebar .logo-details .icon {
   opacity: 0;

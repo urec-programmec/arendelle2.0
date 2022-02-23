@@ -58,5 +58,6 @@ module.exports = {
     'no-restricted-syntax': 'off',
     'dot-notation': 'off',
     'prefer-const': 'off',
+    'no-continue': 'off',
   }
 }
