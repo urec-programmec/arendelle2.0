@@ -17,8 +17,8 @@
       <div class="instrument-panel-item">
         <vue-slider v-model="cursorSize"
                     :tooltip-formatter="blockFormatter"
-                    :min="1"
-                    :max="20"
+                    :min="minCursorSize"
+                    :max="maxCursorSize"
                     :interval="1"
                     @drag-start="() => instrumentPanelDraggable = false"
                     @drag-end="() => instrumentPanelDraggable = true"
@@ -55,6 +55,10 @@ export default {
   data() {
     return {
       cursorSize: 1,
+      minCursorSize: 1,
+      maxCursorSize: 20,
+      maxCursorNotSolidSize: 20,
+      maxCursorSolidSize: 10,
       instrumentPanelX: window.innerWidth - 170 - 40,
       instrumentPanelY: window.innerHeight - 130 - 80,
       instrumentPanelDraggable: true,
@@ -97,6 +101,14 @@ export default {
     },
     onSolidChange() {
       this.cursorSolid = !this.cursorSolid;
+      if (this.cursorSolid) {
+        if (this.cursorSize > this.maxCursorSolidSize){
+          this.cursorSize = this.maxCursorSolidSize;
+        }
+        this.maxCursorSize = this.maxCursorSolidSize;
+      } else {
+        this.maxCursorSize = this.maxCursorNotSolidSize;
+      }
       for (let form of this.forms) {
         form['class'] = this.cursorSolid ? form['solidClass'] : form['mainClass'];
       }

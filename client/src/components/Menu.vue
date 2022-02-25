@@ -74,7 +74,6 @@ export default {
       colorValue: '',
       colorIndex: -1,
       colorIcon: '',
-      img: '../assets/waves.png',
     };
   },
   props: {
@@ -191,6 +190,12 @@ export default {
         this.colorIndex = -1;
         this.colorIcon = '';
       }
+      this.changeColorParameters();
+    },
+    changeColorParameters() {
+      this.$emit('changeColor', {
+        'selectionSrc': this.colorValue === '' ? 'selection.jpeg' : this.colorType + '/' + this.colorValue,
+      });
     },
   },
   computed: {
@@ -206,13 +211,6 @@ export default {
         '--menu-footer-text-color': this.menuFooterTextColor,
       };
     },
-    styles() {
-      return {
-        'background-image': `url(${this.img})`,
-        'background-repeat': 'no-repeat',
-        'background-size': 'cover'
-      }
-    }
   },
 };
 </script>
@@ -243,6 +241,7 @@ body {
   background: var(--bg-color);
   /* padding: 6px 14px 0 14px; */
   transition: all 0.5s ease;
+  overflow-x: hidden;
 }
 .sidebar.open {
   width: 238px;
@@ -461,9 +460,10 @@ body {
   margin: 0 5px 5px 0;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .ceil_item_selected {
-  transform: scale(1.2);
+  transform: scale(1.15);
   box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
 }
 .ceil_item_selected:before {

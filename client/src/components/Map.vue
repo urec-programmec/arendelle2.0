@@ -1,7 +1,7 @@
 <template>
   <main id="map-main">
-    <instrument-panel @changeParameters="changeParameters"/>
-    <right-menu/>
+    <instrument-panel @changeParameters="changeParameters" style=""/>
+    <left-menu @changeColor="changeColor"/>
     <div class="container">
       <div :style="{ minWidth: getMapSize() + 'px',
                      maxWidth: getMapSize() + 'px',
@@ -19,7 +19,10 @@
                   :min="minMapSliderValue"
                   :max="maxMapSliderValue"
                   :interval="1"
-                  @change="() => paintCanvas()">
+                  @drag-start="() => isDragging = true"
+                  @dragging="() => isDragging = true"
+                  @drag-end="() => {isDragging = false; paintCanvas();}"
+                  @change="() => {if(!isDragging) paintCanvas()}">
         <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
           <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
         </template>
@@ -37,7 +40,7 @@ import InstrumentPanel from './InstrumentPanel';
 
 export default {
   name: 'Map',
-  components: { VueSlider, 'right-menu': Menu, 'instrument-panel': InstrumentPanel },
+  components: { VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel },
   data() {
     return {
       mapCount: 0,
@@ -62,6 +65,31 @@ export default {
       spaceSize: 1,
       rowIndex: -1,
       itemIndex: -1,
+      foneSrc: 'fone.jpeg',
+      selectionSrc: 'selection.jpeg',
+      images: [],
+      imagesSrc: ['border/1.png',
+        'border/2.png',
+        'border/3.gif',
+        'border/4.gif',
+        'border/5.png',
+        'border/6.png',
+        'border/7.png',
+        'border/8.jpeg',
+        'border/9.jpeg',
+        'room/1.png',
+        'room/2.png',
+        'special/1.jpeg',
+        'special/2.jpeg',
+        'special/3.jpeg',
+        'special/4.jpeg',
+        'special/5.jpeg',
+        'special/6.jpeg',
+        'trip/1.png',
+        'fone.jpeg',
+        'selection.jpeg',
+      ],
+      isDragging: false,
     };
   },
   methods: {
@@ -79,12 +107,21 @@ export default {
           for (let i = 0; i < this.mapCount; i++) {
             row = [];
             for (let j = 0; j < this.mapCount; j++) {
-              row.push(1);
+              row.push({
+                type: 'room',
+                special: '',
+                src: '',
+              });
             }
             this.map.push(row);
           }
           this.canvas = document.getElementById('mapCanvas');
           this.context = this.canvas.getContext('2d');
+          for (let i of this.imagesSrc) {
+            let image = new Image(this.mapSliderValue - this.spaceSize, this.mapSliderValue - this.spaceSize);
+            image.src = require(`../assets/${i}`);
+            this.images.push(image);
+          }
           this.paintCanvas();
         })
         .catch((error) => {
@@ -120,7 +157,7 @@ export default {
 
           let isCircle = this.cursorForm === 'circle' &&
             (this.cursorSolid && delta <= tempCursorSize ||
-            !this.cursorSolid && tempCursorSize - delta <= this.cursorSizeDelta && tempCursorSize - delta >= 0 &&
+              !this.cursorSolid && tempCursorSize - delta <= this.cursorSizeDelta && tempCursorSize - delta >= 0 &&
               !(tempCursorSize === 1 && (rowIndex === i && itemIndex === j)));
 
           let isSquare = this.cursorForm !== 'circle' &&
@@ -131,18 +168,21 @@ export default {
               j === itemIndex + tempCursorSize);
 
           if (isCircle || isSquare) {
-            this.selectedItems.push(i + ' ' + j);
+            this.selectedItems.push({ x: i, y: j });
           }
         }
       }
-      this.paintSelection();
+      this.paintSelection(this.oldSelectedItems, this.selectedItems);
     },
     onItemLeave() {
       this.rowIndex = -1;
       this.itemIndex = -1;
       this.oldSelectedItems = this.selectedItems;
       this.selectedItems = [];
-      this.paintSelection();
+      this.paintSelection(this.oldSelectedItems, this.selectedItems);
+    },
+    changeColor(data) {
+      this.selectionSrc = data['selectionSrc'];
     },
     getItemPosition(e) {
       let x;
@@ -172,37 +212,43 @@ export default {
       this.oldSelectedItems = [];
       this.selectedItems = [];
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      let size = this.mapSliderValue;
       this.canvas.width = this.getMapSize();
       this.canvas.height = this.getMapSize();
-      for (let i = 0; i < this.mapCount; i++) {
-        for (let j = 0; j < this.mapCount; j++) {
-          this.context.fillStyle = this.mapColors[this.map[i][j]];
-          this.context.fillRect(j * size, i * size, size - this.spaceSize, size - this.spaceSize);
+      for (let y = 0; y < this.mapCount; y++) {
+        for (let x = 0; x < this.mapCount; x++) {
+          let image = this.images.at(this.map[y][x].src === '' ? this.imagesSrc.indexOf(this.foneSrc) : this.imagesSrc.indexOf(this.map[y][x].src));
+          this.context.drawImage(image,
+            x * this.mapSliderValue,
+            y * this.mapSliderValue,
+            this.mapSliderValue - this.spaceSize,
+            this.mapSliderValue - this.spaceSize);
         }
       }
     },
-    paintSelection() {
-      let x = -1;
-      let y = -1;
-      let size = this.mapSliderValue;
-      for (let i of this.oldSelectedItems) {
-        if (!this.selectedItems.includes(i)) {
-          x = parseInt(i.split(' ')[0], 10);
-          y = parseInt(i.split(' ')[1], 10);
-          this.context.clearRect(x * size, y * size, size - this.spaceSize, size - this.spaceSize);
-          this.context.fillStyle = this.mapColors[this.map[x][y]];
-          this.context.fillRect(x * size, y * size, size - this.spaceSize, size - this.spaceSize);
-        }
+    paintSelection(oldSelected, selected) {
+      for (let i of oldSelected) {
+        this.context.clearRect(i.x * this.mapSliderValue,
+          i.y * this.mapSliderValue,
+          this.mapSliderValue - this.spaceSize,
+          this.mapSliderValue - this.spaceSize);
+        let image = this.images.at(this.map[i.y][i.x].src === '' ? this.imagesSrc.indexOf(this.foneSrc) : this.imagesSrc.indexOf(this.map[i.y][i.x].src));
+        this.context.drawImage(image,
+          i.x * this.mapSliderValue,
+          i.y * this.mapSliderValue,
+          this.mapSliderValue - this.spaceSize,
+          this.mapSliderValue - this.spaceSize);
       }
-      for (let i of this.selectedItems) {
-        if (!this.oldSelectedItems.includes(i)) {
-          x = parseInt(i.split(' ')[0], 10);
-          y = parseInt(i.split(' ')[1], 10);
-          this.context.clearRect(x * size, y * size, size - this.spaceSize, size - this.spaceSize);
-          this.context.fillStyle = '#9CC6FF';
-          this.context.fillRect(x * size, y * size, size - this.spaceSize, size - this.spaceSize);
-        }
+      for (let i of selected) {
+        this.context.clearRect(i.x * this.mapSliderValue,
+          i.y * this.mapSliderValue,
+          this.mapSliderValue - this.spaceSize,
+          this.mapSliderValue - this.spaceSize);
+        let image = this.images.at(this.imagesSrc.indexOf(this.selectionSrc));
+        this.context.drawImage(image,
+          i.x * this.mapSliderValue,
+          i.y * this.mapSliderValue,
+          this.mapSliderValue - this.spaceSize,
+          this.mapSliderValue - this.spaceSize);
       }
     },
   },

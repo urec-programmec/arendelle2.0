@@ -59,5 +59,6 @@ module.exports = {
     'dot-notation': 'off',
     'prefer-const': 'off',
     'no-continue': 'off',
+    'no-dynamic-require': 'off',
   }
 }
