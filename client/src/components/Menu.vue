@@ -3,7 +3,7 @@
     :class="isOpened ? 'open' : ''"
     :style="cssVars">
     <div class="logo-details"
-      style="margin: 6px 14px 0 14px;">
+      style="margin: 0 14px">
       <i class="bx icon"
         :class="menuIcon"/>
       <div class="logo_name">
@@ -15,48 +15,125 @@
         @click="openCloseMenu"/>
     </div>
 
-    <div style="display: flex ; flex-direction:column; justify-content: space-between; flex-grow: 1; max-height: calc(100% - 60px); ">
-      <div id="my-scroll"
-        style="margin: 6px 14px 0 14px;">
-        <ul class="nav-list"
-          style="overflow: visible;">
-          <span v-for="(menuItem, menuIndex) in menuItems"
-                :key="menuIndex">
-            <li>
-              <div class="menu_item">
-                <div class="menu_item_row menu_item_title"
-                      @click="() => {isOpened = true; menuItem.isOpen = !menuItem.isOpen}">
-                  <i class="bx" :class="menuItem.icon"/>
-                  <span class="links_name">{{ menuItem.name }}</span>
+    <div :style="{ 'height': 'calc(100% - 60px)' }">
+      <div id="my-scroll-settings"
+           style="margin: 0px 14px 0 14px;">
+        <ul style="overflow: visible;">
+            <span>
+              <li style="overflow: hidden">
+              <div :class="['menu_item', 'menu_item_not_hover', {'selected-menu-item' : isSettingsOpened}]">
+                <div class="menu_item_row"
+                     @click="openSettingsMenu">
+                  <i class="bx bx-cog"/>
+                  <span class="links_name">общее</span>
                 </div>
-                <div :class="['menu_item_row', 'menu_item_content', {'menu_item_closed': !isOpened || !menuItem.isOpen}]"
-                     :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.length / 5) + 32) + 'px' }">
-                  <div v-for="(item, itemIndex) in menuItem.childs"
-                       :key="itemIndex"
-                       :style="{'background-image': `url(${require('../assets/' + menuItem.type + '/' + item)})`,
-                                'background-repeat': 'no-repeat',
-                                'background-size': 'cover'}"
-                       :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item && colorIndex === itemIndex }]"
-                       @click="changeColor(menuItem.type, item, itemIndex, menuItem.icon)"/>
+                <div :class="['menu_item_row', 'menu_item_content', {'menu_item_closed': !isOpened}]"
+                     :style="{ maxHeight: isSettingsOpened ? '150px' : 0,
+                               padding: isSettingsOpened ? '10px 20px' : '0 20px',
+                               overflow: 'inherit',
+                               display: 'unset'}">
+                  <div class="settings">
+                    <p style="margin: 0">ширина</p>
+                    <vue-slider v-model="mapLengthValue"
+                                :tooltip-formatter="val => val + ''"
+                                :min="50"
+                                :max="100">
+                      <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
+                        <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
+                      </template>
+                    </vue-slider>
+                    <p>высота</p>
+                    <vue-slider v-model="mapHeightValue"
+                                :tooltip-formatter="val => val + ''"
+                                :min="50"
+                                :max="100">
+                      <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
+                        <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
+                      </template>
+                    </vue-slider>
+                    <p>количество ячеек для задач</p>
+                    <vue-slider v-model="mapTaskCountValue"
+                                :tooltip-formatter="val => val + ''"
+                                :min="10"
+                                :max="100">
+                      <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
+                        <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
+                      </template>
+                    </vue-slider>
+                  </div>
                 </div>
               </div>
             </li>
-          </span>
+            </span>
+          <span>
+              <li>
+                <div :class="['menu_item', 'menu_item_not_hover', {'selected-menu-item' : isLocationMenuOpenedAsync}]">
+                  <div class="menu_item_row"
+                       @click="openLocationMenu"
+                       @mouseenter="isLocationIconHover = true"
+                       @mouseleave="isLocationIconHover = false"
+                       :style="{overflow: isLocationMenuOpenedAsync ? 'initial' : 'hidden'}">
+                    <i class="bx bx-map-pin"/>
+                    <span class="links_name">локация</span>
+                    <span :class="['bx', 'links_name', 'settings-locations', isLocationMenuOpenedAsync ? 'bx-chevron-left' : 'bx-chevron-right', {'settings-locations-icon': isLocationIconHover}]"></span>
+                  </div>
+                </div>
+                <div :class="['locationMenu', {'locationMenuClosed' : !isLocationMenuOpenedAsync}]">
+                  <p style="text-align: center; display: block">локация</p>
+                  <div style="width: 100%; height: 100%; overflow: auto; padding: 5px 10px">
+                    <span v-for="(locationItem, locationIndex) in locationItems"
+                          :key="locationIndex"
+                          :class="['bx', {'locationSelected': location === locationItem.type}]"
+                          @click="onSelectLocation(locationItem.type)">
+                      <i class="bx" :class="locationItem.icon" style="height: 25px; line-height: 25px; min-width: 40px;"/>
+                      <p class="">{{ locationItem.name }}</p>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </span>
         </ul>
       </div>
-
+      <div id="my-scroll"
+           :style="{maxHeight: calculateMaxHeight()}">
+        <ul>
+            <span v-for="(menuItem, menuIndex) in menuItems"
+                  :key="menuIndex">
+              <li>
+                <div :class="['menu_item', 'menu_item_not_hover', {'selected-menu-item' : menuItem.isOpen}]">
+                  <div class="menu_item_row"
+                       @click="() => {isOpened = true; menuItem.isOpen = !menuItem.isOpen}">
+                    <i class="bx" :class="menuItem.icon"/>
+                    <span class="links_name">{{ menuItem.name }}</span>
+                  </div>
+                  <div :class="['menu_item_row', 'menu_item_content', {'menu_item_closed': !isOpened || !menuItem.isOpen}]"
+                       :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.length / 5) + 32) + 'px' }">
+                    <div v-for="(item, itemIndex) in menuItem.childs"
+                         :key="itemIndex"
+                         :style="{'background-image': `url(${require('../assets/' + menuItem.type + '/' + item)})`,
+                                  'background-repeat': 'no-repeat',
+                                  'background-size': 'cover'}"
+                         :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item && colorIndex === itemIndex }]"
+                         @click="changeColor(menuItem.type, item, itemIndex, menuItem.icon)"/>
+                  </div>
+                </div>
+              </li>
+            </span>
+        </ul>
+      </div>
       <div class="exit"
-          v-if="colorValue !== '' && colorType !== ''">
-        <li style="height: 100%; width: 100%; margin: 0;">
+           style="position: absolute; bottom: 40px;"
+           v-if="colorValue !== '' && colorType !== ''">
+        <li style="height: 32px; width: 100%; margin: 0;">
           <i class="bx" :class="[colorIcon, 'exit_menu_item']"/>
           <i class="bx" :style="{'background-image': `url(${require('../assets/' + colorType + '/' + colorValue)})`,
                                  borderRadius: '6px',
                                  boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
         </li>
       </div>
-      <div class="exit secondaryColor">
-        <i v-if="isExitButton"
-          class="bx bx-log-out secondaryColor"
+      <div class="exit secondaryColor"
+          style="min-height: 40px; position: absolute; bottom: 0;">
+        <i class="bx bx-log-out secondaryColor"
           id="log_out"
           @click.stop="$emit('button-exit-clicked')"/>
       </div>
@@ -65,8 +142,14 @@
 </template>
 
 <script>
+import 'vue-slider-component/theme/antd.css';
+import VueSlider from 'vue-slider-component';
+
+import '../assets/css/custom-dot.css';
+
 export default {
   name: 'Menu',
+  components: { 'vue-slider': VueSlider },
   data() {
     return {
       isOpened: false,
@@ -74,6 +157,15 @@ export default {
       colorValue: '',
       colorIndex: -1,
       colorIcon: '',
+
+      mapLengthValue: 50,
+      mapHeightValue: 50,
+      mapTaskCountValue: 10,
+      isLocationIconHover: false,
+      isLocationMenuOpened: false,
+      isLocationMenuOpenedAsync: false,
+      isSettingsOpened: false,
+      location: '',
     };
   },
   props: {
@@ -105,7 +197,7 @@ export default {
           name: 'стены',
           icon: 'bx-border-radius',
           type: 'border',
-          childs: ['1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg'],
+          childs: ['1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg', '1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg', '1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg'],
           isOpen: false,
         },
         {
@@ -115,18 +207,37 @@ export default {
           childs: ['1.png'],
           isOpen: false,
         },
-        {
-          name: 'специальные места',
-          icon: 'bxs-flag-alt',
-          type: 'special',
-          childs: ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg'],
-          isOpen: false,
-        },
       ],
     },
-    isExitButton: {
-      type: Boolean,
-      default: true,
+    locationItems: {
+      type: Array,
+      default: () => [
+        {
+          name: 'подземелье замка',
+          icon: 'bxs-institution',
+          type: 'dungeon',
+        },
+        {
+          name: 'древний лес',
+          icon: 'bxs-tree',
+          type: 'forest',
+        },
+        {
+          name: 'китайская деревня',
+          icon: 'bx-home',
+          type: 'village',
+        },
+        {
+          name: 'озёрное королевство',
+          icon: 'bxs-ship',
+          type: 'lake_kingdom',
+        },
+        {
+          name: 'воздух-воздух',
+          icon: 'bx-cloud',
+          type: 'air_air',
+        },
+      ],
     },
     //! Styles
     bgColor: {
@@ -136,10 +247,6 @@ export default {
     secondaryColor: {
       type: String,
       default: 'hsl(210, 70%, 15%)',
-    },
-    homeSectionColor: {
-      type: String,
-      default: '#e4e9f7',
     },
     logoTitleColor: {
       type: String,
@@ -170,13 +277,50 @@ export default {
     this.isOpened = this.isMenuOpen;
   },
   methods: {
+    close() {
+      if (this.isOpened) {
+        this.openCloseMenu();
+      }
+    },
+    onMON() {
+      console.log('on mouse on');
+    },
+    onMOFF() {
+      console.log('on mouse off');
+    },
+    openSettingsMenu() {
+      if (!this.isOpened) {
+        setTimeout(() => {
+          this.isOpened = true;
+        }, 0);
+      }
+      this.isSettingsOpened = !this.isSettingsOpened;
+    },
+    openLocationMenu() {
+      if (this.isOpened) {
+        this.isLocationMenuOpenedAsync = !this.isLocationMenuOpenedAsync;
+        if (this.isLocationMenuOpened) {
+          setTimeout(() => {this.isLocationMenuOpened = this.isLocationMenuOpenedAsync;}, 300);
+        } else {
+          this.isLocationMenuOpened = true;
+        }
+      } else {
+        this.isOpened = true;
+        this.isLocationMenuOpened = true;
+        this.isLocationMenuOpenedAsync = true;
+      }
+    },
     openCloseMenu() {
       if (this.isOpened) {
         for (let i of this.menuItems) {
           i['isOpen'] = false;
         }
+        this.isLocationMenuOpened = false;
+        this.isLocationMenuOpenedAsync = false;
+        this.isSettingsOpened = false;
       }
       this.isOpened = !this.isOpened;
+      this.$emit('openCloseMenu', { isOpen: this.isOpened });
     },
     changeColor(type, color, index, icon) {
       if (!(this.colorType === type && this.colorValue === color && this.colorIndex === index)) {
@@ -194,8 +338,19 @@ export default {
     },
     changeColorParameters() {
       this.$emit('changeColor', {
-        'selectionSrc': this.colorValue === '' ? 'selection.jpeg' : this.colorType + '/' + this.colorValue,
+        drawValue: this.colorValue,
+        drawType: this.colorType,
       });
+    },
+    onSelectLocation(location) {
+      if (this.location !== location) {
+        this.location = location
+      } else {
+        this.location = '';
+      }
+    },
+    calculateMaxHeight() {
+      return `calc(100% - 40px - ${this.colorValue !== '' && this.colorType !== '' ? 60 : 0}px - 1rem - ${this.isSettingsOpened ? 223 : 92}px - 8px)`;
     },
   },
   computed: {
@@ -209,8 +364,12 @@ export default {
         '--menu-items-hover-color': this.menuItemsHoverColor,
         '--menu-items-text-color': this.menuItemsTextColor,
         '--menu-footer-text-color': this.menuFooterTextColor,
+        overflowX: (this.isLocationMenuOpened ? 'visible' : 'hidden'),
       };
     },
+  },
+  created() {
+    this.$parent.$on('closeMenu', this.close);
   },
 };
 </script>
@@ -242,6 +401,7 @@ body {
   /* padding: 6px 14px 0 14px; */
   transition: all 0.5s ease;
   overflow-x: hidden;
+  z-index: 5;
 }
 .sidebar.open {
   width: 238px;
@@ -290,50 +450,10 @@ body {
   text-align: center;
   line-height: 60px;
 }
-.sidebar .nav-list {
-  margin-top: 20px;
-  /* margin-bottom: 60px; */
-  /* height: 100%; */
-  /* min-height: min-content; */
-}
 .sidebar li {
   position: relative;
   margin: 8px 0;
   list-style: none;
-}
-.sidebar input {
-  font-size: 15px;
-  color: var(--serach-input-text-color);
-  font-weight: 400;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  width: 50px;
-  border: none;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-  background: var(--secondary-color);
-}
-.sidebar.open input {
-  padding: 0 20px 0 50px;
-  width: 100%;
-}
-.sidebar .bx-search {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  background: var(--secondary-color);
-  color: var(--icons-color);
-}
-.sidebar.open .bx-search:hover {
-  background: var(--secondary-color);
-  color: var(--icons-color);
-}
-.sidebar .bx-search:hover {
-  background: var(--menu-items-hover-color);
-  color: var(--bg-color);
 }
 .sidebar li .menu_item {
   display: flex;
@@ -346,16 +466,39 @@ body {
   transition: all 0.4s ease;
   background: var(--bg-color);
 }
+.sidebar li .menu_item_not_hover {
+  border: 1px solid;
+  background: none;
+}
+
+.selected-menu-item,
+.sidebar li .menu_item_not_hover:hover,
+.sidebar.open li .menu_item_not_hover:hover {
+  background: var(--bg-color) !important;
+  color: var(--menu-items-text-color) !important;
+}
+.sidebar li .menu_item_not_hover:hover,
+.sidebar.open li .menu_item_not_hover:hover {
+  cursor: pointer;
+}
+.sidebar.open li .menu_item_not_hover .menu_item_row.menu_item_title {
+  border-radius: 10px;
+}
+.sidebar  li .menu_item .menu_item_title {
+  height: 40px;
+}
 .sidebar li .menu_item .menu_item_row {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   align-items: center;
-  justify-content: left;
+  align-content: center;
+  /*justify-content: left;*/
   width: 100%;
   border-radius: 12px;
+  color: var(--menu-items-text-color);
 }
-.sidebar li .menu_item .menu_item_content {
-  padding: 12px;
+.sidebar .menu_item .menu_item_content {
+  padding: 10px;
   flex-wrap: wrap;
   transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
   overflow: hidden;
@@ -383,8 +526,8 @@ body {
   color: var(--bg-color);
 }
 .sidebar li i {
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   font-size: 18px;
   border-radius: 12px;
 }
@@ -432,24 +575,41 @@ body {
   transition: all 0.5s ease;
   min-width: 32px;
 }
+.sidebar .exit #log_out,
 .sidebar.open .exit #log_out {
-  width: 50px;
-  background: var(--secondary-color);
+  width: 28px;
+  margin: 0 25px 0 20px;
+  color: rgba(255,255,255,1);
+  transition: all .3s ease-in-out;
+
+  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
+  background-size: 100%;
+  animation: color-change 0.3s;
+  animation-fill-mode: forwards;
+  background-clip: text;
+  -webkit-background-clip: text;
+  line-height: 40px;
+}
+.sidebar.open .exit #log_out {
+  margin: 0 16px;
   opacity: 0.5;
 }
+.sidebar.open .exit #log_out:hover,
 .sidebar.open .exit:hover #log_out {
   opacity: 1;
 }
-.sidebar.open .exit #log_out:hover {
-  opacity: 1;
-  color: red;
+.sidebar.open .exit:hover #log_out,
+.sidebar .exit:hover #log_out {
+  color:rgba(255,255,255,0);
 }
-.sidebar .exit #log_out:hover {
-  color: red;
+@keyframes color-change {
+  0%{background-position:left}
+  100%{background-position:right}
 }
 #my-scroll {
-  overflow-y: auto;
-  height: calc(100% - 60px);
+  margin: 0 14px;
+  overflow: scroll;
+  transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
 }
 #my-scroll::-webkit-scrollbar{
   display:none;
@@ -466,6 +626,7 @@ body {
   transform: scale(1.15);
   box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
 }
+.locationSelected:before,
 .ceil_item_selected:before {
   content: "\ec9b";
   position: absolute;
@@ -482,5 +643,92 @@ body {
 .menu_item_closed {
   max-height: 0 !important;
   padding: 0 12px !important;
+}
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.settings p,
+.settings-locations p {
+  margin: 0;
+  font-size: 10px;
+  margin: 5px 0px 1px 0px;
+}
+.settings-locations {
+  font-size: 24px !important;
+  position: absolute;
+  right: 10px;
+}
+.settings-locations-icon {
+  animation: scaling 0.8s cubic-bezier(0.4, 0, 1, 1) infinite alternate;
+}
+@keyframes scaling {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.4); }
+}
+.locationSelected {
+  /*border-color: #F5F5F5 !important;*/
+  box-shadow: 0 0 6px 6px rgb(54 171 255 / 20%);
+}
+.locationMenu {
+  background: var(--bg-color);
+  border-color: var(--bg-color);
+  color: #fff;
+  border-radius: 12px;
+  height: fit-content;
+  max-height: 300px;
+  width: max-content;
+  position: absolute;
+  left: calc(100% + 29px);
+  top: -10px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+}
+.locationMenu span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  transition: all 0.4s ease;
+  border: 1px solid;
+  border-color: #212529;
+  padding: 0 10px 0 0;
+  position: relative;
+}
+.locationMenu span:hover {
+  border-color: #F5F5F5;
+  cursor: pointer;
+}
+.locationMenu p {
+  margin: 0;
+  font-size: 15px;
+}
+.locationMenu div::-webkit-scrollbar {
+  display: block !important;
+}
+.locationMenuClosed {
+  left: calc(100% + 14px);
+  opacity: 0;
+}
+.locationMenu::after {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: 17px;
+  left: 0;
+  transform: translate(-100%, 0);
+  border-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-width: 8px;
+  border-right-color: inherit;
+}
+
+#my-scroll-settings {
+
 }
 </style>

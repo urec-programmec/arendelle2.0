@@ -34,6 +34,7 @@ export default {
 *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
+  display: none;
 }
 
 /* Track */

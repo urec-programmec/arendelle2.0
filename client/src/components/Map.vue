@@ -1,46 +1,56 @@
 <template>
-  <main id="map-main">
-    <instrument-panel @changeParameters="changeParameters" style=""/>
-    <left-menu @changeColor="changeColor"/>
-    <div class="container">
+  <main id="map-main" @mouseup="onDrawEnd">
+    <instrument-panel @changeParameters="changeParameters" :style="getTestingDisplay"/>
+    <left-menu @changeColor="changeColor" @openCloseMenu="openCloseMenu" :style="getTestingDisplay" ref="menu"/>
+    <div :class="['container']" :style="getTestingMapStyles">
       <div :style="{ minWidth: getMapSize() + 'px',
                      maxWidth: getMapSize() + 'px',
                      minHeight: getMapSize() + 'px',
-                     maxHeight: getMapSize() + 'px'}">
+                     maxHeight: getMapSize() + 'px',
+                     margin: isTesting ? 0 : '15px'}">
         <canvas id="mapCanvas"
-                :style="{width: getMapSize() + 'px', height: getMapSize() + 'px'}"
+                :style="{width: getMapSize() + 'px',
+                         height: getMapSize() + 'px',
+                         backgroundColor: 'hsl(222, 25%, 20%)'}"
                 @mousemove="onItemSelect"
-                @mouseleave="onItemLeave"/>
+                @mouseleave="onItemLeave"
+                @mousedown="draw"/>
       </div>
     </div>
-    <div class="footer">
+    <save-map @testMap="testMap"/>
+    <div class="footer" :style="getTestingDisplay">
       <vue-slider v-model="mapSliderValue"
                   :tooltip-formatter="val => val + ' px'"
                   :min="minMapSliderValue"
                   :max="maxMapSliderValue"
-                  :interval="1"
-                  @drag-start="() => isDragging = true"
-                  @dragging="() => isDragging = true"
-                  @drag-end="() => {isDragging = false; paintCanvas();}"
-                  @change="() => {if(!isDragging) paintCanvas()}">
+                  @drag-start="() => isResizing = true"
+                  @dragging="() => isResizing = true"
+                  @drag-end="() => {isResizing = false; drawCanvas();}"
+                  @change="() => {if(!isResizing) drawCanvas()}">
         <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
           <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
         </template>
       </vue-slider>
     </div>
+    <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
+                                          top: heroTop + 'px',
+                                          left: heroLeft + 'px'}"/>
   </main>
 </template>
 
 <script>
 import 'vue-slider-component/theme/antd.css';
-import VueSlider from 'vue-slider-component';
 import axios from 'axios';
+import VueSlider from 'vue-slider-component';
 import Menu from './Menu';
+import SaveMap from './SaveMap';
 import InstrumentPanel from './InstrumentPanel';
+
+import '../assets/css/custom-dot.css';
 
 export default {
   name: 'Map',
-  components: { VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel },
+  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'save-map': SaveMap },
   data() {
     return {
       mapCount: 0,
@@ -50,11 +60,12 @@ export default {
 
       oldSelectedItems: [],
       selectedItems: [],
-      hoveredItem: '',
       cursorSolid: false,
+      onTestCursorSize: 1,
       cursorSize: 1,
-      cursorSizeDelta: 1.5,
       cursorForm: 'circle',
+      cursorSizeDelta: 1.5,
+      isMenuOpen: false,
 
       minMapSliderValue: 0,
       mapSliderValue: 0,
@@ -67,9 +78,10 @@ export default {
       itemIndex: -1,
       foneSrc: 'fone.jpeg',
       selectionSrc: 'selection.jpeg',
+      drawValue: '',
+      drawType: '',
       images: [],
       imagesSrc: ['border/1.png',
-        'border/2.png',
         'border/3.gif',
         'border/4.gif',
         'border/5.png',
@@ -79,17 +91,19 @@ export default {
         'border/9.jpeg',
         'room/1.png',
         'room/2.png',
-        'special/1.jpeg',
-        'special/2.jpeg',
-        'special/3.jpeg',
-        'special/4.jpeg',
-        'special/5.jpeg',
-        'special/6.jpeg',
         'trip/1.png',
-        'fone.jpeg',
         'selection.jpeg',
+        'fone.jpeg',
+        'border/2.png',
       ],
-      isDragging: false,
+      isResizing: false,
+      isDrawing: false,
+
+      isTesting: false,
+      heroTop: 0,
+      heroLeft: 0,
+      cellSize: 32,
+      roomType: 'room',
     };
   },
   methods: {
@@ -102,15 +116,15 @@ export default {
           this.minMapItemSize = 6;
           this.mapSliderValue = 6;
           this.minMapSliderValue = 6;
-          this.maxMapSliderValue = 32;
+          this.maxMapSliderValue = this.cellSize;
           let row = [];
           for (let i = 0; i < this.mapCount; i++) {
             row = [];
             for (let j = 0; j < this.mapCount; j++) {
               row.push({
-                type: 'room',
-                special: '',
-                src: '',
+                type: 'border',
+                task: false,
+                src: '2.png',
               });
             }
             this.map.push(row);
@@ -122,7 +136,9 @@ export default {
             image.src = require(`../assets/${i}`);
             this.images.push(image);
           }
-          this.paintCanvas();
+          this.images.at(-1).onload = () => {
+            this.drawCanvas();
+          };
         })
         .catch((error) => {
           console.error(error);
@@ -172,17 +188,34 @@ export default {
           }
         }
       }
-      this.paintSelection(this.oldSelectedItems, this.selectedItems);
+      this.drawSelection();
+      if (this.isDrawing) {
+        this.draw();
+      }
     },
     onItemLeave() {
       this.rowIndex = -1;
       this.itemIndex = -1;
       this.oldSelectedItems = this.selectedItems;
       this.selectedItems = [];
-      this.paintSelection(this.oldSelectedItems, this.selectedItems);
+      this.drawSelection();
+    },
+    draw() {
+      this.isDrawing = true;
+      for (let i of this.selectedItems) {
+        this.map[i.y][i.x].src = this.drawSrc();
+        this.map[i.y][i.x].type = this.drawType;
+      }
+    },
+    onDrawEnd() {
+      this.isDrawing = false;
     },
     changeColor(data) {
-      this.selectionSrc = data['selectionSrc'];
+      this.drawValue = data['drawValue'];
+      this.drawType = data['drawType'];
+    },
+    openCloseMenu(data) {
+      this.isMenuOpen = data['isOpen'];
     },
     getItemPosition(e) {
       let x;
@@ -208,7 +241,7 @@ export default {
     getMapSize() {
       return this.mapCount * this.mapSliderValue;
     },
-    paintCanvas() {
+    drawCanvas() {
       this.oldSelectedItems = [];
       this.selectedItems = [];
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -216,7 +249,7 @@ export default {
       this.canvas.height = this.getMapSize();
       for (let y = 0; y < this.mapCount; y++) {
         for (let x = 0; x < this.mapCount; x++) {
-          let image = this.images.at(this.map[y][x].src === '' ? this.imagesSrc.indexOf(this.foneSrc) : this.imagesSrc.indexOf(this.map[y][x].src));
+          let image = this.images.at(this.imagesSrc.indexOf(this.map[y][x].src === '' ? this.foneSrc : this.map[y][x].src));
           this.context.drawImage(image,
             x * this.mapSliderValue,
             y * this.mapSliderValue,
@@ -225,25 +258,25 @@ export default {
         }
       }
     },
-    paintSelection(oldSelected, selected) {
-      for (let i of oldSelected) {
+    drawSelection() {
+      for (let i of this.oldSelectedItems) {
         this.context.clearRect(i.x * this.mapSliderValue,
           i.y * this.mapSliderValue,
           this.mapSliderValue - this.spaceSize,
           this.mapSliderValue - this.spaceSize);
-        let image = this.images.at(this.map[i.y][i.x].src === '' ? this.imagesSrc.indexOf(this.foneSrc) : this.imagesSrc.indexOf(this.map[i.y][i.x].src));
+        let image = this.images.at(this.imagesSrc.indexOf(this.map[i.y][i.x].src === '' ? this.foneSrc : this.map[i.y][i.x].src));
         this.context.drawImage(image,
           i.x * this.mapSliderValue,
           i.y * this.mapSliderValue,
           this.mapSliderValue - this.spaceSize,
           this.mapSliderValue - this.spaceSize);
       }
-      for (let i of selected) {
+      for (let i of this.selectedItems) {
         this.context.clearRect(i.x * this.mapSliderValue,
           i.y * this.mapSliderValue,
           this.mapSliderValue - this.spaceSize,
           this.mapSliderValue - this.spaceSize);
-        let image = this.images.at(this.imagesSrc.indexOf(this.selectionSrc));
+        let image = this.images.at(this.imagesSrc.indexOf(this.drawValue === '' ? this.selectionSrc : this.drawSrc()));
         this.context.drawImage(image,
           i.x * this.mapSliderValue,
           i.y * this.mapSliderValue,
@@ -251,8 +284,92 @@ export default {
           this.mapSliderValue - this.spaceSize);
       }
     },
+    drawSrc() {
+      return this.drawValue === '' ? '' : this.drawType + '/' + this.drawValue;
+    },
+    testMap(data) {
+      this.isTesting = data['isTesting'];
+      if (this.isTesting) {
+        this.mapSliderValue = this.maxMapSliderValue;
+        this.onTestCursorSize = this.cursorSize;
+        this.cursorSize = 0;
+        this.$emit('closeMenu');
+      } else {
+        this.mapSliderValue = this.minMapSliderValue;
+        this.cursorSize = this.onTestCursorSize;
+      }
+      this.drawCanvas();
+
+      let testPosition = [];
+      if (this.isTesting) {
+        for (let y = 0; y < this.mapCount; y++) {
+          for (let x = 0; x < this.mapCount; x++) {
+            if (this.map[y][x].type === this.roomType) {
+              testPosition.push({ x, y });
+            }
+          }
+        }
+        if (testPosition.length !== 0) {
+          let testIndex = Math.round(Math.random() * testPosition.length);
+          this.heroLeft = testPosition[testIndex].x * this.cellSize;
+          this.heroTop = testPosition[testIndex].y * this.cellSize;
+          this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
+        }
+      }
+    },
+    onScroll(e) {
+      if (this.isTesting) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      return true;
+    },
+    onScrollKey(e) {
+      if (this.isTesting && ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+        e.preventDefault();
+        this.heroMove(e.code);
+        return false;
+      }
+      return true;
+    },
+    heroMove(code) {
+      let newHeroLeft = this.heroLeft;
+      let newHeroTop = this.heroTop;
+      switch (code) {
+        case 'ArrowUp':
+          newHeroTop -= this.cellSize;
+          break;
+        case 'ArrowDown':
+          newHeroTop += this.cellSize;
+          break;
+        case 'ArrowLeft':
+          newHeroLeft -= this.cellSize;
+          break;
+        case 'ArrowRight':
+          newHeroLeft += this.cellSize;
+          break;
+        default:
+          break;
+      }
+      if (this.map[newHeroTop / this.cellSize][newHeroLeft / this.cellSize].type === this.roomType) {
+        this.heroLeft = newHeroLeft;
+        this.heroTop = newHeroTop;
+      }
+    },
   },
   computed: {
+    getTestingDisplay() {
+      return this.isTesting ? {
+        'display': 'none',
+      } : {};
+    },
+    getTestingMapStyles() {
+      return {
+        'padding': this.isTesting ? '0' : '0 0 0 78px',
+        'overflow': this.isTesting ? '' : 'scroll',
+      };
+    },
     isItemSelected() {
       return (item) => {
         return item;
@@ -260,16 +377,17 @@ export default {
         // return this.selectedItems.includes(rowItemIndex.rowIndex + ' ' + rowItemIndex.itemIndex);
       };
     },
-    isItemHovered() {
-      return (item) => {
-        return item;
-        // const rowItemIndex = this.getRowItemIndex(item);
-        // return this.hoveredItem === rowItemIndex.rowIndex + ' ' + rowItemIndex.itemIndex;
-      };
-    },
   },
   created() {
     this.getMap();
+  },
+  mounted() {
+    window.addEventListener('wheel', this.onScroll, { passive: false });
+    window.addEventListener('keydown', this.onScrollKey);
+  },
+  destroyed() {
+    window.removeEventListener('wheel', this.onScroll);
+    window.removeEventListener('keydown', this.onScrollKey);
   },
 };
 </script>
@@ -283,6 +401,9 @@ export default {
   display: flex;
   flex-direction: column;
 }
+/* div::-webkit-scrollbar {*/
+/*  display: none;*/
+/*}*/
 .container {
   display: -webkit-box;
   min-width: 100%;
@@ -290,20 +411,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
-  padding: 15px 15px 15px 93px;
 }
-.row {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 0.5px;
-}
-.item {
-  width: 100%;
-  height: 100%;
+.container::-webkit-scrollbar {
+  display: block !important;
 }
 .footer {
   min-height: 40px;
@@ -314,30 +424,10 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-.custom-dot {
-  width: fit-content;
-  min-width: 110%;
-  height: 110%;
-  background-color: #F5F5F5;
-  border: 1px solid #9cd5ff;
-  color: rgba(17, 16, 29, 0.85);
-  border-radius: 50%;
-  transition: all .3s;
-  font-size: 0.6em;
-  text-align: center;
-}
-.custom-dot:hover {
-  transform: scale(1.3);
-  border-color: #36abff;
-}
-.custom-dot-focus {
-  box-shadow: 0 0 0 5px rgba(54, 171, 255, 0.2);
-  border-color: #36abff;
-}
-.selected-item {
-  background-color: #9CC6FF !important;
-}
-.hovered-item:before {
-  content: "\ee18";
+.hero {
+  height: 31px;
+  width: 31px;
+  background: red;
+  position: absolute;
 }
 </style>

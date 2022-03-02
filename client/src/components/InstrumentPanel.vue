@@ -49,6 +49,8 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 import VueSlider from 'vue-slider-component';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
+import '../assets/css/custom-dot.css';
+
 export default {
   name: 'InstrumentPanel',
   components: { VueSlider, VueDraggableResizable },
@@ -102,7 +104,7 @@ export default {
     onSolidChange() {
       this.cursorSolid = !this.cursorSolid;
       if (this.cursorSolid) {
-        if (this.cursorSize > this.maxCursorSolidSize){
+        if (this.cursorSize > this.maxCursorSolidSize) {
           this.cursorSize = this.maxCursorSolidSize;
         }
         this.maxCursorSize = this.maxCursorSolidSize;
@@ -187,7 +189,6 @@ export default {
   font-size: 32px;
   opacity: 0.5;
 }
-.instrument-panel-item .vue-slider,
 .instrument-panel-item i,
 .instrument-panel-item-right {
   cursor: pointer;
@@ -195,26 +196,6 @@ export default {
 .instrument-panel-item i:hover {
    transform: scale(1.2);
     opacity: 1;
-}
-.custom-dot {
-  width: fit-content;
-  min-width: 110%;
-  height: 110%;
-  background-color: #F5F5F5;
-  border: 1px solid #9cd5ff;
-  color: rgba(17, 16, 29, 0.85);
-  border-radius: 50%;
-  transition: all .3s;
-  font-size: 0.6em;
-  text-align: center;
-}
-.custom-dot:hover {
-  transform: scale(1.3);
-  border-color: #36abff;
-}
-.custom-dot-focus {
-  box-shadow: 0 0 0 5px rgba(54, 171, 255, 0.2);
-  border-color: #36abff;
 }
 .none {
   display: none !important;
