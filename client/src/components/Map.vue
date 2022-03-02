@@ -1,7 +1,9 @@
 <template>
   <main id="map-main" @mouseup="onDrawEnd">
     <instrument-panel @changeParameters="changeParameters" :style="getTestingDisplay"/>
-    <left-menu @changeColor="changeColor" @openCloseMenu="openCloseMenu" :style="getTestingDisplay" ref="menu"/>
+    <left-menu @changeColor="changeColor" @openCloseMenu="openCloseMenu" :style="getTestingDisplay" ref="menu"
+               :imagesSrc="imagesSrc"
+               :imagesDirectory="imagesDirectory"/>
     <div :class="['container']" :style="getTestingMapStyles">
       <div :style="{ minWidth: getMapSize() + 'px',
                      maxWidth: getMapSize() + 'px',
@@ -76,25 +78,38 @@ export default {
       spaceSize: 1,
       rowIndex: -1,
       itemIndex: -1,
-      foneSrc: 'fone.jpeg',
-      selectionSrc: 'selection.jpeg',
+      imagesDirectory: '../assets/images/',
+      foneSrc: 'special/fone.jpeg',
+      selectionSrc: 'special/selection.jpeg',
       drawValue: '',
       drawType: '',
+      location: '',
       images: [],
-      imagesSrc: ['border/1.png',
-        'border/3.gif',
-        'border/4.gif',
-        'border/5.png',
-        'border/6.png',
-        'border/7.png',
-        'border/8.jpeg',
-        'border/9.jpeg',
-        'room/1.png',
-        'room/2.png',
-        'trip/1.png',
-        'selection.jpeg',
-        'fone.jpeg',
-        'border/2.png',
+      imagesSrc: ['border/air_air/1.png',
+        'border/air_air/2.png',
+        'border/dungeon/1.gif',
+        'border/dungeon/2.gif',
+        'border/forest/1.png',
+        'border/forest/2.png',
+        'border/lake_kingdom/1.png',
+        'border/lake_kingdom/2.jpeg',
+        'border/village/1.jpeg',
+
+        'room/air_air/1.png',
+        'room/dungeon/1.png',
+        'room/forest/1.png',
+        'room/lake_kingdom/1.png',
+        'room/village/1.png',
+        'room/village/2.png',
+
+        'trip/air_air/1.png',
+        'trip/dungeon/1.png',
+        'trip/forest/1.png',
+        'trip/lake_kingdom/1.png',
+        'trip/village/1.png',
+
+        'special/selection.jpeg',
+        'special/fone.jpeg',
       ],
       isResizing: false,
       isDrawing: false,
@@ -122,9 +137,10 @@ export default {
             row = [];
             for (let j = 0; j < this.mapCount; j++) {
               row.push({
-                type: 'border',
+                type: '',
+                location: '',
                 task: false,
-                src: '2.png',
+                src: '',
               });
             }
             this.map.push(row);
@@ -133,7 +149,7 @@ export default {
           this.context = this.canvas.getContext('2d');
           for (let i of this.imagesSrc) {
             let image = new Image(this.mapSliderValue - this.spaceSize, this.mapSliderValue - this.spaceSize);
-            image.src = require(`../assets/${i}`);
+            image.src = require(`../assets/images/${i}`);
             this.images.push(image);
           }
           this.images.at(-1).onload = () => {
@@ -205,6 +221,7 @@ export default {
       for (let i of this.selectedItems) {
         this.map[i.y][i.x].src = this.drawSrc();
         this.map[i.y][i.x].type = this.drawType;
+        this.map[i.y][i.x].location = this.location;
       }
     },
     onDrawEnd() {
@@ -213,6 +230,7 @@ export default {
     changeColor(data) {
       this.drawValue = data['drawValue'];
       this.drawType = data['drawType'];
+      this.location = data['location'];
     },
     openCloseMenu(data) {
       this.isMenuOpen = data['isOpen'];
@@ -240,6 +258,12 @@ export default {
     },
     getMapSize() {
       return this.mapCount * this.mapSliderValue;
+    },
+    getSrc(mapItem) {
+      if (mapItem.src === '') {
+        return this.foneSrc;
+      }
+      return `${mapItem.type}/${mapItem.location}/${mapItem.src}`;
     },
     drawCanvas() {
       this.oldSelectedItems = [];
@@ -285,7 +309,7 @@ export default {
       }
     },
     drawSrc() {
-      return this.drawValue === '' ? '' : this.drawType + '/' + this.drawValue;
+      return this.drawValue === '' ? '' : this.drawType + '/' + this.location + '/' + this.drawValue;
     },
     testMap(data) {
       this.isTesting = data['isTesting'];

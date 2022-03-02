@@ -207,7 +207,7 @@ export default {
   font-weight: bold;
 }
 .instrument-panel-solid {
-  background-image: url('../assets/waves.png');
+  background-image: url('../assets/images/special/waves.png');
   /*background: wheat;*/
   background-size: auto 100%;
   background-position: top right;

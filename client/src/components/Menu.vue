@@ -16,8 +16,7 @@
     </div>
 
     <div :style="{ 'height': 'calc(100% - 60px)' }">
-      <div id="my-scroll-settings"
-           style="margin: 0px 14px 0 14px;">
+      <div class="my-settings">
         <ul style="overflow: visible;">
             <span>
               <li style="overflow: hidden">
@@ -74,17 +73,17 @@
                        @mouseleave="isLocationIconHover = false"
                        :style="{overflow: isLocationMenuOpenedAsync ? 'initial' : 'hidden'}">
                     <i class="bx bx-map-pin"/>
-                    <span class="links_name">локация</span>
+                    <span class="links_name">локации</span>
                     <span :class="['bx', 'links_name', 'settings-locations', isLocationMenuOpenedAsync ? 'bx-chevron-left' : 'bx-chevron-right', {'settings-locations-icon': isLocationIconHover}]"></span>
                   </div>
                 </div>
                 <div :class="['locationMenu', {'locationMenuClosed' : !isLocationMenuOpenedAsync}]">
-                  <p style="text-align: center; display: block">локация</p>
+                  <p style="text-align: center; display: block">локации</p>
                   <div style="width: 100%; height: 100%; overflow: auto; padding: 5px 10px">
                     <span v-for="(locationItem, locationIndex) in locationItems"
                           :key="locationIndex"
-                          :class="['bx', {'locationSelected': location === locationItem.type}]"
-                          @click="onSelectLocation(locationItem.type)">
+                          :class="['bx', { 'locationSelected': locationValue === locationItem.name }]"
+                          @click="onSelectLocation(locationItem.name, locationItem.type, locationItem.icon)">
                       <i class="bx" :class="locationItem.icon" style="height: 25px; line-height: 25px; min-width: 40px;"/>
                       <p class="">{{ locationItem.name }}</p>
                     </span>
@@ -94,7 +93,27 @@
             </span>
         </ul>
       </div>
+
+      <div class="my-settings">
+        <ul style="margin: 0">
+          <span>
+            <li>
+                <div :class="['menu_item', 'location_info']">
+                  <div class="menu_item_row" style="grid-template-columns: 50px 1fr; overflow: hidden;">
+                    <i class="bx" :class="locationIcon"/>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <span class="links_name" style="font-size: 0.6em;">текущая локация</span>
+                      <span class="links_name">{{ locationValue }}</span>
+                    </div>
+                  </div>
+                </div>
+            </li>
+          </span>
+        </ul>
+      </div>
+
       <div id="my-scroll"
+           class="my-settings"
            :style="{maxHeight: calculateMaxHeight()}">
         <ul>
             <span v-for="(menuItem, menuIndex) in menuItems"
@@ -107,14 +126,14 @@
                     <span class="links_name">{{ menuItem.name }}</span>
                   </div>
                   <div :class="['menu_item_row', 'menu_item_content', {'menu_item_closed': !isOpened || !menuItem.isOpen}]"
-                       :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.length / 5) + 32) + 'px' }">
-                    <div v-for="(item, itemIndex) in menuItem.childs"
+                       :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.filter(i => i.split('/')[1] === locationType).length / 5) + 32) + 'px' }">
+                    <div v-for="(item, itemIndex) in menuItem.childs.filter(i => i.split('/')[1] === locationType)"
                          :key="itemIndex"
-                         :style="{'background-image': `url(${require('../assets/' + menuItem.type + '/' + item)})`,
+                         :style="{'background-image': `url(${require(`../assets/images/${item}`)})`,
                                   'background-repeat': 'no-repeat',
                                   'background-size': 'cover'}"
-                         :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item && colorIndex === itemIndex }]"
-                         @click="changeColor(menuItem.type, item, itemIndex, menuItem.icon)"/>
+                         :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item.split('/')[2] && colorIndex === itemIndex }]"
+                         @click="changeColor(menuItem.type, item.split('/')[2], itemIndex, menuItem.icon)"/>
                   </div>
                 </div>
               </li>
@@ -126,7 +145,7 @@
            v-if="colorValue !== '' && colorType !== ''">
         <li style="height: 32px; width: 100%; margin: 0;">
           <i class="bx" :class="[colorIcon, 'exit_menu_item']"/>
-          <i class="bx" :style="{'background-image': `url(${require('../assets/' + colorType + '/' + colorValue)})`,
+          <i class="bx" :style="{'background-image': `url(${require('../assets/images/' + colorType + '/' + locationType + '/' + colorValue)})`,
                                  borderRadius: '6px',
                                  boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
         </li>
@@ -165,11 +184,21 @@ export default {
       isLocationMenuOpened: false,
       isLocationMenuOpenedAsync: false,
       isSettingsOpened: false,
-      location: '',
+      locationValue: '',
+      locationType: '',
+      locationIcon: '',
     };
   },
   props: {
     //! Menu settings
+    imagesSrc: {
+      type: Array,
+      default: () => [],
+    },
+    imagesDirectory: {
+      type: String,
+      default: '',
+    },
     isMenuOpen: {
       type: Boolean,
       default: false,
@@ -190,21 +219,21 @@ export default {
           name: 'комнаты',
           icon: 'bxs-dashboard',
           type: 'room',
-          childs: ['1.png', '2.png'],
+          childs: [],
           isOpen: false,
         },
         {
           name: 'стены',
           icon: 'bx-border-radius',
           type: 'border',
-          childs: ['1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg', '1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg', '1.png', '2.png', '3.gif', '4.gif', '5.png', '6.png', '7.png', '8.jpeg', '9.jpeg'],
+          childs: [],
           isOpen: false,
         },
         {
           name: 'переходы',
           icon: 'bx-trip',
           type: 'trip',
-          childs: ['1.png'],
+          childs: [],
           isOpen: false,
         },
       ],
@@ -275,18 +304,24 @@ export default {
   },
   mounted() {
     this.isOpened = this.isMenuOpen;
+    this.locationValue = this.locationItems[0].name;
+    this.locationType = this.locationItems[0].type;
+    this.locationIcon = this.locationItems[0].icon;
+    for (let i of this.menuItems) {
+      for (let img of this.imagesSrc) {
+        let spl = img.split('/');
+        if (spl.length === 3 && spl[0] === i.type) {
+          i.childs.push(img);
+        }
+      }
+    }
+    this.sendChangeColorParameters();
   },
   methods: {
     close() {
       if (this.isOpened) {
         this.openCloseMenu();
       }
-    },
-    onMON() {
-      console.log('on mouse on');
-    },
-    onMOFF() {
-      console.log('on mouse off');
     },
     openSettingsMenu() {
       if (!this.isOpened) {
@@ -300,7 +335,7 @@ export default {
       if (this.isOpened) {
         this.isLocationMenuOpenedAsync = !this.isLocationMenuOpenedAsync;
         if (this.isLocationMenuOpened) {
-          setTimeout(() => {this.isLocationMenuOpened = this.isLocationMenuOpenedAsync;}, 300);
+          setTimeout(() => { this.isLocationMenuOpened = this.isLocationMenuOpenedAsync; }, 300);
         } else {
           this.isLocationMenuOpened = true;
         }
@@ -329,28 +364,34 @@ export default {
         this.colorIndex = index;
         this.colorIcon = icon;
       } else {
-        this.colorType = '';
-        this.colorValue = '';
-        this.colorIndex = -1;
-        this.colorIcon = '';
+        this.resetColor();
       }
-      this.changeColorParameters();
+      this.sendChangeColorParameters();
     },
-    changeColorParameters() {
+    resetColor() {
+      this.colorType = '';
+      this.colorValue = '';
+      this.colorIndex = -1;
+      this.colorIcon = '';
+    },
+    sendChangeColorParameters() {
       this.$emit('changeColor', {
         drawValue: this.colorValue,
         drawType: this.colorType,
+        location: this.locationType,
       });
     },
-    onSelectLocation(location) {
-      if (this.location !== location) {
-        this.location = location
-      } else {
-        this.location = '';
+    onSelectLocation(location, type, icon) {
+      if (this.locationValue !== location) {
+        this.locationValue = location;
+        this.locationType = type;
+        this.locationIcon = icon;
+        this.resetColor();
+        this.sendChangeColorParameters();
       }
     },
     calculateMaxHeight() {
-      return `calc(100% - 40px - ${this.colorValue !== '' && this.colorType !== '' ? 60 : 0}px - 1rem - ${this.isSettingsOpened ? 223 : 92}px - 8px)`;
+      return `calc(100% - 40px - ${this.colorValue !== '' && this.colorType !== '' ? 60 : 0}px - 1rem - ${this.isSettingsOpened ? 223 : 92}px - 8px - 48px)`;
     },
   },
   computed: {
@@ -470,7 +511,11 @@ body {
   border: 1px solid;
   background: none;
 }
-
+.location_info {
+  box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
+  /*border: 1px solid;*/
+  /*background: var(--bg-color);*/
+}
 .selected-menu-item,
 .sidebar li .menu_item_not_hover:hover,
 .sidebar.open li .menu_item_not_hover:hover {
@@ -607,7 +652,6 @@ body {
   100%{background-position:right}
 }
 #my-scroll {
-  margin: 0 14px;
   overflow: scroll;
   transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
 }
@@ -668,8 +712,8 @@ body {
   100% { transform: scale(1.4); }
 }
 .locationSelected {
-  /*border-color: #F5F5F5 !important;*/
   box-shadow: 0 0 6px 6px rgb(54 171 255 / 20%);
+  background: rgba(17, 16, 29, 0.85);
 }
 .locationMenu {
   background: var(--bg-color);
@@ -728,7 +772,7 @@ body {
   border-right-color: inherit;
 }
 
-#my-scroll-settings {
-
+.my-settings {
+  margin: 0px 14px;
 }
 </style>
