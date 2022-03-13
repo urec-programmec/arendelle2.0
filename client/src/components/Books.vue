@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="map-container">
     <div class="row">
       <div class="col-sm-10">
         <h1>Books</h1>

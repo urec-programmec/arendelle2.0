@@ -1,7 +1,8 @@
 <template>
   <div class="sidebar"
     :class="isOpened ? 'open' : ''"
-    :style="cssVars">
+    :style="cssVars"
+  @click="mainClick">
     <div class="logo-details"
       style="margin: 0 14px">
       <i class="bx icon"
@@ -33,19 +34,25 @@
                                display: 'unset'}">
                   <div class="settings">
                     <p style="margin: 0">ширина</p>
-                    <vue-slider v-model="mapLengthValue"
+                    <vue-slider v-model="mapSizeX"
                                 :tooltip-formatter="val => val + ''"
                                 :min="50"
-                                :max="100">
+                                :max="100"
+                                @drag-start="() => isResizing = true"
+                                @drag-end="() => {isResizing = false; sendChangeParameters();}"
+                                @change="() => {if(!isResizing) sendChangeParameters()}">
                       <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
                         <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
                       </template>
                     </vue-slider>
                     <p>высота</p>
-                    <vue-slider v-model="mapHeightValue"
+                    <vue-slider v-model="mapSizeY"
                                 :tooltip-formatter="val => val + ''"
                                 :min="50"
-                                :max="100">
+                                :max="100"
+                                @drag-start="() => isResizing = true"
+                                @drag-end="() => {isResizing = false; sendChangeParameters();}"
+                                @change="() => {if(!isResizing) sendChangeParameters()}">
                       <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
                         <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
                       </template>
@@ -77,7 +84,8 @@
                     <span :class="['bx', 'links_name', 'settings-locations', isLocationMenuOpenedAsync ? 'bx-chevron-left' : 'bx-chevron-right', {'settings-locations-icon': isLocationIconHover}]"></span>
                   </div>
                 </div>
-                <div :class="['locationMenu', {'locationMenuClosed' : !isLocationMenuOpenedAsync}]">
+                <div :class="['locationMenu', {'locationMenuClosed' : !isLocationMenuOpenedAsync}]"
+                     @click="stopPropagation">
                   <p style="text-align: center; display: block">локации</p>
                   <div style="width: 100%; height: 100%; overflow: auto; padding: 5px 10px">
                     <span v-for="(locationItem, locationIndex) in locationItems"
@@ -85,7 +93,7 @@
                           :class="['bx', { 'locationSelected': locationValue === locationItem.name }]"
                           @click="onSelectLocation(locationItem.name, locationItem.type, locationItem.icon)">
                       <i class="bx" :class="locationItem.icon" style="height: 25px; line-height: 25px; min-width: 40px;"/>
-                      <p class="">{{ locationItem.name }}</p>
+                      <p>{{ locationItem.name }}</p>
                     </span>
                   </div>
                 </div>
@@ -177,8 +185,10 @@ export default {
       colorIndex: -1,
       colorIcon: '',
 
-      mapLengthValue: 50,
-      mapHeightValue: 50,
+      mapSizeX: 50,
+      mapSizeY: 50,
+      isResizing: false,
+
       mapTaskCountValue: 10,
       isLocationIconHover: false,
       isLocationMenuOpened: false,
@@ -194,10 +204,6 @@ export default {
     imagesSrc: {
       type: Array,
       default: () => [],
-    },
-    imagesDirectory: {
-      type: String,
-      default: '',
     },
     isMenuOpen: {
       type: Boolean,
@@ -315,9 +321,18 @@ export default {
         }
       }
     }
-    this.sendChangeColorParameters();
+    this.sendChangeParameters();
   },
   methods: {
+    mainClick() {
+      if (this.isLocationMenuOpened) {
+        this.isLocationMenuOpenedAsync = false;
+        this.closeLocationMenuAsync();
+      }
+    },
+    stopPropagation(event) {
+      event.stopPropagation();
+    },
     close() {
       if (this.isOpened) {
         this.openCloseMenu();
@@ -331,11 +346,11 @@ export default {
       }
       this.isSettingsOpened = !this.isSettingsOpened;
     },
-    openLocationMenu() {
+    openLocationMenu(event) {
       if (this.isOpened) {
         this.isLocationMenuOpenedAsync = !this.isLocationMenuOpenedAsync;
         if (this.isLocationMenuOpened) {
-          setTimeout(() => { this.isLocationMenuOpened = this.isLocationMenuOpenedAsync; }, 300);
+          this.closeLocationMenuAsync();
         } else {
           this.isLocationMenuOpened = true;
         }
@@ -344,6 +359,10 @@ export default {
         this.isLocationMenuOpened = true;
         this.isLocationMenuOpenedAsync = true;
       }
+      event.stopPropagation();
+    },
+    closeLocationMenuAsync() {
+      setTimeout(() => { this.isLocationMenuOpened = this.isLocationMenuOpenedAsync; }, 300);
     },
     openCloseMenu() {
       if (this.isOpened) {
@@ -366,7 +385,7 @@ export default {
       } else {
         this.resetColor();
       }
-      this.sendChangeColorParameters();
+      this.sendChangeParameters();
     },
     resetColor() {
       this.colorType = '';
@@ -374,11 +393,13 @@ export default {
       this.colorIndex = -1;
       this.colorIcon = '';
     },
-    sendChangeColorParameters() {
-      this.$emit('changeColor', {
+    sendChangeParameters() {
+      this.$emit('changeParameters', {
         drawValue: this.colorValue,
         drawType: this.colorType,
         location: this.locationType,
+        mapSizeX: this.mapSizeX,
+        mapSizeY: this.mapSizeY,
       });
     },
     onSelectLocation(location, type, icon) {
@@ -387,7 +408,7 @@ export default {
         this.locationType = type;
         this.locationIcon = icon;
         this.resetColor();
-        this.sendChangeColorParameters();
+        this.sendChangeParameters();
       }
     },
     calculateMaxHeight() {
@@ -526,12 +547,6 @@ body {
 .sidebar.open li .menu_item_not_hover:hover {
   cursor: pointer;
 }
-.sidebar.open li .menu_item_not_hover .menu_item_row.menu_item_title {
-  border-radius: 10px;
-}
-.sidebar  li .menu_item .menu_item_title {
-  height: 40px;
-}
 .sidebar li .menu_item .menu_item_row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -548,10 +563,6 @@ body {
   transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
   overflow: hidden;
 }
-.sidebar li .menu_item .menu_item_title:hover {
-  background: var(--menu-items-hover-color);
-  cursor: pointer;
-}
 .sidebar li .menu_item .links_name {
   color: var(--menu-items-text-color);
   font-size: 15px;
@@ -564,11 +575,6 @@ body {
 .sidebar.open li .menu_item .links_name {
   opacity: 1;
   pointer-events: auto;
-}
-.sidebar li .menu_item .menu_item_title:hover .links_name,
-.sidebar li .menu_item .menu_item_title:hover i {
-  transition: all 0.5s ease;
-  color: var(--bg-color);
 }
 .sidebar li i {
   height: 40px;
@@ -654,9 +660,13 @@ body {
 #my-scroll {
   overflow: scroll;
   transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
+  margin-right: 4px;
+  padding-right: 4px;
 }
 #my-scroll::-webkit-scrollbar{
-  display:none;
+  display: block;
+  width: 6px;
+  height: 0;
 }
 .ceil_item {
   height: 32px;
@@ -744,6 +754,7 @@ body {
   position: relative;
 }
 .locationMenu span:hover {
+  background: var(--bg-color);
   border-color: #F5F5F5;
   cursor: pointer;
 }

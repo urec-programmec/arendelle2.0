@@ -14,15 +14,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 
-mapCount = 100
-mapColors = {0:"red", 1:"wheat"}
+# mapCount = 100
+# mapColors = {0:"red", 1:"wheat"}
 
-@app.route('/mapSettings', methods=['GET'])
-def mapSettings():
-    response_object = {'status': 'success'}
-    response_object['mapCount'] = mapCount
-    response_object['mapColors'] = mapColors
-    return jsonify(response_object)
+# @app.route('/mapSettings', methods=['GET'])
+# def mapSettings():
+#     response_object = {'status': 'success'}
+#     response_object['mapCount'] = mapCount
+#     response_object['mapColors'] = mapColors
+#     return jsonify(response_object)
 
 
 
