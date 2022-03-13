@@ -16,9 +16,18 @@ export default {
   height: 100%;
   background-color: hsl(222, 25%, 20%);
 }
+@font-face {
+  font-family: 'GothamPro';
+  src: url('assets/webfonts/GothamPro.eot') format('eot'),
+  url('assets/webfonts/GothamPro.otf')  format('opentype'),
+  url('assets/webfonts/GothamPro.woff') format('woff'),
+  url('assets/webfonts/GothamPro.ttf')  format('truetype');
+}
 * {
+  font-family: "GothamPro", sans-serif !important;
+  /*font-family: 'OptimusPrinceps', sans-serif !important;*/
   /*font-family: "Courier New", serif !important;*/
-  font-family: 'Poppins', sans-serif !important;
+  /*font-family: 'Poppins', sans-serif !important;*/
   /*scrollbar-color: hsl(210, 40%, 20%) hsl(222, 25%, 20%);*/
   /*scrollbar-face-color: #367CD2;*/
   /*scrollbar-shadow-color: #FFFFFF;*/

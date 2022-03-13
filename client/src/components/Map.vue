@@ -260,7 +260,7 @@ export default {
                 src: '',
               });
             }
-            if (y % 2 === 0){
+            if (y % 2 === 0) {
               this.map.push(row);
             } else {
               this.map.unshift(row);

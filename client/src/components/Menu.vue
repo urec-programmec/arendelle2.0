@@ -111,7 +111,7 @@
                     <i class="bx" :class="locationIcon"/>
                     <div style="display: flex; flex-direction: column; align-items: center;">
                       <span class="links_name" style="font-size: 0.6em;">текущая локация</span>
-                      <span class="links_name">{{ locationValue }}</span>
+                      <span class="links_name" style="font-size: 0.85em;">{{ locationValue }}</span>
                     </div>
                   </div>
                 </div>
