@@ -21,10 +21,10 @@
                 @mousedown="draw"/>
       </div>
     </div>
-    <save-map @testMap="testMap"/>
+    <test-map @testMap="testMap"/>
     <span class="footer" :style="footerStyle">
       <div :class="['color-blindness', {'color-blindness-selected' : isColorBlindness}]"
-            @click="isColorBlindness = !isColorBlindness">
+            @click="() => {isColorBlindness = !isColorBlindness; drawCanvas();}">
         <div id="color-blindness-1"/>
         <div id="color-blindness-2"/>
       </div>
@@ -59,14 +59,14 @@
 import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 import Menu from './Menu';
-import SaveMap from './SaveMap';
+import TestMap from './TestMap';
 import InstrumentPanel from './InstrumentPanel';
 
 import '../assets/css/custom-dot.css';
 
 export default {
   name: 'Map',
-  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'save-map': SaveMap },
+  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap },
   data() {
     return {
       mapSizeX: 50,
@@ -126,6 +126,8 @@ export default {
         'special/selection.jpeg',
         'special/fone.jpeg',
       ],
+      colorBlindnessRoom: 'rgba(19,136,8,1)',
+      colorBlindnessBorder: 'rgba(204,0,0,1)',
       isColorBlindness: false,
       isResizing: false,
       isDrawing: false,
@@ -134,6 +136,7 @@ export default {
       heroLeft: 0,
       cellSize: 32,
       roomType: 'room',
+      roomTypes: ['room', 'trip'],
     };
   },
   methods: {
@@ -334,11 +337,7 @@ export default {
       for (let y = 0; y < this.mapSizeY; y++) {
         for (let x = 0; x < this.mapSizeX; x++) {
           let image = this.images.at(this.imagesSrc.indexOf(this.map[y][x].src === '' ? this.foneSrc : this.map[y][x].src));
-          this.context.drawImage(image,
-            x * this.mapZoom,
-            y * this.mapZoom,
-            this.mapZoom - this.spaceSize,
-            this.mapZoom - this.spaceSize);
+          this.drawImage(image, x, y, this.map[y][x].type);
         }
       }
     },
@@ -349,11 +348,12 @@ export default {
           this.mapZoom - this.spaceSize,
           this.mapZoom - this.spaceSize);
         let image = this.images.at(this.imagesSrc.indexOf(this.map[i.y][i.x].src === '' ? this.foneSrc : this.map[i.y][i.x].src));
-        this.context.drawImage(image,
-          i.x * this.mapZoom,
-          i.y * this.mapZoom,
-          this.mapZoom - this.spaceSize,
-          this.mapZoom - this.spaceSize);
+        this.drawImage(image, i.x, i.y, this.map[i.y][i.x].type);
+        // this.context.drawImage(image,
+        //   i.x * this.mapZoom,
+        //   i.y * this.mapZoom,
+        //   this.mapZoom - this.spaceSize,
+        //   this.mapZoom - this.spaceSize);
       }
       for (let i of this.selectedItems) {
         this.context.clearRect(i.x * this.mapZoom,
@@ -361,15 +361,35 @@ export default {
           this.mapZoom - this.spaceSize,
           this.mapZoom - this.spaceSize);
         let image = this.images.at(this.imagesSrc.indexOf(this.drawValue === '' ? this.selectionSrc : this.drawSrc()));
-        this.context.drawImage(image,
-          i.x * this.mapZoom,
-          i.y * this.mapZoom,
-          this.mapZoom - this.spaceSize,
-          this.mapZoom - this.spaceSize);
+        this.drawImage(image, i.x, i.y, this.drawType);
+        // this.context.drawImage(image,
+        //   i.x * this.mapZoom,
+        //   i.y * this.mapZoom,
+        //   this.mapZoom - this.spaceSize,
+        //   this.mapZoom - this.spaceSize);
       }
     },
     drawSrc() {
       return this.drawValue === '' ? '' : this.drawType + '/' + this.drawLocation + '/' + this.drawValue;
+    },
+    drawImage(image, x, y, type) {
+      if (this.isColorBlindness) {
+        if (this.roomTypes.includes(type)) {
+          this.context.fillStyle = this.colorBlindnessRoom;
+        } else {
+          this.context.fillStyle = this.colorBlindnessBorder;
+        }
+        this.context.fillRect(x * this.mapZoom,
+          y * this.mapZoom,
+          this.mapZoom - this.spaceSize,
+          this.mapZoom - this.spaceSize);
+      } else {
+        this.context.drawImage(image,
+          x * this.mapZoom,
+          y * this.mapZoom,
+          this.mapZoom - this.spaceSize,
+          this.mapZoom - this.spaceSize);
+      }
     },
     testMap(data) {
       this.isTesting = data['isTesting'];
@@ -458,10 +478,7 @@ export default {
         default:
           break;
       }
-      if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type === this.roomType) {
-        // console.log(window.innerHeight, window.innerWidth);
-        // console.log(newHeroWindowTop, newHeroWindowLeft);
-        // console.log('');
+      if (this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type)) {
         this.heroTop = newHeroDocumentTop;
         this.heroLeft = newHeroDocumentLeft;
         if (newHeroWindowTop < this.cellSize || newHeroWindowTop > window.innerHeight - this.cellSize ||
@@ -577,13 +594,13 @@ export default {
   -webkit-filter: blur(30px);
   filter: blur(10px);
 }
-.color-blindness div {
+.color-blindness #color-blindness-1,
+.color-blindness #color-blindness-2 {
   margin: 0;
   width: 16px;
   height: 16px;
-  background: #F5F5F5;
   border-radius: 50%;
-  border: 0.5px solid rgba(17, 16, 29, 0.85);
+  border: 1px solid rgba(17, 16, 29, 0.85);
 }
 .color-blindness {
   display: flex;
@@ -593,13 +610,29 @@ export default {
 }
 #color-blindness-1 {
   transform: translate(8px, 0);
-}
-.color-blindness-selected #color-blindness-1,
-.color-blindness:hover #color-blindness-1 {
+  z-index: 1;
   background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
 }
-.color-blindness-selected #color-blindness-2,
-.color-blindness:hover #color-blindness-2 {
-  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);;
+#color-blindness-2 {
+  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+}
+#color-blindness-1:before,
+#color-blindness-2:before {
+  content: '';
+  background: #F5F5F5;
+  border: 1px solid rgba(17, 16, 29, 0.85);
+  border-radius: 50%;
+  transition: all .2s ease;
+  opacity: 1;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  transform: translate(-1px, -1px);
+}
+.color-blindness-selected #color-blindness-1:before,
+.color-blindness:hover #color-blindness-1:before,
+.color-blindness-selected #color-blindness-2:before,
+.color-blindness:hover #color-blindness-2:before {
+  opacity: 0;
 }
 </style>

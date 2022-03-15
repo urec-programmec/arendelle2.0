@@ -5,13 +5,14 @@
        @mouseenter="onHover"
        @mouseleave="onHoverEnd">
     <i :class="['bx', getComputedClasses]"/>
-    <p ref="content">{{ content }}</p>
+    <p ref="content" :style="{ color: isHover ? '#F5F5F5' : 'rgba(0, 0, 0, 0)',
+                              transition: isHover ? 'color 0.2s cubic-bezier(1, 0, 1, 0)' : 'color 0.2s cubic-bezier(0, 1, 0, 1)'}">{{ content }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SaveMap',
+  name: 'Message',
   data() {
     return {
       isTesting: false,
@@ -41,16 +42,16 @@ export default {
       this.recalculateComputedWidth();
     },
     recalculateComputedWidth() {
-      this.computedWidth = this.isHover ? this.defaultComputedWidth + 10 + this.$refs.content.clientWidth : this.defaultComputedWidth;
+      this.computedWidth = this.isHover ? this.defaultComputedWidth + 5 + this.$refs.content.clientWidth : this.defaultComputedWidth;
     },
   },
   computed: {
     getComputedClasses() {
       return this.isTesting ? [
-        'bx-log-out',
+        'bx-exit-fullscreen',
         'out',
       ] : [
-        'bx-log-in',
+        'bx-fullscreen',
         'in',
       ];
     },
@@ -84,13 +85,15 @@ export default {
 .save-map i {
   position: absolute;
   display:block;
-  top: 50%;
-  left: 0;
+  /*top: 50%;*/
+  /*left: 0;*/
+  right: 0;
+  top: 20px;
   transform: translateY(-50%);
   width: 26px;
   font-size: 28px;
   text-align: center;
-  margin: 0 10px;
+  margin: 0 12px;
   color: rgba(255,255,255,1);
   transition: color .3s ease-in-out;
   background-size: 100%;
@@ -104,8 +107,7 @@ export default {
   display: block;
   line-height: 0;
   top: 50%;
-  left: 48px;
-  color: #fff;
+  left: 10px;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
