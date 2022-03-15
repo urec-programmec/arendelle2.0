@@ -455,7 +455,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  height: calc(100% - 40px);
+  height: 100%;
   min-height: min-content;
   /* overflow-y: auto; */
   width: 78px;

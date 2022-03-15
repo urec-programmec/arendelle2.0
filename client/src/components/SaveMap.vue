@@ -72,6 +72,7 @@ export default {
   overflow: hidden;
   background: rgba(17, 16, 29, 0.85);
   border-bottom-left-radius: 10px;
+  z-index: 10;
 }
 .save-map:hover i {
   color:rgba(255,255,255,0);

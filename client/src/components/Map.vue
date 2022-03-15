@@ -1,5 +1,6 @@
 <template>
   <main id="map-main" @mouseup="onDrawEnd">
+    <div class="background"></div>
     <instrument-panel @changeParameters="changeCursorParameters"
                       :style="hideIfTesting"/>
     <left-menu @changeParameters="changeColorParameters"
@@ -14,19 +15,26 @@
                      margin: isTesting ? 0 : '15px'}">
         <canvas id="mapCanvas"
                 :style="{width: getMapSizeX() + 'px',
-                         height: getMapSizeY() + 'px',
-                         backgroundColor: 'hsl(222, 25%, 20%)'}"
+                         height: getMapSizeY() + 'px'}"
                 @mousemove="move"
                 @mouseleave="clearSelection"
                 @mousedown="draw"/>
       </div>
     </div>
     <save-map @testMap="testMap"/>
-    <div class="footer" :style="hideIfTesting">
+    <span class="footer" :style="footerStyle">
+      <div :class="['color-blindness', {'color-blindness-selected' : isColorBlindness}]"
+            @click="isColorBlindness = !isColorBlindness">
+        <div id="color-blindness-1"/>
+        <div id="color-blindness-2"/>
+      </div>
+      <i class="bx bx-minus"/>
       <vue-slider v-model="mapZoom"
                   :tooltip-formatter="val => val + ' px'"
                   :min="minMapZoom"
                   :max="maxMapZoom"
+                  :style="{margin: '0',
+                           width: '200px'}"
                   @drag-start="() => isResizing = true"
                   @drag-end="() => {isResizing = false; drawCanvas();}"
                   @change="() => {if(!isResizing) drawCanvas()}">
@@ -34,7 +42,13 @@
           <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
         </template>
       </vue-slider>
-    </div>
+      <i class="bx bx-plus"/>
+      <div :style="{ display: 'flex',
+                     flexDirection: 'column'}">
+        <p>x: {{ cursorPositionX + 1 }}</p>
+        <p>y: {{ cursorPositionY + 1 }}</p>
+      </div>
+    </span>
     <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
                                           top: heroTop + 'px',
                                           left: heroLeft + 'px'}"/>
@@ -69,14 +83,15 @@ export default {
       isMenuOpen: false,
 
       minMapZoom: 6,
+      savedMapZoom: 6,
       mapZoom: 6,
       maxMapZoom: 32,
 
       canvas: null,
       context: null,
       spaceSize: 1,
-      rowIndex: -1,
-      itemIndex: -1,
+      cursorPositionY: -1,
+      cursorPositionX: -1,
       foneSrc: 'special/fone.jpeg',
       selectionSrc: 'special/selection.jpeg',
 
@@ -111,9 +126,9 @@ export default {
         'special/selection.jpeg',
         'special/fone.jpeg',
       ],
+      isColorBlindness: false,
       isResizing: false,
       isDrawing: false,
-
       isTesting: false,
       heroTop: 0,
       heroLeft: 0,
@@ -157,11 +172,11 @@ export default {
       if (itemIndex < 0) itemIndex = 0;
       if (itemIndex >= this.mapSizeX) itemIndex = this.mapSizeX - 1;
 
-      if (this.rowIndex === rowIndex && this.itemIndex === itemIndex) {
+      if (this.cursorPositionY === rowIndex && this.cursorPositionX === itemIndex) {
         return;
       }
-      this.rowIndex = rowIndex;
-      this.itemIndex = itemIndex;
+      this.cursorPositionY = rowIndex;
+      this.cursorPositionX = itemIndex;
       this.oldSelectedItems = this.selectedItems;
       this.selectedItems = [];
       let tempCursorSize = this.cursorSize - 1;
@@ -198,8 +213,8 @@ export default {
       }
     },
     clearSelection() {
-      this.rowIndex = -1;
-      this.itemIndex = -1;
+      this.cursorPositionY = -1;
+      this.cursorPositionX = -1;
       this.oldSelectedItems = this.selectedItems;
       this.selectedItems = [];
       this.drawSelection();
@@ -359,12 +374,13 @@ export default {
     testMap(data) {
       this.isTesting = data['isTesting'];
       if (this.isTesting) {
+        this.savedMapZoom = this.mapZoom;
         this.mapZoom = this.maxMapZoom;
         this.savedCursorSize = this.cursorSize;
         this.cursorSize = 0;
         this.$emit('closeMenu');
       } else {
-        this.mapZoom = this.minMapZoom;
+        this.mapZoom = this.savedMapZoom;
         this.cursorSize = this.savedCursorSize;
       }
       this.drawCanvas();
@@ -380,6 +396,9 @@ export default {
         }
         if (testPosition.length !== 0) {
           let testIndex = Math.round(Math.random() * testPosition.length);
+          if (testIndex === testPosition.length && testPosition.length !== 0) {
+            testIndex = testPosition.length - 1;
+          }
           this.heroLeft = testPosition[testIndex].x * this.cellSize;
           this.heroTop = testPosition[testIndex].y * this.cellSize;
           this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
@@ -403,27 +422,52 @@ export default {
       return true;
     },
     heroMove(code) {
-      let newHeroLeft = this.heroLeft;
-      let newHeroTop = this.heroTop;
+      let newHeroDocumentTop = this.heroTop;
+      let newHeroDocumentLeft = this.heroLeft;
+      let newHeroWindowTop = this.$refs.hero.getBoundingClientRect().top + this.cellSize / 2;
+      let newHeroWindowLeft = this.$refs.hero.getBoundingClientRect().left + this.cellSize / 2;
       switch (code) {
         case 'ArrowUp':
-          newHeroTop -= this.cellSize;
+          newHeroDocumentTop -= this.cellSize;
+          newHeroWindowTop -= this.cellSize;
+          if (newHeroDocumentTop < 0) {
+            return;
+          }
           break;
         case 'ArrowDown':
-          newHeroTop += this.cellSize;
+          newHeroDocumentTop += this.cellSize;
+          newHeroWindowTop += this.cellSize;
+          if (newHeroDocumentTop > (this.mapSizeY - 1) * this.cellSize) {
+            return;
+          }
           break;
         case 'ArrowLeft':
-          newHeroLeft -= this.cellSize;
+          newHeroDocumentLeft -= this.cellSize;
+          newHeroWindowLeft -= this.cellSize;
+          if (newHeroDocumentLeft < 0) {
+            return;
+          }
           break;
         case 'ArrowRight':
-          newHeroLeft += this.cellSize;
+          newHeroDocumentLeft += this.cellSize;
+          newHeroWindowLeft += this.cellSize;
+          if (newHeroDocumentLeft > (this.mapSizeX - 1) * this.cellSize) {
+            return;
+          }
           break;
         default:
           break;
       }
-      if (this.map[newHeroTop / this.cellSize][newHeroLeft / this.cellSize].type === this.roomType) {
-        this.heroLeft = newHeroLeft;
-        this.heroTop = newHeroTop;
+      if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type === this.roomType) {
+        // console.log(window.innerHeight, window.innerWidth);
+        // console.log(newHeroWindowTop, newHeroWindowLeft);
+        // console.log('');
+        this.heroTop = newHeroDocumentTop;
+        this.heroLeft = newHeroDocumentLeft;
+        if (newHeroWindowTop < this.cellSize || newHeroWindowTop > window.innerHeight - this.cellSize ||
+          newHeroWindowLeft < this.cellSize || newHeroWindowLeft > window.innerWidth - this.cellSize) {
+          this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
+        }
       }
     },
   },
@@ -437,6 +481,13 @@ export default {
       return {
         'padding': this.isTesting ? '0' : '0 0 0 78px',
         'overflow': this.isTesting ? '' : 'scroll',
+      };
+    },
+    footerStyle() {
+      return {
+        'margin-left': this.isMenuOpen ? '238px' : '78px',
+        'display': this.isTesting ? 'none' : '',
+        'transition': 'all 0.5s ease',
       };
     },
   },
@@ -478,18 +529,77 @@ export default {
   display: block !important;
 }
 .footer {
-  min-height: 40px;
+  color: #F5F5F5;
+  min-height: 30px;
   border-top: 1px solid black;
   padding-left: 5%;
-  padding-right: 5%;
+  padding-right: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+}
+.footer i {
+  margin: 0 10px;
+}
+.footer p {
+  width: 30px;
+  margin: 0 0 0 5px;
+  font-size: 0.7em;
+  text-align: center;
+  line-height: 1em;
 }
 .hero {
   height: 31px;
   width: 31px;
   background: red;
   position: absolute;
+}
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+.background:before {
+  content: '';
+  background-image: url('../assets/images/special/background.jpg');
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 130%;
+  height: 130%;
+  left: -15%;
+  top: -15%;
+  -webkit-filter: blur(30px);
+  filter: blur(10px);
+}
+.color-blindness div {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  background: #F5F5F5;
+  border-radius: 50%;
+  border: 0.5px solid rgba(17, 16, 29, 0.85);
+}
+.color-blindness {
+  display: flex;
+}
+.color-blindness:hover {
+  cursor: pointer;
+}
+#color-blindness-1 {
+  transform: translate(8px, 0);
+}
+.color-blindness-selected #color-blindness-1,
+.color-blindness:hover #color-blindness-1 {
+  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
+}
+.color-blindness-selected #color-blindness-2,
+.color-blindness:hover #color-blindness-2 {
+  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);;
 }
 </style>

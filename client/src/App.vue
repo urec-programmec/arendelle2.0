@@ -14,8 +14,18 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  background-color: hsl(222, 25%, 20%);
+  /*position: relative;*/
+  /*overflow: hidden;*/
+  /*background-color: hsla(222, 25%, 20%, 0.3);*/
 }
+
+#app:before{
+  /*content: '';*/
+
+  /*transform: scale(0.75);*/
+}
+
+
 @font-face {
   font-family: 'GothamPro';
   src: url('assets/webfonts/GothamPro.eot') format('eot'),
@@ -66,6 +76,10 @@ export default {
 *::-webkit-scrollbar-thumb:hover {
   background: hsl(210, 48%, 48%);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+*::-webkit-scrollbar-corner {
+  background: none;
 }
 
 html, body {
