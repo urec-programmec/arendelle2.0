@@ -57,7 +57,8 @@
     </span>
     <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
                                           top: heroTop + 'px',
-                                          left: heroLeft + 'px'}"/>
+                                          left: heroLeft + 'px',
+                                          '--hero-url': 'url(' + require(`../assets/images/${heroDirections[heroDirection]}`) + ')'}"/>
   </main>
 </template>
 
@@ -99,6 +100,7 @@ export default {
       cursorPositionY: -1,
       cursorPositionX: -1,
       foneSrc: 'special/fone.jpeg',
+      taskSrc: 'special/task.png',
       selectionSrc: 'special/selection.jpeg',
 
       drawValue: '',
@@ -130,20 +132,34 @@ export default {
         'trip/lake_kingdom/1.png',
         'trip/village/1.png',
 
+        'hero/left.png',
+        'hero/right.png',
+        'hero/top.png',
+        'hero/bottom.png',
+
         'special/selection.jpeg',
+        'special/task.png',
         'special/fone.jpeg',
       ],
       colorBlindnessRoom: 'rgba(19,136,8,1)',
       colorBlindnessBorder: 'rgba(204,0,0,1)',
       isColorBlindness: false,
+      isTesting: false,
       isResizing: false,
       isDrawing: false,
-      isTesting: false,
-      heroTop: 0,
-      heroLeft: 0,
       cellSize: 32,
+      borderType: 'border',
       roomType: 'room',
       roomTypes: ['room', 'trip'],
+      heroTop: 0,
+      heroLeft: 0,
+      heroDirections: {
+        'left': 'hero/left.png',
+        'right': 'hero/right.png',
+        'top': 'hero/top.png',
+        'bottom': 'hero/bottom.png',
+      },
+      heroDirection: 'bottom',
     };
   },
   methods: {
@@ -172,9 +188,9 @@ export default {
       this.images.at(-1).onload = () => {
         this.drawCanvas();
         this.showMessage('создание карты',
-          'правила: перемещение возможно по комнатам и переходам. фон и стены - непроходимы.',
+          'правила: перемещение по карте - по комнатам и переходам. фон и стены - не проходимы.',
           'special',
-          15000);
+          12000);
       };
     },
     move(e) {
@@ -419,6 +435,18 @@ export default {
           this.mapZoom - this.spaceSize,
           this.mapZoom - this.spaceSize);
       }
+      if (this.map[y][x].task) {
+        this.context.clearRect(x * this.mapZoom,
+          y * this.mapZoom,
+          this.mapZoom - this.spaceSize,
+          this.mapZoom - this.spaceSize);
+        let taskImage = this.images.at(this.imagesSrc.indexOf(this.taskSrc));
+        this.context.drawImage(taskImage,
+          x * this.mapZoom,
+          y * this.mapZoom,
+          this.mapZoom - this.spaceSize,
+          this.mapZoom - this.spaceSize);
+      }
     },
     testMap(data) {
       if (data['isTesting']) {
@@ -431,28 +459,30 @@ export default {
           }
         }
         if (testPosition.length !== 0) {
-          this.isTesting = data['isTesting'];
-          this.savedMapZoom = this.mapZoom;
-          this.mapZoom = this.maxMapZoom;
-          this.$emit('closeMenu');
-          this.$emit('setTesting', { isTesting: this.isTesting });
-          this.showMessage('тестирование карты',
-            'режим тестирования: перемещайтесь при помощи стрелок ← ↑ → ↓',
-            'info',
-            3000);
-          this.drawCanvas();
-          let testIndex = Math.round(Math.random() * testPosition.length);
-          if (testIndex === testPosition.length && testPosition.length !== 0) {
-            testIndex = testPosition.length - 1;
+          if (this.resetTasks()) {
+            this.isTesting = data['isTesting'];
+            this.savedMapZoom = this.mapZoom;
+            this.mapZoom = this.maxMapZoom;
+            this.$emit('closeMenu');
+            this.$emit('setTesting', { isTesting: this.isTesting });
+            this.showMessage('тестирование карты',
+              'режим тестирования: перемещайтесь при помощи стрелок ← ↑ → ↓',
+              'info',
+              3000);
+            this.drawCanvas();
+            let testIndex = Math.round(Math.random() * testPosition.length);
+            if (testIndex === testPosition.length && testPosition.length !== 0) {
+              testIndex = testPosition.length - 1;
+            }
+            this.heroLeft = testPosition[testIndex].x * this.cellSize;
+            this.heroTop = testPosition[testIndex].y * this.cellSize;
+            this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
           }
-          this.heroLeft = testPosition[testIndex].x * this.cellSize;
-          this.heroTop = testPosition[testIndex].y * this.cellSize;
-          this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
         } else {
           this.showMessage('ошибка смены режима',
             'для тестирования на карте должна быть хотя бы одна комната',
             'error',
-            3000);
+            5000);
         }
       } else if (this.isTesting) {
         this.isTesting = data['isTesting'];
@@ -462,6 +492,7 @@ export default {
           'режим редактирования',
           'info',
           3000);
+        this.clearTasks();
         this.drawCanvas();
       }
     },
@@ -493,6 +524,7 @@ export default {
           if (newHeroDocumentTop < 0) {
             return;
           }
+          this.heroDirection = 'top';
           break;
         case 'ArrowDown':
           newHeroDocumentTop += this.cellSize;
@@ -500,6 +532,7 @@ export default {
           if (newHeroDocumentTop > (this.mapSizeY - 1) * this.cellSize) {
             return;
           }
+          this.heroDirection = 'bottom';
           break;
         case 'ArrowLeft':
           newHeroDocumentLeft -= this.cellSize;
@@ -507,6 +540,7 @@ export default {
           if (newHeroDocumentLeft < 0) {
             return;
           }
+          this.heroDirection = 'left';
           break;
         case 'ArrowRight':
           newHeroDocumentLeft += this.cellSize;
@@ -514,11 +548,13 @@ export default {
           if (newHeroDocumentLeft > (this.mapSizeX - 1) * this.cellSize) {
             return;
           }
+          this.heroDirection = 'right';
           break;
         default:
           break;
       }
-      if (this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type)) {
+      if (this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type) ||
+        this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) {
         this.heroTop = newHeroDocumentTop;
         this.heroLeft = newHeroDocumentLeft;
         if (newHeroWindowTop < this.cellSize || newHeroWindowTop > window.innerHeight - this.cellSize ||
@@ -544,6 +580,44 @@ export default {
           'info',
           3000);
       }
+    },
+    clearTasks() {
+      for (let y = 0; y < this.mapSizeY; y++) {
+        for (let x = 0; x < this.mapSizeX; x++) {
+          this.map[y][x].task = false;
+        }
+      }
+    },
+    resetTasks() {
+      let testTasks = [];
+      for (let y = 0; y < this.mapSizeY; y++) {
+        for (let x = 0; x < this.mapSizeX; x++) {
+          this.map[y][x].task = false;
+          if (this.map[y][x].type === this.borderType &&
+            ((y !== 0 && this.map[y - 1][x].type === this.roomType && !this.map[y - 1][x].task) ||
+            (y !== this.mapSizeY - 1 && this.map[y + 1][x].type === this.roomType && !this.map[y + 1][x].task) ||
+            (x !== 0 && this.map[y][x - 1].type === this.roomType && !this.map[y][x - 1].task) ||
+            (x !== this.mapSizeX - 1 && this.map[y][x + 1].type === this.roomType && !this.map[y][x + 1].task))) {
+            testTasks.push({ x, y });
+          }
+        }
+      }
+      if (testTasks.length < this.taskCount) {
+        console.log(testTasks);
+        this.showMessage('ошибка смены режима',
+          'для тестирования на карте должно быть ' + this.taskCount + ' ячеек-стен, граничащих с комнатами. имеется ' + testTasks.length + '.',
+          'error',
+          5000);
+        return false;
+      }
+      while (testTasks.length > this.taskCount) {
+        let testIndex = Math.floor(Math.random() * testTasks.length);
+        testTasks.splice(testIndex, 1);
+      }
+      for (let task of testTasks) {
+        this.map[task.y][task.x].task = true;
+      }
+      return true;
     },
   },
   computed: {
@@ -627,7 +701,19 @@ export default {
 .hero {
   height: 31px;
   width: 31px;
-  background: red;
+  /*background: red;*/
+  position: absolute;
+}
+.hero:before {
+  content: '';
+  background: var(--hero-url);
+  top: -27px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 54px;
+  width: 21px;
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
 }
 .background {
