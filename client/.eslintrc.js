@@ -59,6 +59,7 @@ module.exports = {
     'dot-notation': 'off',
     'prefer-const': 'off',
     'no-continue': 'off',
+    'no-unused-vars': 'off',
     'no-nested-ternary': 'off',
     'import/no-dynamic-require': 'off',
   }

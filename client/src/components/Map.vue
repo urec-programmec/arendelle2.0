@@ -64,17 +64,21 @@
 
 <script>
 import 'vue-slider-component/theme/antd.css';
+import Vue from 'vue';
 import VueSlider from 'vue-slider-component';
+import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
 import TestMap from './TestMap';
 import Message from './Message';
+import modal from './Task';
 import InstrumentPanel from './InstrumentPanel';
-
 import '../assets/css/custom-dot.css';
+
+Vue.use(ModalWizard);
 
 export default {
   name: 'Map',
-  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message },
+  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message, ModalWizard },
   data() {
     return {
       mapSizeX: 50,
@@ -145,6 +149,7 @@ export default {
       colorBlindnessBorder: 'rgba(204,0,0,1)',
       isColorBlindness: false,
       isTesting: false,
+      isTaskOpened: false,
       isResizing: false,
       isDrawing: false,
       cellSize: 32,
@@ -553,13 +558,17 @@ export default {
         default:
           break;
       }
-      if (this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type) ||
-        this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) {
+      if ((this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type) ||
+        this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) && !this.isTaskOpened) {
         this.heroTop = newHeroDocumentTop;
         this.heroLeft = newHeroDocumentLeft;
         if (newHeroWindowTop < this.cellSize || newHeroWindowTop > window.innerHeight - this.cellSize ||
           newHeroWindowLeft < this.cellSize || newHeroWindowLeft > window.innerWidth - this.cellSize) {
           this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
+        }
+        if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) {
+          this.isTaskOpened = true;
+          ModalWizard.open(modal, { onClose: () => { this.isTaskOpened = false; } });
         }
       }
     },
@@ -603,7 +612,6 @@ export default {
         }
       }
       if (testTasks.length < this.taskCount) {
-        console.log(testTasks);
         this.showMessage('ошибка смены режима',
           'для тестирования на карте должно быть ' + this.taskCount + ' ячеек-стен, граничащих с комнатами. имеется ' + testTasks.length + '.',
           'error',

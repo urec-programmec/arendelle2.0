@@ -8,3 +8,4 @@ npm install bootstrap-vue@2.0.0-rc.11 --save
 npm install vue-slider-component --save
 npm install --save vue-draggable-resizable
 npm install boxicons --save
+npm i vue-modal-wizard
