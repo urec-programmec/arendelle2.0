@@ -22,9 +22,10 @@
       </div>
     </div>
     <test-map @testMap="testMap"/>
+    <message/>
     <span class="footer" :style="footerStyle">
       <div :class="['color-blindness', {'color-blindness-selected' : isColorBlindness}]"
-            @click="() => {isColorBlindness = !isColorBlindness; drawCanvas();}">
+            @click="changeColorBlindness">
         <div id="color-blindness-1"/>
         <div id="color-blindness-2"/>
       </div>
@@ -45,6 +46,11 @@
       <i class="bx bx-plus"/>
       <div :style="{ display: 'flex',
                      flexDirection: 'column'}">
+        <p>w: {{ mapSizeX }}</p>
+        <p>h: {{ mapSizeY }}</p>
+      </div>
+      <div :style="{ display: 'flex',
+                     flexDirection: 'column'}">
         <p>x: {{ cursorPositionX + 1 }}</p>
         <p>y: {{ cursorPositionY + 1 }}</p>
       </div>
@@ -60,13 +66,14 @@ import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 import Menu from './Menu';
 import TestMap from './TestMap';
+import Message from './Message';
 import InstrumentPanel from './InstrumentPanel';
 
 import '../assets/css/custom-dot.css';
 
 export default {
   name: 'Map',
-  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap },
+  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message },
   data() {
     return {
       mapSizeX: 50,
@@ -76,7 +83,6 @@ export default {
       oldSelectedItems: [],
       selectedItems: [],
       cursorSizeDelta: 1.5,
-      savedCursorSize: 1,
       cursorSize: 1,
       cursorSolid: false,
       cursorForm: 'circle',
@@ -98,6 +104,7 @@ export default {
       drawValue: '',
       drawType: '',
       drawLocation: '',
+      taskCount: 0,
 
       images: [],
       imagesSrc: ['border/air_air/1.png',
@@ -164,9 +171,16 @@ export default {
       }
       this.images.at(-1).onload = () => {
         this.drawCanvas();
+        this.showMessage('создание карты',
+          'правила: перемещение возможно по комнатам и переходам. фон и стены - непроходимы.',
+          'special',
+          15000);
       };
     },
     move(e) {
+      if (this.isTesting) {
+        return;
+      }
       let params = this.getItemPosition(e);
       let rowIndex = Math.floor(params.y / this.mapZoom);
       let itemIndex = Math.floor(params.x / this.mapZoom);
@@ -236,7 +250,20 @@ export default {
     changeColorParameters(data) {
       this.drawValue = data['drawValue'];
       this.drawType = data['drawType'];
+      if (this.drawLocation !== data['location']) {
+        this.showMessage('смена локации',
+          'новая локация: ' + data['locationText'],
+          'info',
+          1500);
+      }
       this.drawLocation = data['location'];
+      if (this.taskCount !== data['taskCount']) {
+        this.showMessage('смена параметров',
+          'ячеек для задач на карте: ' + data['taskCount'],
+          'info',
+          1500);
+      }
+      this.taskCount = data['taskCount'];
       let newMapSizeX = data['mapSizeX'];
       let newMapSizeY = data['mapSizeY'];
       if (this.mapSizeX !== newMapSizeX || this.mapSizeY !== newMapSizeY) {
@@ -266,6 +293,12 @@ export default {
             this.map[y] = this.map[y].slice(cut, newMapSizeX + cut);
           }
         }
+        if (this.mapSizeX !== newMapSizeX) {
+          this.showMessage('смена параметров',
+            'новая ширина: ' + newMapSizeX + ' блоков',
+            'info',
+            1500);
+        }
         this.mapSizeX = newMapSizeX;
         if (newMapSizeY > this.mapSizeY) {
           for (let y = this.mapSizeY; y < newMapSizeY; y++) {
@@ -287,6 +320,12 @@ export default {
         } else if (newMapSizeY < this.mapSizeY) {
           let cut = Math.floor((this.mapSizeY - newMapSizeY) / 2);
           this.map = this.map.slice(cut, newMapSizeY + cut);
+        }
+        if (this.mapSizeY !== newMapSizeY) {
+          this.showMessage('смена параметров',
+            'новая высота: ' + newMapSizeY + ' блоков',
+            'info',
+            1500);
         }
         this.mapSizeY = newMapSizeY;
         this.drawCanvas();
@@ -349,11 +388,6 @@ export default {
           this.mapZoom - this.spaceSize);
         let image = this.images.at(this.imagesSrc.indexOf(this.map[i.y][i.x].src === '' ? this.foneSrc : this.map[i.y][i.x].src));
         this.drawImage(image, i.x, i.y, this.map[i.y][i.x].type);
-        // this.context.drawImage(image,
-        //   i.x * this.mapZoom,
-        //   i.y * this.mapZoom,
-        //   this.mapZoom - this.spaceSize,
-        //   this.mapZoom - this.spaceSize);
       }
       for (let i of this.selectedItems) {
         this.context.clearRect(i.x * this.mapZoom,
@@ -362,11 +396,6 @@ export default {
           this.mapZoom - this.spaceSize);
         let image = this.images.at(this.imagesSrc.indexOf(this.drawValue === '' ? this.selectionSrc : this.drawSrc()));
         this.drawImage(image, i.x, i.y, this.drawType);
-        // this.context.drawImage(image,
-        //   i.x * this.mapZoom,
-        //   i.y * this.mapZoom,
-        //   this.mapZoom - this.spaceSize,
-        //   this.mapZoom - this.spaceSize);
       }
     },
     drawSrc() {
@@ -392,21 +421,8 @@ export default {
       }
     },
     testMap(data) {
-      this.isTesting = data['isTesting'];
-      if (this.isTesting) {
-        this.savedMapZoom = this.mapZoom;
-        this.mapZoom = this.maxMapZoom;
-        this.savedCursorSize = this.cursorSize;
-        this.cursorSize = 0;
-        this.$emit('closeMenu');
-      } else {
-        this.mapZoom = this.savedMapZoom;
-        this.cursorSize = this.savedCursorSize;
-      }
-      this.drawCanvas();
-
-      let testPosition = [];
-      if (this.isTesting) {
+      if (data['isTesting']) {
+        let testPosition = [];
         for (let y = 0; y < this.mapSizeY; y++) {
           for (let x = 0; x < this.mapSizeX; x++) {
             if (this.map[y][x].type === this.roomType) {
@@ -415,6 +431,16 @@ export default {
           }
         }
         if (testPosition.length !== 0) {
+          this.isTesting = data['isTesting'];
+          this.savedMapZoom = this.mapZoom;
+          this.mapZoom = this.maxMapZoom;
+          this.$emit('closeMenu');
+          this.$emit('setTesting', { isTesting: this.isTesting });
+          this.showMessage('тестирование карты',
+            'режим тестирования: перемещайтесь при помощи стрелок ← ↑ → ↓',
+            'info',
+            3000);
+          this.drawCanvas();
           let testIndex = Math.round(Math.random() * testPosition.length);
           if (testIndex === testPosition.length && testPosition.length !== 0) {
             testIndex = testPosition.length - 1;
@@ -422,7 +448,21 @@ export default {
           this.heroLeft = testPosition[testIndex].x * this.cellSize;
           this.heroTop = testPosition[testIndex].y * this.cellSize;
           this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
+        } else {
+          this.showMessage('ошибка смены режима',
+            'для тестирования на карте должна быть хотя бы одна комната',
+            'error',
+            3000);
         }
+      } else if (this.isTesting) {
+        this.isTesting = data['isTesting'];
+        this.mapZoom = this.savedMapZoom;
+        this.$emit('setTesting', { isTesting: this.isTesting });
+        this.showMessage('редактирование карты',
+          'режим редактирования',
+          'info',
+          3000);
+        this.drawCanvas();
       }
     },
     onScroll(e) {
@@ -485,6 +525,24 @@ export default {
           newHeroWindowLeft < this.cellSize || newHeroWindowLeft > window.innerWidth - this.cellSize) {
           this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
         }
+      }
+    },
+    showMessage(title, message, messageType, delay) {
+      this.$emit('showMessage', { title, message, messageType, delay });
+    },
+    changeColorBlindness() {
+      this.isColorBlindness = !this.isColorBlindness;
+      this.drawCanvas();
+      if (this.isColorBlindness) {
+        this.showMessage('цветовая слепота',
+          'специальный режим: комнаты и переходы выделены зеленым. стены и фон - красным.',
+          'info',
+          5000);
+      } else {
+        this.showMessage('обычное отображение',
+          'комнаты, переходы и стены отображаются как есть',
+          'info',
+          3000);
       }
     },
   },
@@ -560,7 +618,7 @@ export default {
   margin: 0 10px;
 }
 .footer p {
-  width: 30px;
+  width: 36px;
   margin: 0 0 0 5px;
   font-size: 0.7em;
   text-align: center;

@@ -58,10 +58,13 @@
                       </template>
                     </vue-slider>
                     <p>количество ячеек для задач</p>
-                    <vue-slider v-model="mapTaskCountValue"
+                    <vue-slider v-model="taskCount"
                                 :tooltip-formatter="val => val + ''"
                                 :min="10"
-                                :max="100">
+                                :max="100"
+                                @drag-start="() => isResizing = true"
+                                @drag-end="() => {isResizing = false; sendChangeParameters();}"
+                                @change="() => {if(!isResizing) sendChangeParameters()}">
                       <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
                         <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
                       </template>
@@ -189,7 +192,7 @@ export default {
       mapSizeY: 50,
       isResizing: false,
 
-      mapTaskCountValue: 10,
+      taskCount: 10,
       isLocationIconHover: false,
       isLocationMenuOpened: false,
       isLocationMenuOpenedAsync: false,
@@ -398,8 +401,10 @@ export default {
         drawValue: this.colorValue,
         drawType: this.colorType,
         location: this.locationType,
+        locationText: this.locationValue,
         mapSizeX: this.mapSizeX,
         mapSizeY: this.mapSizeY,
+        taskCount: this.taskCount,
       });
     },
     onSelectLocation(location, type, icon) {

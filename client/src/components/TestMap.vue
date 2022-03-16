@@ -1,10 +1,14 @@
 <template>
-  <div class="save-map"
+  <div class="test-map"
        :style="{width: '48px'}"
        @click.stop="test"
-       @mouseenter="onHover"
-       @mouseleave="onHoverEnd">
-    <i :class="['bx', computedClasses]"/>
+       @mouseenter="isHover = true"
+       @mouseleave="isHover = false">
+    <i :class="['bx',
+    { 'hovered-exit-test' : isHover && isTesting },
+    { 'hovered-to-test' : isHover && !isTesting },
+    { 'bx-exit-fullscreen' : isTesting },
+    { 'bx-fullscreen' : !isTesting }]"/>
   </div>
 </template>
 
@@ -15,57 +19,45 @@ export default {
     return {
       isTesting: false,
       isHover: false,
-      computedClasses: ['bx-fullscreen'],
     };
   },
   methods: {
     test() {
-      this.isTesting = !this.isTesting;
       this.$emit('testMap', {
-        isTesting: this.isTesting,
+        isTesting: !this.isTesting,
       });
-      setTimeout(this.recalculateComputedClasses, 0);
     },
-    onHover() {
-      this.isHover = true;
-      this.recalculateComputedClasses();
+    setTesting(data) {
+      this.isTesting = data['isTesting'];
     },
-    onHoverEnd() {
-      this.isHover = false;
-      this.recalculateComputedClasses();
-    },
-    recalculateComputedClasses() {
-      this.computedClasses = [
-        this.isHover ? (this.isTesting ? 'hovered-exit-test' : 'hovered-to-test') : '',
-        this.isHover ? 'hovered' : '',
-        this.isTesting ? 'bx-exit-fullscreen' : 'bx-fullscreen',
-      ];
-    },
+  },
+  created() {
+    this.$parent.$on('setTesting', this.setTesting);
   },
 };
 </script>
 
 <style scoped>
-.save-map {
+.test-map {
   position: fixed;
   height: 40px;
   right: 0;
   top: 0;
   background: rgba(17, 16, 29, 0.85);
   border-bottom-left-radius: 10px;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.save-map i {
+.test-map i {
   font-size: 28px;
   text-align: center;
   margin: 0 12px;
   color: rgba(255,255,255,1);
   transition: all .2s ease;
 }
-.hovered {
+.test-map:hover i {
   cursor: pointer;
 }
 .hovered-exit-test {

@@ -1,12 +1,15 @@
 <template>
-  <div class="save-map"
-       :style="{width: getComputedWidth + 'px'}"
-       @click.stop="test"
-       @mouseenter="onHover"
-       @mouseleave="onHoverEnd">
-    <i :class="['bx', getComputedClasses]"/>
-    <p ref="content" :style="{ color: isHover ? '#F5F5F5' : 'rgba(0, 0, 0, 0)',
-                              transition: isHover ? 'color 0.2s cubic-bezier(1, 0, 1, 0)' : 'color 0.2s cubic-bezier(0, 1, 0, 1)'}">{{ content }}</p>
+  <div class="message"
+       :style="{right: rightPosition + 'px'}">
+    <i class="bx bx-x close-x"
+        @click="closeMessage"/>
+    <div>
+      <i :class="['bx', 'bx-flip-horizontal ', messageType]"/>
+      <div style="display: flex; flex-direction: column">
+        <p style="font-size: 0.9em">{{ title }}</p>
+        <p>{{ message }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,110 +18,89 @@ export default {
   name: 'Message',
   data() {
     return {
-      isTesting: false,
-      isHover: false,
-      defaultComputedWidth: 48,
-      computedWidth: 48,
-      content: 'протестировать',
-      contentMain: 'протестировать',
-      contentTest: 'вернуться в режим редактирования',
+      rightPosition: -280,
+      defaultRight: -280,
+      title: '',
+      message: '',
+      messageType: '',
+      messageTypes: {
+        'error': 'bx-message-error error',
+        'info': 'bx-message-detail info',
+        'special': 'bx-message-error special',
+      },
+      closeTimeout: null,
     };
   },
   methods: {
-    test() {
-      this.isTesting = !this.isTesting;
-      this.content = this.isTesting ? this.contentTest : this.contentMain;
-      this.$emit('testMap', {
-        isTesting: this.isTesting,
-      });
-      setTimeout(this.recalculateComputedWidth, 0);
+    show(data) {
+      this.closeMessage();
+      this.title = data['title'];
+      this.message = data['message'];
+      this.messageType = this.messageTypes[data['messageType']];
+      this.rightPosition = 0;
+      this.closeTimeout = setTimeout(() => { this.closeMessage(); }, data['delay']);
     },
-    onHover() {
-      this.isHover = true;
-      this.recalculateComputedWidth();
-    },
-    onHoverEnd() {
-      this.isHover = false;
-      this.recalculateComputedWidth();
-    },
-    recalculateComputedWidth() {
-      this.computedWidth = this.isHover ? this.defaultComputedWidth + 5 + this.$refs.content.clientWidth : this.defaultComputedWidth;
+    closeMessage() {
+      if (this.closeTimeout) {
+        clearTimeout(this.closeTimeout);
+        this.closeTimeout = null;
+      }
+      this.rightPosition = this.defaultRight;
     },
   },
-  computed: {
-    getComputedClasses() {
-      return this.isTesting ? [
-        'bx-exit-fullscreen',
-        'out',
-      ] : [
-        'bx-fullscreen',
-        'in',
-      ];
-    },
-    getComputedWidth() {
-      return this.computedWidth;
-    },
+  created() {
+    this.$parent.$on('showMessage', this.show);
   },
 };
 </script>
 
 <style scoped>
-.save-map {
+.message {
   position: fixed;
-  height: 40px;
-  right: 0;
-  top: 0;
-  /*padding: 14px 23px;*/
+  min-height: 20px;
+  width: 270px;
+  height: max-content;
+  top: 50px;
   transition: all 0.2s ease;
   overflow: hidden;
   background: rgba(17, 16, 29, 0.85);
   border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   z-index: 10;
+  color: #F5F5F5;
+  box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
+  padding: 10px;
 }
-.save-map:hover i {
-  color:rgba(255,255,255,0);
-}
-@keyframes color-change {
-  0%{background-position:left}
-  100%{background-position:right}
-}
-.save-map i {
-  position: absolute;
-  display:block;
-  /*top: 50%;*/
-  /*left: 0;*/
-  right: 0;
-  top: 20px;
-  transform: translateY(-50%);
-  width: 26px;
-  font-size: 28px;
-  text-align: center;
-  margin: 0 12px;
-  color: rgba(255,255,255,1);
-  transition: color .3s ease-in-out;
-  background-size: 100%;
-  animation: color-change 0.3s;
-  animation-fill-mode: forwards;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-.save-map p {
+.message p {
   position: relative;
   display: block;
-  line-height: 0;
-  top: 50%;
-  left: 10px;
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-  pointer-events: none;
   margin: 0;
-  width: fit-content;
+  font-size: 0.7em;
+  width: max-content;
+  max-width: 230px;
 }
-.in {
-  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+.message div {
+  display: flex;
 }
-.out {
-  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
+.message i {
+  margin: 2px 6px 0 0;
+  font-size: 1.2em;
+}
+.close-x {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.close-x:hover {
+  cursor: pointer;
+}
+.error {
+  color: rgba(204,0,0,1);
+}
+.info {
+  color: goldenrod;
+}
+.special {
+  color: rgba(54, 171, 255, 0.8);
 }
 </style>

@@ -131,7 +131,9 @@ export default {
 .instrument-panel {
   border-radius: 10px;
   background: rgba(17, 16, 29, 0.85);
-  color: azure;
+  color: #F5F5F5;
+  border: 1px solid;
+  border-color: rgb(33, 37, 41);
   position: absolute;
 }
 .instrument-panel-header {
