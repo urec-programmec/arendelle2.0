@@ -5,6 +5,7 @@
                       :style="hideIfTesting"/>
     <left-menu @changeParameters="changeColorParameters"
                @openCloseMenu="openCloseMenu"
+               @exitMap="exitMap"
                :style="hideIfTesting"
                :imagesSrc="imagesSrc"/>
     <div class="map-container" :style="mapStyle">
@@ -54,6 +55,8 @@
         <p>x: {{ cursorPositionX + 1 }}</p>
         <p>y: {{ cursorPositionY + 1 }}</p>
       </div>
+      <i class="bx bx-log-in save-map"
+        @click="saveMap"/>
     </span>
     <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
                                           top: heroTop + 'px',
@@ -627,6 +630,18 @@ export default {
       }
       return true;
     },
+    saveMap() {
+      this.showMessage('сохранить карту',
+        'закончить редактирование и сохранить карту?',
+        'confirm',
+        15000);
+    },
+    exitMap() {
+      this.showMessage('выйти',
+        'прервать редактирование и выйти?',
+        'confirm-error',
+        15000);
+    },
   },
   computed: {
     hideIfTesting() {
@@ -712,7 +727,7 @@ export default {
   /*background: red;*/
   position: absolute;
 }
-.hero:before {
+.hero:after {
   content: '';
   background: var(--hero-url);
   top: -27px;
@@ -722,6 +737,20 @@ export default {
   width: 21px;
   background-size: contain;
   background-repeat: no-repeat;
+  position: absolute;
+}
+.hero:before {
+  content: '';
+  background: rgba(17, 16, 29, 0.85);
+  -webkit-box-shadow: 0 0 12px 12px rgb(17 16 29 / 85%);
+  box-shadow: 0 0 20px 20px rgb(17 16 29 / 85%);
+  top: -27px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 52px;
+  width: 22px;
+  border: none;
+  border-radius: 5px;
   position: absolute;
 }
 .background {
@@ -786,5 +815,16 @@ export default {
 .color-blindness-selected #color-blindness-2:before,
 .color-blindness:hover #color-blindness-2:before {
   opacity: 0;
+}
+.save-map {
+  font-size: 24px;
+  transition: all 0.2s ease;
+  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.save-map:hover {
+  color:rgba(1,1,1,0);
+  cursor: pointer;
 }
 </style>

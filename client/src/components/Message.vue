@@ -4,10 +4,15 @@
     <i class="bx bx-x close-x"
         @click="closeMessage"/>
     <div>
-      <i :class="['bx', 'bx-flip-horizontal ', messageType]"/>
+      <i :class="['bx', 'bx-flip-horizontal ', messageTypeClass]"/>
       <div style="display: flex; flex-direction: column">
         <p style="font-size: 0.9em">{{ title }}</p>
         <p>{{ message }}</p>
+        <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">
+          <p class="button button-error"
+             @click="closeMessage">отмена</p>
+          <p class="button button-success">ок</p>
+        </div>
       </div>
     </div>
   </div>
@@ -23,10 +28,14 @@ export default {
       title: '',
       message: '',
       messageType: '',
-      messageTypes: {
+      messageTypeClass: '',
+      messageTypesConfirm: ['confirm', 'confirm-error'],
+      messageTypeClasses: {
         'error': 'bx-message-error error',
         'info': 'bx-message-detail info',
         'special': 'bx-message-error special',
+        'confirm': 'bx-message-check confirm',
+        'confirm-error': 'bx-message-error error',
       },
       closeTimeout: null,
     };
@@ -36,7 +45,8 @@ export default {
       this.closeMessage();
       this.title = data['title'];
       this.message = data['message'];
-      this.messageType = this.messageTypes[data['messageType']];
+      this.messageType = data['messageType'];
+      this.messageTypeClass = this.messageTypeClasses[this.messageType];
       this.rightPosition = 0;
       this.closeTimeout = setTimeout(() => { this.closeMessage(); }, data['delay']);
     },
@@ -77,13 +87,13 @@ export default {
   margin: 0;
   font-size: 0.7em;
   width: max-content;
-  max-width: 230px;
+  max-width: 225px;
 }
 .message div {
   display: flex;
 }
 .message i {
-  margin: 2px 6px 0 0;
+  margin: 3px 6px 0 0;
   font-size: 1.2em;
 }
 .close-x {
@@ -102,5 +112,30 @@ export default {
 }
 .special {
   color: rgba(54, 171, 255, 0.8);
+}
+.confirm {
+  color: rgba(53, 210, 25, 0.8);
+}
+.button {
+  width: 35% !important;
+  height: 15px;
+  border-radius: 5px;
+  opacity: 0.6;
+  margin-top: 10px !important;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  color: inherit;
+  line-height: 15px;
+  text-align: center;
+}
+.button-success {
+  background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+}
+.button-error {
+  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
+  margin-right: 10px !important;
+}
+.button:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 </style>

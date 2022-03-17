@@ -165,7 +165,7 @@
           style="min-height: 40px; position: absolute; bottom: 0;">
         <i class="bx bx-log-out secondaryColor"
           id="log_out"
-          @click.stop="$emit('button-exit-clicked')"/>
+          @click.stop="$emit('exitMap')"/>
       </div>
     </div>
   </div>
@@ -636,7 +636,7 @@ body {
   width: 28px;
   margin: 0 25px 0 20px;
   color: rgba(255,255,255,1);
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 
   background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
   background-size: 100%;
@@ -657,6 +657,7 @@ body {
 .sidebar.open .exit:hover #log_out,
 .sidebar .exit:hover #log_out {
   color:rgba(255,255,255,0);
+  cursor: pointer;
 }
 @keyframes color-change {
   0%{background-position:left}
