@@ -5,7 +5,7 @@
     </div>
     <h5 class="hint">пример задачи</h5>
     <div class="header">
-      <img src="../assets/images/tasks/task1.jpg">
+      <img src="../../assets/images/tasks/task1.jpg">
     </div>
     <input v-model="answer" placeholder="ответ (1)">
     <div class="footer">

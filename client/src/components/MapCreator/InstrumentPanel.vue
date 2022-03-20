@@ -49,7 +49,7 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 import VueSlider from 'vue-slider-component';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
-import '../assets/css/custom-dot.css';
+import '../../assets/css/custom-dot.css';
 
 export default {
   name: 'InstrumentPanel',
@@ -209,7 +209,7 @@ export default {
   font-weight: bold;
 }
 .instrument-panel-solid {
-  background-image: url('../assets/images/special/waves.png');
+  background-image: url('../../assets/images/special/waves.png');
   /*background: wheat;*/
   background-size: auto 100%;
   background-position: top right;

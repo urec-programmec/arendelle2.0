@@ -14,18 +14,7 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  /*position: relative;*/
-  /*overflow: hidden;*/
-  /*background-color: hsla(222, 25%, 20%, 0.3);*/
 }
-
-#app:before{
-  /*content: '';*/
-
-  /*transform: scale(0.75);*/
-}
-
-
 @font-face {
   font-family: 'GothamPro';
   src: url('assets/webfonts/GothamPro.eot') format('eot'),

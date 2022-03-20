@@ -61,7 +61,7 @@
     <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
                                           top: heroTop + 'px',
                                           left: heroLeft + 'px',
-                                          '--hero-url': 'url(' + require(`../assets/images/${heroDirections[heroDirection]}`) + ')'}"/>
+                                          '--hero-url': 'url(' + require(`../../assets/images/${heroDirections[heroDirection]}`) + ')'}"/>
   </main>
 </template>
 
@@ -75,7 +75,7 @@ import TestMap from './TestMap';
 import Message from './Message';
 import modal from './Task';
 import InstrumentPanel from './InstrumentPanel';
-import '../assets/css/custom-dot.css';
+import '../../assets/css/custom-dot.css';
 
 Vue.use(ModalWizard);
 
@@ -84,6 +84,7 @@ export default {
   components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message, ModalWizard },
   data() {
     return {
+      documentTitle: 'создатель карт',
       mapSizeX: 50,
       mapSizeY: 50,
       map: [],
@@ -190,7 +191,7 @@ export default {
       this.context = this.canvas.getContext('2d');
       for (let i of this.imagesSrc) {
         let image = new Image(this.mapZoom - this.spaceSize, this.mapZoom - this.spaceSize);
-        image.src = require(`../assets/images/${i}`);
+        image.src = require(`../../assets/images/${i}`);
         this.images.push(image);
       }
       this.images.at(-1).onload = () => {
@@ -666,6 +667,7 @@ export default {
   created() {
     window.addEventListener('wheel', this.onScroll, { passive: false });
     window.addEventListener('keydown', this.onScrollKey);
+    document.title = this.documentTitle;
   },
   mounted() {
     this.getMap();
@@ -764,7 +766,7 @@ export default {
 }
 .background:before {
   content: '';
-  background-image: url('../assets/images/special/background.jpg');
+  background-image: url('../../assets/images/special/background.jpg');
   position: absolute;
   margin: 0;
   padding: 0;

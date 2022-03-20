@@ -1,4 +1,4 @@
-class Application {
+class Bounds {
     constructor(canvas, countPoints, minR, maxR, startVelocity, reflectionCoeff, mainVelocityCoeff, radiusCoeff, animationStep){
         this.canvas = canvas;
         this.canvas.width = window.innerWidth;
@@ -123,7 +123,7 @@ $( document ).ready(function() {
     let radiusCoeff = 0.2;
     let animationStep = 0.1;
 
-    var application = new Application(
+    var bounds = new Bounds(
         canvas, 
         countPoints, 
         minR, 
@@ -135,6 +135,6 @@ $( document ).ready(function() {
         animationStep,
     );
 
-    application.play();
+    bounds.play();
 });
 

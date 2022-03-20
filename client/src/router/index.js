@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Books from '@/components/Books';
-import Map from '@/components/Map';
+import Maps from '@/components/Maps';
+import Map from '@/components/MapCreator/Map';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/books',
-      name: 'Books',
-      component: Books,
+      path: '/maps',
+      name: 'Maps',
+      component: Maps,
     },
     {
-      path: '/',
+      path: '/map-creator',
       name: 'Map',
       component: Map,
     },

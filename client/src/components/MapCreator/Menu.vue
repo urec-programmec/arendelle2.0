@@ -140,7 +140,7 @@
                        :style="{ maxHeight: (37 * Math.ceil(menuItem.childs.filter(i => i.split('/')[1] === locationType).length / 5) + 32) + 'px' }">
                     <div v-for="(item, itemIndex) in menuItem.childs.filter(i => i.split('/')[1] === locationType)"
                          :key="itemIndex"
-                         :style="{'background-image': `url(${require(`../assets/images/${item}`)})`,
+                         :style="{'background-image': `url(${require(`../../assets/images/${item}`)})`,
                                   'background-repeat': 'no-repeat',
                                   'background-size': 'cover'}"
                          :class="['ceil_item', 'bx', { 'ceil_item_selected': colorType === menuItem.type && colorValue === item.split('/')[2] && colorIndex === itemIndex }]"
@@ -156,7 +156,7 @@
            v-if="colorValue !== '' && colorType !== ''">
         <li style="height: 32px; width: 100%; margin: 0;">
           <i class="bx" :class="[colorIcon, 'exit_menu_item']"/>
-          <i class="bx" :style="{'background-image': `url(${require('../assets/images/' + colorType + '/' + locationType + '/' + colorValue)})`,
+          <i class="bx" :style="{'background-image': `url(${require('../../assets/images/' + colorType + '/' + locationType + '/' + colorValue)})`,
                                  borderRadius: '6px',
                                  boxShadow: '0 0 6px 6px rgba(54, 171, 255, 0.2)'}"/>
         </li>
@@ -175,7 +175,7 @@
 import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 
-import '../assets/css/custom-dot.css';
+import '../../assets/css/custom-dot.css';
 
 export default {
   name: 'Menu',
