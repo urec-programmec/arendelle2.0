@@ -576,8 +576,8 @@ export default {
         }
       }
     },
-    showMessage(title, message, messageType, delay) {
-      this.$emit('showMessage', { title, message, messageType, delay });
+    showMessage(title, message, messageType, delay, functionConfirm) {
+      this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
     },
     changeColorBlindness() {
       this.isColorBlindness = !this.isColorBlindness;
@@ -635,7 +635,8 @@ export default {
       this.showMessage('сохранить карту',
         'закончить редактирование и сохранить карту?',
         'confirm',
-        15000);
+        15000,
+        () => {console.log(this.map)});
     },
     exitMap() {
       this.showMessage('выйти',

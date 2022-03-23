@@ -29,7 +29,8 @@
                     <span class="links_name">{{ menuItem.name }}</span>
                     <span :class="['bx', 'links_name', 'settings-item',
                     openedItem === menuItem.id ? 'bxs-right-arrow-alt' : 'bx-chevron-right',
-                    { 'settings-item-open': isOpen && openedItem === menuItem.id } ]"/>
+                    { 'settings-item-open': isOpen && openedItem === menuItem.id },
+                    { 'settings-item-hover': isOpen }]"/>
                   </div>
                 </div>
               </li>
@@ -52,7 +53,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      openedItem: 'room',
+      openedItem: 'maps',
     };
   },
   methods: {
@@ -77,9 +78,10 @@ export default {
         i['isOpen'] = false;
       }
       this.openedItem = id;
+      this.sendChangeTab();
     },
-    sendChangeParameters() {
-      this.$emit('changeParameters', {});
+    sendChangeTab() {
+      this.$emit('changeTab', { 'openedTab': this.openedItem });
     },
   },
   props: {
@@ -98,22 +100,22 @@ export default {
         {
           name: 'чемпионаты',
           icon: 'bxs-bar-chart-alt-2',
-          id: 'room',
+          id: 'championships',
         },
         {
           name: 'карты',
           icon: 'bxs-image',
-          id: 'border',
+          id: 'maps',
         },
         {
           name: 'задачи',
           icon: 'bx-task',
-          id: 'trip',
+          id: 'tasks',
         },
         {
           name: 'пользователи',
           icon: 'bxs-user',
-          id: 'teach',
+          id: 'users',
         },
       ],
     },
@@ -298,8 +300,8 @@ body {
 }
 .menu_item:hover .settings-item {
   animation: scaling 0.8s cubic-bezier(0.4, 0, 1, 1) infinite alternate;
-  opacity: 1 !important;
 }
+.menu_item:hover .settings-item-hover,
 .settings-item-open {
  opacity: 1 !important;
 }

@@ -60,6 +60,7 @@ module.exports = {
     'prefer-const': 'off',
     'no-continue': 'off',
     'no-unused-vars': 'off',
+    'indent': 'off',
     'no-nested-ternary': 'off',
     'import/no-dynamic-require': 'off',
   }

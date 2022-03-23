@@ -11,7 +11,8 @@
         <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">
           <p class="button button-error"
              @click="closeMessage">отмена</p>
-          <p class="button button-success">ок</p>
+          <p class="button button-success"
+              @click="onConfirm">ок</p>
         </div>
       </div>
     </div>
@@ -28,6 +29,7 @@ export default {
       title: '',
       message: '',
       messageType: '',
+      functionConfirm: '',
       messageTypeClass: '',
       messageTypesConfirm: ['confirm', 'confirm-error'],
       messageTypeClasses: {
@@ -46,6 +48,7 @@ export default {
       this.title = data['title'];
       this.message = data['message'];
       this.messageType = data['messageType'];
+      this.functionConfirm = data['functionConfirm'];
       this.messageTypeClass = this.messageTypeClasses[this.messageType];
       this.rightPosition = 0;
       this.closeTimeout = setTimeout(() => { this.closeMessage(); }, data['delay']);
@@ -56,6 +59,10 @@ export default {
         this.closeTimeout = null;
       }
       this.rightPosition = this.defaultRight;
+    },
+    onConfirm() {
+      console.log('hello');
+      this.functionConfirm();
     },
   },
   created() {

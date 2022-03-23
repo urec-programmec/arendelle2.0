@@ -1,8 +1,8 @@
 <template>
-  <main>
+  <div class="main">
     <div class="background"/>
     <canvas id="canvas"></canvas>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -200,11 +200,14 @@ export default {
   -webkit-filter: blur(30px);
   filter: blur(10px) brightness(0.5);
 }
-main {
+.main {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
 }
-main canvas {
+.main canvas {
   filter: blur(60px);
 }
 </style>
