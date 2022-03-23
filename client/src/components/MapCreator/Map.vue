@@ -174,18 +174,35 @@ export default {
   methods: {
     getMap() {
       // const path = 'http://localhost:5000/mapSettings';
-      let row = [];
-      for (let y = 0; y < this.mapSizeY; y++) {
-        row = [];
-        for (let x = 0; x < this.mapSizeX; x++) {
-          row.push({
-            type: '',
-            location: '',
-            task: false,
-            src: '',
-          });
+      if (this.linkedMap !== {} && this.linkedMap !== undefined) {
+        this.mapSizeX = this.linkedMap.sizeX;
+        this.mapSizeY = this.linkedMap.sizeY;
+        for (let y = 0; y < this.mapSizeY; y++) {
+          let row = [];
+          for (let x = 0; x < this.mapSizeX; x++) {
+            row.push({
+              type: this.linkedMap.map[y][x].type,
+              location: this.linkedMap.map[y][x].location,
+              task: this.linkedMap.map[y][x].task,
+              src: this.linkedMap.map[y][x].src,
+            });
+          }
+          this.map.push(row);
         }
-        this.map.push(row);
+      } else {
+        let row = [];
+        for (let y = 0; y < this.mapSizeY; y++) {
+          row = [];
+          for (let x = 0; x < this.mapSizeX; x++) {
+            row.push({
+              type: '',
+              location: '',
+              task: false,
+              src: '',
+            });
+          }
+          this.map.push(row);
+        }
       }
       this.canvas = document.getElementById('mapCanvas');
       this.context = this.canvas.getContext('2d');
@@ -636,13 +653,14 @@ export default {
         'закончить редактирование и сохранить карту?',
         'confirm',
         15000,
-        () => {console.log(this.map)});
+        () => { this.$router.push('/maps'); });
     },
     exitMap() {
       this.showMessage('выйти',
         'прервать редактирование и выйти?',
         'confirm-error',
-        15000);
+        15000,
+        () => { this.$router.push('/maps'); });
     },
   },
   computed: {
@@ -676,6 +694,12 @@ export default {
   destroyed() {
     window.removeEventListener('wheel', this.onScroll);
     window.removeEventListener('keydown', this.onScrollKey);
+  },
+  props: {
+    linkedMap: {
+      type: Object,
+      default: () => {},
+    },
   },
 };
 </script>

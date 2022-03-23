@@ -13,7 +13,7 @@
       </div>
       <input v-model="searchValue" type="text"
              class="form-control"
-             placeholder="Поиск по шаблонам карт"
+             :placeholder="placeholder"
              :style="focus ? { '--background-color': backgroundSecondColor,
                                  '--text-color': textSecondColor,
                                  '--placeholder-color': placeholderSecondColor } : {}"
@@ -79,6 +79,11 @@ export default {
       type: String,
       default: 'rgba(0,0,0,0.6)',
     },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+
   },
   mounted() {
     this.$parent.$on('mainClick', this.mainClick);
@@ -123,13 +128,12 @@ export default {
 }
 .settings {
   position: absolute;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-radius: 0 0 0.25rem 0.25rem;
   top: 40px;
   width: 100%;
   height: 100px;
   background: #F5F5F5;
-  z-index: 200;
+  z-index: 1;
   box-shadow: inset 0 1px 0 rgb(0 0 0 / 12%);
 }
 </style>

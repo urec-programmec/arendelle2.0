@@ -3,14 +3,12 @@
     <div class="close" @click="$modal.close()">
       <i class="bx bx-x"/>
     </div>
-    <h5 class="hint">пример задачи</h5>
-    <div class="header">
-      <img src="../../assets/images/tasks/task1.jpg">
-    </div>
-    <input v-model="answer" placeholder="ответ (1)">
+    <h5 class="hint">{{ title }}</h5>
+    <input v-model="name" :autofocus="true" :placeholder="placeholder">
     <div class="footer">
-      <div class="send-answer">
-        <p>отправить</p>
+      <div class="send-answer"
+           @click="submit(name)">
+        <p>ок</p>
       </div>
     </div>
   </div>
@@ -18,25 +16,26 @@
 
 <script>
 export default {
-  name: 'Task',
+  name: 'Dialog',
   data() {
     return {
-      answer: '',
+      name: '',
     };
   },
   methods: {
     _modalFlexPosition(w, h) {
-      this.$el.style.width = window.innerWidth * 0.8 + 'px';
+      this.$el.style.width = '270px';
       this.$el.style.maxHeight = window.innerHeight * 0.8 + 'px';
       this.$el.style.borderRadius = '5px';
       this.$el.style.overflow = 'scroll';
       return {
         type: 'column',
-        top: '50px',
+        top: window.innerHeight * 0.4 + 'px',
         bottom: '50px',
       };
     },
   },
+  props: ['submit', 'title', 'placeholder'],
 };
 </script>
 
@@ -46,19 +45,16 @@ export default {
   background-color: #F5F5F5;
   color: rgba(17, 16, 29, 0.85);
   overflow: scroll;
-  box-shadow: 0 0 20px 20px rgba(54, 171, 255, 0.2);
   font-size: 1em;
 }
 .adaptive-modal input {
-  margin: 10px 30px;
-  width: calc(100% - 60px);
-  border-radius: 5px;
+  margin: 5px 20px 0 20px;
+  width: calc(100% - 40px);
   background-color: inherit;
   padding: 5px;
   color: inherit;
-}
-.adaptive-modal .header {
-  height: fit-content;
+  border: 0;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 12%);
 }
 .adaptive-modal .header img {
   width: 100%;
@@ -78,21 +74,26 @@ export default {
 }
 .adaptive-modal .hint {
   font-size: 1em;
-  padding: 10px 30px 0 30px;
+  padding: 15px 20px 5px;
+  color: black;
+  margin: 0;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 12%);
 }
 .adaptive-modal .footer {
   width: 100%;
   margin: 0;
-  height: 35px;
-  background: rgba(17, 16, 29, 0.42);
+  height: 40px;
+  position: relative;
   display: flex;
 }
 .adaptive-modal .footer .send-answer{
+  background: rgba(0,0,0,0.18);
+  width: 60px;
   position: absolute;
-  right: 0;
-  border-left: 1px solid rgba(17, 16, 29, 0.65);
-  width: 150px;
-  height: inherit;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +102,9 @@ export default {
   margin: 0;
 }
 .adaptive-modal .footer .send-answer:hover{
+  /*background: rgba(0,0,0,0.24);*/
   background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
   cursor: pointer;
+  color: #F5F5F5;
 }
 </style>

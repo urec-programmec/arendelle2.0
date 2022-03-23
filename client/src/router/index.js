@@ -10,18 +10,19 @@ export default new Router({
   routes: [
     {
       path: '/main',
-      name: 'Main',
+      name: 'main',
       component: Main,
       alias: ['/championships', '/maps', '/tasks', '/teams', '/users'],
     },
     {
       path: '/map-creator',
-      name: 'Map',
+      name: 'map-creator',
       component: Map,
+      props: true,
     },
     {
       path: '/maps',
-      name: 'Maps',
+      name: 'maps',
       component: Maps,
     },
   ],

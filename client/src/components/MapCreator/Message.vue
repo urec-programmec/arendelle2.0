@@ -61,7 +61,6 @@ export default {
       this.rightPosition = this.defaultRight;
     },
     onConfirm() {
-      console.log('hello');
       this.functionConfirm();
     },
   },

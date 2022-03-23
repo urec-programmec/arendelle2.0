@@ -61,6 +61,8 @@ module.exports = {
     'no-continue': 'off',
     'no-unused-vars': 'off',
     'indent': 'off',
+    'no-var': 'off',
+    'no-mutable-exports': 'off',
     'no-nested-ternary': 'off',
     'import/no-dynamic-require': 'off',
   }
