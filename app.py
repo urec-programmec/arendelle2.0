@@ -12,20 +12,36 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 CORS(app)
 
-# mapCount = 100
-# mapColors = {0:"red", 1:"wheat"}
 
-# @app.route('/mapSettings', methods=['GET'])
-# def mapSettings():
-#     response_object = {'status': 'success'}
-#     response_object['mapCount'] = mapCount
-#     response_object['mapColors'] = mapColors
-#     return jsonify(response_object)
+@app.route('/saveMap', methods=['POST'])
+def saveMap():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        newMap = Map(name=data['mapName'], map=data['map'], sizeX=data['sizeX'], sizeY=data['sizeY'], author=data['author'])
+        db.session.add(newMap)
+        db.session.commit()
+        return jsonify(response_object)
 
 
-
+@app.route('/allMaps', methods=['GET'])
+def allMaps():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['maps'] = []
+        for map in db.session.query(Map).all():
+            response_object['maps'].append({
+                'name': map.name,
+                'map': map.map,
+                'sizeX': map.sizeX,
+                'sizeY': map.sizeY,
+                'author': map.author,
+            })
+        # response_object['maps'] = maps
+        return jsonify(response_object)
 
 
 
@@ -104,30 +120,7 @@ def remove_book(book_id):
             return True
     return False
 
-
-
-
-# @app.route('/', methods=['GET', 'POST'])
-# def base():
-#     # print([str(i.id) + ' ' + i.name for i in db.query(UserRole).all()])
-#     # print([i.nickname for i in db.query(Users).all()])
-#     return render_template('base.html')
-#
-# @app.route('/bounds')
-# def bounds():
-#     return render_template('bounds.html')
-#
-#
-# @app.route('/oop')
-# def oop():
-#     return render_template('oop.html')
-#
-#
-# @app.route('/mapcreator')
-# def mapcreator():
-#     return render_template('mapcreator.html')
-
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5050)
 
 

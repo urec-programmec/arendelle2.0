@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey, LargeBinary, create_engine
+from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey, LargeBinary, create_engine, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -58,8 +58,11 @@ class InstitutionType(Base):
 class Map(Base):
     __tablename__ = 'map'
     id = Column(BigInteger, primary_key=True)
-    graph = Column(LargeBinary(length=(2**24)-1), nullable=False)
-    picture = Column(LargeBinary(length=(2**24)-1), nullable=False)
+    name = Column(String(256), nullable=False)
+    map = Column(JSON, nullable=False)
+    sizeX = Column(Integer, nullable=False)
+    sizeY = Column(Integer, nullable=False)
+    author = Column(BigInteger, nullable=False)
 
 
 class Notification(Base):

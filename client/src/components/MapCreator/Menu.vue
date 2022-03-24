@@ -7,9 +7,7 @@
       style="margin: 0 14px">
       <i class="bx icon"
         :class="menuIcon"/>
-      <div class="logo_name">
-        {{ menuTitle }}
-      </div>
+      <input v-model="name" :maxlength="40" class="logo_name" @change="changeName">
       <i class="bx"
         :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
         id="btn"
@@ -38,6 +36,7 @@
                                 :tooltip-formatter="val => val + ''"
                                 :min="50"
                                 :max="100"
+                                :style="{ 'height': '18px' }"
                                 @drag-start="() => isResizing = true"
                                 @drag-end="() => {isResizing = false; sendChangeParameters();}"
                                 @change="() => {if(!isResizing) sendChangeParameters()}">
@@ -50,6 +49,7 @@
                                 :tooltip-formatter="val => val + ''"
                                 :min="50"
                                 :max="100"
+                                :style="{ 'height': '18px' }"
                                 @drag-start="() => isResizing = true"
                                 @drag-end="() => {isResizing = false; sendChangeParameters();}"
                                 @change="() => {if(!isResizing) sendChangeParameters()}">
@@ -62,6 +62,7 @@
                                 :tooltip-formatter="val => val + ''"
                                 :min="10"
                                 :max="100"
+                                :style="{ 'height': '18px' }"
                                 @drag-start="() => isResizing = true"
                                 @drag-end="() => {isResizing = false; sendChangeParameters();}"
                                 @change="() => {if(!isResizing) sendChangeParameters()}">
@@ -75,7 +76,7 @@
             </li>
             </span>
           <span>
-              <li>
+              <li :style="{ overflowX: (this.isLocationMenuOpened ? 'visible' : 'hidden') }">
                 <div :class="['menu_item', 'menu_item_not_hover', {'selected-menu-item' : isLocationMenuOpenedAsync}]">
                   <div class="menu_item_row"
                        @click="openLocationMenu"
@@ -191,6 +192,8 @@ export default {
       mapSizeX: 50,
       mapSizeY: 50,
       isResizing: false,
+      name: '',
+      defaultName: 'новая карта',
 
       taskCount: 10,
       isLocationIconHover: false,
@@ -208,13 +211,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    mapName: {
+      type: String,
+      default: '',
+    },
     isMenuOpen: {
       type: Boolean,
       default: false,
-    },
-    menuTitle: {
-      type: String,
-      default: 'карта',
     },
     menuIcon: {
       type: String,
@@ -313,6 +316,7 @@ export default {
   },
   mounted() {
     this.isOpened = this.isMenuOpen;
+    this.name = this.mapName;
     this.locationValue = this.locationItems[0].name;
     this.locationType = this.locationItems[0].type;
     this.locationIcon = this.locationItems[0].icon;
@@ -379,6 +383,12 @@ export default {
       this.isOpened = !this.isOpened;
       this.$emit('openCloseMenu', { isOpen: this.isOpened });
     },
+    changeName() {
+      if (this.name === '') {
+        this.name = this.defaultName;
+      }
+      this.$emit('changeMapName', { newMapName: this.name });
+    },
     changeColor(type, color, index, icon) {
       if (!(this.colorType === type && this.colorValue === color && this.colorIndex === index)) {
         this.colorType = type;
@@ -431,7 +441,7 @@ export default {
         '--menu-items-hover-color': this.menuItemsHoverColor,
         '--menu-items-text-color': this.menuItemsTextColor,
         '--menu-footer-text-color': this.menuFooterTextColor,
-        overflowX: (this.isLocationMenuOpened ? 'visible' : 'hidden'),
+        // overflowX: (this.isLocationMenuOpened ? 'visible' : 'hidden'),
       };
     },
   },
@@ -452,7 +462,7 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 body {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 .sidebar {
   display: flex;
@@ -466,8 +476,7 @@ body {
   width: 78px;
   background: var(--bg-color);
   /* padding: 6px 14px 0 14px; */
-  transition: all 0.5s ease;
-  overflow-x: hidden;
+  transition: all 0.2s ease;
   z-index: 5;
 }
 .sidebar.open {
@@ -481,14 +490,28 @@ body {
 }
 .sidebar .logo-details .icon {
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 .sidebar .logo-details .logo_name {
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid;
   color: var(--logo-title-color);
   font-size: 20px;
   font-weight: 600;
-  opacity: 0;
-  transition: all 0.5s ease;
+  opacity: 0;width: calc(100% - 83px);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border-radius: 0.25rem;
+}
+.sidebar .logo-details .logo_name:focus {
+  position: absolute;
+  left: 33px;
+  transform: scale(1.2);
+  width: 300px;
+  background: rgba(17, 16, 29, 0.85);
+  z-index: 10;
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
@@ -504,7 +527,7 @@ body {
   font-size: 23px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 .sidebar.open .logo-details #btn {
   text-align: right;
@@ -565,7 +588,7 @@ body {
 .sidebar .menu_item .menu_item_content {
   padding: 10px;
   flex-wrap: wrap;
-  transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
+  transition: all 0.2s cubic-bezier(0.51, 0.42, 0, 1.01);
   overflow: hidden;
 }
 .sidebar li .menu_item .links_name {
@@ -594,7 +617,7 @@ body {
   /* left: 0;
   bottom: 0; */
   padding: 14px 23px;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   overflow: hidden;
 }
 .sidebar div.secondaryColor,
@@ -628,7 +651,7 @@ body {
   width: 100%;
   height: 100%;
   line-height: 60px;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   min-width: 32px;
 }
 .sidebar .exit #log_out,
@@ -665,7 +688,7 @@ body {
 }
 #my-scroll {
   overflow: scroll;
-  transition: all 0.5s cubic-bezier(0.51, 0.42, 0, 1.01);
+  transition: all 0.2s cubic-bezier(0.51, 0.42, 0, 1.01);
   margin-right: 4px;
   padding-right: 4px;
 }

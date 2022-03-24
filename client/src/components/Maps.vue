@@ -3,7 +3,7 @@
     @click="mainClick">
     <search @search="search" @changeFilterParameners="changeFilterParameters" :placeholder="'Поиск по шаблонам карт'"/>
     <div class="content">
-      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered': loadedAll }]" style="height: 100%; border: 1px dashed"
+      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered': loadedAll }]" style="height: 253px; border: 1px dashed"
            @click="createMap"/>
       <div :class="['map-item', 'bx', { 'bx-copy': hoverMap === 'map-' + index },
                                       { 'bx-loader-alt bx-super-spin': !loadedAll },
@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import MAP_TEMPLATE from '@/assets/js/map-example';
 import ModalWizard from 'vue-modal-wizard';
+import axios from 'axios';
 import Vue from 'vue';
 import modal from './Dialog';
 import Search from './Search';
@@ -46,6 +46,8 @@ export default {
   components: { 'search': Search },
   data() {
     return {
+      pathGetMap: 'http://localhost:5050/allMaps',
+      maps: [],
       searchValue: '',
       hoverMap: '',
       copyIndex: -1,
@@ -100,6 +102,7 @@ export default {
       this.$emit('mainClick', { event });
     },
     loadMaps() {
+      this.loadedImages = 0;
       for (let i of this.imagesSrc) {
         let image = new Image(4, 4);
         image.src = require(`../assets/images/${i}`);
@@ -107,8 +110,8 @@ export default {
           this.loadedImages++;
           if (this.loadedImages === this.images.length) {
             this.loadedAll = true;
-            for (let i = 0; i < this.maps.length; i++) {
-              this.drawCanvas('map-' + i, this.maps[i]);
+            for (let j = 0; j < this.maps.length; j++) {
+              this.drawCanvas('map-' + j, this.maps[j]);
             }
           }
         };
@@ -151,286 +154,22 @@ export default {
     },
     submitCopyMap(name) {
       this.$modal.close();
-      this.$router.push({ name: 'map-creator', params: { linkedMap: this.maps[this.copyIndex] } });
+      this.$router.push({ name: 'map-creator', params: { linkedMap: this.maps[this.copyIndex], mapName: name } });
     },
     submitCreateMap(name) {
       this.$modal.close();
-      this.$router.push('map-creator');
-    },
-  },
-  props: {
-    maps: {
-      type: Array,
-      default: () => [
-        {
-          name: 'карта xxx',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-        {
-          name: 'карта 1',
-          author: 'автор 1',
-          datetime: '10.03.22',
-          sizeX: 50,
-          sizeY: 50,
-          map: MAP_TEMPLATE,
-        },
-      ],
+      this.$router.push({ name: 'map-creator', params: { mapName: name } });
     },
   },
   mounted() {
-    this.loadMaps();
+    axios.get(this.pathGetMap)
+      .then((res) => {
+        this.maps = res.data.maps;
+        this.loadMaps();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>
@@ -466,6 +205,7 @@ export default {
 }
 .map-item {
   height: max-content;
+  min-height: 250px;
   background-color: rgba(241,243,244,0.19);
   border-radius: 0.25rem;
   border: 1px solid rgb(33, 37, 41);

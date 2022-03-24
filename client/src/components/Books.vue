@@ -4,7 +4,7 @@
       <div class="col-sm-10">
         <h1>Books</h1>
         <hr><br><br>
-        <alert :message=message v-if="showMessage"></alert>
+<!--        <alert :message=message v-if="showMessage"></alert>-->
         <button type="button" class="btn btn-success btn-sm" v-b-modal.book-modal>Add Book</button>
         <br><br>
         <table class="table table-hover">
@@ -112,7 +112,7 @@
 
 <script>
 import axios from 'axios';
-import Alert from './Alert';
+// import Alert from './Alert';
 
 export default {
   data() {
@@ -133,9 +133,6 @@ export default {
       },
     };
   },
-  components: {
-    alert: Alert,
-  },
   methods: {
     getBooks() {
       const path = 'http://localhost:5000/books';
@@ -149,7 +146,7 @@ export default {
         });
     },
     addBook(payload) {
-      const path = 'http://localhost:5000/books';
+      const path = 'http://localhost:5050/books';
       axios.post(path, payload)
         .then(() => {
           this.getBooks();

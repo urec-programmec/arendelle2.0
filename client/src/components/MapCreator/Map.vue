@@ -6,8 +6,10 @@
     <left-menu @changeParameters="changeColorParameters"
                @openCloseMenu="openCloseMenu"
                @exitMap="exitMap"
+               @changeMapName="changeMapName"
                :style="hideIfTesting"
-               :imagesSrc="imagesSrc"/>
+               :imagesSrc="imagesSrc"
+               :mapName="mapName"/>
     <div class="map-container" :style="mapStyle">
       <div :style="{ minWidth: getMapSizeX() + 'px',
                      maxWidth: getMapSizeX() + 'px',
@@ -68,6 +70,7 @@
 <script>
 import 'vue-slider-component/theme/antd.css';
 import Vue from 'vue';
+import axios from 'axios';
 import VueSlider from 'vue-slider-component';
 import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
@@ -84,10 +87,12 @@ export default {
   components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message, ModalWizard },
   data() {
     return {
+      pathSaveMap: 'http://localhost:5050/saveMap',
       documentTitle: 'создатель карт',
       mapSizeX: 50,
       mapSizeY: 50,
       map: [],
+      currentMapName: '',
 
       oldSelectedItems: [],
       selectedItems: [],
@@ -117,6 +122,7 @@ export default {
       taskCount: 0,
 
       images: [],
+      loadedCount: 0,
       imagesSrc: ['border/air_air/1.png',
         'border/air_air/2.png',
         'border/dungeon/1.gif',
@@ -204,20 +210,25 @@ export default {
           this.map.push(row);
         }
       }
+      this.currentMapName = this.mapName;
       this.canvas = document.getElementById('mapCanvas');
       this.context = this.canvas.getContext('2d');
+      this.loadedImages = 0;
       for (let i of this.imagesSrc) {
         let image = new Image(this.mapZoom - this.spaceSize, this.mapZoom - this.spaceSize);
         image.src = require(`../../assets/images/${i}`);
+        image.onload = () => {
+          this.loadedCount++;
+          if (this.loadedCount === this.images.length) {
+            this.drawCanvas();
+            this.showMessage('создание карты',
+              'правила: перемещение по карте - по комнатам и переходам. фон и стены - не проходимы.',
+              'special',
+              12000);
+          }
+        };
         this.images.push(image);
       }
-      this.images.at(-1).onload = () => {
-        this.drawCanvas();
-        this.showMessage('создание карты',
-          'правила: перемещение по карте - по комнатам и переходам. фон и стены - не проходимы.',
-          'special',
-          12000);
-      };
     },
     move(e) {
       if (this.isTesting) {
@@ -653,7 +664,23 @@ export default {
         'закончить редактирование и сохранить карту?',
         'confirm',
         15000,
-        () => { this.$router.push('/maps'); });
+        this.sendSaveMap);
+    },
+    sendSaveMap() {
+      let data = {
+        mapName: this.currentMapName,
+        map: this.map,
+        sizeX: this.mapSizeX,
+        sizeY: this.mapSizeY,
+        author: 1,
+      };
+      axios.post(this.pathSaveMap, data)
+        .then(() => {
+          this.$router.push('/maps');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     exitMap() {
       this.showMessage('выйти',
@@ -661,6 +688,9 @@ export default {
         'confirm-error',
         15000,
         () => { this.$router.push('/maps'); });
+    },
+    changeMapName(data) {
+      this.currentMapName = data['newMapName'];
     },
   },
   computed: {
@@ -699,6 +729,10 @@ export default {
     linkedMap: {
       type: Object,
       default: () => {},
+    },
+    mapName: {
+      type: String,
+      default: 'новая карта',
     },
   },
 };

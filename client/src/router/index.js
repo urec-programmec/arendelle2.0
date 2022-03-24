@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/components/Main';
+import Books from '@/components/Books';
 import Maps from '@/components/Maps';
 import Map from '@/components/MapCreator/Map';
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/maps',
       name: 'maps',
       component: Maps,
+    },
+    {
+      path: '/',
+      name: 'books',
+      component: Books,
     },
   ],
   mode: 'history',

@@ -4,7 +4,7 @@
       <i class="bx bx-x"/>
     </div>
     <h5 class="hint">{{ title }}</h5>
-    <input v-model="name" :autofocus="true" :placeholder="placeholder">
+    <input v-model="name" :autofocus="true" :placeholder="placeholder" :maxlength="40">
     <div class="footer">
       <div class="send-answer"
            @click="submit(name)">
