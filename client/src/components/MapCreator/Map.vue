@@ -668,7 +668,7 @@ export default {
     },
     sendSaveMap() {
       let data = {
-        mapName: this.currentMapName,
+        mapName: this.currentMapName.trim(),
         map: this.map,
         sizeX: this.mapSizeX,
         sizeY: this.mapSizeY,

@@ -4,7 +4,8 @@
     <search @search="search" @changeFilterParameners="changeFilterParameters" :placeholder="'Поиск по шаблонам карт'"/>
     <div class="content">
       <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered': loadedAll }]" style="height: 253px; border: 1px dashed"
-           @click="createMap"/>
+           @click="createMap"
+           v-if="searchValue === ''"/>
       <div :class="['map-item', 'bx', { 'bx-copy': hoverMap === 'map-' + index },
                                       { 'bx-loader-alt bx-super-spin': !loadedAll },
                                       { 'map-item-hovered bordered-solid': loadedAll }]" v-for="(map, index) in maps" :key="index"
@@ -15,7 +16,7 @@
           {{ map.name }}
         </div>
         <div class="canvas-container">
-          <canvas :id="'map-' + index" :width="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeX) + 'px'"
+          <canvas :id="'map-' + map.id" :width="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeX) + 'px'"
                   :height="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeY) + 'px'"/>
         </div>
         <div class="map-description map-size">
@@ -48,7 +49,9 @@ export default {
     return {
       pathGetMap: 'http://localhost:5050/allMaps',
       maps: [],
+      defaultMaps: [],
       searchValue: '',
+      searchTimeout: null,
       hoverMap: '',
       copyIndex: -1,
       filterParams: {},
@@ -87,13 +90,19 @@ export default {
       ],
       loadedImages: 0,
       loadedAll: false,
-      images: [],
+      images: {},
       foneSrc: 'special/fone.jpeg',
     };
   },
   methods: {
     search(data) {
-      this.searchValue = data['searchValue'];
+      this.searchValue = data['searchValue'].toLowerCase();
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+      this.searchTimeout = setTimeout(() => {
+        this.filterMaps();
+      }, 50);
     },
     changeFilterParameters(data) {
       this.filterParams = data['filterParams'];
@@ -103,28 +112,38 @@ export default {
     },
     loadMaps() {
       this.loadedImages = 0;
+      this.loadedAll = false;
       for (let i of this.imagesSrc) {
-        let image = new Image(4, 4);
-        image.src = require(`../assets/images/${i}`);
-        image.onload = () => {
+        if (!(i in this.images)) {
+          let image = new Image(4, 4);
+          image.src = require(`../assets/images/${i}`);
+          image.onload = () => {
+            this.loadedImages++;
+            this.drawAllCanvas();
+          };
+          this.images[i] = image;
+        } else {
           this.loadedImages++;
-          if (this.loadedImages === this.images.length) {
-            this.loadedAll = true;
-            for (let j = 0; j < this.maps.length; j++) {
-              this.drawCanvas('map-' + j, this.maps[j]);
-            }
-          }
-        };
-        this.images.push(image);
+          this.drawAllCanvas();
+        }
+      }
+    },
+    drawAllCanvas() {
+      if (this.loadedImages === Object.keys(this.images).length) {
+        this.loadedAll = true;
+        for (let j = 0; j < this.maps.length; j++) {
+          this.drawCanvas('map-' + this.maps[j].id, this.maps[j]);
+        }
       }
     },
     drawCanvas(id, map) {
       const canvas = document.getElementById(id);
       const context = canvas.getContext('2d');
+      context.clearRect(0, 0, this.canvasSize, this.canvasSize);
       let canvasItemSize = (this.canvasSize / Math.max(map.sizeX, map.sizeY));
       for (let y = 0; y < map.sizeY; y++) {
         for (let x = 0; x < map.sizeX; x++) {
-          let image = this.images.at(this.imagesSrc.indexOf(map.map[y][x].src === '' ? this.foneSrc : map.map[y][x].src));
+          let image = this.images[map.map[y][x].src === '' ? this.foneSrc : map.map[y][x].src];
           context.drawImage(image,
             x * canvasItemSize,
             y * canvasItemSize,
@@ -160,10 +179,21 @@ export default {
       this.$modal.close();
       this.$router.push({ name: 'map-creator', params: { mapName: name } });
     },
+    filterMaps() {
+      let newMaps = [];
+      for (let map of this.defaultMaps) {
+        if (map.name.toLowerCase().includes(this.searchValue)) {
+          newMaps.push(map);
+        }
+      }
+      this.maps = newMaps;
+      this.$nextTick(() => this.loadMaps());
+    },
   },
   mounted() {
     axios.get(this.pathGetMap)
       .then((res) => {
+        this.defaultMaps = res.data.maps;
         this.maps = res.data.maps;
         this.loadMaps();
       })

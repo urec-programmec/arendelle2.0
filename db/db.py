@@ -63,6 +63,7 @@ class Map(Base):
     sizeX = Column(Integer, nullable=False)
     sizeY = Column(Integer, nullable=False)
     author = Column(BigInteger, nullable=False)
+    datetime_created = Column(DATETIME, nullable=False)
 
 
 class Notification(Base):

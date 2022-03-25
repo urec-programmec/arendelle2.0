@@ -34,11 +34,13 @@ def allMaps():
         response_object['maps'] = []
         for map in db.session.query(Map).all():
             response_object['maps'].append({
+                'id': map.id,
                 'name': map.name,
                 'map': map.map,
                 'sizeX': map.sizeX,
                 'sizeY': map.sizeY,
                 'author': map.author,
+                'datetime': map.datetime_created.strftime('%d.%m.%Y'),
             })
         # response_object['maps'] = maps
         return jsonify(response_object)

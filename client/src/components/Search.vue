@@ -6,9 +6,9 @@
       <div class="input-group-prepend" style="margin: 0">
           <span class="input-group-text"
                 id="basic-addon"
-                @click="search"
+                @click="clear"
                 :style="focus ? { 'border-bottom-left-radius' : settingsOpened ? '0 !important' : '0.25rem', '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : { 'border-bottom-left-radius' : settingsOpened ? '0 !important' : '0.25rem' }">
-            <i class="bx bx-search"/>
+            <i class="bx bx-x" style="font-size: 1.3em"/>
           </span>
       </div>
       <input v-model="searchValue" type="text"
@@ -17,6 +17,7 @@
              :style="focus ? { '--background-color': backgroundSecondColor,
                                  '--text-color': textSecondColor,
                                  '--placeholder-color': placeholderSecondColor } : {}"
+             @input="search"
              aria-describedby="basic-addon">
       <div class="input-group-append" style="margin: 0">
           <span class="input-group-text"
@@ -44,14 +45,18 @@ export default {
     };
   },
   methods: {
-    search() {
-      this.$emit('search', { 'searchValue': this.searchValue });
+    clear() {
+      this.searchValue = '';
+      this.search();
     },
     mainClick(data) {
       if (data['event'].srcElement.offsetParent.id !== 'input-group') {
         this.focus = false;
         this.settingsOpened = false;
       }
+    },
+    search() {
+      this.$emit('search', { 'searchValue': this.searchValue });
     },
   },
   props: {
