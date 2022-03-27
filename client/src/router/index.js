@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/components/Main';
-import Books from '@/components/Books';
-import Maps from '@/components/Maps';
+import Login from '@/components/Login';
 import Map from '@/components/MapCreator/Map';
 
 Vue.use(Router);
@@ -22,14 +21,9 @@ export default new Router({
       props: true,
     },
     {
-      path: '/maps',
-      name: 'maps',
-      component: Maps,
-    },
-    {
-      path: '/',
-      name: 'books',
-      component: Books,
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
   ],
   mode: 'history',

@@ -1,15 +1,16 @@
 <template>
   <div class="main">
     <div class="background"/>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" :style="{ '--filter-blur': 'blur(' + filterBlur + 'px)' }"></canvas>
   </div>
 </template>
 
 <script>
 class Bounds {
-  constructor(canvas, countPoints, minR, maxR, startVelocity, reflectionCoeff, mainVelocityCoeff, radiusCoeff, animationStep, animationDelay) {
+  constructor(canvas, countPoints, minR, maxR, startVelocity, reflectionCoeff, mainVelocityCoeff, radiusCoeff, animationStep, animationDelay, deltaX, radiusMM) {
+    this.deltaX = deltaX;
     this.canvas = canvas;
-    this.canvas.width = window.innerWidth;
+    this.canvas.width = window.innerWidth * this.deltaX;
     this.canvas.height = window.innerHeight;
     this.context = canvas.getContext('2d');
     this.countPoints = countPoints;
@@ -21,8 +22,8 @@ class Bounds {
     this.radiusCoeff = radiusCoeff;
     this.animationStep = animationStep;
     this.animationDelay = animationDelay;
+    this.radiusMM = radiusMM;
     this.loadData();
-    window.addEventListener('resize', this.resize, false);
   }
 
   loadData() {
@@ -32,6 +33,8 @@ class Bounds {
       let x = this.getCos(i) * (Math.random() + 0.5);
       let v = (Math.random() * 2 - 1) * this.startVelocity;
       let velocityCoeff = this.mainVelocityCoeff + (Math.random() - 0.5) * this.mainVelocityCoeff / 2;
+      let isNotFire = Math.random() < 0.9;
+
 
       this.points.push({
         startX: x,
@@ -41,8 +44,8 @@ class Bounds {
         v,
         velocityCoeff,
         radius: Math.random() * (this.maxR - this.minR) + this.minR,
-        firstColor: `hsla(${Math.random() * 180 + 150}, 50%, 50%, 1)`,
-        secondColor: `hsla(${Math.random() * 180 + 150}, 50%, 50%, 0)`,
+        firstColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() + 30}, 50%, 50%, 1)`,
+        secondColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 0)` : `hsla(${Math.random() + 30}, 50%, 50%, 0)`,
       });
     }
   }
@@ -72,12 +75,17 @@ class Bounds {
   }
 
   renderPoints() {
-    this.context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    let radius = Math.max(window.innerWidth, window.innerHeight) * this.radiusCoeff;
+    this.context.clearRect(0, 0, window.innerWidth * this.deltaX, window.innerHeight);
+    let radius;
+    if (this.radiusMM === 'min') {
+      radius = Math.min(window.innerWidth * this.deltaX, window.innerHeight) * this.radiusCoeff;
+    } else {
+      radius = Math.max(window.innerWidth * this.deltaX, window.innerHeight) * this.radiusCoeff;
+    }
 
     for (let i = 0; i < this.countPoints; i++) {
       let point = this.points[i];
-      let x = (window.innerWidth / 2) + point.x * radius;
+      let x = (window.innerWidth * this.deltaX / 2) + point.x * radius;
       let y = (window.innerHeight / 2) + point.y * radius;
 
       this.context.beginPath();
@@ -116,9 +124,9 @@ class Bounds {
     }, this.animationDelay);
   }
 
-  resize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+  resize(w, h) {
+    this.canvas.width = w;
+    this.canvas.height = h;
   }
 }
 
@@ -126,10 +134,8 @@ export default {
   name: 'Background',
   data() {
     return {
-      documentTitle: 'карты',
       bounds: null,
       canvas: null,
-      countPoints: 100,
       minR: 50,
       maxR: 100,
       startVelocity: 0.5,
@@ -154,10 +160,15 @@ export default {
         this.radiusCoeff,
         this.animationStep,
         this.animationDelay,
+        this.dX,
+        this.radiusMM,
       );
       if (this.animated) {
         this.bounds.play();
       }
+    },
+    resize() {
+      this.bounds.resize(window.innerWidth * this.dX, window.innerHeight);
     },
   },
   props: {
@@ -165,12 +176,26 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  created() {
-    document.title = this.documentTitle;
+    dX: {
+      type: Number,
+      default: 1,
+    },
+    radiusMM: {
+      type: String,
+      default: 'max',
+    },
+    countPoints: {
+      type: Number,
+      default: 100,
+    },
+    filterBlur: {
+      type: Number,
+      default: 60,
+    },
   },
   mounted() {
     this.init();
+    window.addEventListener('resize', this.resize, false);
   },
 };
 </script>
@@ -208,6 +233,6 @@ export default {
   height: 100%;
 }
 .main canvas {
-  filter: blur(60px);
+  filter: var(--filter-blur);
 }
 </style>

@@ -23,7 +23,7 @@ export default {
   url('assets/webfonts/GothamPro.ttf')  format('truetype');
 }
 * {
-  font-family: "GothamPro", sans-serif !important;
+  font-family: "GothamPro", sans-serif;
   /*font-family: 'OptimusPrinceps', sans-serif !important;*/
   /*font-family: "Courier New", serif !important;*/
   /*font-family: 'Poppins', sans-serif !important;*/

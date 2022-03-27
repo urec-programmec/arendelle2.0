@@ -672,7 +672,7 @@ export default {
         map: this.map,
         sizeX: this.mapSizeX,
         sizeY: this.mapSizeY,
-        author: 1,
+        author: 5,
       };
       axios.post(this.pathSaveMap, data)
         .then(() => {

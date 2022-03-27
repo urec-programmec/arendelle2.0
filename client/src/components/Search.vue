@@ -27,19 +27,53 @@
             <i class="bx bx-slider"/>
           </span>
       </div>
-      <div class="settings" v-if="settingsOpened"
+      <div id="input-group-settings" class="settings" v-if="settingsOpened"
            :style="focus ? { '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : {  }">
+        <div class="settings-row">
+          <p>поиск по</p>
+          <toggle-switch :defaultItems="searchByItems" :selectedItem="settingsValues.searchBy"
+                         @changeSelection="changeSearchBy"/>
+        </div>
+        <div class="settings-row">
+          <p>отображать</p>
+          <toggle-switch :defaultItems="showingItems" :selectedItem="settingsValues.showing"
+                         @changeSelection="changeShowing"/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ToggleSwitch from './ToggleSwitch';
+
 export default {
   name: 'Search',
+  components: { 'toggle-switch': ToggleSwitch },
   data() {
     return {
       searchValue: '',
+      settingsValues: {},
+      searchByItems: [
+        {
+          type: 'name',
+          name: 'название карты',
+        },
+        {
+          type: 'author',
+          name: 'автор',
+        },
+      ],
+      showingItems: [
+        {
+          type: 'all',
+          name: 'все',
+        },
+        {
+          type: 'own',
+          name: 'только свои',
+        },
+      ],
       focus: false,
       settingsOpened: false,
     };
@@ -50,13 +84,26 @@ export default {
       this.search();
     },
     mainClick(data) {
-      if (data['event'].srcElement.offsetParent.id !== 'input-group') {
-        this.focus = false;
-        this.settingsOpened = false;
+      let parent = data['event'].srcElement.offsetParent;
+      while (parent) {
+        if (parent.id === 'input-group') {
+          return;
+        }
+        parent = parent.offsetParent;
       }
+      this.focus = false;
+      this.settingsOpened = false;
     },
     search() {
-      this.$emit('search', { 'searchValue': this.searchValue });
+      this.$emit('search', { 'searchValue': this.searchValue, settings: this.settingsValues });
+    },
+    changeSearchBy(data) {
+      this.settingsValues.searchBy = data['selection'];
+      this.search();
+    },
+    changeShowing(data) {
+      this.settingsValues.showing = data['selection'];
+      this.search();
     },
   },
   props: {
@@ -88,10 +135,19 @@ export default {
       type: String,
       default: '',
     },
-
+    settings: {
+      type: Object,
+      default: () => {
+        return {
+          searchBy: 'name',
+          showing: 'all',
+        };
+      },
+    },
   },
   mounted() {
     this.$parent.$on('mainClick', this.mainClick);
+    this.settingsValues = this.settings;
   },
 };
 </script>
@@ -136,9 +192,19 @@ export default {
   border-radius: 0 0 0.25rem 0.25rem;
   top: 40px;
   width: 100%;
-  height: 100px;
+  min-width: fit-content;
+  height: fit-content;
   background: #F5F5F5;
-  z-index: 1;
+  z-index: 4;
   box-shadow: inset 0 1px 0 rgb(0 0 0 / 12%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.settings-row {
+  padding: 10px;
+}
+.settings p {
+  margin: 0;
+  color: rgba(0,0,0,0.6);
 }
 </style>

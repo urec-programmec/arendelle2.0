@@ -188,6 +188,7 @@ class TeamChampionshipPlatform(Base):
 class Users(Base):
     __tablename__ = 'users'
     id = Column(BigInteger, primary_key=True)
+    email = Column(String(50), nullable=False)
     color = Column(String(30), nullable=False)
     nickname = Column(String(50), nullable=False)
     name = Column(String(80), nullable=False)

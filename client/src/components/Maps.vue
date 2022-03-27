@@ -1,7 +1,9 @@
 <template>
   <div class="main"
     @click="mainClick">
-    <search @search="search" @changeFilterParameners="changeFilterParameters" :placeholder="'Поиск по шаблонам карт'"/>
+    <search @search="search" @changeFilterParameners="changeFilterParameters"
+            :placeholder="'Поиск по шаблонам карт'"
+            :settings="searchSettings"/>
     <div class="content">
       <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered': loadedAll }]" style="height: 253px; border: 1px dashed"
            @click="createMap"
@@ -48,9 +50,14 @@ export default {
   data() {
     return {
       pathGetMap: 'http://localhost:5050/allMaps',
+      documentTitle: 'карты',
       maps: [],
       defaultMaps: [],
       searchValue: '',
+      searchSettings: {
+        searchBy: 'name',
+        showing: 'all',
+      },
       searchTimeout: null,
       hoverMap: '',
       copyIndex: -1,
@@ -97,6 +104,7 @@ export default {
   methods: {
     search(data) {
       this.searchValue = data['searchValue'].toLowerCase();
+      this.searchSettings = data['settings'];
       if (this.searchTimeout) {
         clearTimeout(this.searchTimeout);
       }
@@ -182,13 +190,16 @@ export default {
     filterMaps() {
       let newMaps = [];
       for (let map of this.defaultMaps) {
-        if (map.name.toLowerCase().includes(this.searchValue)) {
+        if (map[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue)) {
           newMaps.push(map);
         }
       }
       this.maps = newMaps;
       this.$nextTick(() => this.loadMaps());
     },
+  },
+  created() {
+    document.title = this.documentTitle;
   },
   mounted() {
     axios.get(this.pathGetMap)

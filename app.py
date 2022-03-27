@@ -5,6 +5,8 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
+from hashlib import md5
+
 from db.db import *
 
 app = Flask(__name__, static_url_path='')
@@ -33,16 +35,105 @@ def allMaps():
     if request.method == 'GET':
         response_object['maps'] = []
         for map in db.session.query(Map).all():
+            user = db.session.query(Users).filter_by(id=map.author).first()
             response_object['maps'].append({
                 'id': map.id,
                 'name': map.name,
                 'map': map.map,
                 'sizeX': map.sizeX,
                 'sizeY': map.sizeY,
-                'author': map.author,
+                'author': user.name + ' ' + user.surname,
                 'datetime': map.datetime_created.strftime('%d.%m.%Y'),
             })
-        # response_object['maps'] = maps
+        return jsonify(response_object)
+
+
+@app.route('/allInstitutions', methods=['GET'])
+def allInstitutions():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['institutions'] = []
+        for institution in db.session.query(Institution).all():
+            response_object['institutions'].append({
+                'value': institution.id,
+                'text': institution.name,
+            })
+        return jsonify(response_object)
+
+
+@app.route('/checkEmail', methods=['POST'])
+def checkEmail():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        email = request.get_json()['email']
+        emails = db.session.query(Users).filter_by(email=email).all()
+        response_object['isValid'] = len(emails) == 0
+        return jsonify(response_object)
+
+
+@app.route('/checkNickname', methods=['POST'])
+def checkNickname():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        nickname = request.get_json()['nickname']
+        nicknames = db.session.query(Users).filter_by(nickname=nickname).all()
+        response_object['isValid'] = len(nicknames) == 0
+        return jsonify(response_object)
+
+
+@app.route('/checkSignUp', methods=['POST'])
+def checkSignUp():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        email = request.get_json()['email']
+        password = md5((request.get_json()['password']).encode('cp1252')).hexdigest()
+        users = db.session.query(Users).filter_by(email=email, password=password).all()
+        response_object['isValid'] = len(users) == 1
+        response_object['user'] = {
+         'id': users[0].id,
+         'email': users[0].email,
+         'color': users[0].color,
+         'nickname': users[0].nickname,
+         'name': users[0].name,
+         'surname': users[0].surname,
+         'user_role': users[0].user_role,
+         # 'user_role': db.session.query(UserRole).filter_by(id=users[0].user_role).first().name,
+         'institution': users[0].institution,
+         'team': users[0].team,
+        } if len(users) == 1 else {}
+        return jsonify(response_object)
+
+
+@app.route('/saveUser', methods=['POST'])
+def saveUser():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        email = data['email']
+        nickname = data['nickname']
+        name = data['name']
+        surname = data['surname']
+        institutionId = data['institutionId']
+        password = md5((request.get_json()['password']).encode('cp1252')).hexdigest()
+        color = data['color']
+        role = data['role']
+
+        newUser = Users(email=email, nickname=nickname, name=name, surname=surname, institution=institutionId, password=password, color=color, user_role=role)
+        db.session.add(newUser)
+        db.session.commit()
+        response_object['user'] = {
+            'id': newUser.id,
+            'email': newUser.email,
+            'color': newUser.color,
+            'nickname': newUser.nickname,
+            'name': newUser.name,
+            'surname': newUser.surname,
+            'user_role': newUser.user_role,
+            # 'user_role': db.session.query(UserRole).filter_by(id=newUser.user_role).first().name,
+            'institution': newUser.institution,
+            'team': newUser.team,
+        }
+
         return jsonify(response_object)
 
 
