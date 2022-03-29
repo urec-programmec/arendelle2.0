@@ -6,9 +6,12 @@
     <div class="login-form">
       <div class="login-form-item">
         <div class="login-form-item-title">Email</div>
+        <input type="password" name="password" value="" style="display: none" />
         <input :maxlength="50"
                v-model="email"
                type="text"
+               readonly
+               @focus="onItemFocus"
                placeholder="username@email.adr"
                :class="['login-form-item-value', { 'login-form-item-error': emailErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="emailErrorMessage !== ''">{{ emailErrorMessage }}</div>
@@ -19,6 +22,8 @@
           <input :maxlength="50"
                  v-model="password"
                  :type="passwordShow ? 'text' : 'password'"
+                 readonly
+                 @focus="onItemFocus"
                  style="padding-right: 28px"
                  :class="['login-form-item-value', { 'login-form-item-error': passwordErrorMessage !== '' }]"/>
           <div class="login-form-item-error-message" v-if="passwordErrorMessage !== ''">{{ passwordErrorMessage }}</div>
@@ -86,6 +91,10 @@ export default {
     },
     changeSign() {
       this.$emit('changeSign');
+    },
+    onItemFocus(event) {
+      event.srcElement.removeAttribute('readonly');
+      event.stopPropagation();
     },
   },
   props: {

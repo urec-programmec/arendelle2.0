@@ -18,6 +18,28 @@ db = SQLAlchemy(app)
 CORS(app)
 
 
+@app.route('/deleteMap', methods=['POST'])
+def deleteMap():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        map = db.session.query(Map).filter_by(id=data['id']).first()
+        db.session.delete(map)
+        db.session.commit()
+        return jsonify(response_object)
+
+
+@app.route('/renameMap', methods=['POST'])
+def renameMap():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        map = db.session.query(Map).filter_by(id=data['id']).first()
+        map.name = data['newName']
+        db.session.commit()
+        return jsonify(response_object)
+
+
 @app.route('/saveMap', methods=['POST'])
 def saveMap():
     response_object = {'status': 'success'}
@@ -34,7 +56,7 @@ def allMaps():
     response_object = {'status': 'success'}
     if request.method == 'GET':
         response_object['maps'] = []
-        for map in db.session.query(Map).all():
+        for map in sorted(db.session.query(Map).all(), key=lambda m: m.datetime_created, reverse=True):
             user = db.session.query(Users).filter_by(id=map.author).first()
             response_object['maps'].append({
                 'id': map.id,
@@ -43,6 +65,7 @@ def allMaps():
                 'sizeX': map.sizeX,
                 'sizeY': map.sizeY,
                 'author': user.name + ' ' + user.surname,
+                'authorId': user.id,
                 'datetime': map.datetime_created.strftime('%d.%m.%Y'),
             })
         return jsonify(response_object)
@@ -128,7 +151,7 @@ def saveUser():
             'nickname': newUser.nickname,
             'name': newUser.name,
             'surname': newUser.surname,
-            'user_role': newUser.user_role,
+            'role': newUser.user_role,
             # 'user_role': db.session.query(UserRole).filter_by(id=newUser.user_role).first().name,
             'institution': newUser.institution,
             'team': newUser.team,

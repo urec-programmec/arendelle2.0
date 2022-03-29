@@ -5,15 +5,16 @@
             :placeholder="'Поиск по шаблонам карт'"
             :settings="searchSettings"/>
     <div class="content">
-      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered': loadedAll }]" style="height: 253px; border: 1px dashed"
+      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 1px dashed"
            @click="createMap"
            v-if="searchValue === ''"/>
-      <div :class="['map-item', 'bx', { 'bx-copy': hoverMap === 'map-' + index },
-                                      { 'bx-loader-alt bx-super-spin': !loadedAll },
-                                      { 'map-item-hovered bordered-solid': loadedAll }]" v-for="(map, index) in maps" :key="index"
+<!--      'bx', { 'bx-copy': hoverMap === 'map-' + index },-->
+      <div :class="['map-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(map, index) in maps" :key="index"
            @mouseleave="hoverMap = ''"
-           @mouseenter="hoverMap = 'map-' + index"
-           @click="copyMap(index)">
+           @mouseenter="hoverMap = 'map-' + index">
+        <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
+        <div @click="deleteMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-delete', 'bx', 'bx-x', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
+        <div @click="copyMap(index)" v-if="loadedAll" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0 }"></div>
         <div class="map-description map-name">
           {{ map.name }}
         </div>
@@ -50,6 +51,9 @@ export default {
   data() {
     return {
       pathGetMap: 'http://localhost:5050/allMaps',
+      pathRenameMap: 'http://localhost:5050/renameMap',
+      pathDeleteMap: 'http://localhost:5050/deleteMap',
+      user: {},
       documentTitle: 'карты',
       maps: [],
       defaultMaps: [],
@@ -61,6 +65,8 @@ export default {
       searchTimeout: null,
       hoverMap: '',
       copyIndex: -1,
+      renameIndex: -1,
+      deleteIndex: -1,
       filterParams: {},
       canvasSize: 200,
       imagesSrc: ['border/air_air/1.png',
@@ -140,7 +146,9 @@ export default {
       if (this.loadedImages === Object.keys(this.images).length) {
         this.loadedAll = true;
         for (let j = 0; j < this.maps.length; j++) {
-          this.drawCanvas('map-' + this.maps[j].id, this.maps[j]);
+          this.$nextTick(() => {
+            this.drawCanvas('map-' + this.maps[j].id, this.maps[j]);
+          });
         }
       }
     },
@@ -159,6 +167,26 @@ export default {
             canvasItemSize);
         }
       }
+    },
+    deleteMap(index) {
+      this.deleteIndex = index;
+      ModalWizard.open(modal, {
+        props: {
+          title: 'удалить шаблон карты?',
+          submit: this.submitDeleteMap,
+          isConfirm: true,
+        },
+      });
+    },
+    renameMap(index) {
+      this.renameIndex = index;
+      ModalWizard.open(modal, {
+        props: {
+          title: 'редактировать название',
+          placeholder: this.maps[index].name,
+          submit: this.submitRenameMap,
+        },
+      });
     },
     copyMap(index) {
       this.copyIndex = index;
@@ -179,38 +207,73 @@ export default {
         },
       });
     },
+    submitDeleteMap() {
+      this.$modal.close();
+      axios.post(this.pathDeleteMap, { id: this.maps[this.deleteIndex].id })
+        .then(() => {
+          this.preloadMaps();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    submitRenameMap(name) {
+      this.$modal.close();
+      if (name === '') {
+        return;
+      }
+      axios.post(this.pathRenameMap, { id: this.maps[this.renameIndex].id, newName: name })
+        .then(() => {
+          this.maps[this.renameIndex].name = name;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     submitCopyMap(name) {
       this.$modal.close();
-      this.$router.push({ name: 'map-creator', params: { linkedMap: this.maps[this.copyIndex], mapName: name } });
+      let params = name === '' ?
+        { linkedMap: this.maps[this.copyIndex], mapName: this.maps[this.copyIndex].name.concat(' копия').length > 50 ? this.maps[this.copyIndex].name : this.maps[this.copyIndex].name.concat(' копия') } :
+        { linkedMap: this.maps[this.copyIndex], mapName: name };
+      this.$router.push({ name: 'map-creator', params });
     },
     submitCreateMap(name) {
       this.$modal.close();
-      this.$router.push({ name: 'map-creator', params: { mapName: name } });
+      let params = name === '' ? {} : { mapName: name };
+      this.$router.push({ name: 'map-creator', params });
     },
     filterMaps() {
       let newMaps = [];
       for (let map of this.defaultMaps) {
-        if (map[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue)) {
+        if (map[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) && (this.searchSettings.showing === 'all' || map.authorId === this.user.id)) {
           newMaps.push(map);
         }
       }
       this.maps = newMaps;
       this.$nextTick(() => this.loadMaps());
     },
+    preloadMaps() {
+      axios.get(this.pathGetMap)
+        .then((res) => {
+          this.defaultMaps = res.data.maps;
+          this.maps = res.data.maps;
+          this.$nextTick(() => {
+            this.loadMaps();
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
   created() {
     document.title = this.documentTitle;
   },
   mounted() {
-    axios.get(this.pathGetMap)
-      .then((res) => {
-        this.defaultMaps = res.data.maps;
-        this.maps = res.data.maps;
-        this.loadMaps();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.preloadMaps();
+    }
   },
 };
 </script>
@@ -266,16 +329,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 0.25rem;
-  /*z-index: 100;*/
   z-index: -1;
-}
-.map-item-hovered:hover:before {
-  cursor: pointer;
-  background: rgba(33, 37, 41, 0.9);
-  z-index: 1;
-}
-.bordered-solid:hover:before {
-  border: 1px solid #F5F5F5;
 }
 .bx-super-spin:before {
   animation: spin 2s linear infinite;
@@ -352,5 +406,61 @@ export default {
   border-radius: 0.25rem;
   background: rgba(241,243,244,0.14);
   box-shadow: 0 0 0 2px rgba(241,243,244,0.14);
+}
+.map-item-copy,
+.map-item-delete,
+.map-item-rename {
+  position: absolute;
+  opacity: 0;
+  background: rgba(33, 37, 41, 0.6);
+  border: 1px solid;
+  border-radius: 0.25rem;
+  color: rgba(245, 245, 245, 0.7);
+}
+.map-item-copy:before ,
+.map-item-delete:before ,
+.map-item-rename:before {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  z-index: -1;
+}
+.map-item-copy:hover,
+.map-item-delete:hover,
+.map-item-rename:hover,
+.map-item-hovered-create:hover:before {
+  background: rgba(33, 37, 41, 0.9);
+  color: rgba(245, 245, 245, 1);
+}
+.map-item-rename {
+  left: 0;
+  top: 0;
+  height: 50%;
+  width: 50%;
+}
+.map-item-delete {
+  left: 50%;
+  top: 0;
+  height: 50%;
+  width: 50%;
+}
+.map-item-copy {
+  left: 0;
+  top: 50%;
+  height: 50%;
+  width: 100%;
+}
+.map-item-hovered-create:hover,
+.map-item-hovered {
+  opacity: 1;
+  z-index: 1;
+  cursor: pointer;
 }
 </style>

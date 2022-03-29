@@ -3,12 +3,15 @@
     <div class="login-header">Регистрация</div>
     <a @click="changeSign" class="login-change">есть аккаунт?</a>
     <div class="login-form-item-error-message" v-if="errorMessage !== ''">{{ errorMessage }}</div>
-    <div class="login-form">
+    <form class="login-form" autocomplete="off">
       <div class="login-form-item">
         <div class="login-form-item-title">Email</div>
         <input :maxlength="50"
                v-model="email"
                type="text"
+               readonly
+               @focus="onItemFocus"
+               name="cool-name"
                placeholder="username@email.adr"
                :class="['login-form-item-value', { 'login-form-item-error': emailErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="emailErrorMessage !== ''">{{ emailErrorMessage }}</div>
@@ -18,6 +21,9 @@
         <input :maxlength="50"
                v-model="nickname"
                type="text"
+               readonly
+               @focus="onItemFocus"
+               name="cool-name"
                :class="['login-form-item-value', { 'login-form-item-error': nicknameErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="nicknameErrorMessage !== ''">{{ nicknameErrorMessage }}</div>
       </div>
@@ -26,6 +32,9 @@
         <input :maxlength="50"
                v-model="name"
                type="text"
+               readonly
+               @focus="onItemFocus"
+               name="cool-name"
                :class="['login-form-item-value', { 'login-form-item-error': nameErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="nameErrorMessage !== ''">{{ nameErrorMessage }}</div>
       </div>
@@ -34,6 +43,9 @@
         <input :maxlength="50"
                v-model="surname"
                type="text"
+               readonly
+               @focus="onItemFocus"
+               name="cool-name"
                :class="['login-form-item-value', { 'login-form-item-error': surnameErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="surnameErrorMessage !== ''">{{ surnameErrorMessage }}</div>
       </div>
@@ -45,6 +57,9 @@
       <div class="login-form-item">
         <div class="login-form-item-title">Учебное заведение</div>
         <model-select :options="institutionOptions"
+                      readonly
+                      @focus="onItemFocus"
+                      name="cool-name"
                       :class="[{ 'login-form-item-error': institutionErrorMessage !== '' }]"
                       v-model="institution" />
         <div class="login-form-item-error-message" v-if="institutionErrorMessage !== ''">{{ institutionErrorMessage }}</div>
@@ -56,6 +71,10 @@
         <input :maxlength="50"
                v-model="password"
                :type="passwordShow ? 'text' : 'password'"
+               readonly
+               @focus="onItemFocus"
+               name="password"
+               autocomplete="new-password"
                style="padding-right: 28px"
                :class="['login-form-item-value', { 'login-form-item-error': passwordErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="passwordErrorMessage !== ''">{{ passwordErrorMessage }}</div>
@@ -70,6 +89,9 @@
         <input :maxlength="50"
                v-model="passwordRepeat"
                :type="passwordRepeatShow ? 'text' : 'password'"
+               readonly
+               @focus="onItemFocus"
+               name="cool-name"
                style="padding-right: 28px"
                :class="['login-form-item-value', { 'login-form-item-error': passwordRepeatErrorMessage !== '' }]"/>
         <div class="login-form-item-error-message" v-if="passwordRepeatErrorMessage !== ''">{{ passwordRepeatErrorMessage }}</div>
@@ -77,7 +99,7 @@
            @click="passwordRepeatShow = !passwordRepeatShow"/>
         </div>
       </div>
-    </div>
+    </form>
     <div style="width: 100%; display: flex; justify-content: right">
       <div class="submit" @click="submit">зарегистрироваться</div>
     </div>
@@ -268,6 +290,9 @@ export default {
     },
     changeRole(data) {
       this.role = data['selection'];
+    },
+    onItemFocus(event) {
+      event.srcElement.removeAttribute('readonly');
     },
   },
   props: {

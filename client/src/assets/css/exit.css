@@ -1,0 +1,65 @@
+.sidebar div.exit {
+  position: relative;
+  min-height: 60px;
+  width: 78px;
+  /* left: 0;
+  bottom: 0; */
+  padding: 14px 23px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+.sidebar.open div.exit {
+  width: 238px;
+}
+
+.sidebar .exit .exit_menu_item {
+  z-index: 1;
+  line-height: 2rem;
+}
+.sidebar .exit .exit_menu_item::before {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+}
+.sidebar .exit i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100% !important;
+  line-height: 60px;
+  transition: all 0.2s ease;
+  min-width: 32px !important;
+}
+.sidebar .exit #log_out,
+.sidebar.open .exit #log_out {
+  width: 28px;
+  margin: 0 25px 0 20px;
+  color: rgba(255,255,255,1);
+  transition: all .2s ease-in-out;
+
+  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
+  background-size: 100%;
+  animation: color-change 0.3s;
+  animation-fill-mode: forwards;
+  background-clip: text;
+  -webkit-background-clip: text;
+  line-height: 40px;
+}
+.sidebar.open .exit #log_out {
+  margin: 0 16px;
+  opacity: 0.5;
+}
+.sidebar.open .exit #log_out:hover,
+.sidebar.open .exit:hover #log_out {
+  opacity: 1;
+}
+.sidebar.open .exit:hover #log_out,
+.sidebar .exit:hover #log_out {
+  color:rgba(255,255,255,0);
+  cursor: pointer;
+}
+@keyframes color-change {
+  0%{background-position:left}
+  100%{background-position:right}
+}

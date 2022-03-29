@@ -5,7 +5,7 @@
         @click="closeMessage"/>
     <div>
       <i :class="['bx', 'bx-flip-horizontal ', messageTypeClass]"/>
-      <div style="display: flex; flex-direction: column">
+      <div style="display: flex; flex-direction: column; min-width: 205px">
         <p style="font-size: 0.9em">{{ title }}</p>
         <p>{{ message }}</p>
         <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">

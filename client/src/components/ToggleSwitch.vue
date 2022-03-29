@@ -51,11 +51,11 @@ export default {
 .toggle-switch-item {
   background: #F5F5F5;
   font-size: 0.9em;
-  color: rgb(0, 122, 255);
+  color: rgba(0,0,0,0.8);
   border-left: 1px solid;
   border-top: 1px solid;
   border-bottom: 1px solid;
-  border-color: rgb(0, 122, 255);
+  border-color: rgba(0,0,0,0.5);
   padding: 2px 10px;
   display: flex;
   justify-content: center;
@@ -72,10 +72,10 @@ export default {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   border-right: 1px solid;
-  border-color: rgb(0, 122, 255);
+  border-color: rgba(0,0,0,0.5);
 }
 .toggle-switch-item-selected {
   color: #F5F5F5;
-  background: rgb(0, 122, 255);
+  background: rgba(0,0,0,0.5);
 }
 </style>

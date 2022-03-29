@@ -5,8 +5,7 @@
   @click="mainClick">
     <div class="logo-details"
       style="margin: 0 14px">
-      <i class="bx icon"
-        :class="menuIcon"/>
+      <div class="bx icon" :style="{ background: userBackground, '--content': userInitials }"/>
       <input v-model="name" :maxlength="40" class="logo_name" @change="changeName">
       <i class="bx"
         :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
@@ -177,6 +176,7 @@ import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 
 import '../../assets/css/custom-dot.css';
+import '../../assets/css/exit.css';
 
 export default {
   name: 'Menu',
@@ -184,6 +184,9 @@ export default {
   data() {
     return {
       isOpened: false,
+      userBackground: 'wheat',
+      userInitials: '',
+
       colorType: '',
       colorValue: '',
       colorIndex: -1,
@@ -218,10 +221,6 @@ export default {
     isMenuOpen: {
       type: Boolean,
       default: false,
-    },
-    menuIcon: {
-      type: String,
-      default: 'bx-terminal',
     },
     //! Menu items
     menuItems: {
@@ -447,6 +446,9 @@ export default {
   },
   created() {
     this.$parent.$on('closeMenu', this.close);
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.userBackground = user.color;
+    this.userInitials = '\''.concat(user.name[0], user.surname[0], '\'').toUpperCase();
   },
 };
 </script>
@@ -459,7 +461,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 body {
   transition: all 0.2s ease;
@@ -488,9 +489,26 @@ body {
   align-items: center;
   position: relative;
 }
+.sidebar.open .logo-details .icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 20px;
+  position: relative;
+}
+.sidebar.open .logo-details .icon:before {
+  content: var(--content);
+  font-family: "GothamPro", sans-serif;
+  color: #F5F5F5;
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 .sidebar .logo-details .icon {
   opacity: 0;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
 }
 .sidebar .logo-details .logo_name {
   background: inherit;
@@ -610,23 +628,9 @@ body {
   font-size: 18px;
   border-radius: 12px;
 }
-.sidebar div.exit {
-  position: relative;
-  min-height: 60px;
-  width: 78px;
-  /* left: 0;
-  bottom: 0; */
-  padding: 14px 23px;
-  transition: all 0.2s ease;
-  overflow: hidden;
-}
 .sidebar div.secondaryColor,
 .sidebar div i.secondaryColor  {
   background: var(--secondary-color);
-}
-
-.sidebar.open div.exit {
-  width: 238px;
 }
 .sidebar div img {
   height: 45px;
@@ -634,57 +638,6 @@ body {
   object-fit: cover;
   border-radius: 6px;
   margin-right: 10px;
-}
-.sidebar .exit .exit_menu_item {
-  z-index: 1;
-  line-height: 2rem;
-}
-.sidebar .exit .exit_menu_item::before {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 2px;
-}
-.sidebar .exit i {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 100%;
-  line-height: 60px;
-  transition: all 0.2s ease;
-  min-width: 32px;
-}
-.sidebar .exit #log_out,
-.sidebar.open .exit #log_out {
-  width: 28px;
-  margin: 0 25px 0 20px;
-  color: rgba(255,255,255,1);
-  transition: all .2s ease-in-out;
-
-  background: linear-gradient(to right, rgba(155, 23, 4, 0.99), rgba(255, 115, 0, 1));
-  background-size: 100%;
-  animation: color-change 0.3s;
-  animation-fill-mode: forwards;
-  background-clip: text;
-  -webkit-background-clip: text;
-  line-height: 40px;
-}
-.sidebar.open .exit #log_out {
-  margin: 0 16px;
-  opacity: 0.5;
-}
-.sidebar.open .exit #log_out:hover,
-.sidebar.open .exit:hover #log_out {
-  opacity: 1;
-}
-.sidebar.open .exit:hover #log_out,
-.sidebar .exit:hover #log_out {
-  color:rgba(255,255,255,0);
-  cursor: pointer;
-}
-@keyframes color-change {
-  0%{background-position:left}
-  100%{background-position:right}
 }
 #my-scroll {
   overflow: scroll;

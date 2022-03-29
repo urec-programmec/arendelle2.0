@@ -4,9 +4,8 @@
        :style="cssVars">
     <div class="logo-details"
          style="margin: 0 14px">
-      <i class="bx icon"
-         :class="menuIcon"/>
-      <div class="logo_name">
+      <div class="bx icon" :style="{ background: userBackground, '--content': userInitials }"/>
+      <div class="logo_name" :style="{ fontSize: ((235 / menuTitle.length) > 20 ? 20 : (235 / menuTitle.length)) + 'px' }">
         {{ menuTitle }}
       </div>
       <i class="bx"
@@ -37,6 +36,12 @@
             </span>
         </ul>
       </div>
+      <div class="exit secondaryColor"
+           style="min-height: 40px; position: absolute; bottom: 0;">
+        <i class="bx bx-log-out secondaryColor"
+           id="log_out"
+           @click.stop="$emit('logout')"/>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +51,7 @@ import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 
 import '../assets/css/custom-dot.css';
+import '../assets/css/exit.css';
 
 export default {
   name: 'MainMenu',
@@ -89,9 +95,13 @@ export default {
       type: String,
       default: 'меню',
     },
-    menuIcon: {
+    userBackground: {
       type: String,
-      default: 'bx-terminal',
+      default: 'wheat',
+    },
+    userInitials: {
+      type: String,
+      default: '',
     },
     //! Menu items
     menuItems: {
@@ -150,7 +160,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 body {
   transition: all 0.5s ease;
@@ -178,16 +187,33 @@ body {
   align-items: center;
   position: relative;
 }
+.sidebar.open .logo-details .icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 20px;
+  position: relative;
+}
+.sidebar.open .logo-details .icon:before {
+  content: var(--content);
+  font-family: "GothamPro", sans-serif;
+  color: #F5F5F5;
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
 }
 .sidebar .logo-details .logo_name {
   color: #F5F5F5;
-  font-size: 20px;
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  white-space: nowrap;
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
@@ -311,5 +337,8 @@ body {
 }
 .my-settings {
   margin: 0px 14px;
+}
+.secondaryColor {
+  background: hsl(210, 70%, 15%);
 }
 </style>

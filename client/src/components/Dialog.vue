@@ -4,7 +4,7 @@
       <i class="bx bx-x"/>
     </div>
     <h5 class="hint">{{ title }}</h5>
-    <input v-model="name" :autofocus="true" :placeholder="placeholder" :maxlength="40">
+    <input v-if="!isConfirm" v-model="name" :autofocus="true" :placeholder="placeholder" :maxlength="40">
     <div class="footer">
       <div class="send-answer"
            @click="submit(name)">
@@ -35,7 +35,7 @@ export default {
       };
     },
   },
-  props: ['submit', 'title', 'placeholder'],
+  props: ['submit', 'title', 'placeholder', 'isConfirm'],
 };
 </script>
 
@@ -104,6 +104,7 @@ export default {
 .adaptive-modal .footer .send-answer:hover{
   /*background: rgba(0,0,0,0.24);*/
   background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+  border: 1px solid rgba(0,0,0,0.5);
   cursor: pointer;
   color: #F5F5F5;
 }

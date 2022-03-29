@@ -1,6 +1,6 @@
 <template>
   <main>
-    <background :animated="true" :filter-blur="25" :count-points="100"/>
+    <background :animated="true" :filter-blur="25"/>
     <sign-up @changeSign="changeSign" @signUp="signUp" v-if="sign === 'up'"/>
     <sign-in @changeSign="changeSign" @signIn="signUp" v-if="sign === 'in'"/>
   </main>
@@ -17,7 +17,7 @@ export default {
   components: { 'background': Background, 'sign-up': SignUp, 'sign-in': SignIn },
   data() {
     return {
-      documentTitle: 'авторизация',
+      documentTitle: 'Вход в систему',
       sign: 'up',
       session: {
         user: {},
@@ -33,8 +33,8 @@ export default {
       }
     },
     signUp(user) {
-      this.user = user;
-      console.log(this.user);
+      localStorage.setItem('user', JSON.stringify(user));
+      this.$router.push('main');
     },
   },
   created() {

@@ -13,6 +13,7 @@ export default new Router({
       name: 'main',
       component: Main,
       alias: ['/championships', '/maps', '/tasks', '/teams', '/users'],
+      props: true,
     },
     {
       path: '/map-creator',

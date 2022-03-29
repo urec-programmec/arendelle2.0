@@ -179,7 +179,6 @@ export default {
   },
   methods: {
     getMap() {
-      // const path = 'http://localhost:5000/mapSettings';
       if (this.linkedMap !== {} && this.linkedMap !== undefined) {
         this.mapSizeX = this.linkedMap.sizeX;
         this.mapSizeY = this.linkedMap.sizeY;
@@ -672,7 +671,7 @@ export default {
         map: this.map,
         sizeX: this.mapSizeX,
         sizeY: this.mapSizeY,
-        author: 5,
+        author: JSON.parse(localStorage.getItem('user')).id,
       };
       axios.post(this.pathSaveMap, data)
         .then(() => {
@@ -719,7 +718,13 @@ export default {
     document.title = this.documentTitle;
   },
   mounted() {
-    this.getMap();
+    if (!localStorage.getItem('user')) {
+      this.$router.push('/login');
+    } else if (JSON.parse(localStorage.getItem('user')).role === 1) {
+      this.$router.push('/main');
+    } else {
+      this.getMap();
+    }
   },
   destroyed() {
     window.removeEventListener('wheel', this.onScroll);
