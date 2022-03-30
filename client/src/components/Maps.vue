@@ -14,7 +14,7 @@
            @mouseenter="hoverMap = 'map-' + index">
         <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
         <div @click="deleteMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-delete', 'bx', 'bx-x', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
-        <div @click="copyMap(index)" v-if="loadedAll" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0 }"></div>
+        <div @click="copyMap(index)" v-if="loadedAll" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
         <div class="map-description map-name">
           {{ map.name }}
         </div>
@@ -54,7 +54,6 @@ export default {
       pathRenameMap: 'http://localhost:5050/renameMap',
       pathDeleteMap: 'http://localhost:5050/deleteMap',
       user: {},
-      documentTitle: 'карты',
       maps: [],
       defaultMaps: [],
       searchValue: '',
@@ -154,6 +153,9 @@ export default {
     },
     drawCanvas(id, map) {
       const canvas = document.getElementById(id);
+      if (!canvas) {
+        return;
+      }
       const context = canvas.getContext('2d');
       context.clearRect(0, 0, this.canvasSize, this.canvasSize);
       let canvasItemSize = (this.canvasSize / Math.max(map.sizeX, map.sizeY));
@@ -257,17 +259,12 @@ export default {
         .then((res) => {
           this.defaultMaps = res.data.maps;
           this.maps = res.data.maps;
-          this.$nextTick(() => {
-            this.loadMaps();
-          });
+          this.filterMaps();
         })
         .catch((error) => {
           console.error(error);
         });
     },
-  },
-  created() {
-    document.title = this.documentTitle;
   },
   mounted() {
     if (localStorage.getItem('user')) {
@@ -414,7 +411,7 @@ export default {
   opacity: 0;
   background: rgba(33, 37, 41, 0.6);
   border: 1px solid;
-  border-radius: 0.25rem;
+  /*border-radius: 0.25rem;*/
   color: rgba(245, 245, 245, 0.7);
 }
 .map-item-copy:before ,
@@ -429,7 +426,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 0.25rem;
   z-index: -1;
 }
 .map-item-copy:hover,
@@ -444,18 +440,22 @@ export default {
   top: 0;
   height: 50%;
   width: 50%;
+  border-top-left-radius: 0.25rem;
 }
 .map-item-delete {
   left: 50%;
   top: 0;
   height: 50%;
   width: 50%;
+  border-top-right-radius: 0.25rem;
 }
 .map-item-copy {
   left: 0;
   top: 50%;
   height: 50%;
   width: 100%;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 .map-item-hovered-create:hover,
 .map-item-hovered {

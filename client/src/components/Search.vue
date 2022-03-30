@@ -57,7 +57,7 @@ export default {
       searchByItems: [
         {
           type: 'name',
-          name: 'название карты',
+          name: 'название',
         },
         {
           type: 'author',

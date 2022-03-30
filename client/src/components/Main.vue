@@ -1,9 +1,13 @@
 <template>
   <main>
     <background :animated="false" :filter-blur="40"/>
-    <main-menu :menuTitle="user.nickname" :userBackground="user.color" :userInitials="userInitials" :userRole="user.role"
-      @changeTab="changeTab" @logout="logout"/>
+    <main-menu :menuTitle="user.nickname"
+               :userBackground="user.color"
+               :userInitials="userInitials"
+               :userRole="user.role"
+               @changeTab="changeTab" @logout="logout"/>
     <maps v-if="tab === 'maps' && user.role !== 1"></maps>
+    <tasks v-if="tab === 'tasks' && user.role !== 1"></tasks>
     <message/>
   </main>
 </template>
@@ -12,23 +16,23 @@
 import Background from './Background';
 import MainMenu from './MainMenu';
 import Maps from './Maps';
+import Tasks from './Tasks';
 import Message from './MapCreator/Message';
 
 
 export default {
   name: 'Main',
-  components: { 'background': Background, 'main-menu': MainMenu, 'maps': Maps, message: Message },
+  components: { 'background': Background, 'main-menu': MainMenu, 'maps': Maps, message: Message, tasks: Tasks },
   data() {
     return {
-      tab: '',
+      tab: 'profile',
       user: {},
       userInitials: '',
     };
   },
   methods: {
     changeTab(data) {
-      this.tab = data['openedTab'];
-      this.$router.replace({ path: this.tab }).catch(() => {});
+      this.tab = data['tab'];
     },
     logout() {
       this.showMessage('выйти',
@@ -52,7 +56,12 @@ export default {
     }
     this.user = JSON.parse(user);
     this.userInitials = '\''.concat(this.user.name[0], this.user.surname[0], '\'').toUpperCase();
-    this.tab = this.user.role === 1 ? 'championships' : 'maps';
+    this.tab = this.$route.path.slice(1);
+    if (this.tab === 'main') {
+      this.tab = 'profile';
+    }
+    window.onbeforeunload = null;
+    this.$emit('changeTab', { tab: this.tab });
   },
 };
 </script>

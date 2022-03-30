@@ -182,6 +182,7 @@ export default {
       if (this.linkedMap !== {} && this.linkedMap !== undefined) {
         this.mapSizeX = this.linkedMap.sizeX;
         this.mapSizeY = this.linkedMap.sizeY;
+        this.$emit('initMapSize', { sizeX: this.mapSizeX, sizeY: this.mapSizeY });
         for (let y = 0; y < this.mapSizeY; y++) {
           let row = [];
           for (let x = 0; x < this.mapSizeX; x++) {
@@ -533,7 +534,7 @@ export default {
       }
     },
     onScroll(e) {
-      if (this.isTesting) {
+      if (this.isTesting && !this.isTaskOpened) {
         e.preventDefault();
         e.stopPropagation();
         return false;
@@ -723,6 +724,7 @@ export default {
     } else if (JSON.parse(localStorage.getItem('user')).role === 1) {
       this.$router.push('/main');
     } else {
+      window.onbeforeunload = () => true;
       this.getMap();
     }
   },

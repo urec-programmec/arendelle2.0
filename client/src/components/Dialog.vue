@@ -26,7 +26,7 @@ export default {
     _modalFlexPosition(w, h) {
       this.$el.style.width = '270px';
       this.$el.style.maxHeight = window.innerHeight * 0.8 + 'px';
-      this.$el.style.borderRadius = '5px';
+      this.$el.style.borderRadius = '0.25rem';
       this.$el.style.overflow = 'scroll';
       return {
         type: 'column',

@@ -344,6 +344,10 @@ export default {
         this.openCloseMenu();
       }
     },
+    initMapSize(data) {
+      this.mapSizeX = data['sizeX'];
+      this.mapSizeY = data['sizeY'];
+    },
     openSettingsMenu() {
       if (!this.isOpened) {
         setTimeout(() => {
@@ -446,6 +450,7 @@ export default {
   },
   created() {
     this.$parent.$on('closeMenu', this.close);
+    this.$parent.$on('initMapSize', this.initMapSize);
     let user = JSON.parse(localStorage.getItem('user'));
     this.userBackground = user.color;
     this.userInitials = '\''.concat(user.name[0], user.surname[0], '\'').toUpperCase();

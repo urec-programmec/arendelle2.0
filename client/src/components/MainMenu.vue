@@ -19,7 +19,8 @@
            class="my-settings">
         <ul>
             <span v-for="(menuItem, menuIndex) in menuItems"
-                  :key="menuIndex">
+                  :key="menuIndex"
+                  v-if="menuItem.availableFor.includes(userRole)">
               <li>
                 <div :class="['menu_item', 'menu_item_not_hover', { 'selected-menu-item': openedItem === menuItem.id }]">
                   <div class="menu_item_row"
@@ -59,13 +60,21 @@ export default {
   data() {
     return {
       isOpen: false,
-      openedItem: 'maps',
+      openedItem: '',
     };
   },
   methods: {
     close() {
       if (this.isOpen) {
         this.openCloseMenu();
+      }
+    },
+    changeTab(data) {
+      this.openedItem = data.tab;
+      for (let i of this.menuItems) {
+        if (i['id'] === this.openedItem) {
+          document.title = i['name'].charAt(0).toUpperCase() + i['name'].slice(1);
+        }
       }
     },
     openCloseMenu() {
@@ -82,12 +91,16 @@ export default {
       this.isOpen = true;
       for (let i of this.menuItems) {
         i['isOpen'] = false;
+        if (i['id'] === id) {
+          document.title = i['name'].charAt(0).toUpperCase() + i['name'].slice(1);
+        }
       }
       this.openedItem = id;
       this.sendChangeTab();
     },
     sendChangeTab() {
-      this.$emit('changeTab', { 'openedTab': this.openedItem });
+      this.$router.replace({ path: this.openedItem }).catch(() => {});
+      this.$emit('changeTab', { 'tab': this.openedItem });
     },
   },
   props: {
@@ -103,29 +116,55 @@ export default {
       type: String,
       default: '',
     },
+    userRole: {
+      type: Number,
+      default: 0,
+    },
     //! Menu items
     menuItems: {
       type: Array,
       default: () => [
         {
+          name: 'профиль',
+          icon: 'bxs-id-card',
+          id: 'profile',
+          availableFor: [1, 2, 3],
+        },
+        {
           name: 'чемпионаты',
           icon: 'bxs-bar-chart-alt-2',
           id: 'championships',
+          availableFor: [1, 2, 3],
         },
         {
-          name: 'карты',
+          name: 'шаблоны карт',
           icon: 'bxs-image',
           id: 'maps',
+          availableFor: [2, 3],
         },
         {
           name: 'задачи',
           icon: 'bx-task',
           id: 'tasks',
+          availableFor: [2, 3],
         },
         {
           name: 'пользователи',
           icon: 'bxs-user',
           id: 'users',
+          availableFor: [2, 3],
+        },
+        {
+          name: 'команды',
+          icon: 'bxs-group',
+          id: 'teams',
+          availableFor: [1],
+        },
+        {
+          name: 'уведомления',
+          icon: 'bxs-bell',
+          id: 'notifications',
+          availableFor: [1, 2, 3],
         },
       ],
     },
@@ -148,6 +187,7 @@ export default {
   },
   created() {
     this.$parent.$on('closeMenu', this.close);
+    this.$parent.$on('changeTab', this.changeTab);
   },
 };
 </script>

@@ -119,7 +119,7 @@ def checkSignUp():
          'nickname': users[0].nickname,
          'name': users[0].name,
          'surname': users[0].surname,
-         'user_role': users[0].user_role,
+         'role': users[0].user_role,
          # 'user_role': db.session.query(UserRole).filter_by(id=users[0].user_role).first().name,
          'institution': users[0].institution,
          'team': users[0].team,

@@ -12,7 +12,7 @@ export default new Router({
       path: '/main',
       name: 'main',
       component: Main,
-      alias: ['/championships', '/maps', '/tasks', '/teams', '/users'],
+      alias: ['/profile', '/championships', '/maps', '/tasks', '/teams', '/users', '/notifications'],
       props: true,
     },
     {

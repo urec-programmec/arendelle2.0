@@ -38,6 +38,9 @@ export default {
     },
   },
   created() {
+    if (localStorage.getItem('user')) {
+      this.$router.push('main');
+    }
     document.title = this.documentTitle;
   },
 };
