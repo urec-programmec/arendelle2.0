@@ -51,8 +51,8 @@
 import 'vue-slider-component/theme/antd.css';
 import VueSlider from 'vue-slider-component';
 
-import '../assets/css/custom-dot.css';
-import '../assets/css/exit.css';
+import '../../assets/css/custom-dot.css';
+import '../../assets/css/exit.css';
 
 export default {
   name: 'MainMenu',

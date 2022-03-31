@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Main from '@/components/Main';
-import Login from '@/components/Login';
+import Main from '@/components/Main/Main';
+import Login from '@/components/Login/Login';
 import Map from '@/components/MapCreator/Map';
+import Task from '@/components/TaskCreator/Task';
 
 Vue.use(Router);
 
@@ -19,6 +20,12 @@ export default new Router({
       path: '/map-creator',
       name: 'map-creator',
       component: Map,
+      props: true,
+    },
+    {
+      path: '/task-creator',
+      name: 'task-creator',
+      component: Task,
       props: true,
     },
     {

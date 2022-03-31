@@ -38,9 +38,9 @@
 import ModalWizard from 'vue-modal-wizard';
 import axios from 'axios';
 import Vue from 'vue';
-import modalDialog from './Dialog';
-import modalTask from './MapCreator/Task';
-import Search from './Search';
+import modalDialog from './Main/Dialog';
+import modalTask from './Main/Task';
+import Search from './Main/Search';
 
 Vue.use(ModalWizard);
 
@@ -237,8 +237,8 @@ export default {
     },
     submitCreateTask(name) {
       this.$modal.close();
-      // let params = name === '' ? {} : { mapName: name };
-      // this.$router.push({ name: 'task-creator', params });
+      let params = name === '' ? {} : { taskName: name };
+      this.$router.push({ name: 'task-creator', params });
     },
     filterTasks() {
       // let newMaps = [];

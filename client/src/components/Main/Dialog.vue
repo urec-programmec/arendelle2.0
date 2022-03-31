@@ -77,7 +77,7 @@ export default {
   padding: 15px 20px 5px;
   color: black;
   margin: 0;
-  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 12%);
+  /*box-shadow: inset 0 -1px 0 rgb(0 0 0 / 12%);*/
 }
 .adaptive-modal .footer {
   width: 100%;

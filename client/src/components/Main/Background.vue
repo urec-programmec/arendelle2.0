@@ -214,7 +214,7 @@ export default {
 }
 .background:before {
   content: '';
-  background-image: url('../assets/images/special/background.jpg');
+  background-image: url('../../assets/images/special/background.jpg');
   position: absolute;
   margin: 0;
   padding: 0;

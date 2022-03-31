@@ -6,6 +6,11 @@
           { 'toggle-switch-item-selected' : selected === item.type }, ]"
           v-for="(item, index) in items"
           :key="index"
+          :style="{ '--background-first-color' : backgroundFirstColor,
+                     '--background-second-color' : backgroundSecondColor,
+                     '--text-first-color' : textFirstColor,
+                     '--text-second-color' : textSecondColor,
+                     '--border-color' : borderColor }"
           @click="select(item.type)">{{ item.name }}</div>
   </div>
 </template>
@@ -34,6 +39,26 @@ export default {
       type: String,
       default: '',
     },
+    backgroundFirstColor: {
+      type: String,
+      default: '#F5F5F5',
+    },
+    backgroundSecondColor: {
+      type: String,
+      default: 'rgba(0,0,0,0.5)',
+    },
+    textFirstColor: {
+      type: String,
+      default: 'rgba(0,0,0,0.8)',
+    },
+    textSecondColor: {
+      type: String,
+      default: '#F5F5F5',
+    },
+    borderColor: {
+      type: String,
+      default: 'rgba(0,0,0,0.5)',
+    },
   },
   mounted() {
     this.items = this.defaultItems;
@@ -49,13 +74,13 @@ export default {
   height: max-content;
 }
 .toggle-switch-item {
-  background: #F5F5F5;
+  background: var(--background-first-color);
   font-size: 0.9em;
-  color: rgba(0,0,0,0.8);
+  color: var(--text-first-color);
   border-left: 1px solid;
   border-top: 1px solid;
   border-bottom: 1px solid;
-  border-color: rgba(0,0,0,0.5);
+  border-color: var(--border-color);
   padding: 2px 10px;
   display: flex;
   justify-content: center;
@@ -72,10 +97,10 @@ export default {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   border-right: 1px solid;
-  border-color: rgba(0,0,0,0.5);
+  border-color: var(--border-color);
 }
 .toggle-switch-item-selected {
-  color: #F5F5F5;
-  background: rgba(0,0,0,0.5);
+  color: var(--text-second-color);
+  background: var(--background-second-color);
 }
 </style>

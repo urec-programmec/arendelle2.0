@@ -15,9 +15,9 @@
 <script>
 import Background from './Background';
 import MainMenu from './MainMenu';
-import Maps from './Maps';
-import Tasks from './Tasks';
-import Message from './MapCreator/Message';
+import Maps from '../Maps';
+import Tasks from '../Tasks';
+import Message from './Message';
 
 
 export default {

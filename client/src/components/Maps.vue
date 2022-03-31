@@ -40,8 +40,8 @@
 import ModalWizard from 'vue-modal-wizard';
 import axios from 'axios';
 import Vue from 'vue';
-import modal from './Dialog';
-import Search from './Search';
+import modal from './Main/Dialog';
+import Search from './Main/Search';
 
 Vue.use(ModalWizard);
 

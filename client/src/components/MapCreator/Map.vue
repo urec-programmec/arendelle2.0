@@ -75,8 +75,8 @@ import VueSlider from 'vue-slider-component';
 import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
 import TestMap from './TestMap';
-import Message from './Message';
-import modal from './Task';
+import Message from '../Main/Message';
+import modal from '../Main/Task';
 import InstrumentPanel from './InstrumentPanel';
 import '../../assets/css/custom-dot.css';
 
@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       pathSaveMap: 'http://localhost:5050/saveMap',
-      documentTitle: 'создатель карт',
+      documentTitle: 'Создание карты',
       mapSizeX: 50,
       mapSizeY: 50,
       map: [],
@@ -840,7 +840,6 @@ export default {
   height: 130%;
   left: -15%;
   top: -15%;
-  -webkit-filter: blur(30px);
   filter: blur(10px);
 }
 .color-blindness #color-blindness-1,

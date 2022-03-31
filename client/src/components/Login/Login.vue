@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Background from './Background';
+import Background from '../Main/Background';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 

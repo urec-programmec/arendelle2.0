@@ -110,7 +110,7 @@
 import axios from 'axios';
 import { ModelSelect } from 'vue-search-select';
 import 'vue-search-select/dist/VueSearchSelect.css';
-import ToggleSwitch from './ToggleSwitch';
+import ToggleSwitch from '../Main/ToggleSwitch';
 
 export default {
   name: 'SignIn',
