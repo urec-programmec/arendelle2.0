@@ -137,7 +137,7 @@ def saveUser():
         name = data['name']
         surname = data['surname']
         institutionId = data['institutionId']
-        password = md5((request.get_json()['password']).encode('cp1252')).hexdigest()
+        password = md5((data['password']).encode('cp1252')).hexdigest()
         color = data['color']
         role = data['role']
 
@@ -159,6 +159,22 @@ def saveUser():
 
         return jsonify(response_object)
 
+
+@app.route('/saveTask', methods=['POST'])
+def saveTask():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        content = request.files.get('image').read()
+        answer = request.form.get('answer')
+        complexity = request.form.get('complexity')
+        type_of_response = request.form.get('typeOfResponse')
+        created_by = request.form.get('createdBy')
+
+        newTask = TaskContent(content=content, answer=answer, complexity=complexity, type_of_response=type_of_response, created_by=created_by)
+        db.session.add(newTask)
+        db.session.commit()
+
+        return jsonify(response_object)
 
 
 

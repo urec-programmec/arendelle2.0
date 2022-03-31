@@ -132,7 +132,8 @@ class TaskContent(Base):
     __tablename__ = 'task_content'
     id = Column(BigInteger, primary_key=True)
     content = Column(LargeBinary(length=(2**24)-1), nullable=False)
-    answer = Column(String(500), nullable=False)
+    answer = Column(JSON, nullable=False)
+    complexity = Column(Integer, nullable=False)
     type_of_response = Column(BigInteger, ForeignKey('type_of_response.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
 

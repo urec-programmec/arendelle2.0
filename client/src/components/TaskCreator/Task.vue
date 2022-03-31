@@ -2,23 +2,11 @@
   <main id="task-main" @mouseup="onDrawEnd">
     <div class="background"></div>
     <left-menu @openCloseMenu="openCloseMenu"
-               @exitMap="exitMap"
-               @changeMapName="changeMapName"
+               @exitMap="exitTask"
+               @changeMapName="changeTaskName"
                :mapName="taskName"/>
     <div class="task-container">
-      <div class="task-image bx bx-image-add" :style="{
-                     maxWidth: getTaskSizeX() + 'px',
-                     width: getTaskSizeX() + 'px',
-                     minHeight: getTaskSizeY() + 'px',
-                     maxHeight: getTaskSizeY() + 'px',
-                     height: getTaskSizeY() + 'px',
-                     margin: '15px'}">
-        <canvas id="mapCanvas"
-                :style="{width: getTaskSizeX() + 'px',
-                         height: getTaskSizeY() + 'px'}"
-                @mousemove="move"
-                @mousedown="move"/>
-      </div>
+      <file-loader @fileUpload="fileUpload"/>
     </div>
     <div class="task-settings">
       <p>сложность задачи</p>
@@ -85,7 +73,7 @@
              @input="check"
              :class="[ { 'answer-correct': isInput && isCorrect }, { 'answer-incorrect': isInput && !isCorrect } ]"/>
     </div>
-    <test-map @testMap="check"/>
+    <test-task @testTask="check"/>
     <message/>
     <span class="footer" :style="footerStyle">
       <div :style="{ display: 'flex',
@@ -94,7 +82,7 @@
         <p>h: {{ taskSizeY }}px</p>
       </div>
       <i class="bx bx-log-in save-map"
-         @click="saveMap"/>
+         @click="saveTask"/>
     </span>
   </main>
 </template>
@@ -108,6 +96,7 @@ import { MultiSelect } from 'vue-search-select';
 import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
 import TestTask from './TestTask';
+import FileLoader from './FileLoader';
 import Message from '../Main/Message';
 import '../../assets/css/custom-dot.css';
 import ToggleSwitch from '../Main/ToggleSwitch';
@@ -116,10 +105,17 @@ Vue.use(ModalWizard);
 
 export default {
   name: 'Task',
-  components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'test-map': TestTask, 'message': Message, ModalWizard, 'toggle-switch': ToggleSwitch, 'multi-select': MultiSelect },
+  components: { 'vue-slider': VueSlider,
+    'left-menu': Menu,
+    'test-task': TestTask,
+    'message': Message,
+    ModalWizard,
+    'toggle-switch': ToggleSwitch,
+    'file-loader': FileLoader,
+    'multi-select': MultiSelect },
   data() {
     return {
-      pathSaveMap: 'http://localhost:5050/saveMap',
+      pathSaveTask: 'http://localhost:5050/saveTask',
       documentTitle: 'Создание задачи',
       taskSizeX: 0,
       taskSizeY: 0,
@@ -141,7 +137,7 @@ export default {
         {
           type: 'regexp',
           name: 'по шаблону',
-          hint: 'нечеткое сравнение по шаблону',
+          hint: 'нечеткое совпадение с шаблоном',
           hintLink: {
             name: 'справка',
             href: 'https://support.google.com/a/answer/1371415?hl=ru',
@@ -165,6 +161,9 @@ export default {
 
       answerRegexp: '',
       answerRegexpCheck: '',
+
+      formData: null,
+      answer: {},
     };
   },
   methods: {
@@ -177,6 +176,7 @@ export default {
       this.answersManyCheck = [];
       this.answerRegexp = '';
       this.answerRegexpCheck = '';
+      this.answer = {};
 
       for (let i = 0; i < this.answerTabs.length; i++) {
         if (this.answerTabs[i].type === data['selection']) {
@@ -186,9 +186,16 @@ export default {
       }
     },
     check() {
+      this.answer = {};
       if (this.answerTab === 0) {
         this.isCorrect = this.answerOne === this.answerOneCheck;
+        if (this.answerOne !== '') {
+          this.answer = { 0: ''.concat(this.answerOne) };
+        }
       } else if (this.answerTab === 1) {
+        for (let i of this.answersMany) {
+          this.answer[Object.keys(this.answer).length] = i.text;
+        }
         if (this.answersMany.length !== this.answersManyCheck.length) {
           this.isCorrect = false;
           return;
@@ -208,6 +215,9 @@ export default {
         this.isCorrect = true;
       } else if (this.answerTab === 2) {
         this.isCorrect = new RegExp('^' + this.answerRegexp + '$').test(this.answerRegexpCheck);
+        if (this.answerRegexp !== '') {
+          this.answer = { 0: ''.concat(this.answerRegexp) };
+        }
       }
     },
     multiInput() {
@@ -237,75 +247,12 @@ export default {
     stopProp(event) {
       event.stopPropagation();
     },
-    changeTab(tab) {
-      if (this.answerTab === tab) {
-        this.answerTab = '';
-      } else {
-        this.answerTab = tab;
-      }
-    },
     getTask() {
       this.currentTaskName = this.taskName;
-      this.canvas = document.getElementById('mapCanvas');
-      this.context = this.canvas.getContext('2d');
       this.showMessage('создание задачи',
         'загрузите картинку с шаблоном задачи, выберите сложность и способ ответа',
         'special',
         12000);
-      // this.drawCanvas();
-    },
-    move(e) {
-      // console.log('move');
-      // if (this.isTesting) {
-      //   return;
-      // }
-      // let params = this.getItemPosition(e);
-      // let rowIndex = Math.floor(params.y / this.mapZoom);
-      // let itemIndex = Math.floor(params.x / this.mapZoom);
-      // if (rowIndex < 0) rowIndex = 0;
-      // if (rowIndex >= this.mapSizeY) rowIndex = this.mapSizeY - 1;
-      // if (itemIndex < 0) itemIndex = 0;
-      // if (itemIndex >= this.mapSizeX) itemIndex = this.mapSizeX - 1;
-      //
-      // if (this.cursorPositionY === rowIndex && this.cursorPositionX === itemIndex) {
-      //   return;
-      // }
-      // this.cursorPositionY = rowIndex;
-      // this.cursorPositionX = itemIndex;
-      // this.oldSelectedItems = this.selectedItems;
-      // this.selectedItems = [];
-      // let tempCursorSize = this.cursorSize - 1;
-      // for (let y = rowIndex - tempCursorSize; y <= rowIndex + tempCursorSize; y++) {
-      //   for (let x = itemIndex - tempCursorSize; x <= itemIndex + tempCursorSize; x++) {
-      //     if (y < 0 || x < 0 || y >= this.mapSizeY || x >= this.mapSizeX) {
-      //       continue;
-      //     }
-      //
-      //     let delta = (rowIndex === y && itemIndex === x) ?
-      //       0 :
-      //       Math.sqrt((rowIndex - y) ** 2 + (itemIndex - x) ** 2);
-      //
-      //     let isCircle = this.cursorForm === 'circle' &&
-      //       (this.cursorSolid && delta <= tempCursorSize ||
-      //         !this.cursorSolid && tempCursorSize - delta <= this.cursorSizeDelta && tempCursorSize - delta >= 0 &&
-      //         !(tempCursorSize === 1 && (rowIndex === y && itemIndex === x)));
-      //
-      //     let isSquare = this.cursorForm !== 'circle' &&
-      //       (this.cursorSolid ||
-      //         y === rowIndex - tempCursorSize ||
-      //         y === rowIndex + tempCursorSize ||
-      //         x === itemIndex - tempCursorSize ||
-      //         x === itemIndex + tempCursorSize);
-      //
-      //     if (isCircle || isSquare) {
-      //       this.selectedItems.push({ x, y });
-      //     }
-      //   }
-      // }
-      // this.drawSelection();
-      // if (this.isDrawing) {
-      //   this.draw();
-      // }
     },
     onDrawEnd() {
       this.isDrawing = false;
@@ -313,98 +260,61 @@ export default {
     openCloseMenu(data) {
       this.isMenuOpen = data['isOpen'];
     },
-    getTaskSizeX() {
-      return this.taskSizeX * this.taskZoom;
-    },
-    getTaskSizeY() {
-      return this.taskSizeY * this.taskZoom;
-    },
-    drawCanvas() {
-      console.log('draw');
-      // this.context.fillStyle = 'wheat';
-      // this.context.fillRect(0,
-      //   0,
-      //   this.taskSizeX * this.taskZoom,
-      //   this.taskSizeY * this.taskZoom);
-
-      // this.oldSelectedItems = [];
-      // this.selectedItems = [];
-      // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      // this.canvas.width = this.getMapSizeX();
-      // this.canvas.height = this.getMapSizeY();
-      // for (let y = 0; y < this.mapSizeY; y++) {
-      //   for (let x = 0; x < this.mapSizeX; x++) {
-      //     let image = this.images.at(this.imagesSrc.indexOf(this.map[y][x].src === '' ? this.foneSrc : this.map[y][x].src));
-      //     this.drawImage(image, x, y, this.map[y][x].type);
-      //   }
-      // }
-    },
-    drawImage(image, x, y, type) {
-      // if (this.isColorBlindness) {
-      //   if (this.roomTypes.includes(type)) {
-      //     this.context.fillStyle = this.colorBlindnessRoom;
-      //   } else {
-      //     this.context.fillStyle = this.colorBlindnessBorder;
-      //   }
-      //   this.context.fillRect(x * this.mapZoom,
-      //     y * this.mapZoom,
-      //     this.mapZoom - this.spaceSize,
-      //     this.mapZoom - this.spaceSize);
-      // } else {
-      //   this.context.drawImage(image,
-      //     x * this.mapZoom,
-      //     y * this.mapZoom,
-      //     this.mapZoom - this.spaceSize,
-      //     this.mapZoom - this.spaceSize);
-      // }
-      // if (this.map[y][x].task) {
-      //   this.context.clearRect(x * this.mapZoom,
-      //     y * this.mapZoom,
-      //     this.mapZoom - this.spaceSize,
-      //     this.mapZoom - this.spaceSize);
-      //   let taskImage = this.images.at(this.imagesSrc.indexOf(this.taskSrc));
-      //   this.context.drawImage(taskImage,
-      //     x * this.mapZoom,
-      //     y * this.mapZoom,
-      //     this.mapZoom - this.spaceSize,
-      //     this.mapZoom - this.spaceSize);
-      // }
-    },
     showMessage(title, message, messageType, delay, functionConfirm) {
       this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
     },
-    saveMap() {
+    saveTask() {
       this.showMessage('сохранить задачу',
         'закончить редактирование и сохранить задачу?',
         'confirm',
         15000,
-        this.sendSaveMap);
+        this.sendSaveTask);
     },
-    sendSaveMap() {
-      console.log('save');
-      // let data = {
-      //   mapName: this.currentMapName.trim(),
-      //   map: this.map,
-      //   sizeX: this.mapSizeX,
-      //   sizeY: this.mapSizeY,
-      //   author: JSON.parse(localStorage.getItem('user')).id,
-      // };
-      // axios.post(this.pathSaveMap, data)
-      //   .then(() => {
-      //     this.$router.push('/maps');
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+    sendSaveTask() {
+      if (!this.formData) {
+        this.showMessage('ошибка сохранения',
+          'файл шаблона задачи не загружен',
+          'error',
+          5000);
+        return;
+      }
+      if (Object.keys(this.answer).length === 0) {
+        this.showMessage('ошибка сохранения',
+          'ответ не может быть пустым',
+          'error',
+          5000);
+        return;
+      }
+
+      this.formData.set('answer', JSON.stringify(this.answer));
+      this.formData.set('typeOfResponse', this.answerTab + 1);
+      this.formData.set('createdBy', JSON.parse(localStorage.getItem('user')).id);
+      this.formData.set('complexity', this.taskСomplexity);
+
+      axios.post(this.pathSaveTask, this.formData)
+        .then(() => {
+          this.$router.push('/tasks');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    exitMap() {
+    fileUpload(data) {
+      if (data['formData']) {
+        this.formData = new FormData();
+        this.formData.append('image', data['formData'].get('image'));
+      } else {
+        this.formData = null;
+      }
+    },
+    exitTask() {
       this.showMessage('выйти',
         'прервать редактирование и выйти?',
         'confirm-error',
         15000,
         () => { this.$router.push('/tasks'); });
     },
-    changeMapName(data) {
+    changeTaskName(data) {
       this.currentTaskName = data['newMapName'];
     },
   },
@@ -442,7 +352,7 @@ export default {
     window.removeEventListener('keydown', this.onScrollKey);
   },
   props: {
-    linkedMap: {
+    linkedTask: {
       type: Object,
       default: () => {},
     },
