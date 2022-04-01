@@ -76,7 +76,7 @@ import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
 import TestMap from './TestMap';
 import Message from '../Main/Message';
-import modal from '../Main/Task';
+import modal from '../Main/TaskDialog';
 import InstrumentPanel from './InstrumentPanel';
 import '../../assets/css/custom-dot.css';
 

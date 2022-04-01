@@ -169,8 +169,9 @@ def saveTask():
         complexity = request.form.get('complexity')
         type_of_response = request.form.get('typeOfResponse')
         created_by = request.form.get('createdBy')
+        name = request.form.get('name')
 
-        newTask = TaskContent(content=content, answer=answer, complexity=complexity, type_of_response=type_of_response, created_by=created_by)
+        newTask = TaskContent(content=content, answer=answer, complexity=complexity, type_of_response=type_of_response, created_by=created_by, name=name)
         db.session.add(newTask)
         db.session.commit()
 

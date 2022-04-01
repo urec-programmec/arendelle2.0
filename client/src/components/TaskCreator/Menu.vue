@@ -49,7 +49,6 @@ export default {
       mapSizeY: 50,
       isResizing: false,
       name: '',
-      defaultName: 'новая карта',
 
       taskCount: 10,
       isLocationIconHover: false,
@@ -63,6 +62,10 @@ export default {
   },
   props: {
     //! Menu settings
+    defaultName: {
+      type: String,
+      default: 'новая карта',
+    },
     imagesSrc: {
       type: Array,
       default: () => [],

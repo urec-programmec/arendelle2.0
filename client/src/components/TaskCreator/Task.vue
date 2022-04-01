@@ -4,9 +4,10 @@
     <left-menu @openCloseMenu="openCloseMenu"
                @exitMap="exitTask"
                @changeMapName="changeTaskName"
+               :defaultName="taskName"
                :mapName="taskName"/>
     <div class="task-container">
-      <file-loader @fileUpload="fileUpload"/>
+      <file-loader @fileUpload="fileUpload" @changeSize="changeSize"/>
     </div>
     <div class="task-settings">
       <p>сложность задачи</p>
@@ -73,7 +74,7 @@
              @input="check"
              :class="[ { 'answer-correct': isInput && isCorrect }, { 'answer-incorrect': isInput && !isCorrect } ]"/>
     </div>
-    <test-task @testTask="check"/>
+    <test-task @testTask="testTask"/>
     <message/>
     <span class="footer" :style="footerStyle">
       <div :style="{ display: 'flex',
@@ -190,11 +191,11 @@ export default {
       if (this.answerTab === 0) {
         this.isCorrect = this.answerOne === this.answerOneCheck;
         if (this.answerOne !== '') {
-          this.answer = { 0: ''.concat(this.answerOne) };
+          this.answer = { 0: ''.concat(this.answerOne.trim()) };
         }
       } else if (this.answerTab === 1) {
         for (let i of this.answersMany) {
-          this.answer[Object.keys(this.answer).length] = i.text;
+          this.answer[Object.keys(this.answer).length] = i.text.trim();
         }
         if (this.answersMany.length !== this.answersManyCheck.length) {
           this.isCorrect = false;
@@ -216,7 +217,7 @@ export default {
       } else if (this.answerTab === 2) {
         this.isCorrect = new RegExp('^' + this.answerRegexp + '$').test(this.answerRegexpCheck);
         if (this.answerRegexp !== '') {
-          this.answer = { 0: ''.concat(this.answerRegexp) };
+          this.answer = { 0: ''.concat(this.answerRegexp.trim()) };
         }
       }
     },
@@ -290,6 +291,7 @@ export default {
       this.formData.set('typeOfResponse', this.answerTab + 1);
       this.formData.set('createdBy', JSON.parse(localStorage.getItem('user')).id);
       this.formData.set('complexity', this.taskСomplexity);
+      this.formData.set('name', this.currentTaskName.trim());
 
       axios.post(this.pathSaveTask, this.formData)
         .then(() => {
@@ -306,6 +308,13 @@ export default {
       } else {
         this.formData = null;
       }
+    },
+    changeSize(data) {
+      this.taskSizeX = data['w'];
+      this.taskSizeY = data['h'];
+    },
+    testTask() {
+
     },
     exitTask() {
       this.showMessage('выйти',

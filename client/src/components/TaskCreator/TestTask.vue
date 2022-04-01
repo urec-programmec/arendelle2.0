@@ -4,11 +4,8 @@
        @click.stop="test"
        @mouseenter="isHover = true"
        @mouseleave="isHover = false">
-    <i :class="['bx',
-    { 'hovered-exit-test' : isHover && isTesting },
-    { 'hovered-to-test' : isHover && !isTesting },
-    { 'bx-exit-fullscreen' : isTesting },
-    { 'bx-fullscreen' : !isTesting }]"/>
+    <i :class="['bx', 'bx-fullscreen',
+    { 'hovered-to-test' : isHover }]"/>
   </div>
 </template>
 
@@ -17,16 +14,12 @@ export default {
   name: 'TestTask',
   data() {
     return {
-      isTesting: false,
       isHover: false,
     };
   },
   methods: {
     test() {
-      this.isTesting = !this.isTesting;
-      this.$emit('testTask', {
-        isTesting: this.isTesting,
-      });
+      this.$emit('testTask');
     },
   },
 };
@@ -54,9 +47,6 @@ export default {
 }
 .test-map:hover i {
   cursor: pointer;
-}
-.hovered-exit-test {
-  transform: scale(0.8);
 }
 .hovered-to-test {
   transform: scale(1.2);

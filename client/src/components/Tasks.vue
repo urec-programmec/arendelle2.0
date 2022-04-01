@@ -39,7 +39,7 @@ import ModalWizard from 'vue-modal-wizard';
 import axios from 'axios';
 import Vue from 'vue';
 import modalDialog from './Main/Dialog';
-import modalTask from './Main/Task';
+import modalTask from './Main/TaskDialog';
 import Search from './Main/Search';
 
 Vue.use(ModalWizard);

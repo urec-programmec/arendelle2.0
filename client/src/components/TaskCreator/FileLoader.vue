@@ -14,7 +14,7 @@
       <div v-if="isSuccess">
         <ul class="bx bx-revision list-unstyled" @click="reset()">
           <li v-for="(item, index) in uploadedFiles" :key="index">
-            <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
+            <img id="image" :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
           </li>
         </ul>
       </div>
@@ -67,7 +67,9 @@ export default {
       this.uploadedFiles = [];
       this.uploadError = null;
       this.formData = null;
+
       this.$emit('fileUpload', { formData: this.formData });
+      this.$emit('changeSize', { w: 0, h: 0 });
     },
     save() {
       // upload data to the server
@@ -105,23 +107,26 @@ export default {
       return new Promise((resolve, reject) => {
         const fReader = new FileReader();
         const img = document.createElement('img');
+        img.onload = (event) => {
+          this.$emit('changeSize', { w: event.target.width, h: event.target.height });
+        };
         fReader.onload = () => {
           img.src = fReader.result;
-          resolve(this.getBase64Image(img));
+          resolve(img.src);
         };
         fReader.readAsDataURL(file);
       });
     },
-    getBase64Image(img) {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const dataURL = img.src;
-      return dataURL;
-    },
+    // getBase64Image(img) {
+      // const canvas = document.createElement('canvas');
+      // canvas.width = img.width;
+      // canvas.height = img.height;
+      //
+      // const ctx = canvas.getContext('2d');
+      // ctx.drawImage(img, 0, 0);
+      // const dataURL = img.src;
+      // return dataURL;
+    // },
   },
   mounted() {
     this.reset();
