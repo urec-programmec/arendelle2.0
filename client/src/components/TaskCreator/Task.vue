@@ -306,6 +306,9 @@ export default {
       if (!this.checkTask('просмотра')) {
         return;
       }
+      let hintMessage = Object.values(this.answer).length === 1 ?
+        ('ответ - ' + this.answer[0]) :
+        ('ответы - ' + Object.values(this.answer));
       ModalWizard.open(modal, {
         props: {
           taskTitle: this.currentTaskName,
@@ -313,6 +316,12 @@ export default {
           taskAnswer: this.answer,
           taskAnswerType: this.answerTab + 1,
           taskСomplexity: this.taskСomplexity,
+          showHintOnSubmit: true,
+          hintErrorMessageOnSubmit: hintMessage,
+          hintDelayOnSubmit: 3000,
+          showHintInitial: true,
+          hintMessageInitial: hintMessage,
+          hintDelayInitial: 3000,
         },
       });
     },

@@ -8,10 +8,10 @@
       <i :class="['bx', `bx-dice-${taskСomplexity}`]"/>
       &nbsp;{{ taskTitle }}
     </h5>
+    <message :is-fixed="false"/>
     <div class="header">
       <img :src="taskName">
     </div>
-
     <input v-if="taskAnswerType === 1"
            placeholder="одиночный ответ"
            @input="check"
@@ -32,17 +32,16 @@
     <div class="footer">
       <button class="send-answer" :disabled="!isAnswer" @click="onSubmit">отправить</button>
     </div>
-    <task-dialog-hint/>
   </div>
 </template>
 
 <script>
 import { MultiSelect } from 'vue-search-select';
-import TaskDialogHint from './TaskDialogHint';
+import Message from './Message';
 
 export default {
   name: 'TaskDialog',
-  components: { 'multi-select': MultiSelect, 'task-dialog-hint': TaskDialogHint },
+  components: { 'multi-select': MultiSelect, 'message': Message },
   data() {
     return {
       answersManyTaskOptions: [],
@@ -119,11 +118,11 @@ export default {
         let message = this.isCorrect ?
           (this.hintSuccessMessageOnSubmit === '' ? 'ответ верный' : this.hintSuccessMessageOnSubmit) :
           (this.hintErrorMessageOnSubmit === '' ? 'ответ не верный' : this.hintErrorMessageOnSubmit);
-        this.$emit('showHint', {
+
+        this.showMessage('отправка ответа',
           message,
-          showDelay: this.hintDelayOnSubmit,
-          showType: this.isCorrect ? 'success' : 'error',
-        });
+          this.isCorrect ? 'success' : 'error',
+          this.hintDelayOnSubmit);
       }
       if (this.isCorrect) {
         this.onSuccess();
@@ -131,14 +130,17 @@ export default {
         this.onError();
       }
     },
+    showMessage(title, message, messageType, delay, functionConfirm) {
+      this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
+    },
   },
   mounted() {
     if (this.showHintInitial) {
       setTimeout(() => {
-        this.$emit('showHint', {
-          message: this.hintMessageInitial,
-          showDelay: this.hintDelayInitial,
-        });
+        this.showMessage('открытие задачи',
+          this.hintMessageInitial,
+          'special',
+          this.hintDelayInitial);
       }, 150);
     }
   },
@@ -214,10 +216,10 @@ export default {
   font-size: 1em;
 }
 .adaptive-modal.correct {
-  box-shadow: 0 0 10px 10px rgba(54, 255, 54, 0.5) !important;
+  box-shadow: 0 0 20px 20px rgba(54, 255, 54, 0.5) !important;
 }
 .adaptive-modal.incorrect {
-  box-shadow: 0 0 10px 10px rgba(255, 54, 54, 0.5) !important;
+  box-shadow: 0 0 20px 20px rgba(255, 54, 54, 0.5) !important;
 }
 #multiInputTask,
 .adaptive-modal input {

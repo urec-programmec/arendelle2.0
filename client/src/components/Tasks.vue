@@ -162,7 +162,7 @@ export default {
           hintDelayOnSubmit: 3000,
           showHintInitial: true,
           hintMessageInitial: hintMessage,
-          hintDelayInitial: 300000,
+          hintDelayInitial: 3000,
         },
       });
     },

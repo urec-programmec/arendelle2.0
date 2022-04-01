@@ -1,18 +1,20 @@
 <template>
   <div class="message"
-       :style="{right: rightPosition + 'px'}">
+       :style="{right: rightPosition + 'px', position: isFixed ? 'fixed' : 'absolute'}">
     <i class="bx bx-x close-x"
         @click="closeMessage"/>
     <div>
       <i :class="['bx', 'bx-flip-horizontal ', messageTypeClass]"/>
       <div style="display: flex; flex-direction: column; min-width: 205px">
         <p style="font-size: 0.9em">{{ title }}</p>
-        <p>{{ message }}</p>
+        <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }">{{ message }}</p>
         <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">
-          <p class="button button-error"
+          <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }"
+             class="button button-error"
              @click="closeMessage">отмена</p>
-          <p class="button button-success"
-              @click="onConfirm">ок</p>
+          <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }"
+             class="button button-success"
+             @click="onConfirm">ок</p>
         </div>
       </div>
     </div>
@@ -36,6 +38,7 @@ export default {
         'error': 'bx-message-error error',
         'info': 'bx-message-detail info',
         'special': 'bx-message-error special',
+        'success': 'bx-message-check confirm',
         'confirm': 'bx-message-check confirm',
         'confirm-error': 'bx-message-error error',
       },
@@ -64,6 +67,12 @@ export default {
       this.functionConfirm();
     },
   },
+  props: {
+    isFixed: {
+      type: Boolean,
+      default: true,
+    },
+  },
   created() {
     this.$parent.$on('showMessage', this.show);
   },
@@ -72,7 +81,7 @@ export default {
 
 <style scoped>
 .message {
-  position: fixed;
+  /*position: fixed;*/
   min-height: 20px;
   width: 270px;
   height: max-content;
@@ -91,7 +100,6 @@ export default {
   position: relative;
   display: block;
   margin: 0;
-  font-size: 0.7em;
   width: max-content;
   max-width: 225px;
 }
