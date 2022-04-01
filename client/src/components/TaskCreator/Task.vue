@@ -288,7 +288,11 @@ export default {
           this.$router.push('/tasks');
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
+          this.showMessage('ошибка при сохранении',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
     },
     fileUpload(data) {

@@ -33,6 +33,7 @@
         </div>
       </div>
     </div>
+    <message/>
   </div>
 </template>
 
@@ -41,13 +42,14 @@ import ModalWizard from 'vue-modal-wizard';
 import axios from 'axios';
 import Vue from 'vue';
 import modal from './Main/Dialog';
+import Message from './Main/Message';
 import Search from './Main/Search';
 
 Vue.use(ModalWizard);
 
 export default {
   name: 'Maps',
-  components: { 'search': Search },
+  components: { 'search': Search, message: Message },
   data() {
     return {
       pathGetMap: 'http://localhost:5050/allMaps',
@@ -216,7 +218,11 @@ export default {
           this.preloadMaps();
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
+          this.showMessage('ошибка при удалении',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
     },
     submitRenameMap(name) {
@@ -229,7 +235,11 @@ export default {
           this.maps[this.renameIndex].name = name;
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
+          this.showMessage('ошибка при переименовании',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
     },
     submitCopyMap(name) {
@@ -263,7 +273,14 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.showMessage('ошибка при загрузке',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
+    },
+    showMessage(title, message, messageType, delay, functionConfirm) {
+      this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
     },
   },
   mounted() {

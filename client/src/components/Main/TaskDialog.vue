@@ -32,15 +32,17 @@
     <div class="footer">
       <button class="send-answer" :disabled="!isAnswer" @click="onSubmit">отправить</button>
     </div>
+    <task-dialog-hint/>
   </div>
 </template>
 
 <script>
 import { MultiSelect } from 'vue-search-select';
+import TaskDialogHint from './TaskDialogHint';
 
 export default {
   name: 'TaskDialog',
-  components: { 'multi-select': MultiSelect },
+  components: { 'multi-select': MultiSelect, 'task-dialog-hint': TaskDialogHint },
   data() {
     return {
       answersManyTaskOptions: [],
@@ -60,7 +62,7 @@ export default {
       this.$el.style.width = window.innerWidth * 0.8 + 'px';
       this.$el.style.maxHeight = window.innerHeight * 0.85 + 'px';
       this.$el.style.borderRadius = '0.25rem';
-      this.$el.style.overflow = 'scroll';
+      this.$el.style.overflow = 'hidden';
       return {
         type: 'column',
         top: '10vh',
@@ -113,12 +115,32 @@ export default {
     },
     onSubmit() {
       this.isCalculate = true;
+      if (this.showHintOnSubmit) {
+        let message = this.isCorrect ?
+          (this.hintSuccessMessageOnSubmit === '' ? 'ответ верный' : this.hintSuccessMessageOnSubmit) :
+          (this.hintErrorMessageOnSubmit === '' ? 'ответ не верный' : this.hintErrorMessageOnSubmit);
+        this.$emit('showHint', {
+          message,
+          showDelay: this.hintDelayOnSubmit,
+          showType: this.isCorrect ? 'success' : 'error',
+        });
+      }
       if (this.isCorrect) {
         this.onSuccess();
       } else {
         this.onError();
       }
     },
+  },
+  mounted() {
+    if (this.showHintInitial) {
+      setTimeout(() => {
+        this.$emit('showHint', {
+          message: this.hintMessageInitial,
+          showDelay: this.hintDelayInitial,
+        });
+      }, 150);
+    }
   },
   props: {
     taskName: {
@@ -151,6 +173,34 @@ export default {
       type: Function,
       default: () => { console.error('incorrect'); },
     },
+    showHintOnSubmit: {
+      type: Boolean,
+      default: false,
+    },
+    hintSuccessMessageOnSubmit: {
+      type: String,
+      default: '',
+    },
+    hintErrorMessageOnSubmit: {
+      type: String,
+      default: '',
+    },
+    hintDelayOnSubmit: {
+      type: Number,
+      default: 5000,
+    },
+    showHintInitial: {
+      type: Boolean,
+      default: false,
+    },
+    hintMessageInitial: {
+      type: String,
+      default: 'ответ - 1',
+    },
+    hintDelayInitial: {
+      type: Number,
+      default: 5000,
+    },
   },
 };
 </script>
@@ -160,15 +210,14 @@ export default {
   height: fit-content;
   background-color: #F5F5F5;
   color: rgba(17, 16, 29, 0.85);
-  /*overflow: scroll;*/
   box-shadow: 0 0 20px 20px rgba(54, 171, 255, 0.2);
   font-size: 1em;
 }
 .adaptive-modal.correct {
-  box-shadow: 0 0 20px 20px rgba(54, 255, 54, 0.5) !important;
+  box-shadow: 0 0 10px 10px rgba(54, 255, 54, 0.5) !important;
 }
 .adaptive-modal.incorrect {
-  box-shadow: 0 0 20px 20px rgba(255, 54, 54, 0.5) !important;
+  box-shadow: 0 0 10px 10px rgba(255, 54, 54, 0.5) !important;
 }
 #multiInputTask,
 .adaptive-modal input {

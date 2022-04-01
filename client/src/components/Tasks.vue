@@ -31,6 +31,7 @@
         </div>
       </div>
     </div>
+    <message/>
   </div>
 </template>
 
@@ -40,13 +41,14 @@ import axios from 'axios';
 import Vue from 'vue';
 import modalDialog from './Main/Dialog';
 import modalTask from './Main/TaskDialog';
+import Message from './Main/Message';
 import Search from './Main/Search';
 
 Vue.use(ModalWizard);
 
 export default {
   name: 'Tasks',
-  components: { 'search': Search },
+  components: { 'search': Search, message: Message },
   data() {
     return {
       user: {},
@@ -92,6 +94,10 @@ export default {
       const promises = this.tasks.map(task => this.getImage(new Blob(['data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(task.content)))]))
         .catch((err) => {
           console.error(err);
+          this.showMessage('ошибка при загрузке',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         }));
       return Promise.all(promises)
         .then(() => {
@@ -141,7 +147,9 @@ export default {
       });
     },
     watchTask(task) {
-      console.log(task);
+      let hintMessage = Object.values(task.answer).length === 1 ?
+        ('ответ - ' + task.answer[0]) :
+        ('ответы - ' + Object.values(task.answer));
       ModalWizard.open(modalTask, {
         props: {
           taskTitle: task.name,
@@ -149,6 +157,12 @@ export default {
           taskAnswer: task.answer,
           taskAnswerType: task.typeOfResponse,
           taskСomplexity: task.complexity,
+          showHintOnSubmit: true,
+          hintErrorMessageOnSubmit: hintMessage,
+          hintDelayOnSubmit: 3000,
+          showHintInitial: true,
+          hintMessageInitial: hintMessage,
+          hintDelayInitial: 300000,
         },
       });
     },
@@ -169,6 +183,10 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.showMessage('ошибка при удалении',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
     },
     submitRenameTask(name) {
@@ -182,6 +200,10 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.showMessage('ошибка при переименовании',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
     },
     submitCreateTask(name) {
@@ -208,7 +230,14 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.showMessage('ошибка при загрузке',
+            'подробности в консоли браузера',
+            'error',
+            5000);
         });
+    },
+    showMessage(title, message, messageType, delay, functionConfirm) {
+      this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
     },
   },
   mounted() {
