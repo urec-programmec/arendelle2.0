@@ -1,5 +1,5 @@
 import os
-import uuid
+import json
 
 from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -160,16 +160,39 @@ def saveUser():
         return jsonify(response_object)
 
 
+@app.route('/deleteTask', methods=['POST'])
+def deleteTask():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        task = db.session.query(TaskContent).filter_by(id=data['id']).first()
+        db.session.delete(task)
+        db.session.commit()
+        return jsonify(response_object)
+
+
+@app.route('/renameTask', methods=['POST'])
+def renameTask():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        task = db.session.query(TaskContent).filter_by(id=data['id']).first()
+        task.name = data['newName']
+        db.session.commit()
+        return jsonify(response_object)
+
+
 @app.route('/saveTask', methods=['POST'])
 def saveTask():
     response_object = {'status': 'success'}
     if request.method == 'POST':
-        content = request.files.get('image').read()
-        answer = request.form.get('answer')
-        complexity = request.form.get('complexity')
-        type_of_response = request.form.get('typeOfResponse')
-        created_by = request.form.get('createdBy')
-        name = request.form.get('name')
+        data = request.get_json()
+        content = data['content'].encode('ascii')
+        answer = data['answer']
+        complexity = data['complexity']
+        type_of_response = data['typeOfResponse']
+        created_by = data['createdBy']
+        name = data['name']
 
         newTask = TaskContent(content=content, answer=answer, complexity=complexity, type_of_response=type_of_response, created_by=created_by, name=name)
         db.session.add(newTask)
@@ -178,80 +201,26 @@ def saveTask():
         return jsonify(response_object)
 
 
-
-
-
-
-
-
-
-BOOKS = [
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'On the Road',
-        'author': 'Jack Kerouac',
-        'read': True
-    },
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'Harry Potter and the Philosopher\'s Stone',
-        'author': 'J. K. Rowling',
-        'read': False
-    },
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'Green Eggs and Ham',
-        'author': 'Dr. Seuss',
-        'read': True
-    }
-]
-
-@app.route('/ping', methods=['GET'])
-def ping_pong():
-    return jsonify('pong!')
-
-@app.route('/books', methods=['GET', 'POST'])
-def all_books():
+@app.route('/allTasks', methods=['GET'])
+def allTasks():
     response_object = {'status': 'success'}
-    if request.method == 'POST':
-        post_data = request.get_json()
-        BOOKS.append({
-            'id': uuid.uuid4().hex,
-            'title': post_data.get('title'),
-            'author': post_data.get('author'),
-            'read': post_data.get('read')
-        })
-        response_object['message'] = 'Book added!'
-    else:
-        response_object['books'] = BOOKS
-    return jsonify(response_object)
+    if request.method == 'GET':
+        response_object['tasks'] = []
+        for task in sorted(db.session.query(TaskContent).all(), key=lambda m: m.datetime_created, reverse=True):
+            user = db.session.query(Users).filter_by(id=task.created_by).first()
+            response_object['tasks'].append({
+                'id': task.id,
+                'name': task.name,
+                'content': task.content.decode('ascii'),
+                'answer': json.loads(task.answer),
+                'complexity': task.complexity,
+                'typeOfResponse': task.type_of_response,
+                'author': user.name + ' ' + user.surname,
+                'authorId': user.id,
+                'datetime': task.datetime_created.strftime('%d.%m.%Y'),
+            })
+        return jsonify(response_object)
 
-
-@app.route('/books/<string:book_id>', methods=['PUT', 'DELETE'])
-def single_book(book_id):
-    response_object = {'status': 'success'}
-    if request.method == 'PUT':
-        post_data = request.get_json()
-        remove_book(book_id)
-        BOOKS.append({
-            'id': uuid.uuid4().hex,
-            'title': post_data.get('title'),
-            'author': post_data.get('author'),
-            'read': post_data.get('read')
-        })
-        response_object['message'] = 'Book updated!'
-    if request.method == 'DELETE':
-            remove_book(book_id)
-            response_object['message'] = 'Book removed!'
-    return jsonify(response_object)
-
-
-def remove_book(book_id):
-    for book in BOOKS:
-        if book['id'] == book_id:
-            BOOKS.remove(book)
-            return True
-    return False
 
 if __name__ == '__main__':
     app.run(port=5050)

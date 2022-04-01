@@ -30,9 +30,6 @@
 </template>
 
 <script>
-// swap as you need
-// import { upload } from './file-upload.service';   // real service
-// import { wait } from './utils';
 const STATUS_INITIAL = 0;
 const STATUS_SAVING = 1;
 const STATUS_SUCCESS = 2;
@@ -68,7 +65,7 @@ export default {
       this.uploadError = null;
       this.formData = null;
 
-      this.$emit('fileUpload', { formData: this.formData, url: '' });
+      this.$emit('fileUpload', { url: '' });
       this.$emit('changeSize', { w: 0, h: 0 });
     },
     save() {
@@ -78,7 +75,7 @@ export default {
         .then((x) => {
           this.uploadedFiles = [].concat(x);
           this.currentStatus = STATUS_SUCCESS;
-          this.$emit('fileUpload', { formData: this.formData, url: this.uploadedFiles[0].url });
+          this.$emit('fileUpload', { url: this.uploadedFiles[0].url });
         })
         .catch((err) => {
           console.error(err);
@@ -117,16 +114,6 @@ export default {
         fReader.readAsDataURL(file);
       });
     },
-    // getBase64Image(img) {
-      // const canvas = document.createElement('canvas');
-      // canvas.width = img.width;
-      // canvas.height = img.height;
-      //
-      // const ctx = canvas.getContext('2d');
-      // ctx.drawImage(img, 0, 0);
-      // const dataURL = img.src;
-      // return dataURL;
-    // },
   },
   mounted() {
     this.reset();

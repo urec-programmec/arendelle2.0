@@ -137,7 +137,7 @@ export default {
           availableFor: [1, 2, 3],
         },
         {
-          name: 'шаблоны карт',
+          name: 'карты',
           icon: 'bxs-image',
           id: 'maps',
           availableFor: [2, 3],

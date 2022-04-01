@@ -137,6 +137,7 @@ class TaskContent(Base):
     complexity = Column(Integer, nullable=False)
     type_of_response = Column(BigInteger, ForeignKey('type_of_response.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
+    datetime_created = Column(DATETIME, nullable=False)
 
 
 class TypeOfResponse(Base):

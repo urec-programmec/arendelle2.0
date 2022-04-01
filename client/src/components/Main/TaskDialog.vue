@@ -30,7 +30,7 @@
            v-model="answerRegexp"/>
 
     <div class="footer">
-      <button class="send-answer" :disabled="!isAnswer" @click="isCalculate = true">отправить</button>
+      <button class="send-answer" :disabled="!isAnswer" @click="onSubmit">отправить</button>
     </div>
   </div>
 </template>
@@ -111,6 +111,14 @@ export default {
       this.answersManyTask = items;
       this.check();
     },
+    onSubmit() {
+      this.isCalculate = true;
+      if (this.isCorrect) {
+        this.onSuccess();
+      } else {
+        this.onError();
+      }
+    },
   },
   props: {
     taskName: {
@@ -134,6 +142,14 @@ export default {
     taskСomplexity: {
       type: Number,
       default: 1,
+    },
+    onSuccess: {
+      type: Function,
+      default: () => { console.log('correct'); },
+    },
+    onError: {
+      type: Function,
+      default: () => { console.error('incorrect'); },
     },
   },
 };

@@ -2,33 +2,33 @@
   <div class="main"
        @click="mainClick">
     <search @search="search" @changeFilterParameners="changeFilterParameters"
-            :placeholder="'Поиск по шаблонам заданий'"
+            :placeholder="'Поиск по задачам'"
             :settings="searchSettings"/>
     <div class="content">
       <div :class="['task-item', 'bx', 'bx-plus', { 'task-item-hovered-create': loadedAll }]" style="height: 253px; border: 1px dashed"
            @click="createTask"
            v-if="searchValue === ''"/>
-      <div :class="['task-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(task, index) in imagesSrc" :key="index"
+      <div :class="['task-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(task, index) in tasks" :key="index"
            @mouseleave="hoverTask = ''"
            @mouseenter="hoverTask = 'task-' + index">
         <div @click="renameTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['task-item-rename', 'bx', 'bx-rename', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
         <div @click="deleteTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['task-item-delete', 'bx', 'bx-x', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
         <div @click="watchTask(task)" v-if="loadedAll" :class="['task-item-watch', 'bx', 'bx-fullscreen', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,   borderRadius: '0.25rem' }"></div>
         <div class="task-description task-name">
-          {{ 'Задача ' + index }}
+          {{ task.name }}
         </div>
-        <div class="canvas-container">
-          <canvas :id="'task-' + index" :width="canvasSize + 'px'" :height="canvasSize + 'px'"/>
+        <div class="canvas-container" id="canvas-container">
+          <img :src="task.content" class="img-responsive img-thumbnail">
         </div>
-<!--        <div class="task-description task-size">-->
-<!--          {{ task.sizeX }} x {{ task.sizeY }}-->
-<!--        </div>-->
-<!--        <div class="task-description task-author">-->
-<!--          <p>{{ task.author }}</p>-->
-<!--        </div>-->
-<!--        <div class="task-description task-datetime">-->
-<!--          <p>{{ task.datetime }}</p>-->
-<!--        </div>-->
+        <div class="task-description task-size">
+          <i :class="['bx', `bx-dice-${task.complexity}`]"/>
+        </div>
+        <div class="task-description task-author">
+          <p>{{ task.author }}</p>
+        </div>
+        <div class="task-description task-datetime">
+          <p>{{ task.datetime }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -51,10 +51,11 @@ export default {
     return {
       user: {},
       tasks: [],
+      defaultTasks: [],
 
-      pathGetMap: 'http://localhost:5050/allMaps',
-      pathRenameMap: 'http://localhost:5050/renameMap',
-      pathDeleteMap: 'http://localhost:5050/deleteMap',
+      pathGetTasks: 'http://localhost:5050/allTasks',
+      pathRenameTask: 'http://localhost:5050/renameTask',
+      pathDeleteTask: 'http://localhost:5050/deleteTask',
 
       searchValue: '',
       searchSettings: {
@@ -66,48 +67,7 @@ export default {
       renameIndex: -1,
       deleteIndex: -1,
       filterParams: {},
-      canvasSize: 200,
-      imagesSrc: ['tasks/task1.jpg',
-        'tasks/task2.jpg',
-        'tasks/task3.jpg',
-        'tasks/task4.jpg',
-        'tasks/task5.jpg',
-        'tasks/task6.jpg',
-        'tasks/task7.jpg',
-        'tasks/task8.jpg',
-        'tasks/task9.jpg',
-        'tasks/task10.jpg',
-        'tasks/task15.jpg',
-        'tasks/task16.jpg',
-        'tasks/task17.jpg',
-        'tasks/task18.jpg',
-        'tasks/task20.jpg',
-        'tasks/task21.jpg',
-        'tasks/task22.jpg',
-        'tasks/task23.jpg',
-        'tasks/task24.jpg',
-        'tasks/task25.jpg',
-        'tasks/task26.jpg',
-        'tasks/task27.jpg',
-        'tasks/task28.jpg',
-        'tasks/task29.jpg',
-        'tasks/task30.jpg',
-        'tasks/task31.jpg',
-        'tasks/task32.jpg',
-        'tasks/task33.jpg',
-        'tasks/task34.jpg',
-        'tasks/task35.jpg',
-        'tasks/task36.jpg',
-        'tasks/task37.jpg',
-        'tasks/task38.jpg',
-        'tasks/task39.jpg',
-        'tasks/task40.jpg',
-        'tasks/task41.jpg',
-        'tasks/task42.jpeg',
-        'tasks/task42.jpg',
-      ],
-      images: {},
-      loadedImages: 0,
+
       loadedAll: false,
     };
   },
@@ -119,7 +79,7 @@ export default {
         clearTimeout(this.searchTimeout);
       }
       this.searchTimeout = setTimeout(() => {
-        this.filterMaps();
+        this.filterTasks();
       }, 50);
     },
     changeFilterParameters(data) {
@@ -129,58 +89,42 @@ export default {
       this.$emit('mainClick', { event });
     },
     loadTasks() {
-      this.loadedImages = 0;
-      this.loadedAll = false;
-      for (let i of this.imagesSrc) {
-        if (!(i in this.images)) {
-          let image = new Image(this.canvasSize, this.canvasSize);
-          image.src = require(`../assets/images/${i}`);
-          image.onload = () => {
-            this.loadedImages++;
-            this.drawAllCanvas();
-          };
-          this.images[i] = image;
-        } else {
-          this.loadedImages++;
-          this.drawAllCanvas();
-        }
-      }
+      const promises = this.tasks.map(task => this.getImage(new Blob(['data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(task.content)))]))
+        .catch((err) => {
+          console.error(err);
+        }));
+      return Promise.all(promises)
+        .then(() => {
+          this.loadedAll = true;
+        });
     },
-    drawAllCanvas() {
-      if (this.loadedImages === Object.keys(this.images).length) {
-        this.loadedAll = true;
-        for (let j = 0; j < this.imagesSrc.length; j++) {
-          this.$nextTick(() => {
-            this.drawCanvas('task-' + j, this.images[this.imagesSrc[j]]);
-          });
-        }
-      }
+    getImage(file) {
+      return new Promise((resolve, reject) => {
+        const fReader = new FileReader();
+        const img = document.createElement('img');
+        img.onload = () => {};
+        fReader.onload = () => {
+          img.src = fReader.result;
+          resolve(this.getBase64Image(img));
+        };
+        fReader.readAsDataURL(file);
+      });
     },
-    drawCanvas(id, image) {
-      const canvas = document.getElementById(id);
-      if (!canvas) {
-        return;
-      }
-      const context = canvas.getContext('2d');
-      context.clearRect(0, 0, this.canvasSize, this.canvasSize);
-      context.drawImage(image,
-        0,
-        0,
-        this.canvasSize,
-        this.canvasSize);
-      // let canvasItemSize = (this.canvasSize / Math.max(task.sizeX, task.sizeY));
-      // for (let y = 0; y < task.sizeY; y++) {
-      //   for (let x = 0; x < task.sizeX; x++) {
-      //     let image = this.images[task.task[y][x].src === '' ? this.foneSrc : task.task[y][x].src];
-      //
-      //   }
-      // }
+    getBase64Image(img) {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/jpg');
+      return dataURL;
     },
     deleteTask(index) {
       this.deleteIndex = index;
       ModalWizard.open(modalDialog, {
         props: {
-          title: 'удалить шаблон задачи?',
+          title: 'удалить задачу?',
           submit: this.submitDeleteTask,
           isConfirm: true,
         },
@@ -191,15 +135,20 @@ export default {
       ModalWizard.open(modalDialog, {
         props: {
           title: 'редактировать название',
-          // placeholder: this.maps[index].name,
+          placeholder: this.tasks[index].name,
           submit: this.submitRenameTask,
         },
       });
     },
     watchTask(task) {
+      console.log(task);
       ModalWizard.open(modalTask, {
         props: {
-          taskName: require(`../assets/images/${task}`),
+          taskTitle: task.name,
+          taskName: task.content,
+          taskAnswer: task.answer,
+          taskAnswerType: task.typeOfResponse,
+          taskСomplexity: task.complexity,
         },
       });
     },
@@ -214,26 +163,26 @@ export default {
     },
     submitDeleteTask() {
       this.$modal.close();
-      // axios.post(this.pathDeleteMap, { id: this.maps[this.deleteIndex].id })
-      //   .then(() => {
-      //     this.preloadMaps();
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      axios.post(this.pathDeleteTask, { id: this.tasks[this.deleteIndex].id })
+        .then(() => {
+          this.preloadTasks();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     submitRenameTask(name) {
       this.$modal.close();
-      // if (name === '') {
-      //   return;
-      // }
-      // axios.post(this.pathRenameMap, { id: this.maps[this.renameIndex].id, newName: name })
-      //   .then(() => {
-      //     this.maps[this.renameIndex].name = name;
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      if (name === '') {
+        return;
+      }
+      axios.post(this.pathRenameTask, { id: this.tasks[this.renameIndex].id, newName: name })
+        .then(() => {
+          this.tasks[this.renameIndex].name = name;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     submitCreateTask(name) {
       this.$modal.close();
@@ -241,27 +190,25 @@ export default {
       this.$router.push({ name: 'task-creator', params });
     },
     filterTasks() {
-      // let newMaps = [];
-      // for (let task of this.defaultMaps) {
-      //   if (task[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) && (this.searchSettings.showing === 'all' || task.authorId === this.user.id)) {
-      //     newMaps.push(task);
-      //   }
-      // }
-      // this.maps = newMaps;
-      // this.$nextTick(() => this.loadMaps());
+      let newTasks = [];
+      for (let task of this.defaultTasks) {
+        if (task[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) && (this.searchSettings.showing === 'all' || task.authorId === this.user.id)) {
+          newTasks.push(task);
+        }
+      }
+      this.tasks = newTasks;
+      this.$nextTick(() => this.loadTasks());
     },
     preloadTasks() {
-      this.loadTasks();
-
-      // axios.get(this.pathGetMap)
-      //   .then((res) => {
-      //     this.defaultMaps = res.data.maps;
-      //     this.maps = res.data.maps;
-      //     this.filterMaps();
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //   });
+      axios.get(this.pathGetTasks)
+        .then((res) => {
+          this.defaultTasks = res.data.tasks;
+          this.tasks = res.data.tasks;
+          this.filterTasks();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
   mounted() {
@@ -330,7 +277,6 @@ export default {
   animation: spin 2s linear infinite;
 }
 .canvas-container {
-  width: 200px;
   height: 200px;
   border-radius: 0.25rem;
   position: relative;
@@ -338,6 +284,10 @@ export default {
   top: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .canvas-container canvas {
   border-radius: 0.25rem;
@@ -374,10 +324,10 @@ export default {
   word-wrap: break-word;
 }
 .task-size {
-  top: 0.6rem;
+  top: 0.4rem;
   line-height: 1em;
   right: 0.5rem;
-  font-size: 0.8em;
+  font-size: 1.1em;
 }
 .task-datetime,
 .task-author {

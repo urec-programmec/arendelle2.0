@@ -2,7 +2,7 @@
   <div class="main"
     @click="mainClick">
     <search @search="search" @changeFilterParameners="changeFilterParameters"
-            :placeholder="'Поиск по шаблонам карт'"
+            :placeholder="'Поиск по картам'"
             :settings="searchSettings"/>
     <div class="content">
       <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 1px dashed"
@@ -174,7 +174,7 @@ export default {
       this.deleteIndex = index;
       ModalWizard.open(modal, {
         props: {
-          title: 'удалить шаблон карты?',
+          title: 'удалить карту?',
           submit: this.submitDeleteMap,
           isConfirm: true,
         },
@@ -340,6 +340,10 @@ export default {
   top: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .canvas-container canvas {
   border-radius: 0.25rem;

@@ -159,7 +159,6 @@ export default {
 
       taskСomplexity: 1,
 
-      formData: null,
       url: '',
       answer: {},
     };
@@ -275,13 +274,16 @@ export default {
         return;
       }
 
-      this.formData.set('answer', JSON.stringify(this.answer));
-      this.formData.set('typeOfResponse', this.answerTab + 1);
-      this.formData.set('createdBy', JSON.parse(localStorage.getItem('user')).id);
-      this.formData.set('complexity', this.taskСomplexity);
-      this.formData.set('name', this.currentTaskName.trim());
+      let data = {
+        'content': this.url,
+        'answer': JSON.stringify(this.answer),
+        'typeOfResponse': this.answerTab + 1,
+        'name': this.currentTaskName.trim(),
+        'complexity': this.taskСomplexity,
+        'createdBy': JSON.parse(localStorage.getItem('user')).id,
+      };
 
-      axios.post(this.pathSaveTask, this.formData)
+      axios.post(this.pathSaveTask, data)
         .then(() => {
           this.$router.push('/tasks');
         })
@@ -291,12 +293,6 @@ export default {
     },
     fileUpload(data) {
       this.url = data['url'];
-      if (data['formData']) {
-        this.formData = new FormData();
-        this.formData.append('image', data['formData'].get('image'));
-      } else {
-        this.formData = null;
-      }
     },
     changeSize(data) {
       this.taskSizeX = data['w'];
@@ -317,7 +313,7 @@ export default {
       });
     },
     checkTask(error) {
-      if (!this.formData) {
+      if (this.url === '') {
         this.showMessage('ошибка ' + error,
           'файл шаблона задачи не загружен',
           'error',
