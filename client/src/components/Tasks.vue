@@ -199,7 +199,7 @@ export default {
     watchTask(task) {
       ModalWizard.open(modalTask, {
         props: {
-          taskName: task,
+          taskName: require(`../assets/images/${task}`),
         },
       });
     },

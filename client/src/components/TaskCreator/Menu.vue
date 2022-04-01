@@ -64,7 +64,7 @@ export default {
     //! Menu settings
     defaultName: {
       type: String,
-      default: 'новая карта',
+      default: 'новая задача',
     },
     imagesSrc: {
       type: Array,

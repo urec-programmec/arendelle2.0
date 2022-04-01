@@ -4,7 +4,6 @@
     <left-menu @openCloseMenu="openCloseMenu"
                @exitMap="exitTask"
                @changeMapName="changeTaskName"
-               :defaultName="taskName"
                :mapName="taskName"/>
     <div class="task-container">
       <file-loader @fileUpload="fileUpload" @changeSize="changeSize"/>
@@ -47,17 +46,15 @@
              @input="check"
              :class="[ { 'answer-correct': isInput && isCorrect }, { 'answer-incorrect': isInput && !isCorrect } ]"/>
 
-      <div id="multiInput" @keyup="multiInput" :style="{ 'margin-top': answerTab === 1 ? '10px' : '' }">
-        <multi-select v-if="answerTab === 1"
-                      placeholder="множественный ответ"
+      <div id="multiInput" @keyup="multiInput" v-if="answerTab === 1">
+        <multi-select placeholder="множественный ответ"
                       :options="answersManyOptions"
                       :selected-options="answersMany"
                       @select="onSelect"/>
       </div>
 
-      <div id="multiInputAnswer" @keyup="multiInputAnswer" :style="{ 'margin-top': answerTab === 1 ? '10px' : '' }">
-        <multi-select v-if="answerTab === 1"
-                      placeholder="проверка ответа"
+      <div id="multiInputAnswer" @keyup="multiInputAnswer" v-if="answerTab === 1" :style="{ 'margin-top': answerTab === 1 ? '10px' : '' }">
+        <multi-select placeholder="проверка ответа"
                       :options="answersManyCheckOptions"
                       :selected-options="answersManyCheck"
                       :class="[ { 'answer-correct': isInput && isCorrect }, { 'answer-incorrect': isInput && !isCorrect } ]"
@@ -96,11 +93,12 @@ import VueSlider from 'vue-slider-component';
 import { MultiSelect } from 'vue-search-select';
 import ModalWizard from 'vue-modal-wizard';
 import Menu from './Menu';
+import modal from '../Main/TaskDialog';
 import TestTask from './TestTask';
 import FileLoader from './FileLoader';
 import Message from '../Main/Message';
-import '../../assets/css/custom-dot.css';
 import ToggleSwitch from '../Main/ToggleSwitch';
+import '../../assets/css/custom-dot.css';
 
 Vue.use(ModalWizard);
 
@@ -123,7 +121,6 @@ export default {
       currentTaskName: '',
       isMenuOpen: false,
 
-      taskСomplexity: 1,
       answerTabs: [
         {
           type: 'one',
@@ -147,9 +144,6 @@ export default {
       ],
       answerTab: 0,
 
-      canvas: null,
-      context: null,
-
       isCorrect: true,
 
       answerOne: '',
@@ -163,7 +157,10 @@ export default {
       answerRegexp: '',
       answerRegexpCheck: '',
 
+      taskСomplexity: 1,
+
       formData: null,
+      url: '',
       answer: {},
     };
   },
@@ -189,7 +186,7 @@ export default {
     check() {
       this.answer = {};
       if (this.answerTab === 0) {
-        this.isCorrect = this.answerOne === this.answerOneCheck;
+        this.isCorrect = this.answerOne.trim() === this.answerOneCheck;
         if (this.answerOne !== '') {
           this.answer = { 0: ''.concat(this.answerOne.trim()) };
         }
@@ -203,7 +200,7 @@ export default {
         }
         let textAnswers = [];
         for (let i of this.answersMany) {
-          textAnswers.push(i.text);
+          textAnswers.push(i.text.trim());
         }
         for (let i of this.answersManyCheck) {
           let index = textAnswers.indexOf(i.text);
@@ -215,7 +212,7 @@ export default {
         }
         this.isCorrect = true;
       } else if (this.answerTab === 2) {
-        this.isCorrect = new RegExp('^' + this.answerRegexp + '$').test(this.answerRegexpCheck);
+        this.isCorrect = new RegExp('^' + this.answerRegexp.trim() + '$').test(this.answerRegexpCheck);
         if (this.answerRegexp !== '') {
           this.answer = { 0: ''.concat(this.answerRegexp.trim()) };
         }
@@ -227,7 +224,9 @@ export default {
       for (let item of this.answersMany) {
         this.answersManyOptions.push({ value: this.answersManyOptions.length, text: item.text });
       }
-      this.answersManyOptions.push({ value: this.answersManyOptions.length, text });
+      if (text !== '') {
+        this.answersManyOptions.push({ value: this.answersManyOptions.length, text });
+      }
     },
     multiInputAnswer() {
       let text = document.getElementById('multiInputAnswer').getElementsByTagName('input')[0].value;
@@ -272,18 +271,7 @@ export default {
         this.sendSaveTask);
     },
     sendSaveTask() {
-      if (!this.formData) {
-        this.showMessage('ошибка сохранения',
-          'файл шаблона задачи не загружен',
-          'error',
-          5000);
-        return;
-      }
-      if (Object.keys(this.answer).length === 0) {
-        this.showMessage('ошибка сохранения',
-          'ответ не может быть пустым',
-          'error',
-          5000);
+      if (!this.checkTask('сохранения')) {
         return;
       }
 
@@ -302,6 +290,7 @@ export default {
         });
     },
     fileUpload(data) {
+      this.url = data['url'];
       if (data['formData']) {
         this.formData = new FormData();
         this.formData.append('image', data['formData'].get('image'));
@@ -314,7 +303,35 @@ export default {
       this.taskSizeY = data['h'];
     },
     testTask() {
-
+      if (!this.checkTask('просмотра')) {
+        return;
+      }
+      ModalWizard.open(modal, {
+        props: {
+          taskTitle: this.currentTaskName,
+          taskName: this.url,
+          taskAnswer: this.answer,
+          taskAnswerType: this.answerTab + 1,
+          taskСomplexity: this.taskСomplexity,
+        },
+      });
+    },
+    checkTask(error) {
+      if (!this.formData) {
+        this.showMessage('ошибка ' + error,
+          'файл шаблона задачи не загружен',
+          'error',
+          5000);
+        return false;
+      }
+      if (Object.keys(this.answer).length === 0) {
+        this.showMessage('ошибка ' + error,
+          'ответ не может быть пустым',
+          'error',
+          5000);
+        return false;
+      }
+      return true;
     },
     exitTask() {
       this.showMessage('выйти',
@@ -381,34 +398,6 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-.task-image canvas,
-.task-image {
-  width: 300px;
-  height: 300px;
-}
-.task-image {
-  position: relative;
-}
-.task-image:before {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  border: 2px dashed #F5F5F5;
-  background: rgba(33, 37, 41, 0.6);
-  color: #F5F5F5;
-  font-size: 2em;
-  border-radius: 0.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.task-image:hover:before {
-  background: rgba(33, 37, 41, 0.8);
-  cursor: pointer;
 }
 .task-settings {
   position: absolute;

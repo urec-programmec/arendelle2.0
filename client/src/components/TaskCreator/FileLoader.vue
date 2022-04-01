@@ -68,7 +68,7 @@ export default {
       this.uploadError = null;
       this.formData = null;
 
-      this.$emit('fileUpload', { formData: this.formData });
+      this.$emit('fileUpload', { formData: this.formData, url: '' });
       this.$emit('changeSize', { w: 0, h: 0 });
     },
     save() {
@@ -78,7 +78,7 @@ export default {
         .then((x) => {
           this.uploadedFiles = [].concat(x);
           this.currentStatus = STATUS_SUCCESS;
-          this.$emit('fileUpload', { formData: this.formData });
+          this.$emit('fileUpload', { formData: this.formData, url: this.uploadedFiles[0].url });
         })
         .catch((err) => {
           console.error(err);

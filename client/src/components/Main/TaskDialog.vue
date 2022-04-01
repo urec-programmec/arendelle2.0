@@ -1,33 +1,64 @@
 <template>
-  <div class="adaptive-modal">
+  <div :class="['adaptive-modal', { 'correct': isCalculate && isCorrect },
+               { 'incorrect': isCalculate && !isCorrect } ]">
     <div class="close" @click="$modal.close()">
       <i class="bx bx-x"/>
     </div>
-    <h5 class="hint">пример задачи</h5>
+    <h5 class="hint">
+      <i :class="['bx', `bx-dice-${taskСomplexity}`]"/>
+      &nbsp;{{ taskTitle }}
+    </h5>
     <div class="header">
-      <img :src="require(`../../assets/images/${taskName}`)">
+      <img :src="taskName">
     </div>
-    <input v-model="answer" placeholder="напишите ответ" :autofocus="true">
+
+    <input v-if="taskAnswerType === 1"
+           placeholder="одиночный ответ"
+           @input="check"
+           v-model="answerOne"/>
+
+    <div id="multiInputTask" @keyup="multiInputTask" v-if="taskAnswerType === 2">
+      <multi-select placeholder="множественный ответ"
+                    :options="answersManyTaskOptions"
+                    :selected-options="answersManyTask"
+                    @select="onSelect"/>
+    </div>
+
+    <input v-if="taskAnswerType === 3"
+           placeholder="одиночный ответ по шаблону"
+           @input="check"
+           v-model="answerRegexp"/>
+
     <div class="footer">
-      <div class="send-answer">
-        <p>отправить</p>
-      </div>
+      <button class="send-answer" :disabled="!isAnswer" @click="isCalculate = true">отправить</button>
     </div>
   </div>
 </template>
 
 <script>
+import { MultiSelect } from 'vue-search-select';
+
 export default {
   name: 'TaskDialog',
+  components: { 'multi-select': MultiSelect },
   data() {
     return {
-      answer: '',
+      answersManyTaskOptions: [],
+      answersManyTask: [],
+
+      answerOne: '',
+      answerMany: [],
+      answerRegexp: '',
+
+      isCalculate: false,
+      isAnswer: false,
+      isCorrect: false,
     };
   },
   methods: {
     _modalFlexPosition(w, h) {
       this.$el.style.width = window.innerWidth * 0.8 + 'px';
-      this.$el.style.maxHeight = window.innerHeight * 0.8 + 'px';
+      this.$el.style.maxHeight = window.innerHeight * 0.85 + 'px';
       this.$el.style.borderRadius = '0.25rem';
       this.$el.style.overflow = 'scroll';
       return {
@@ -36,11 +67,73 @@ export default {
         bottom: '50px',
       };
     },
+    check() {
+      this.isCalculate = false;
+      this.isAnswer = false;
+      if (this.taskAnswerType === 1) {
+        this.isCorrect = this.answerOne === this.taskAnswer[0].trim();
+        this.isAnswer = this.answerOne.trim() !== '';
+      } else if (this.taskAnswerType === 2) {
+        this.isAnswer = this.answersManyTask.length !== 0;
+        if (this.answersManyTask.length !== Object.keys(this.taskAnswer).length) {
+          this.isCorrect = false;
+          return;
+        }
+        let textAnswers = [];
+        for (let i of this.answersManyTask) {
+          textAnswers.push(i.text);
+        }
+        for (let i of Object.keys(this.taskAnswer)) {
+          let index = textAnswers.indexOf(this.taskAnswer[i].trim());
+          if (index === -1) {
+            this.isCorrect = false;
+            return;
+          }
+          textAnswers.splice(index, 1);
+        }
+        this.isCorrect = true;
+      } else if (this.taskAnswerType === 3) {
+        this.isCorrect = new RegExp('^' + this.taskAnswer[0].trim() + '$').test(this.answerRegexp);
+        this.isAnswer = this.answerRegexp.trim() !== '';
+      }
+    },
+    multiInputTask() {
+      let text = document.getElementById('multiInputTask').getElementsByTagName('input')[0].value;
+      this.answersManyTaskOptions = [];
+      for (let item of this.answersManyTask) {
+        this.answersManyTaskOptions.push({ value: this.answersManyTaskOptions.length, text: item.text });
+      }
+      if (text !== '') {
+        this.answersManyTaskOptions.push({ value: this.answersManyTaskOptions.length, text });
+      }
+    },
+    onSelect(items) {
+      this.answersManyTask = items;
+      this.check();
+    },
   },
   props: {
     taskName: {
       type: String,
-      default: 'tasks/task1.jpg',
+      default: require('../../assets/images/tasks/task1.jpg'),
+    },
+    taskTitle: {
+      type: String,
+      default: 'пример задачи',
+    },
+    taskAnswer: {
+      type: Object,
+      default: () => {
+        return { 0: '1' };
+      },
+    },
+    taskAnswerType: {
+      type: Number,
+      default: 1,
+    },
+    taskСomplexity: {
+      type: Number,
+      default: 1,
     },
   },
 };
@@ -55,6 +148,13 @@ export default {
   box-shadow: 0 0 20px 20px rgba(54, 171, 255, 0.2);
   font-size: 1em;
 }
+.adaptive-modal.correct {
+  box-shadow: 0 0 20px 20px rgba(54, 255, 54, 0.5) !important;
+}
+.adaptive-modal.incorrect {
+  box-shadow: 0 0 20px 20px rgba(255, 54, 54, 0.5) !important;
+}
+#multiInputTask,
 .adaptive-modal input {
   margin: 16px 20px 0 20px;
   width: calc(100% - 40px);
@@ -62,12 +162,14 @@ export default {
   padding: 5px;
   color: inherit;
   border: 0;
+}
+.adaptive-modal input {
   box-shadow: inset 0 -1px 0 rgb(0 0 0 / 12%);
 }
 .adaptive-modal .header {
   margin-left: 10px;
   overflow: scroll;
-  max-height: calc(80vh - 138px);
+  max-height: calc(85vh - 155px);
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -79,19 +181,24 @@ export default {
 .adaptive-modal .close {
   display: inline-block;
   position: sticky;
+  font-size: 0.8em;
   top: 5px;
   right: 5px;
-  font-size: 0.8em;
-  font-weight: bold;
   cursor: pointer;
+  font-weight: bold;
   color: inherit;
+}
+.adaptive-modal .hint i {
+  font-size: 1.25em;
 }
 .adaptive-modal .close i {
   font-size: 1.5em;
 }
 .adaptive-modal .hint {
   font-size: 1em;
-  padding: 10px 30px 0 30px;
+  padding: 10px 30px 0 15px;
+  display: flex;
+  align-items: center;
 }
 .adaptive-modal .footer {
   width: 100%;
@@ -108,18 +215,15 @@ export default {
   top: 50%;
   transform: translate(0, -50%);
   border-radius: 0.5rem;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.adaptive-modal .footer .send-answer p{
-  margin: 0;
-}
-.adaptive-modal .footer .send-answer:hover{
+.adaptive-modal .footer .send-answer:hover:enabled{
   background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
-  border: 1px solid rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.8);
   cursor: pointer;
-  color: #F5F5F5;
 }
 .adaptive-modal .header::-webkit-scrollbar{
   display: block;
