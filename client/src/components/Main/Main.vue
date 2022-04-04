@@ -6,8 +6,9 @@
                :userInitials="userInitials"
                :userRole="user.role"
                @changeTab="changeTab" @logout="logout"/>
-    <maps v-if="tab === 'maps' && user.role !== 1"></maps>
-    <tasks v-if="tab === 'tasks' && user.role !== 1"></tasks>
+    <maps v-if="tab === 'maps' && user.role !== 1"/>
+    <tasks v-if="tab === 'tasks' && user.role !== 1"/>
+    <championships v-if="tab === 'championships'"/>
     <message/>
   </main>
 </template>
@@ -17,12 +18,18 @@ import Background from './Background';
 import MainMenu from './MainMenu';
 import Maps from '../Maps';
 import Tasks from '../Tasks';
+import Championships from '../Championships';
 import Message from './Message';
 
 
 export default {
   name: 'Main',
-  components: { 'background': Background, 'main-menu': MainMenu, 'maps': Maps, message: Message, tasks: Tasks },
+  components: { 'background': Background,
+    'main-menu': MainMenu,
+    message: Message,
+    maps: Maps,
+    tasks: Tasks,
+    championships: Championships },
   data() {
     return {
       tab: 'profile',
