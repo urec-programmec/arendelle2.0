@@ -5,7 +5,7 @@
             :placeholder="'Поиск по картам'"
             :settings="searchSettings"/>
     <div class="content">
-      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 1px dashed"
+      <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createMap"
            v-if="searchValue === ''"/>
 <!--      'bx', { 'bx-copy': hoverMap === 'map-' + index },-->

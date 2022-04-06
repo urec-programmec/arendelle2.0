@@ -13,7 +13,9 @@
                      @changeSelection="changeStage"/>
     </div>
     <div class="content">
-      <timeline/>
+      <timeline class="timeline-container" :data="events" :config="config"/>
+      <custom-input v-if="Object.keys(selectedItem).length === 0"/>
+<!--      <div v-if="Object.keys(selectedItem).length === 0" class="bx bx-plus new-championship"></div>-->
     </div>
     <message/>
   </div>
@@ -29,13 +31,18 @@ import Message from './Main/Message';
 import Search from './Main/Search';
 
 import TimeLine from './ChampionshipCreator/TimeLine';
+import CustomInput from './Main/CustomInput';
 import ToggleSwitch from './Main/ToggleSwitch';
 
 Vue.use(ModalWizard);
 
 export default {
   name: 'Championships',
-  components: { 'search': Search, message: Message, timeline: TimeLine, 'toggle-switch': ToggleSwitch },
+  components: { 'search': Search,
+    message: Message,
+    timeline: TimeLine,
+    'custom-input': CustomInput,
+    'toggle-switch': ToggleSwitch },
   data() {
     return {
       user: {},
@@ -54,11 +61,25 @@ export default {
         },
         {
           type: '4',
-          name: 'специальный тур',
+          name: 'личные чемпионаты',
         },
       ],
       stage: '1',
+      events: [],
+      config: {
+        viewHeight: 260,
+        // margin: {
+        //   right: 0,
+        //   left: 0,
+        //   top: 0,
+        //   bottom: 0,
+        // },
+        onEventClick: (x) => {
+          console.log(x);
+        },
+      },
 
+      selectedItem: {},
 
       tasks: [],
       defaultTasks: [],
@@ -256,6 +277,26 @@ export default {
   mounted() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
+      // this.config.viewHeight = window.innerHeight - / 2;
+      this.$emit('initTimeline');
+
+      let i = 0;
+
+      let interval = setInterval(() => {
+        i++;
+        this.events.push({
+          name: i,
+          text: 'Чм. ' + i,
+          color: Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() + 30}, 50%, 50%, 0.8)`,
+          start: new Date(2022, 3, 1, 1, 0, Math.random() * 30, Math.random() * 1000),
+          end: new Date(2022, 3, 1, 3, 0, Math.random() * 30, Math.random() * 1000),
+        });
+        // this.config.viewHeight = this.events.length * 22 + 60;
+        this.$emit('initTimeline');
+        if (i === 5) {
+          clearInterval(interval);
+        }
+      }, 0);
     }
   },
 };
@@ -459,5 +500,43 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.timeline-container {
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*transform: translate(0, -50%);*/
+  fill: #F5F5F5;
+  color: #F5F5F5 !important;
+  /*background: #F5F5F5;*/
+  /*border-radius: 0.25rem;*/
+}
+.new-championship {
+  height: 250px;
+  width: 270px;
+  background: rgba(33, 37, 41, 0.6);
+  border-radius: 0.25rem;
+  border: 2px dashed #F5F5F5;
+  cursor: pointer;
+  position: absolute;
+  top: calc(50% + 100px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.new-championship:hover {
+  background: rgba(33, 37, 41, 0.8);
+}
+.new-championship:before {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  color: #F5F5F5;
+  z-index: -1;
 }
 </style>

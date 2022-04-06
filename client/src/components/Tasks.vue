@@ -5,7 +5,7 @@
             :placeholder="'Поиск по задачам'"
             :settings="searchSettings"/>
     <div class="content">
-      <div :class="['task-item', 'bx', 'bx-plus', { 'task-item-hovered-create': loadedAll }]" style="height: 253px; border: 1px dashed"
+      <div :class="['task-item', 'bx', 'bx-plus', { 'task-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createTask"
            v-if="searchValue === ''"/>
       <div :class="['task-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(task, index) in tasks" :key="index"
