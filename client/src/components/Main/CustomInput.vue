@@ -24,7 +24,7 @@
                 id="basic-addon-end"
                 @click=""
                 :style="focus ? { 'border-top-right-radius': '0.25rem !important', '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : { 'border-top-right-radius': '0.25rem !important' }">
-            <i :class="['bx', iconClass]"/>
+            <i :class="['bx', iconClass]" style="font-size: 1.3em"/>
           </span>
       </div>
     </div>
@@ -52,11 +52,24 @@ export default {
     do() {
       this.$emit('do', { 'value': this.searchValue });
     },
+    mainClick(data) {
+      let parent = data['event'].srcElement.offsetParent;
+      while (parent) {
+        if (parent.id === 'input-group') {
+          return;
+        }
+        parent = parent.offsetParent;
+      }
+      this.focus = false;
+    },
+  },
+  mounted() {
+    this.$parent.$on('mainClick', this.mainClick);
   },
   props: {
     iconClass: {
       type: String,
-      default: 'bx-arrow-back bx-flip-horizontal',
+      default: 'bx-right-arrow-alt',
     },
     backgroundFirstColor: {
       type: String,
@@ -102,16 +115,15 @@ export default {
 <style scoped>
 
 .input-container {
-  position: absolute;
+  /*position: absolute;*/
+  /*box-shadow: inset 0 -1px 0 rgb(255 255 255 / 12%);*/
+  /*height: 50px;*/
+  width: 300px;
+  margin: 10px;
   border: none;
-  box-shadow: inset 0 -1px 0 rgb(255 255 255 / 12%);
-  height: 50px;
-  width: 100%;
-  left: 80px;
-  top: 20px;
 }
 .input-container .input-group {
-  width: 50%;
+  /*width: 50%;*/
 }
 .input-container span,
 .input-container input {

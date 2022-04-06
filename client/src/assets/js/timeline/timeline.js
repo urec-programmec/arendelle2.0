@@ -63,8 +63,16 @@ export default (config) => {
 
     let timeScale = d3.scaleTime()
       .domain([
-        d3.min(newEvents.map(e => e.start)),
-        d3.max(newEvents.map(e => e.end)),
+        d3.min(newEvents.map((e) => {
+          let start = new Date(e.start);
+          start.setHours(start.getHours() - 1)
+          return start;
+        })),
+        d3.max(newEvents.map((e) => {
+          let end = new Date(e.end);
+          end.setHours(end.getHours() + 1)
+          return end;
+        })),
       ])
       .range([0, width]);
 

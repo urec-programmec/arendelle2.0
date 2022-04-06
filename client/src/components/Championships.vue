@@ -14,8 +14,7 @@
     </div>
     <div class="content">
       <timeline class="timeline-container" :data="events" :config="config"/>
-      <custom-input v-if="Object.keys(selectedItem).length === 0"/>
-<!--      <div v-if="Object.keys(selectedItem).length === 0" class="bx bx-plus new-championship"></div>-->
+      <custom-input v-if="Object.keys(selectedItem).length === 0" :placeholder="'Новый чемпионат'"/>
     </div>
     <message/>
   </div>
