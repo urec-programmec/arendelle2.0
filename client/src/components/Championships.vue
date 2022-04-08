@@ -14,7 +14,8 @@
     </div>
     <div class="content">
       <timeline class="timeline-container" :data="events" :config="config"/>
-      <custom-input v-if="Object.keys(selectedItem).length === 0" :placeholder="'Новый чемпионат'"/>
+<!--      <custom-input v-if="Object.keys(newChampionship).length === 0" :placeholder="'Новый чемпионат'"/>-->
+      <championship/>
     </div>
     <message/>
   </div>
@@ -30,6 +31,7 @@ import Message from './Main/Message';
 import Search from './Main/Search';
 
 import TimeLine from './ChampionshipCreator/TimeLine';
+import Championship from './ChampionshipCreator/Championship';
 import CustomInput from './Main/CustomInput';
 import ToggleSwitch from './Main/ToggleSwitch';
 
@@ -40,6 +42,7 @@ export default {
   components: { 'search': Search,
     message: Message,
     timeline: TimeLine,
+    championship: Championship,
     'custom-input': CustomInput,
     'toggle-switch': ToggleSwitch },
   data() {
@@ -78,7 +81,7 @@ export default {
         },
       },
 
-      selectedItem: {},
+      newChampionship: {},
 
       tasks: [],
       defaultTasks: [],
@@ -276,11 +279,9 @@ export default {
   mounted() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
-      // this.config.viewHeight = window.innerHeight - / 2;
       this.$emit('initTimeline');
 
       let i = 0;
-
       let interval = setInterval(() => {
         i++;
         this.events.push({
@@ -326,30 +327,19 @@ export default {
   padding-right: 10px;
   overflow: scroll;
 }
-.task-item {
-  height: max-content;
-  min-height: 250px;
-  background-color: rgba(241,243,244,0.19);
-  border-radius: 0.25rem;
-  border: 1px solid rgb(33, 37, 41);
-  padding: 0 0.5rem 1.5rem 0.5rem;
-  transition: all 0.2s ease;
-  position: relative;
-  color: #F5F5F5;
-}
-.task-item:before {
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.25rem;
-  z-index: -1;
-}
+/*.champ-item:before {*/
+/*  font-size: 2em;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  border-radius: 0.25rem;*/
+/*  z-index: -1;*/
+/*}*/
 .bx-super-spin:before {
   animation: spin 2s linear infinite;
 }
@@ -429,9 +419,9 @@ export default {
   background: rgba(241,243,244,0.14);
   box-shadow: 0 0 0 2px rgba(241,243,244,0.14);
 }
-.task-item-watch,
-.task-item-delete,
-.task-item-rename {
+.champ-item-watch,
+.champ-item-delete,
+.champ-item-rename {
   position: absolute;
   opacity: 0;
   background: rgba(33, 37, 41, 0.6);
@@ -439,9 +429,9 @@ export default {
   /*border-radius: 0.25rem;*/
   color: rgba(245, 245, 245, 0.7);
 }
-.task-item-watch:before,
-.task-item-delete:before,
-.task-item-rename:before {
+.champ-item-watch:before,
+.champ-item-delete:before,
+.champ-item-rename:before {
   font-size: 2em;
   display: flex;
   align-items: center;
@@ -453,14 +443,14 @@ export default {
   height: 100%;
   z-index: -1;
 }
-.task-item-watch:hover,
-.task-item-delete:hover,
-.task-item-rename:hover,
-.task-item-hovered-create:hover:before {
+.champ-item-watch:hover,
+.champ-item-delete:hover,
+.champ-item-rename:hover,
+.champ-item-hovered-create:hover:before {
   background: rgba(33, 37, 41, 0.9);
   color: rgba(245, 245, 245, 1);
 }
-.task-item-watch {
+.champ-item-watch {
   left: 0;
   top: 50%;
   height: 50%;
@@ -468,26 +458,27 @@ export default {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-.task-item-rename {
+.champ-item-rename {
   left: 0;
   top: 0;
   height: 50%;
   width: 50%;
   border-top-left-radius: 0.25rem;
 }
-.task-item-delete {
+.champ-item-delete {
   left: 50%;
   top: 0;
   height: 50%;
   width: 50%;
   border-top-right-radius: 0.25rem;
 }
-.task-item-hovered-create:hover,
-.task-item-hovered {
+.champ-item-hovered-create:hover,
+.champ-item-hovered {
   opacity: 1;
   z-index: 1;
   cursor: pointer;
 }
+
 
 .header {
   position: absolute;
@@ -501,13 +492,21 @@ export default {
   justify-content: center;
 }
 .timeline-container {
-  /*position: absolute;*/
-  /*top: 50%;*/
-  /*transform: translate(0, -50%);*/
   fill: #F5F5F5;
   color: #F5F5F5 !important;
-  /*background: #F5F5F5;*/
-  /*border-radius: 0.25rem;*/
+}
+.champ-item {
+  height: max-content;
+  width: max-content;
+  min-height: calc(100% - 270px);
+  margin-top: 10px;
+  background-color: rgba(241,243,244,0.19);
+  border-radius: 0.25rem;
+  border: 1px solid rgb(33, 37, 41);
+  padding: 0 0.5rem 1.5rem 0.5rem;
+  transition: all 0.2s ease;
+  position: relative;
+  color: #F5F5F5;
 }
 .new-championship {
   height: 250px;

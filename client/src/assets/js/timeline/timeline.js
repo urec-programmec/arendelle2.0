@@ -65,12 +65,12 @@ export default (config) => {
       .domain([
         d3.min(newEvents.map((e) => {
           let start = new Date(e.start);
-          start.setHours(start.getHours() - 1)
+          start.setHours(start.getHours() - 1);
           return start;
         })),
         d3.max(newEvents.map((e) => {
           let end = new Date(e.end);
-          end.setHours(end.getHours() + 1)
+          end.setHours(end.getHours() + 1);
           return end;
         })),
       ])

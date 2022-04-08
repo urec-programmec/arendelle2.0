@@ -1,23 +1,27 @@
 <template>
   <div class="main"
+       :style="{ position: clear ? 'unset' : 'absolute' }"
        @click="mainClick">
-    <search @search="search" @changeFilterParameners="changeFilterParameters"
+    <search v-if="!clear"
+            @search="search" @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по задачам'"
             :settings="searchSettings"/>
-    <div class="content">
+    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px', padding: clear ? 0 : '20px 0 0',  overflow: clear ? 'visible' : 'scroll' }">
       <div :class="['task-item', 'bx', 'bx-plus', { 'task-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createTask"
-           v-if="searchValue === ''"/>
+           v-if="searchValue === '' && !clear"/>
       <div :class="['task-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(task, index) in tasks" :key="index"
            @mouseleave="hoverTask = ''"
            @mouseenter="hoverTask = 'task-' + index">
-        <div @click="renameTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['task-item-rename', 'bx', 'bx-rename', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
-        <div @click="deleteTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['task-item-delete', 'bx', 'bx-x', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
-        <div @click="watchTask(task)" v-if="loadedAll" :class="['task-item-watch', 'bx', 'bx-fullscreen', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,   borderRadius: '0.25rem' }"></div>
+        <div @click="renameTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['task-item-rename', 'bx', 'bx-rename', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
+        <div @click="deleteTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['task-item-delete', 'bx', 'bx-x', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
+        <div @click="watchTask(task)" v-if="loadedAll" :class="['task-item-watch', 'bx', 'bx-fullscreen', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="searchSettings.showing !== 'all' || clear ? {} : { height: '100%', top: 0,   borderRadius: '0.25rem' }"></div>
+        <div @click="sendTask(index)" v-if="loadedAll && clear && !preloaded" :class="['task-item-watch', 'bx', 'bx-select-multiple', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
+        <div @click="sendDeleteTask(index)" v-if="loadedAll && preloaded" :class="['task-item-watch', 'bx', 'bx-refresh', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
         <div class="task-description task-name">
           {{ task.name }}
         </div>
-        <div class="canvas-container" id="canvas-container">
+        <div class="canvas-container" :id="preloaded ? 'canvas-container-preloaded' : 'canvas-container'">
           <img :src="task.content" class="img-responsive img-thumbnail">
         </div>
         <div class="task-description task-size">
@@ -31,7 +35,7 @@
         </div>
       </div>
     </div>
-    <message/>
+    <message v-if="!clear"/>
   </div>
 </template>
 
@@ -175,6 +179,12 @@ export default {
         },
       });
     },
+    sendTask(index) {
+      this.$emit('addTask', { task: this.tasks[index] });
+    },
+    sendDeleteTask(index) {
+      this.$emit('deleteTask', { index });
+    },
     submitDeleteTask() {
       this.$modal.close();
       axios.post(this.pathDeleteTask, { id: this.tasks[this.deleteIndex].id })
@@ -243,8 +253,27 @@ export default {
   mounted() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.preloadTasks();
+      if (!this.preloaded) {
+        this.preloadTasks();
+      } else {
+        this.tasks = this.preloadedTasks;
+        this.loadTasks();
+      }
     }
+  },
+  props: {
+    clear: {
+      type: Boolean,
+      default: false,
+    },
+    preloaded: {
+      type: Boolean,
+      default: false,
+    },
+    preloadedTasks: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>
@@ -252,7 +281,7 @@ export default {
 <style scoped>
 .main {
   display: block;
-  position:absolute;
+  /*position:absolute;*/
   height:auto;
   bottom:0;
   top:0;

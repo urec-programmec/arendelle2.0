@@ -18,11 +18,12 @@
                                  '--text-color': textSecondColor,
                                  '--placeholder-color': placeholderSecondColor } : {}"
              @input="this.do"
+             maxlength="100"
              aria-describedby="basic-addon">
       <div class="input-group-append" style="margin: 0">
           <span class="input-group-text"
                 id="basic-addon-end"
-                @click=""
+                @click="() => {}"
                 :style="focus ? { 'border-top-right-radius': '0.25rem !important', '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : { 'border-top-right-radius': '0.25rem !important' }">
             <i :class="['bx', iconClass]" style="font-size: 1.3em"/>
           </span>
@@ -53,7 +54,7 @@ export default {
       this.$emit('do', { 'value': this.searchValue });
     },
     mainClick(data) {
-      let parent = data['event'].srcElement.offsetParent;
+      let parent = data.event.srcElement.offsetParent;
       while (parent) {
         if (parent.id === 'input-group') {
           return;
@@ -115,10 +116,10 @@ export default {
 <style scoped>
 
 .input-container {
-  /*position: absolute;*/
-  /*box-shadow: inset 0 -1px 0 rgb(255 255 255 / 12%);*/
-  /*height: 50px;*/
-  width: 300px;
+  position: absolute;
+  box-shadow: inset 0 -1px 0 rgb(255 255 255 / 12%);
+  height: 50px;
+  width: 320px;
   margin: 10px;
   border: none;
 }

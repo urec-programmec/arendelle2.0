@@ -12,7 +12,7 @@
       </form>
       <!--SUCCESS-->
       <div v-if="isSuccess">
-        <ul class="bx bx-revision list-unstyled" @click="reset()">
+        <ul class="bx bx-refresh list-unstyled" @click="reset()">
           <li v-for="(item, index) in uploadedFiles" :key="index">
             <img id="image" :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
           </li>

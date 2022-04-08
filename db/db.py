@@ -162,7 +162,7 @@ class Team(Base):
     __tablename__ = 'team'
     id = Column(BigInteger, primary_key=True)
     name = Column(String(100), nullable=False)
-    team_status = Column(BigInteger, ForeignKey('team_status.id'))
+    # team_status = Column(BigInteger, ForeignKey('team_status.id'))
     institution = Column(BigInteger, ForeignKey('institution.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
 

@@ -117,7 +117,7 @@ export default {
   components: { 'toggle-switch': ToggleSwitch, 'model-select': ModelSelect },
   data() {
     return {
-      pathGetInstitutions: 'http://localhost:5050/allInstitutions',
+      pathGetInstitutions: 'http://localhost:5050/allInstitutionsText',
       pathCheckEmail: 'http://localhost:5050/checkEmail',
       pathCheckNickname: 'http://localhost:5050/checkNickname',
       pathSaveUser: 'http://localhost:5050/saveUser',

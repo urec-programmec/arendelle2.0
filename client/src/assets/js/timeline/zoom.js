@@ -13,7 +13,7 @@ export default (config) => {
 
     return d3.zoom()
         .scaleExtent([0.1, 1800])
-        .translateExtent([[-width, 0], [2 * width, 0]])
+        .translateExtent([[-5 * width, 0], [6 * width, 0]])
         .on('zoom', () => {
             let { k, x, y } = d3.event.transform;
             let scale = d3.zoomIdentity

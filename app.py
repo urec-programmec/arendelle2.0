@@ -71,8 +71,8 @@ def allMaps():
         return jsonify(response_object)
 
 
-@app.route('/allInstitutions', methods=['GET'])
-def allInstitutions():
+@app.route('/allInstitutionsText', methods=['GET'])
+def allInstitutionsText():
     response_object = {'status': 'success'}
     if request.method == 'GET':
         response_object['institutions'] = []
@@ -218,6 +218,26 @@ def allTasks():
                 'author': user.name + ' ' + user.surname,
                 'authorId': user.id,
                 'datetime': task.datetime_created.strftime('%d.%m.%Y'),
+            })
+        return jsonify(response_object)
+
+
+@app.route('/allTeamsText', methods=['GET'])
+def allTeamsText():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['teams'] = []
+        for team in sorted(db.session.query(Team).all(), key=lambda m: m.name):
+            # user = db.session.query(Users).filter_by(id=team.created_by).first()
+            response_object['teams'].append({
+                'value': team.id,
+                'text': team.name,
+
+                # 'id': team.id,
+                # 'name': team.name,
+                # 'institutionId': team.institution,
+                # 'author': user.name + ' ' + user.surname,
+                # 'authorId': user.id,
             })
         return jsonify(response_object)
 

@@ -119,7 +119,7 @@ export default {
           (this.hintSuccessMessageOnSubmit === '' ? 'ответ верный' : this.hintSuccessMessageOnSubmit) :
           (this.hintErrorMessageOnSubmit === '' ? 'ответ не верный' : this.hintErrorMessageOnSubmit);
 
-        this.showMessage('отправка ответа',
+        this.showMessage('ответ',
           message,
           this.isCorrect ? 'success' : 'error',
           this.hintDelayOnSubmit);
@@ -137,7 +137,7 @@ export default {
   mounted() {
     if (this.showHintInitial) {
       setTimeout(() => {
-        this.showMessage('открытие задачи',
+        this.showMessage('подсказка',
           this.hintMessageInitial,
           'special',
           this.hintDelayInitial);

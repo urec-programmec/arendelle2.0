@@ -1,25 +1,28 @@
 <template>
   <div class="main"
-    @click="mainClick">
-    <search @search="search" @changeFilterParameners="changeFilterParameters"
+       :style="{ position: clear ? 'unset' : 'absolute' }"
+       @click="mainClick">
+    <search v-if="!clear"
+            @search="search" @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по картам'"
             :settings="searchSettings"/>
-    <div class="content">
+    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px', padding: clear ? 0 : '20px 0 0',  overflow: clear ? 'visible' : 'scroll' }">
       <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createMap"
-           v-if="searchValue === ''"/>
-<!--      'bx', { 'bx-copy': hoverMap === 'map-' + index },-->
-      <div :class="['map-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(map, index) in maps" :key="index"
+           v-if="searchValue === '' && !clear"/>
+      <div :class="['map-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }, { 'map-item-preloaded': preloaded }]" v-for="(map, index) in maps" :key="index"
            @mouseleave="hoverMap = ''"
            @mouseenter="hoverMap = 'map-' + index">
-        <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
-        <div @click="deleteMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll" :class="['map-item-delete', 'bx', 'bx-x', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
-        <div @click="copyMap(index)" v-if="loadedAll" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
+        <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
+        <div @click="deleteMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['map-item-delete', 'bx', 'bx-x', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
+        <div @click="copyMap(index)" v-if="loadedAll && !clear" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
+        <div @click="sendMap(index)" v-if="loadedAll && clear && !preloaded" :class="['map-item-copy', 'bx', 'bx-check-square', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
+        <div @click="sendDeleteMap()" v-if="loadedAll && preloaded" :class="['map-item-copy', 'bx', 'bx-refresh', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
         <div class="map-description map-name">
           {{ map.name }}
         </div>
         <div class="canvas-container">
-          <canvas :id="'map-' + map.id" :width="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeX) + 'px'"
+          <canvas :id="(preloaded ? 'map-preloaded-' : 'map-') + map.id" :width="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeX) + 'px'"
                   :height="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeY) + 'px'"/>
         </div>
         <div class="map-description map-size">
@@ -33,7 +36,7 @@
         </div>
       </div>
     </div>
-    <message/>
+    <message v-if="!clear"/>
   </div>
 </template>
 
@@ -148,7 +151,7 @@ export default {
         this.loadedAll = true;
         for (let j = 0; j < this.maps.length; j++) {
           this.$nextTick(() => {
-            this.drawCanvas('map-' + this.maps[j].id, this.maps[j]);
+            this.drawCanvas((this.preloaded ? 'map-preloaded-' : 'map-') + this.maps[j].id, this.maps[j]);
           });
         }
       }
@@ -210,6 +213,12 @@ export default {
           submit: this.submitCreateMap,
         },
       });
+    },
+    sendMap(index) {
+      this.$emit('addMap', { map: this.maps[index] });
+    },
+    sendDeleteMap() {
+      this.$emit('deleteMap', { map: {} });
     },
     submitDeleteMap() {
       this.$modal.close();
@@ -286,8 +295,28 @@ export default {
   mounted() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.preloadMaps();
+      if (!this.preloaded) {
+        this.preloadMaps();
+      } else {
+        this.maps = [];
+        this.maps.push(this.preloadedMap);
+        this.loadMaps();
+      }
     }
+  },
+  props: {
+    clear: {
+      type: Boolean,
+      default: false,
+    },
+    preloaded: {
+      type: Boolean,
+      default: false,
+    },
+    preloadedMap: {
+      type: Object,
+      default: () => {},
+    },
   },
 };
 </script>
@@ -295,7 +324,6 @@ export default {
 <style scoped>
 .main {
   display: block;
-  position:absolute;
   height:auto;
   bottom:0;
   top:0;
@@ -311,15 +339,13 @@ export default {
   top:0;
   left:0;
   right:0;
-  margin: 80px 0 20px 80px;
   /*background-color: rgba(241,243,244,0.24);*/
   border-radius: 0.25rem;
-  padding-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(calc(254px + 1rem), calc(20% - 15px)) );
   grid-gap: 15px;
   gap: 15px;
-  overflow: scroll;
+  /*overflow: scroll;*/
 }
 .map-item {
   height: max-content;
@@ -483,5 +509,8 @@ export default {
   opacity: 1;
   z-index: 1;
   cursor: pointer;
+}
+.map-item-preloaded {
+  /*box-shadow: 0 0 15px 10px rgba(54, 171, 255, 0.2);*/
 }
 </style>
