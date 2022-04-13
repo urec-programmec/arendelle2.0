@@ -6,9 +6,9 @@
       <div class="input-group-prepend" style="margin: 0">
           <span class="input-group-text"
                 id="basic-addon"
-                @click="clear"
+                @click="leftClick"
                 :style="focus ? { 'border-bottom-left-radius' : '0.25rem', '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : { 'border-bottom-left-radius' : '0.25rem' }">
-            <i class="bx bx-x" style="font-size: 1.3em"/>
+            <i :class="['bx', iconLeftClass]" style="font-size: 1.3em"/>
           </span>
       </div>
       <input v-model="searchValue" type="text"
@@ -23,9 +23,9 @@
       <div class="input-group-append" style="margin: 0">
           <span class="input-group-text"
                 id="basic-addon-end"
-                @click="() => {}"
+                @click="rightClick"
                 :style="focus ? { 'border-top-right-radius': '0.25rem !important', '--background-color': backgroundSecondColor, '--text-color': textSecondColor } : { 'border-top-right-radius': '0.25rem !important' }">
-            <i :class="['bx', iconClass]" style="font-size: 1.3em"/>
+            <i :class="['bx', iconRightClass]" style="font-size: 1.3em"/>
           </span>
       </div>
     </div>
@@ -46,6 +46,15 @@ export default {
     };
   },
   methods: {
+    leftClick() {
+      if (this.clearOnLeftClick) {
+        this.clear();
+      }
+      this.$emit('leftClick', { 'value': this.searchValue });
+    },
+    rightClick() {
+      this.$emit('rightClick', { 'value': this.searchValue });
+    },
     clear() {
       this.searchValue = '';
       this.do();
@@ -68,7 +77,15 @@ export default {
     this.$parent.$on('mainClick', this.mainClick);
   },
   props: {
-    iconClass: {
+    iconLeftClass: {
+      type: String,
+      default: 'bx-x',
+    },
+    clearOnLeftClick: {
+      type: Boolean,
+      default: true,
+    },
+    iconRightClass: {
       type: String,
       default: 'bx-right-arrow-alt',
     },

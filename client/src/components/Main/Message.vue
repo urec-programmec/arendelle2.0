@@ -1,11 +1,13 @@
 <template>
   <div class="message"
-       :style="{right: rightPosition + 'px', position: isFixed ? 'fixed' : 'absolute'}">
+       :style="{right: rightPosition + 'px',
+                position: isFixed ? 'fixed' : 'absolute',
+                width: isFixed ? '270px' : '216px' }">
     <i class="bx bx-x close-x"
         @click="closeMessage"/>
     <div>
       <i :class="['bx', 'bx-flip-horizontal ', messageTypeClass]"/>
-      <div style="display: flex; flex-direction: column; min-width: 205px">
+      <div :style="{ display: 'flex', flexDirection: 'column', minWidth: isFixed ? '205px' : '164px'  }">
         <p style="font-size: 0.9em">{{ title }}</p>
         <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }">{{ message }}</p>
         <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">
@@ -75,6 +77,7 @@ export default {
   },
   created() {
     this.$parent.$on('showMessage', this.show);
+    this.$parent.$on('closeMessage', this.closeMessage);
   },
 };
 </script>
@@ -83,7 +86,6 @@ export default {
 .message {
   /*position: fixed;*/
   min-height: 20px;
-  width: 270px;
   height: max-content;
   top: 50px;
   transition: all 0.2s ease;

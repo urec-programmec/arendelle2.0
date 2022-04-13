@@ -14,8 +14,10 @@
     </div>
     <div class="content">
       <timeline class="timeline-container" :data="events" :config="config"/>
-<!--      <custom-input v-if="Object.keys(newChampionship).length === 0" :placeholder="'Новый чемпионат'"/>-->
-      <championship/>
+      <custom-input v-if="championship === null"
+                    :placeholder="'Название чемпионата'"
+                    @rightClick="newCh"/>
+      <championship v-if="championship !== null"/>
     </div>
     <message/>
   </div>
@@ -81,7 +83,9 @@ export default {
         },
       },
 
-      newChampionship: {},
+      championshipName: '',
+      championshipIsNew: false,
+      championship: null,
 
       tasks: [],
       defaultTasks: [],
@@ -107,6 +111,30 @@ export default {
   methods: {
     changeStage(data) {
       this.stage = data['selection'];
+    },
+    resetCh() {
+      this.championship = {
+        name: this.championshipName,
+        level: '1',
+        stages: [],
+        institutions: [],
+        teams: [],
+        taskCount: 5,
+        taskCellCount: 50,
+        map: {},
+        tasks: [],
+        isNew: this.championshipIsNew,
+      };
+      this.$emit('closeMessage');
+    },
+    newCh(data) {
+      this.championshipName = data.value;
+      this.championshipIsNew = true;
+      this.showMessage('создание чемпионата',
+        'начать создание чемпионата?',
+        'confirm',
+        15000,
+        this.resetCh);
     },
 
 

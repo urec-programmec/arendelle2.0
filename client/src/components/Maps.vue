@@ -6,11 +6,15 @@
             @search="search" @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по картам'"
             :settings="searchSettings"/>
-    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px', padding: clear ? 0 : '20px 0 0',  overflow: clear ? 'visible' : 'scroll' }">
+    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px',
+                                   padding: clear ? 0 : '20px 0 0',
+                                   overflow: clear ? 'visible' : 'scroll',
+                                   gridTemplateColumns: 'repeat(auto-fill, minmax(calc(' + canvasSize + 'px + 54px + 1rem), calc(20% - 15px)))'}">
       <div :class="['map-item', 'bx', 'bx-plus', { 'map-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createMap"
            v-if="searchValue === '' && !clear"/>
       <div :class="['map-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }, { 'map-item-preloaded': preloaded }]" v-for="(map, index) in maps" :key="index"
+           :style="{ minHeight: (canvasSize + 50) + 'px' }"
            @mouseleave="hoverMap = ''"
            @mouseenter="hoverMap = 'map-' + index">
         <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
@@ -21,7 +25,7 @@
         <div class="map-description map-name">
           {{ map.name }}
         </div>
-        <div class="canvas-container">
+        <div class="canvas-container" :style="{ width: canvasSize + 'px', height: canvasSize + 'px' }">
           <canvas :id="(preloaded ? 'map-preloaded-' : 'map-') + map.id" :width="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeX) + 'px'"
                   :height="(canvasSize / Math.max(map.sizeX, map.sizeY) * map.sizeY) + 'px'"/>
         </div>
@@ -72,7 +76,7 @@ export default {
       renameIndex: -1,
       deleteIndex: -1,
       filterParams: {},
-      canvasSize: 200,
+      defaultCanvasSize: 200,
       imagesSrc: ['border/air_air/1.png',
         'border/air_air/2.png',
         'border/dungeon/1.gif',
@@ -317,6 +321,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    canvasSize: {
+      type: Number,
+      default: 200,
+    },
   },
 };
 </script>
@@ -342,14 +350,12 @@ export default {
   /*background-color: rgba(241,243,244,0.24);*/
   border-radius: 0.25rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(254px + 1rem), calc(20% - 15px)) );
   grid-gap: 15px;
   gap: 15px;
   /*overflow: scroll;*/
 }
 .map-item {
   height: max-content;
-  min-height: 250px;
   background-color: rgba(241,243,244,0.19);
   border-radius: 0.25rem;
   border: 1px solid rgb(33, 37, 41);
@@ -375,8 +381,6 @@ export default {
   animation: spin 2s linear infinite;
 }
 .canvas-container {
-  width: 200px;
-  height: 200px;
   border-radius: 0.25rem;
   position: relative;
   left: 50%;
@@ -438,18 +442,6 @@ export default {
 }
 .map-datetime {
   right: 0.5rem;
-}
-.map-description-container {
-  position: absolute;
-  top: 1rem;
-  left: 0.5rem;
-  height: fit-content;
-  max-height: calc(100% - 2rem);
-  overflow: hidden;
-  width: calc(100% - 200px - 1.5rem);
-  border-radius: 0.25rem;
-  background: rgba(241,243,244,0.14);
-  box-shadow: 0 0 0 2px rgba(241,243,244,0.14);
 }
 .map-item-copy,
 .map-item-delete,

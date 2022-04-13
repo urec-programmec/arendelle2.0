@@ -6,11 +6,15 @@
             @search="search" @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по задачам'"
             :settings="searchSettings"/>
-    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px', padding: clear ? 0 : '20px 0 0',  overflow: clear ? 'visible' : 'scroll' }">
+    <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px',
+                                   padding: clear ? 0 : '20px 0 0',
+                                   overflow: clear ? 'visible' : 'scroll',
+                                   gridTemplateColumns: 'repeat(auto-fill, minmax(calc(' + canvasSize + 'px + 54px + 1rem), calc(20% - 15px)))' }">
       <div :class="['task-item', 'bx', 'bx-plus', { 'task-item-hovered-create': loadedAll }]" style="height: 253px; border: 2px dashed"
            @click="createTask"
            v-if="searchValue === '' && !clear"/>
       <div :class="['task-item', { 'bx bx-loader-alt bx-super-spin': !loadedAll }]" v-for="(task, index) in tasks" :key="index"
+           :style="{ minHeight: (canvasSize + 50) + 'px' }"
            @mouseleave="hoverTask = ''"
            @mouseenter="hoverTask = 'task-' + index">
         <div @click="renameTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['task-item-rename', 'bx', 'bx-rename', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
@@ -21,7 +25,8 @@
         <div class="task-description task-name">
           {{ task.name }}
         </div>
-        <div class="canvas-container" :id="preloaded ? 'canvas-container-preloaded' : 'canvas-container'">
+        <div class="canvas-container" :id="preloaded ? 'canvas-container-preloaded' : 'canvas-container'"
+              :style="{ height: canvasSize + 'px' }">
           <img :src="task.content" class="img-responsive img-thumbnail">
         </div>
         <div class="task-description task-size">
@@ -274,6 +279,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    canvasSize: {
+      type: Number,
+      default: 200,
+    },
   },
 };
 </script>
@@ -302,14 +311,12 @@ export default {
   border-radius: 0.25rem;
   padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(254px + 1rem), calc(20% - 15px)) );
   grid-gap: 15px;
   gap: 15px;
   overflow: scroll;
 }
 .task-item {
   height: max-content;
-  min-height: 250px;
   background-color: rgba(241,243,244,0.19);
   border-radius: 0.25rem;
   border: 1px solid rgb(33, 37, 41);
@@ -335,7 +342,7 @@ export default {
   animation: spin 2s linear infinite;
 }
 .canvas-container {
-  height: 200px;
+  /*height: 200px;*/
   border-radius: 0.25rem;
   position: relative;
   left: 50%;
@@ -397,18 +404,6 @@ export default {
 }
 .task-datetime {
   right: 0.5rem;
-}
-.task-description-container {
-  position: absolute;
-  top: 1rem;
-  left: 0.5rem;
-  height: fit-content;
-  max-height: calc(100% - 2rem);
-  overflow: hidden;
-  width: calc(100% - 200px - 1.5rem);
-  border-radius: 0.25rem;
-  background: rgba(241,243,244,0.14);
-  box-shadow: 0 0 0 2px rgba(241,243,244,0.14);
 }
 .task-item-watch,
 .task-item-delete,
