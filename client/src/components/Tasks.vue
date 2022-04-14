@@ -2,9 +2,11 @@
   <div class="main"
        :style="{ position: clear ? 'unset' : 'absolute' }"
        @click="mainClick">
-    <search v-if="!clear"
-            @search="search" @changeFilterParameners="changeFilterParameters"
+    <search v-if="showSearch"
+            @search="search"
+            @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по задачам'"
+            :style="clear ? { position: 'relative', boxShadow: 'none' } : {}"
             :settings="searchSettings"/>
     <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px',
                                    padding: clear ? 0 : '20px 0 0',
@@ -270,6 +272,10 @@ export default {
     clear: {
       type: Boolean,
       default: false,
+    },
+    showSearch: {
+      type: Boolean,
+      default: true,
     },
     preloaded: {
       type: Boolean,

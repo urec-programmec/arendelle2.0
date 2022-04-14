@@ -5,6 +5,7 @@
                     :icon-right-class="'bx-check'"
                     :icon-left-class="'bx-x-circle'"
                     :clear-on-left-click="false"
+                    :default-value="championship.name"
                     @do="changeName"
                     @leftClick="closeCh"
                     @rightClick="saveCh"
@@ -101,19 +102,6 @@
     </div>
     <div class="champ-body">
       <div class="champ-body-header">
-<!--        <div class="champ-body-header-events">-->
-<!--          <div style="margin: 0 20%">-->
-<!--            <p v-if="editCh === '2'">количество ячеек для задач</p>-->
-<!--            <vue-slider v-model="taskCellCount"-->
-<!--                        v-if="editCh === '2'"-->
-<!--                        :min="10"-->
-<!--                        :max="100">-->
-<!--              <template #dot="{ value, focus }" style="display: flex; justify-content: center;">-->
-<!--                <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>-->
-<!--              </template>-->
-<!--            </vue-slider>-->
-<!--          </div>-->
-<!--        </div>-->
         <toggle-switch :defaultItems="editChItems"
                        :selectedItem="editCh"
                        :background-first-color="'rgba(241,243,244,0.15)'"
@@ -148,6 +136,7 @@
                 :clear="true"
                 :preloaded-map="this.championship.map"
                 :preloaded="true"
+                :show-search="false"
                 @deleteMap="changeMap"/>
           <div v-if="Object.keys(championship.map).length !== 0" class="hr"/>
           <p>доступные карты</p>
@@ -162,6 +151,7 @@
                 :clear="true"
                 :preloaded-tasks="this.championship.tasks"
                 :preloaded="true"
+                :show-search="false"
                 :canvas-size="100"
                 @deleteTask="deleteTask"/>
           <div v-if="championship.tasks.length !== 0" class="hr"/>
@@ -207,17 +197,7 @@ export default {
       pathGetInstitutions: 'http://localhost:5050/allInstitutionsText',
       pathGetTeams: 'http://localhost:5050/allTeamsText',
 
-      championship: {
-        name: '',
-        level: '1',
-        stages: [],
-        institutions: [],
-        teams: [],
-        taskCount: 5,
-        taskCellCount: 50,
-        map: {},
-        tasks: [],
-      },
+      championship: {},
 
       dateOptions: {
         year: 'numeric',
@@ -294,23 +274,12 @@ export default {
         'прервать создание чемпионата?',
         'confirm-error',
         15000,
-        () => {  });
+        this.sendCloseCh);
     },
-    // resetCh() {
-    //   this.championship.name = '';
-    //   this.championship.level = '1';
-    //   this.championship.stages = [];
-    //   this.championship.institutions = [];
-    //   this.championship.teams = [];
-    //   this.championship.taskCount = 5;
-    //   this.championship.taskCellCount = 50;
-    //   this.championship.map = {};
-    //   this.championship.tasks = [];
-    // },
-    // newCh(data) {
-    //   this.resetCh();
-    //   this.championship.name = data.value;
-    // },
+    sendCloseCh() {
+      this.$emit('closeCh');
+      this.$emit('closeMessage');
+    },
     saveCh() {
       this.showMessage('сохранить чемпионат',
         'закончить редактирование и сохранить чемпионат?',
@@ -336,25 +305,18 @@ export default {
       for (let stage of this.championship.stages) {
         if (!Object.keys(stage.value).includes('date') || stage.value.date === null || stage.value.date === '') {
           this.showMessage('ошибка сохранения',
-            'у каждого этапа чемпионата должы быть выбрана дата проведения',
+            'у каждого этапа чемпионата должна быть выбрана дата проведения',
             'error',
             5000);
           return;
         }
         if (!Object.keys(stage.value).includes('time') || stage.value.time === null || stage.value.time === '') {
           this.showMessage('ошибка сохранения',
-            'у каждого этапа чемпионата должы быть выбрана длительность проведения',
+            'у каждого этапа чемпионата должна быть выбрана длительность проведения',
             'error',
             5000);
           return;
         }
-      }
-      if (this.championship.stages === null || this.championship.stages.length === 0) {
-        this.showMessage('ошибка сохранения',
-          'у глобального чемпионата должны быть выбраны этапы',
-          'error',
-          5000);
-        return;
       }
       if ((this.championship.institutions === null || this.championship.institutions.length === 0) && (this.championship.teams === null || this.championship.teams.length === 0)) {
         this.showMessage('ошибка сохранения',
@@ -515,11 +477,12 @@ export default {
       this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
     },
   },
-  mounted() {
-    // this.showMessage('создание чемпионата',
-    //   'настройте исходные данные чемпионата, выберите задачи, карту и участников',
-    //   'special',
-    //   15000);
+  created() {
+    this.showMessage('создание чемпионата',
+      'настройте исходные данные чемпионата, выберите задачи, карту и участников',
+      'special',
+      15000);
+    this.championship = this.defaultChampionship;
 
     this.$parent.$on('mainClick', this.mainClick);
     axios.get(this.pathGetInstitutions)
@@ -545,6 +508,25 @@ export default {
           'error',
           5000);
       });
+  },
+  props: {
+    defaultChampionship: {
+      type: Object,
+      default: () => {
+        return {
+          name: '',
+          level: '1',
+          stages: [],
+          institutions: [],
+          teams: [],
+          taskCount: 5,
+          taskCellCount: 50,
+          map: {},
+          tasks: [],
+          isNew: true,
+        };
+      },
+    },
   },
 };
 </script>

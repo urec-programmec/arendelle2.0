@@ -15,9 +15,12 @@
     <div class="content">
       <timeline class="timeline-container" :data="events" :config="config"/>
       <custom-input v-if="championship === null"
-                    :placeholder="'Название чемпионата'"
+                    :placeholder="'Новый чемпионат'"
+                    style="box-shadow: unset; margin: 20px"
                     @rightClick="newCh"/>
-      <championship v-if="championship !== null"/>
+      <championship v-if="championship !== null"
+                    @closeCh="closeCh"
+                    :default-championship="championship"/>
     </div>
     <message/>
   </div>
@@ -135,6 +138,12 @@ export default {
         'confirm',
         15000,
         this.resetCh);
+    },
+    closeCh() {
+      console.log('close');
+      this.championshipName = '';
+      this.championshipIsNew = false;
+      this.championship = null;
     },
 
 

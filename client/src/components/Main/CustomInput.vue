@@ -74,6 +74,7 @@ export default {
     },
   },
   mounted() {
+    this.searchValue = this.defaultValue;
     this.$parent.$on('mainClick', this.mainClick);
   },
   props: {
@@ -114,6 +115,10 @@ export default {
       default: 'rgba(0,0,0,0.6)',
     },
     placeholder: {
+      type: String,
+      default: '',
+    },
+    defaultValue: {
       type: String,
       default: '',
     },
