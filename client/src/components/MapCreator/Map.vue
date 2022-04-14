@@ -91,6 +91,7 @@ export default {
       documentTitle: 'Создание карты',
       mapSizeX: 50,
       mapSizeY: 50,
+      taskCellCount: 10,
       map: [],
       currentMapName: '',
 
@@ -190,6 +191,7 @@ export default {
               type: this.linkedMap.map[y][x].type,
               location: this.linkedMap.map[y][x].location,
               task: this.linkedMap.map[y][x].task,
+              taskCell: this.linkedMap.map[y][x].taskCell,
               src: this.linkedMap.map[y][x].src,
             });
           }
@@ -204,6 +206,7 @@ export default {
               type: '',
               location: '',
               task: false,
+              taskCell: false,
               src: '',
             });
           }
@@ -328,6 +331,7 @@ export default {
                   type: '',
                   location: '',
                   task: false,
+                  taskCell: false,
                   src: '',
                 });
               } else {
@@ -335,6 +339,7 @@ export default {
                   type: '',
                   location: '',
                   task: false,
+                  taskCell: false,
                   src: '',
                 });
               }
@@ -361,6 +366,7 @@ export default {
                 type: '',
                 location: '',
                 task: false,
+                taskCell: false,
                 src: '',
               });
             }
@@ -472,7 +478,7 @@ export default {
           this.mapZoom - this.spaceSize,
           this.mapZoom - this.spaceSize);
       }
-      if (this.map[y][x].task) {
+      if (this.map[y][x].taskCell) {
         this.context.clearRect(x * this.mapZoom,
           y * this.mapZoom,
           this.mapZoom - this.spaceSize,
@@ -591,7 +597,7 @@ export default {
           break;
       }
       if ((this.roomTypes.includes(this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].type) ||
-        this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) && !this.isTaskOpened) {
+        this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].taskCell) && !this.isTaskOpened) {
         this.heroTop = newHeroDocumentTop;
         this.heroLeft = newHeroDocumentLeft;
         if (newHeroWindowTop < this.cellSize || newHeroWindowTop > window.innerHeight - this.cellSize ||
@@ -600,7 +606,19 @@ export default {
         }
         if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) {
           this.isTaskOpened = true;
-          ModalWizard.open(modal, { onClose: () => { this.isTaskOpened = false; } });
+          ModalWizard.open(modal, {
+            props: {
+              // taskName: this.url,
+              taskAnswer: { 0: '1' },
+              showHintOnSubmit: true,
+              hintErrorMessageOnSubmit: 'ответ - 1',
+              hintDelayOnSubmit: 3000,
+              showHintInitial: true,
+              hintMessageInitial: 'ответ - 1',
+              hintDelayInitial: 3000,
+            },
+            onClose: () => { this.isTaskOpened = false; }
+          });
         }
       }
     },
@@ -634,6 +652,7 @@ export default {
       for (let y = 0; y < this.mapSizeY; y++) {
         for (let x = 0; x < this.mapSizeX; x++) {
           this.map[y][x].task = false;
+          this.map[y][x].taskCell = false;
           if (this.map[y][x].type === this.borderType &&
             ((y !== 0 && this.map[y - 1][x].type === this.roomType && !this.map[y - 1][x].task) ||
             (y !== this.mapSizeY - 1 && this.map[y + 1][x].type === this.roomType && !this.map[y + 1][x].task) ||
@@ -655,7 +674,54 @@ export default {
         testTasks.splice(testIndex, 1);
       }
       for (let task of testTasks) {
+        this.map[task.y][task.x].taskCell = true;
+      }
+      for (let i = 0; i < 10; i++) {
+        let task = testTasks[Math.floor(Math.random() * testTasks.length)];
         this.map[task.y][task.x].task = true;
+      }
+      return true;
+    },
+    validateMap() {
+      let testPosition = [];
+      for (let y = 0; y < this.mapSizeY; y++) {
+        for (let x = 0; x < this.mapSizeX; x++) {
+          if (this.map[y][x].type === this.roomType) {
+            testPosition.push({ x, y });
+          }
+        }
+      }
+      if (testPosition.length === 0) {
+        this.showMessage('ошибка сохранения',
+          'на карте должна быть хотя бы одна комната',
+          'error',
+          5000);
+        return false;
+      }
+
+      let testTasks = [];
+      this.taskCellCount = 10;
+      for (let y = 0; y < this.mapSizeY; y++) {
+        for (let x = 0; x < this.mapSizeX; x++) {
+          this.map[y][x].task = false;
+          this.map[y][x].taskCell = false;
+          if (this.map[y][x].type === this.borderType &&
+            ((y !== 0 && this.map[y - 1][x].type === this.roomType && !this.map[y - 1][x].task) ||
+              (y !== this.mapSizeY - 1 && this.map[y + 1][x].type === this.roomType && !this.map[y + 1][x].task) ||
+              (x !== 0 && this.map[y][x - 1].type === this.roomType && !this.map[y][x - 1].task) ||
+              (x !== this.mapSizeX - 1 && this.map[y][x + 1].type === this.roomType && !this.map[y][x + 1].task))) {
+            testTasks.push({ x, y });
+          }
+        }
+      }
+      if (testTasks.length < this.taskCount) {
+        this.showMessage('ошибка сохранения',
+          'на карте должно быть как минимум ' + this.taskCount + ' ячеек-стен, граничащих с комнатами. имеется ' + testTasks.length + '.',
+          'error',
+          5000);
+        return false;
+      } else {
+        this.taskCellCount = testTasks.length;
       }
       return true;
     },
@@ -667,11 +733,15 @@ export default {
         this.sendSaveMap);
     },
     sendSaveMap() {
+      if (!this.validateMap()) {
+        return;
+      }
       let data = {
         mapName: this.currentMapName.trim(),
         map: this.map,
         sizeX: this.mapSizeX,
         sizeY: this.mapSizeY,
+        taskCellCount: this.taskCellCount,
         author: JSON.parse(localStorage.getItem('user')).id,
       };
       axios.post(this.pathSaveMap, data)

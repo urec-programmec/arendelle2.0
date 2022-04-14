@@ -45,7 +45,12 @@ def saveMap():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         data = request.get_json()
-        newMap = Map(name=data['mapName'], map=data['map'], sizeX=data['sizeX'], sizeY=data['sizeY'], author=data['author'])
+        newMap = Map(name=data['mapName'],
+                     map=data['map'],
+                     sizeX=data['sizeX'],
+                     sizeY=data['sizeY'],
+                     task_cell_count=data['taskCellCount'],
+                     author=data['author'])
         db.session.add(newMap)
         db.session.commit()
         return jsonify(response_object)
@@ -64,6 +69,7 @@ def allMaps():
                 'map': map.map,
                 'sizeX': map.sizeX,
                 'sizeY': map.sizeY,
+                'taskCellCount': map.task_cell_count,
                 'author': user.name + ' ' + user.surname,
                 'authorId': user.id,
                 'datetime': map.datetime_created.strftime('%d.%m.%Y'),

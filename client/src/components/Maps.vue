@@ -6,7 +6,7 @@
             @search="search"
             @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по картам'"
-            :style="clear ? { position: 'relative', boxShadow: 'none' } : {}"
+            :style="clear ? { position: 'inherit', boxShadow: 'none' } : {}"
             :settings="searchSettings"/>
     <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px',
                                    padding: clear ? 0 : '20px 0 0',

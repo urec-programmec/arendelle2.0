@@ -24,10 +24,10 @@
           </template>
         </vue-slider>
         <div class="hr" style="margin: 1.5rem 0 0.5rem"/>
-        <p>максимальное количество ячеек для задач</p>
+        <p>количество ячеек для задач</p>
         <vue-slider v-model="championship.taskCellCount"
                     :min="10"
-                    :max="100"
+                    :max="maxTaskCellCount"
                     :style="{ margin: '0 10px' }"
                     @change="changeTaskCellCount">
           <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
@@ -198,6 +198,9 @@ export default {
       pathGetTeams: 'http://localhost:5050/allTeamsText',
 
       championship: {},
+
+      maxTaskCellCount: 100,
+      defaultMaxTaskCellCount: 100,
 
       dateOptions: {
         year: 'numeric',
@@ -408,11 +411,19 @@ export default {
       this.championship.map = {};
       this.$nextTick(() => { this.championship.map = data.map; });
       if (Object.keys(data.map).length === 0) {
+        if (this.championship.taskCellCount > this.defaultMaxTaskCellCount) {
+          this.championship.taskCellCount = this.defaultMaxTaskCellCount;
+        }
+        this.maxTaskCellCount = this.defaultMaxTaskCellCount;
         this.showMessage('удаление карты',
           'выберите карту для чемпионата',
           'info',
           5000);
       } else {
+        if (this.championship.taskCellCount > data.map.taskCellCount) {
+          this.championship.taskCellCount = data.map.taskCellCount;
+        }
+        this.maxTaskCellCount = data.map.taskCellCount;
         this.showMessage('добавление карты',
           'карта для чемпионата выбрана',
           'success',
