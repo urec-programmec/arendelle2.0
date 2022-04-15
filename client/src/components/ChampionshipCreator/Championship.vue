@@ -196,8 +196,11 @@ export default {
     return {
       pathGetInstitutions: 'http://localhost:5050/allInstitutionsText',
       pathGetTeams: 'http://localhost:5050/allTeamsText',
+      pathSaveChampionship: 'http://localhost:5050/saveChampionship',
 
       championship: {},
+      borderType: 'border',
+      roomType: 'room',
 
       maxTaskCellCount: 100,
       defaultMaxTaskCellCount: 100,
@@ -210,12 +213,12 @@ export default {
         timezone: 'UTC',
         hour: 'numeric',
         minute: 'numeric',
-        second: 'numeric'
+        second: 'numeric',
       },
       timeOptions: {
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
       },
 
       editChItems: [
@@ -343,10 +346,88 @@ export default {
           8000);
         return;
       }
-      this.showMessage('ок',
-        'всё хорошо',
-        'confirm',
-        5000);
+
+      let map = this.championship.map.map;
+      let sizeY = this.championship.map.sizeY;
+      let sizeX = this.championship.map.sizeX;
+      let heroPosition = [];
+      for (let y = 0; y < sizeY; y++) {
+        for (let x = 0; x < sizeX; x++) {
+          if (map[y][x].type === this.roomType) {
+            heroPosition.push({ x, y });
+          }
+        }
+      }
+      for (let i = 0; i < 5; i++) {
+        let hero = heroPosition.splice(Math.floor(Math.random() * heroPosition.length), 1)[0];
+        map[hero.y][hero.x].heroPosition = true;
+      }
+      let taskCells = [];
+      for (let y = 0; y < sizeY; y++) {
+        for (let x = 0; x < sizeX; x++) {
+          if (map[y][x].type === this.borderType &&
+            ((y !== 0 && map[y - 1][x].type === this.roomType && !map[y - 1][x].task) ||
+              (y !== sizeY - 1 && map[y + 1][x].type === this.roomType && !map[y + 1][x].task) ||
+              (x !== 0 && map[y][x - 1].type === this.roomType && !map[y][x - 1].task) ||
+              (x !== sizeX - 1 && map[y][x + 1].type === this.roomType && !map[y][x + 1].task))) {
+            taskCells.push({ x, y });
+          }
+        }
+      }
+      while (taskCells.length > this.championship.taskCellCount) {
+        let testIndex = Math.floor(Math.random() * taskCells.length);
+        taskCells.splice(testIndex, 1);
+      }
+      for (let taskCell of taskCells) {
+        map[taskCell.y][taskCell.x].taskCell = true;
+      }
+      for (let task of this.championship.tasks) {
+        let taskP = taskCells.splice(Math.floor(Math.random() * taskCells.length), 1)[0];
+        map[taskP.y][taskP.x].task = task.id;
+      }
+
+      let data = {
+        name: this.championship.name.trim(),
+        stages: this.championship.stages.map(s => {
+          return {
+            stage: (s.text === 'отборочный тур' ? 1 : s.text === 'основной тур' ? 2 : 3),
+            date: s.value.date,
+            time: s.value.time.getHours() * 3600000 + s.value.time.getMinutes() * 60000,
+          };
+        }),
+        level: parseInt(this.championship.level, 10),
+        institutions: this.championship.institutions.map(i => i.value),
+        teams: this.championship.teams.map(i => i.value),
+        taskCount: this.championship.taskCount,
+        taskCellCount: this.championship.taskCellCount,
+        map,
+        mapId: this.championship.map.id,
+        tasks: this.championship.tasks.map(i => i.id),
+        author: JSON.parse(localStorage.getItem('user')).id,
+      };
+
+      axios.post(this.pathSaveChampionship, data)
+        .then(() => {
+          this.showMessage('ок',
+            'всё хорошо',
+            'success',
+            5000);
+          // this.$emit('closeCh');
+        })
+        .catch((error) => {
+          for (let y = 0; y < sizeY; y++) {
+            for (let x = 0; x < sizeX; x++) {
+              map[y][x].task = -1;
+              map[y][x].taskCell = false;
+              map[y][x].heroPosition = false;
+            }
+          }
+          console.error(error);
+          this.showMessage('ошибка при сохранении',
+            'подробности в консоли браузера',
+            'error',
+            5000);
+        });
     },
     changeName(data) {
       if (Object.keys(this.championship).includes('name')) {
@@ -358,7 +439,7 @@ export default {
     },
     changeLevelCh(data) {
       this.championship.level = data['selection'];
-      this.championship.stages = this.championship.level === '1' ?  [] : [{ value: { date: null, time: null } }];
+      this.championship.stages = this.championship.level === '1' ? [] : [{ value: { date: null, time: null } }];
       this.showMessage('смена параметров',
         this.championship.level === '1' ? 'чемпионат доступен всем' : 'чемпионат доступен только вам',
         this.championship.level === '1' ? 'info' : 'special',
@@ -376,10 +457,10 @@ export default {
     changeDate(date) {
       if (date !== null) {
         if (this.championship.level === '1') {
-          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0]
+          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0];
           stage = stage.slice(0, stage.length - 2, 2) + 'ого';
-          this.showMessage('дата ' + stage +  ' тура',
-            'дата проведения ' + stage +  ' тура: ' + date.toLocaleString('ru', this.dateOptions),
+          this.showMessage('дата ' + stage + ' тура',
+            'дата проведения ' + stage + ' тура: ' + date.toLocaleString('ru', this.dateOptions),
             'info',
             8000);
         } else {
@@ -393,10 +474,10 @@ export default {
     changeTime(time) {
       if (time !== null) {
         if (this.championship.level === '1') {
-          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0]
+          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0];
           stage = stage.slice(0, stage.length - 2, 2) + 'ого';
-          this.showMessage('длительность ' + stage +  ' тура',
-            'длительность проведения ' + stage +  ' тура: ' + time.toLocaleString('ru', this.timeOptions),
+          this.showMessage('длительность ' + stage + ' тура',
+            'длительность проведения ' + stage + ' тура: ' + time.toLocaleString('ru', this.timeOptions),
             'info',
             8000);
         } else {

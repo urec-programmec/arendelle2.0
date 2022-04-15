@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey, LargeBinary, create_engine, JSON
+from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey, LargeBinary, create_engine, JSON, TIME
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -13,10 +13,11 @@ class Championship(Base):
     id = Column(BigInteger, primary_key=True)
     name = Column(String(100), nullable=False)
     stage = Column(String(100), nullable=False)
+    level = Column(Integer, nullable=True)
     max_team_count = Column(Integer, nullable=True)
     max_institution_team_count = Column(Integer, nullable=True)
     datetime_start = Column(DATETIME, nullable=False)
-    datetime_end = Column(DATETIME, nullable=False)
+    time_long = Column(TIME, nullable=False)
     created_by = Column(BigInteger, ForeignKey('users.id'))
     championship_status = Column(BigInteger, ForeignKey('championship_status.id'))
 
@@ -67,6 +68,13 @@ class Map(Base):
     datetime_created = Column(DATETIME, nullable=False)
 
 
+class MapPlatform(Base):
+    __tablename__ = 'map_platform'
+    id = Column(BigInteger, primary_key=True)
+    map = Column(BigInteger, nullable=False)
+    map_content = Column(JSON, nullable=False)
+
+
 class Notification(Base):
     __tablename__ = 'notification'
     id = Column(BigInteger, primary_key=True)
@@ -97,7 +105,7 @@ class Platform(Base):
     color = Column(String(30), nullable=False)
     task_count = Column(Integer, nullable=False)
     additional_task_count = Column(Integer, nullable=False)
-    map = Column(BigInteger, ForeignKey('map.id'))
+    map = Column(BigInteger, ForeignKey('map_platform.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
     platform_status = Column(BigInteger, ForeignKey('platform_status.id'))
 
@@ -125,7 +133,7 @@ class Task(Base):
     task_type = Column(BigInteger, ForeignKey('task_type.id'))
     task_content = Column(BigInteger, ForeignKey('task_content.id'))
     task_status = Column(BigInteger, ForeignKey('task_status.id'))
-    find_by = Column(BigInteger, ForeignKey('users.id'))
+    find_by = Column(BigInteger, ForeignKey('users.id'), nullable=True)
     created_by = Column(BigInteger, ForeignKey('users.id'))
 
 

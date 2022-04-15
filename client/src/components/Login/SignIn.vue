@@ -264,7 +264,7 @@ export default {
         this.institutionErrorMessage === '' &&
         this.passwordErrorMessage === '' &&
         this.passwordRepeatErrorMessage === '') {
-        let color = Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() + 30}, 50%, 50%, 1)`;
+        let color = Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() * 30}, 50%, 50%, 1)`;
         let data = {
           email: this.email,
           nickname: this.nickname,

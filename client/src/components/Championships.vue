@@ -140,7 +140,6 @@ export default {
         this.resetCh);
     },
     closeCh() {
-      console.log('close');
       this.championshipName = '';
       this.championshipIsNew = false;
       this.championship = null;
@@ -324,9 +323,9 @@ export default {
         this.events.push({
           name: i,
           text: 'Чм. ' + i,
-          color: Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() + 30}, 50%, 50%, 0.8)`,
-          start: new Date(2022, 3, 1, 1, 0, Math.random() * 30, Math.random() * 1000),
-          end: new Date(2022, 3, 1, 3, 0, Math.random() * 30, Math.random() * 1000),
+          color: Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() * 30}, 50%, 50%, 0.8)`,
+          start: new Date(2022, 3, 13 + i, 12, 0, Math.random() * 30, Math.random() * 1000),
+          end: new Date(2022, 3, 13 + i, 18, 0, Math.random() * 30, Math.random() * 1000),
         });
         // this.config.viewHeight = this.events.length * 22 + 60;
         this.$emit('initTimeline');

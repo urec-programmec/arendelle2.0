@@ -1,5 +1,6 @@
 import os
 import json
+from random import random
 
 from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -245,6 +246,59 @@ def allTeamsText():
                 # 'author': user.name + ' ' + user.surname,
                 # 'authorId': user.id,
             })
+        return jsonify(response_object)
+
+
+
+@app.route('/saveChampionship', methods=['POST'])
+def saveChampionship():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+
+        name = data['name']
+        stages = [{'stage': i['stage'], 'date': i['date'], 'time': i['time'], } for i in data['stages']]
+        level = data['level']
+        institutions = data['institutions']
+        teams = data['teams']
+        tasks = data['tasks']
+        task_count = data['taskCount']
+        task_cell_count = data['taskCellCount']
+        map_content = data['map']
+        map_id = data['mapId']
+        created_by = data['author']
+
+        try:
+            # 1. new map
+            newMap = MapPlatform(map=map_id, map_content=map_content)
+            db.session.add(newMap)
+            db.session.flush()
+
+            # 2. all teams from team and institutions
+            allTeams = []
+            for team in db.session.query(Team).all():
+                if team.id in teams or team.institution in institutions:
+                    allTeams.append(team)
+
+            # 3. platforms
+            for team in allTeams:
+                # 3.1 platform
+                color = 'hsla(' + str(random() * 100 + 170) + ', 50%, 50%, 1)' if random() < 0.9 else 'hsla(' + str(random() * 30) + ', 50%, 50%, 1)'
+                platform = Platform(color=color, task_count=task_count, additional_task_count=0, map=newMap.id, created_by=created_by, platform_status=2)
+                db.session.add(platform)
+                db.session.flush()
+
+                # 3.2 tasks
+                for taskId in tasks:
+                    task = Task(platform=platform.id, task_type=1, task_content=taskId, task_status=1, created_by=created_by)
+                    db.session.add(task)
+                    db.session.flush()
+
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+
         return jsonify(response_object)
 
 

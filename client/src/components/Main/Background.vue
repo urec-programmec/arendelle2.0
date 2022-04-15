@@ -44,8 +44,8 @@ class Bounds {
         v,
         velocityCoeff,
         radius: Math.random() * (this.maxR - this.minR) + this.minR,
-        firstColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() + 30}, 50%, 50%, 1)`,
-        secondColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 0)` : `hsla(${Math.random() + 30}, 50%, 50%, 0)`,
+        firstColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() * 30}, 50%, 50%, 1)`,
+        secondColor: isNotFire ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 0)` : `hsla(${Math.random() * 30}, 50%, 50%, 0)`,
       });
     }
   }

@@ -192,6 +192,7 @@ export default {
               location: this.linkedMap.map[y][x].location,
               task: this.linkedMap.map[y][x].task,
               taskCell: this.linkedMap.map[y][x].taskCell,
+              heroPosition: this.linkedMap.map[y][x].heroPosition,
               src: this.linkedMap.map[y][x].src,
             });
           }
@@ -205,8 +206,9 @@ export default {
             row.push({
               type: '',
               location: '',
-              task: false,
+              task: -1,
               taskCell: false,
+              heroPosition: false,
               src: '',
             });
           }
@@ -330,16 +332,18 @@ export default {
                 this.map[y].push({
                   type: '',
                   location: '',
-                  task: false,
+                  task: -1,
                   taskCell: false,
+                  heroPosition: false,
                   src: '',
                 });
               } else {
                 this.map[y].unshift({
                   type: '',
                   location: '',
-                  task: false,
+                  task: -1,
                   taskCell: false,
+                  heroPosition: false,
                   src: '',
                 });
               }
@@ -365,8 +369,9 @@ export default {
               row.push({
                 type: '',
                 location: '',
-                task: false,
+                task: -1,
                 taskCell: false,
+                heroPosition: false,
                 src: '',
               });
             }
@@ -604,7 +609,7 @@ export default {
           newHeroWindowLeft < this.cellSize || newHeroWindowLeft > window.innerWidth - this.cellSize) {
           this.$nextTick(() => this.$refs.hero.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' }));
         }
-        if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task) {
+        if (this.map[newHeroDocumentTop / this.cellSize][newHeroDocumentLeft / this.cellSize].task === 1) {
           this.isTaskOpened = true;
           ModalWizard.open(modal, {
             props: {
@@ -617,7 +622,7 @@ export default {
               hintMessageInitial: 'ответ - 1',
               hintDelayInitial: 3000,
             },
-            onClose: () => { this.isTaskOpened = false; }
+            onClose: () => { this.isTaskOpened = false; },
           });
         }
       }
@@ -644,6 +649,7 @@ export default {
       for (let y = 0; y < this.mapSizeY; y++) {
         for (let x = 0; x < this.mapSizeX; x++) {
           this.map[y][x].task = false;
+          this.map[y][x].taskCell = false;
         }
       }
     },
@@ -677,8 +683,8 @@ export default {
         this.map[task.y][task.x].taskCell = true;
       }
       for (let i = 0; i < 10; i++) {
-        let task = testTasks[Math.floor(Math.random() * testTasks.length)];
-        this.map[task.y][task.x].task = true;
+        let task = testTasks.splice(Math.floor(Math.random() * testTasks.length), 1)[0];
+        this.map[task.y][task.x].task = 1;
       }
       return true;
     },
@@ -720,9 +726,8 @@ export default {
           'error',
           5000);
         return false;
-      } else {
-        this.taskCellCount = testTasks.length;
       }
+      this.taskCellCount = testTasks.length;
       return true;
     },
     saveMap() {
