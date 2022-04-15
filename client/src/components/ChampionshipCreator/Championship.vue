@@ -46,19 +46,21 @@
                        style="position: relative; width: 100%"
                        @changeSelection="changeLevelCh"/>
         <div class="hr"/>
-        <p v-if="championship.level === '1'">этапы чемпионата</p>
-        <multi-select placeholder="Этапы чемпионата"
-                      v-if="championship.level === '1'"
+        <p v-if="championship.level === '1'">этап чемпионата</p>
+        <model-select v-if="championship.level === '1'"
                       :options="stagesChItems"
-                      :selected-options="championship.stages"
-                      @select="changeStages"/>
-        <div v-if="championship.level === '1'"
-             v-for="(stage, index) in championship.stages"
-             :key="index">
+                      placeholder="Этап чемпионата"
+                      v-model="championship.stage" />
+<!--        <multi-select placeholder="Этапы чемпионата"-->
+<!--                      v-if="championship.level === '1'"-->
+<!--                      :options="stagesChItems"-->
+<!--                      :selected-options="championship.stages"-->
+<!--                      @select="changeStages"/>-->
+        <div v-if="championship.level === '1' && championship.stage.text !== ''">
           <div class="hr"/>
-          <p style="font-size: 0.9rem">{{ stage.text }}</p>
+          <p style="font-size: 0.9rem">{{ championship.stage.text }}</p>
           <p>дата начала чемпионата</p>
-          <datetime-picker v-model="stage.value.date"
+          <datetime-picker v-model="championship.date"
                            :confirm="true"
                            :show-second="false"
                            :minute-step="10"
@@ -66,7 +68,7 @@
                            :type="'datetime'"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
-          <datetime-picker v-model="stage.value.time"
+          <datetime-picker v-model="championship.time"
                            :confirm="true"
                            :show-second="false"
                            :minute-step="10"
@@ -80,7 +82,7 @@
         <div v-if="championship.level === '2'">
           <p style="font-size: 0.9rem">личный чемпионат</p>
           <p>дата начала чемпионата</p>
-          <datetime-picker v-model="championship.stages[0].value.date"
+          <datetime-picker v-model="championship.date"
                            :confirm="true"
                            :show-second="false"
                            :minute-step="10"
@@ -88,7 +90,7 @@
                            :type="'datetime'"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
-          <datetime-picker v-model="championship.stages[0].value.time"
+          <datetime-picker v-model="championship.time"
                            :confirm="true"
                            :show-second="false"
                            :minute-step="10"
@@ -171,8 +173,10 @@ import axios from 'axios';
 import DatePicker from 'vue2-datepicker';
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/antd.css';
+import 'vue-search-select/dist/VueSearchSelect.css';
 import 'vue2-datepicker/index.css';
 import { MultiSelect } from 'vue-search-select';
+import { ModelSelect } from 'vue-search-select';
 import CustomInput from '../Main/CustomInput';
 import ToggleSwitch from '../Main/ToggleSwitch';
 import Maps from '../Maps';
@@ -186,6 +190,7 @@ export default {
     'custom-input': CustomInput,
     'toggle-switch': ToggleSwitch,
     'multi-select': MultiSelect,
+    'model-select': ModelSelect,
     'datetime-picker': DatePicker,
     'maps': Maps,
     'tasks': Tasks,
@@ -250,9 +255,9 @@ export default {
       // levelCh: '1',
 
       stagesChItems: [
-        { value: [], text: 'отборочный тур' },
-        { value: [], text: 'основной тур' },
-        { value: [], text: 'финальный тур' },
+        { value: 1, text: 'отборочный тур' },
+        { value: 2, text: 'основной тур' },
+        { value: 3, text: 'финальный тур' },
       ],
       // stagesCh: [],
 
@@ -301,28 +306,26 @@ export default {
           5000);
         return;
       }
-      if (this.championship.stages === null || this.championship.stages.length === 0) {
+      if (this.championship.stage === null || this.championship.stage.text === '') {
         this.showMessage('ошибка сохранения',
-          'у глобального чемпионата должны быть выбраны этапы',
+          'у глобального чемпионата должен быть выбран этап',
           'error',
           5000);
         return;
       }
-      for (let stage of this.championship.stages) {
-        if (!Object.keys(stage.value).includes('date') || stage.value.date === null || stage.value.date === '') {
-          this.showMessage('ошибка сохранения',
-            'у каждого этапа чемпионата должна быть выбрана дата проведения',
-            'error',
-            5000);
-          return;
-        }
-        if (!Object.keys(stage.value).includes('time') || stage.value.time === null || stage.value.time === '') {
-          this.showMessage('ошибка сохранения',
-            'у каждого этапа чемпионата должна быть выбрана длительность проведения',
-            'error',
-            5000);
-          return;
-        }
+      if (this.championship.date === null || this.championship.date === '') {
+        this.showMessage('ошибка сохранения',
+          'у чемпионата должна быть выбрана дата проведения',
+          'error',
+          5000);
+        return;
+      }
+      if (this.championship.time === null || this.championship.time === '') {
+        this.showMessage('ошибка сохранения',
+          'у чемпионата должна быть выбрана длительность проведения',
+          'error',
+          5000);
+        return;
       }
       if ((this.championship.institutions === null || this.championship.institutions.length === 0) && (this.championship.teams === null || this.championship.teams.length === 0)) {
         this.showMessage('ошибка сохранения',
@@ -351,6 +354,7 @@ export default {
       let sizeY = this.championship.map.sizeY;
       let sizeX = this.championship.map.sizeX;
       let heroPosition = [];
+
       for (let y = 0; y < sizeY; y++) {
         for (let x = 0; x < sizeX; x++) {
           if (map[y][x].type === this.roomType) {
@@ -366,10 +370,10 @@ export default {
       for (let y = 0; y < sizeY; y++) {
         for (let x = 0; x < sizeX; x++) {
           if (map[y][x].type === this.borderType &&
-            ((y !== 0 && map[y - 1][x].type === this.roomType && !map[y - 1][x].task) ||
-              (y !== sizeY - 1 && map[y + 1][x].type === this.roomType && !map[y + 1][x].task) ||
-              (x !== 0 && map[y][x - 1].type === this.roomType && !map[y][x - 1].task) ||
-              (x !== sizeX - 1 && map[y][x + 1].type === this.roomType && !map[y][x + 1].task))) {
+            (y !== 0 && map[y - 1][x].type === this.roomType ||
+              y !== sizeY - 1 && map[y + 1][x].type === this.roomType||
+              x !== 0 && map[y][x - 1].type === this.roomType ||
+              x !== sizeX - 1 && map[y][x + 1].type === this.roomType)) {
             taskCells.push({ x, y });
           }
         }
@@ -388,13 +392,9 @@ export default {
 
       let data = {
         name: this.championship.name.trim(),
-        stages: this.championship.stages.map(s => {
-          return {
-            stage: (s.text === 'отборочный тур' ? 1 : s.text === 'основной тур' ? 2 : 3),
-            date: s.value.date,
-            time: s.value.time.getHours() * 3600000 + s.value.time.getMinutes() * 60000,
-          };
-        }),
+        stage: this.championship.stage.text,
+        date: this.championship.date,
+        time: this.championship.time.getHours() * 3600000 + this.championship.time.getMinutes() * 60000,
         level: parseInt(this.championship.level, 10),
         institutions: this.championship.institutions.map(i => i.value),
         teams: this.championship.teams.map(i => i.value),
@@ -408,11 +408,11 @@ export default {
 
       axios.post(this.pathSaveChampionship, data)
         .then(() => {
-          this.showMessage('ок',
-            'всё хорошо',
+          this.showMessage('сохранение чемпионата',
+            'чемпионат добавлен успешно',
             'success',
             5000);
-          // this.$emit('closeCh');
+          this.$emit('closeCh');
         })
         .catch((error) => {
           for (let y = 0; y < sizeY; y++) {
@@ -439,15 +439,21 @@ export default {
     },
     changeLevelCh(data) {
       this.championship.level = data['selection'];
-      this.championship.stages = this.championship.level === '1' ? [] : [{ value: { date: null, time: null } }];
+      this.championship.stage = {
+        value: 0,
+        text: '',
+      };
+      this.championship.date = null;
+      this.championship.time = 0;
+
       this.showMessage('смена параметров',
         this.championship.level === '1' ? 'чемпионат доступен всем' : 'чемпионат доступен только вам',
         this.championship.level === '1' ? 'info' : 'special',
         5000);
     },
-    changeStages(items) {
-      this.championship.stages = items;
-    },
+    // changeStages(items) {
+    //   this.championship.stage = items;
+    // },
     changeInstitution(items) {
       this.championship.institutions = items;
     },
@@ -457,7 +463,7 @@ export default {
     changeDate(date) {
       if (date !== null) {
         if (this.championship.level === '1') {
-          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0];
+          let stage = this.championship.stage.text.split(' ')[0];
           stage = stage.slice(0, stage.length - 2, 2) + 'ого';
           this.showMessage('дата ' + stage + ' тура',
             'дата проведения ' + stage + ' тура: ' + date.toLocaleString('ru', this.dateOptions),
@@ -474,7 +480,7 @@ export default {
     changeTime(time) {
       if (time !== null) {
         if (this.championship.level === '1') {
-          let stage = this.championship.stages[this.championship.stages.length - 1].text.split(' ')[0];
+          let stage = this.championship.stage.text.split(' ')[0];
           stage = stage.slice(0, stage.length - 2, 2) + 'ого';
           this.showMessage('длительность ' + stage + ' тура',
             'длительность проведения ' + stage + ' тура: ' + time.toLocaleString('ru', this.timeOptions),
@@ -608,7 +614,12 @@ export default {
         return {
           name: '',
           level: '1',
-          stages: [],
+          stage: {
+            value: 0,
+            text: '',
+          },
+          date: null,
+          time: 0,
           institutions: [],
           teams: [],
           taskCount: 5,

@@ -660,10 +660,10 @@ export default {
           this.map[y][x].task = false;
           this.map[y][x].taskCell = false;
           if (this.map[y][x].type === this.borderType &&
-            ((y !== 0 && this.map[y - 1][x].type === this.roomType && !this.map[y - 1][x].task) ||
-            (y !== this.mapSizeY - 1 && this.map[y + 1][x].type === this.roomType && !this.map[y + 1][x].task) ||
-            (x !== 0 && this.map[y][x - 1].type === this.roomType && !this.map[y][x - 1].task) ||
-            (x !== this.mapSizeX - 1 && this.map[y][x + 1].type === this.roomType && !this.map[y][x + 1].task))) {
+            (y !== 0 && this.map[y - 1][x].type === this.roomType ||
+            y !== this.mapSizeY - 1 && this.map[y + 1][x].type === this.roomType ||
+            x !== 0 && this.map[y][x - 1].type === this.roomType ||
+            x !== this.mapSizeX - 1 && this.map[y][x + 1].type === this.roomType)) {
             testTasks.push({ x, y });
           }
         }

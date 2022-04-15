@@ -17,7 +17,7 @@ class Championship(Base):
     max_team_count = Column(Integer, nullable=True)
     max_institution_team_count = Column(Integer, nullable=True)
     datetime_start = Column(DATETIME, nullable=False)
-    time_long = Column(TIME, nullable=False)
+    time_long = Column(Integer, nullable=False)
     created_by = Column(BigInteger, ForeignKey('users.id'))
     championship_status = Column(BigInteger, ForeignKey('championship_status.id'))
 
@@ -73,6 +73,9 @@ class MapPlatform(Base):
     id = Column(BigInteger, primary_key=True)
     map = Column(BigInteger, nullable=False)
     map_content = Column(JSON, nullable=False)
+    task_count = Column(Integer, nullable=False)
+    task_cell_count = Column(Integer, nullable=False)
+
 
 
 class Notification(Base):
@@ -103,8 +106,6 @@ class Platform(Base):
     __tablename__ = 'platform'
     id = Column(BigInteger, primary_key=True)
     color = Column(String(30), nullable=False)
-    task_count = Column(Integer, nullable=False)
-    additional_task_count = Column(Integer, nullable=False)
     map = Column(BigInteger, ForeignKey('map_platform.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
     platform_status = Column(BigInteger, ForeignKey('platform_status.id'))
@@ -191,7 +192,6 @@ class TeamTaskUser(Base):
 
 class TeamChampionshipPlatform(Base):
     __tablename__ = 'team_championship_platform'
-    id = Column(BigInteger, primary_key=True)
     team = Column(BigInteger, ForeignKey('team.id'), primary_key=True)
     championship = Column(BigInteger, ForeignKey('championship.id'), primary_key=True)
     platform = Column(BigInteger, ForeignKey('platform.id'), primary_key=True)

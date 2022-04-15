@@ -119,7 +119,12 @@ export default {
       this.championship = {
         name: this.championshipName,
         level: '1',
-        stages: [],
+        stage: {
+          value: 0,
+          text: '',
+        },
+        date: null,
+        time: 0,
         institutions: [],
         teams: [],
         taskCount: 5,

@@ -257,7 +257,9 @@ def saveChampionship():
         data = request.get_json()
 
         name = data['name']
-        stages = [{'stage': i['stage'], 'date': i['date'], 'time': i['time'], } for i in data['stages']]
+        stage = data['stage']
+        date = data['date']
+        time = data['time']
         level = data['level']
         institutions = data['institutions']
         teams = data['teams']
@@ -269,8 +271,24 @@ def saveChampionship():
         created_by = data['author']
 
         try:
+            # 0. championship
+            championship = Championship(name=name,
+                                        stage=stage,
+                                        level=level,
+                                        max_team_count=100,
+                                        max_institution_team_count=100,
+                                        datetime_start=date,
+                                        time_long=time,
+                                        created_by=created_by,
+                                        championship_status=1)
+            db.session.add(championship)
+            db.session.flush()
+
             # 1. new map
-            newMap = MapPlatform(map=map_id, map_content=map_content)
+            newMap = MapPlatform(map=map_id,
+                                 map_content=map_content,
+                                 task_count=task_count,
+                                 task_cell_count=task_cell_count)
             db.session.add(newMap)
             db.session.flush()
 
@@ -284,20 +302,32 @@ def saveChampionship():
             for team in allTeams:
                 # 3.1 platform
                 color = 'hsla(' + str(random() * 100 + 170) + ', 50%, 50%, 1)' if random() < 0.9 else 'hsla(' + str(random() * 30) + ', 50%, 50%, 1)'
-                platform = Platform(color=color, task_count=task_count, additional_task_count=0, map=newMap.id, created_by=created_by, platform_status=2)
+                platform = Platform(color=color,
+                                    map=newMap.id,
+                                    created_by=created_by,
+                                    platform_status=2)
                 db.session.add(platform)
                 db.session.flush()
 
                 # 3.2 tasks
                 for taskId in tasks:
-                    task = Task(platform=platform.id, task_type=1, task_content=taskId, task_status=1, created_by=created_by)
+                    task = Task(platform=platform.id,
+                                task_type=1,
+                                task_content=taskId,
+                                task_status=1,
+                                created_by=created_by)
                     db.session.add(task)
                     db.session.flush()
 
+                # 3.3 team to championship on platform
+                tcp = TeamChampionshipPlatform(team=team.id, championship=championship.id, platform=platform.id)
+                db.session.add(tcp)
+                db.session.flush()
+
             db.session.commit()
         except Exception as e:
-            print(e)
             db.session.rollback()
+            raise e
 
         return jsonify(response_object)
 
