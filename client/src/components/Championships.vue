@@ -20,6 +20,8 @@
                     @rightClick="newCh"/>
       <championship v-if="championship !== null"
                     @closeCh="closeCh"
+                    @deleteCh="deleteCh"
+                    @saveCh="saveCh"
                     :default-championship="championship"/>
     </div>
     <message/>
@@ -30,10 +32,7 @@
 import ModalWizard from 'vue-modal-wizard';
 import axios from 'axios';
 import Vue from 'vue';
-import modalDialog from './Main/Dialog';
-import modalTask from './Main/TaskDialog';
 import Message from './Main/Message';
-import Search from './Main/Search';
 
 import TimeLine from './ChampionshipCreator/TimeLine';
 import Championship from './ChampionshipCreator/Championship';
@@ -44,7 +43,7 @@ Vue.use(ModalWizard);
 
 export default {
   name: 'Championships',
-  components: { 'search': Search,
+  components: {
     message: Message,
     timeline: TimeLine,
     championship: Championship,
@@ -52,6 +51,9 @@ export default {
     'toggle-switch': ToggleSwitch },
   data() {
     return {
+      pathGetChampionships: 'http://localhost:5050/allChampionships',
+      pathDeleteCh: 'http://localhost:5050/deleteChampionship',
+
       user: {},
       stageItems: [
         {
@@ -81,42 +83,70 @@ export default {
         //   top: 0,
         //   bottom: 0,
         // },
-        onEventClick: (x) => {
-          console.log(x);
+        onEventClick: (ch) => {
+          // if (ch.end < new Date()) {
+          //   return;
+          // }
+          let title = ch.end < new Date() ? 'просмотр чемпионата' : 'управление чемпионатом'
+          let message = ch.end < new Date() ? 'перейти в режим просмотра чемпионата?' : 'перейти в режим управления чемпионатом?'
+          let messageType = ch.end < new Date() ? 'confirm-info' : 'confirm-special';
+          this.showMessage(title,
+            message,
+            messageType,
+            15000,
+            () => this.setCh(ch));
         },
       },
 
       championshipName: '',
       championshipIsNew: false,
       championship: null,
-
-      tasks: [],
-      defaultTasks: [],
-
-      pathGetTasks: 'http://localhost:5050/allTasks',
-      pathRenameTask: 'http://localhost:5050/renameTask',
-      pathDeleteTask: 'http://localhost:5050/deleteTask',
-
-      searchValue: '',
-      searchSettings: {
-        searchBy: 'name',
-        showing: 'all',
-      },
-      searchTimeout: null,
-      hoverTask: '',
-      renameIndex: -1,
-      deleteIndex: -1,
-      filterParams: {},
-
-      loadedAll: false,
+      championships: [],
     };
   },
   methods: {
     changeStage(data) {
       this.stage = data['selection'];
     },
+    setCh(ch) {
+      // console.log(ch);
+      this.closeCh();
+      setTimeout(() => {
+        let stagesCh = {
+          '': 0,
+          'отборочный тур': 1,
+          'основной тур': 2,
+          'финальный тур': 3,
+        }
+        let time = new Date();
+        time.setHours(0);
+        time.setMinutes(0);
+        time.setSeconds(0);
+        time.setMilliseconds(ch.time);
+        this.championship = {
+          id: ch.id,
+          name: ch.name,
+          level: ch.levelCh + '',
+          stage: {
+            value: stagesCh[ch.stage],
+            text: ch.stage,
+          },
+          date: ch.start,
+          time,
+          institutions: ch.institutions,
+          teams: ch.teams,
+          taskCount: ch.taskCount,
+          taskCellCount: ch.taskCellCount,
+          map: ch.map,
+          tasks: ch.tasks,
+          isNew: this.championshipIsNew,
+        };
+      }, 0)
+      this.$emit('closeMessage');
+    },
     resetCh() {
       this.championship = {
+        id: -1,
         name: this.championshipName,
         level: '1',
         stage: {
@@ -149,114 +179,11 @@ export default {
       this.championshipIsNew = false;
       this.championship = null;
     },
-
-
-    search(data) {
-      this.searchValue = data['searchValue'].toLowerCase();
-      this.searchSettings = data['settings'];
-      if (this.searchTimeout) {
-        clearTimeout(this.searchTimeout);
-      }
-      this.searchTimeout = setTimeout(() => {
-        this.filterTasks();
-      }, 50);
-    },
-    changeFilterParameters(data) {
-      this.filterParams = data['filterParams'];
-    },
-    mainClick(event) {
-      this.$emit('mainClick', { event });
-    },
-    loadTasks() {
-      const promises = this.tasks.map(task => this.getImage(new Blob(['data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(task.content)))]))
-        .catch((err) => {
-          console.error(err);
-          this.showMessage('ошибка при загрузке',
-            'подробности в консоли браузера',
-            'error',
-            5000);
-        }));
-      return Promise.all(promises)
+    deleteCh(data) {
+      axios.post(this.pathDeleteCh, { id: data['id'] })
         .then(() => {
-          this.loadedAll = true;
-        });
-    },
-    getImage(file) {
-      return new Promise((resolve, reject) => {
-        const fReader = new FileReader();
-        const img = document.createElement('img');
-        img.onload = () => {};
-        fReader.onload = () => {
-          img.src = fReader.result;
-          resolve(this.getBase64Image(img));
-        };
-        fReader.readAsDataURL(file);
-      });
-    },
-    getBase64Image(img) {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const dataURL = canvas.toDataURL('image/jpg');
-      return dataURL;
-    },
-    deleteTask(index) {
-      this.deleteIndex = index;
-      ModalWizard.open(modalDialog, {
-        props: {
-          title: 'удалить задачу?',
-          submit: this.submitDeleteTask,
-          isConfirm: true,
-        },
-      });
-    },
-    renameTask(index) {
-      this.renameIndex = index;
-      ModalWizard.open(modalDialog, {
-        props: {
-          title: 'редактировать название',
-          placeholder: this.tasks[index].name,
-          submit: this.submitRenameTask,
-        },
-      });
-    },
-    watchTask(task) {
-      let hintMessage = Object.values(task.answer).length === 1 ?
-        ('ответ - ' + task.answer[0]) :
-        ('ответы - ' + Object.values(task.answer));
-      ModalWizard.open(modalTask, {
-        props: {
-          taskTitle: task.name,
-          taskName: task.content,
-          taskAnswer: task.answer,
-          taskAnswerType: task.typeOfResponse,
-          taskСomplexity: task.complexity,
-          showHintOnSubmit: true,
-          hintErrorMessageOnSubmit: hintMessage,
-          hintDelayOnSubmit: 3000,
-          showHintInitial: true,
-          hintMessageInitial: hintMessage,
-          hintDelayInitial: 3000,
-        },
-      });
-    },
-    createTask() {
-      ModalWizard.open(modalDialog, {
-        props: {
-          title: 'создать задачу',
-          placeholder: 'название',
-          submit: this.submitCreateTask,
-        },
-      });
-    },
-    submitDeleteTask() {
-      this.$modal.close();
-      axios.post(this.pathDeleteTask, { id: this.tasks[this.deleteIndex].id })
-        .then(() => {
-          this.preloadTasks();
+          this.closeCh();
+          this.preloadCh();
         })
         .catch((error) => {
           console.error(error);
@@ -266,52 +193,59 @@ export default {
             5000);
         });
     },
-    submitRenameTask(name) {
-      this.$modal.close();
-      if (name === '') {
-        return;
-      }
-      axios.post(this.pathRenameTask, { id: this.tasks[this.renameIndex].id, newName: name })
-        .then(() => {
-          this.tasks[this.renameIndex].name = name;
-        })
-        .catch((error) => {
-          console.error(error);
-          this.showMessage('ошибка при переименовании',
-            'подробности в консоли браузера',
-            'error',
-            5000);
-        });
+    saveCh() {
+      this.championshipName = '';
+      this.championshipIsNew = false;
+      this.championship = null;
+      this.preloadCh();
     },
-    submitCreateTask(name) {
-      this.$modal.close();
-      let params = name === '' ? {} : { taskName: name };
-      this.$router.push({ name: 'task-creator', params });
+    mainClick(event) {
+      this.$emit('mainClick', { event });
     },
-    filterTasks() {
-      let newTasks = [];
-      for (let task of this.defaultTasks) {
-        if (task[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) && (this.searchSettings.showing === 'all' || task.authorId === this.user.id)) {
-          newTasks.push(task);
-        }
-      }
-      this.tasks = newTasks;
-      this.$nextTick(() => this.loadTasks());
-    },
-    preloadTasks() {
-      axios.get(this.pathGetTasks)
+
+    preloadCh() {
+      this.events = []
+      this.$emit('initTimeline');
+      axios.get(this.pathGetChampionships)
         .then((res) => {
-          this.defaultTasks = res.data.tasks;
-          this.tasks = res.data.tasks;
-          this.filterTasks();
+          this.championships = res.data.championships;
+          this.loadCh();
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при загрузке',
+          this.showMessage('ошибка при загрузке чемпионатов',
             'подробности в консоли браузера',
             'error',
             5000);
         });
+    },
+    loadCh() {
+      for (let ch of this.championships) {
+        let date = new Date(ch.date);
+        let hours = Math.floor(ch.time / 3600000);
+        let minutes = (ch.time - hours * 3600000) / 60000;
+        let start = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), Math.random() * 10, Math.random() * 1000)
+        let end = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours() + hours, date.getMinutes() + minutes, Math.random() * 10, Math.random() * 1000)
+        this.events.push({
+          id: ch.id,
+          name: ch.name,
+          text: ch.name,
+          color: ch.color,
+          start,
+          end,
+          levelCh: ch.level,
+          stage: ch.stage,
+          time: ch.time,
+          taskCount: ch.taskCount,
+          taskCellCount: ch.taskCellCount,
+          teams: ch.teams,
+          institutions: ch.institutions,
+          map: ch.map,
+          tasks: ch.tasks,
+        });
+        // this.config.viewHeight = this.events.length * 22 + 60;
+      }
+      this.$emit('initTimeline');
     },
     showMessage(title, message, messageType, delay, functionConfirm) {
       this.$emit('showMessage', { title, message, messageType, delay, functionConfirm });
@@ -320,24 +254,7 @@ export default {
   mounted() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.$emit('initTimeline');
-
-      let i = 0;
-      let interval = setInterval(() => {
-        i++;
-        this.events.push({
-          name: i,
-          text: 'Чм. ' + i,
-          color: Math.random() < 0.9 ? `hsla(${Math.random() * 100 + 170}, 50%, 50%, 1)` : `hsla(${Math.random() * 30}, 50%, 50%, 0.8)`,
-          start: new Date(2022, 3, 13 + i, 12, 0, Math.random() * 30, Math.random() * 1000),
-          end: new Date(2022, 3, 13 + i, 18, 0, Math.random() * 30, Math.random() * 1000),
-        });
-        // this.config.viewHeight = this.events.length * 22 + 60;
-        this.$emit('initTimeline');
-        if (i === 5) {
-          clearInterval(interval);
-        }
-      }, 0);
+      this.preloadCh();
     }
   },
 };
@@ -368,38 +285,6 @@ export default {
   padding-right: 10px;
   overflow: scroll;
 }
-/*.champ-item:before {*/
-/*  font-size: 2em;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  left: 0;*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  border-radius: 0.25rem;*/
-/*  z-index: -1;*/
-/*}*/
-.bx-super-spin:before {
-  animation: spin 2s linear infinite;
-}
-.canvas-container {
-  height: 200px;
-  border-radius: 0.25rem;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 0);
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.canvas-container canvas {
-  border-radius: 0.25rem;
-}
 .main .content::-webkit-scrollbar{
   display: block;
   width: 10px;
@@ -416,111 +301,6 @@ export default {
   background: rgba(241,243,244,0.6);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
-.task-description {
-  position: absolute;
-  line-height: 0.8em;
-}
-.task-description p {
-  margin: 0;
-}
-.task-name {
-  font-size: 0.9em;
-  height: 100%;
-  position: relative;
-  margin: 0.5rem calc(50px + 0.5rem) 0.5rem 0;
-  overflow: hidden;
-  word-wrap: break-word;
-}
-.task-size {
-  top: 0.4rem;
-  line-height: 1em;
-  right: 0.5rem;
-  font-size: 1.1em;
-}
-.task-datetime,
-.task-author {
-  bottom: 0.1rem;
-  font-size: 0.8em;
-}
-.task-author {
-  left: 0.5rem;
-}
-.task-datetime {
-  right: 0.5rem;
-}
-.task-description-container {
-  position: absolute;
-  top: 1rem;
-  left: 0.5rem;
-  height: fit-content;
-  max-height: calc(100% - 2rem);
-  overflow: hidden;
-  width: calc(100% - 200px - 1.5rem);
-  border-radius: 0.25rem;
-  background: rgba(241,243,244,0.14);
-  box-shadow: 0 0 0 2px rgba(241,243,244,0.14);
-}
-.champ-item-watch,
-.champ-item-delete,
-.champ-item-rename {
-  position: absolute;
-  opacity: 0;
-  background: rgba(33, 37, 41, 0.6);
-  border: 1px solid;
-  /*border-radius: 0.25rem;*/
-  color: rgba(245, 245, 245, 0.7);
-}
-.champ-item-watch:before,
-.champ-item-delete:before,
-.champ-item-rename:before {
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-.champ-item-watch:hover,
-.champ-item-delete:hover,
-.champ-item-rename:hover,
-.champ-item-hovered-create:hover:before {
-  background: rgba(33, 37, 41, 0.9);
-  color: rgba(245, 245, 245, 1);
-}
-.champ-item-watch {
-  left: 0;
-  top: 50%;
-  height: 50%;
-  width: 100%;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-}
-.champ-item-rename {
-  left: 0;
-  top: 0;
-  height: 50%;
-  width: 50%;
-  border-top-left-radius: 0.25rem;
-}
-.champ-item-delete {
-  left: 50%;
-  top: 0;
-  height: 50%;
-  width: 50%;
-  border-top-right-radius: 0.25rem;
-}
-.champ-item-hovered-create:hover,
-.champ-item-hovered {
-  opacity: 1;
-  z-index: 1;
-  cursor: pointer;
-}
-
-
 .header {
   position: absolute;
   border: none;
@@ -535,47 +315,5 @@ export default {
 .timeline-container {
   fill: #F5F5F5;
   color: #F5F5F5 !important;
-}
-.champ-item {
-  height: max-content;
-  width: max-content;
-  min-height: calc(100% - 270px);
-  margin-top: 10px;
-  background-color: rgba(241,243,244,0.19);
-  border-radius: 0.25rem;
-  border: 1px solid rgb(33, 37, 41);
-  padding: 0 0.5rem 1.5rem 0.5rem;
-  transition: all 0.2s ease;
-  position: relative;
-  color: #F5F5F5;
-}
-.new-championship {
-  height: 250px;
-  width: 270px;
-  background: rgba(33, 37, 41, 0.6);
-  border-radius: 0.25rem;
-  border: 2px dashed #F5F5F5;
-  cursor: pointer;
-  position: absolute;
-  top: calc(50% + 100px);
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.new-championship:hover {
-  background: rgba(33, 37, 41, 0.8);
-}
-.new-championship:before {
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.25rem;
-  color: #F5F5F5;
-  z-index: -1;
 }
 </style>

@@ -272,9 +272,12 @@ def saveChampionship():
 
         try:
             # 0. championship
+            color = 'hsla(' + str(random() * 100 + 170) + ', 50%, 50%, 1)' if random() < 0.9 else 'hsla(' + str(
+                random() * 30) + ', 50%, 50%, 1)'
             championship = Championship(name=name,
                                         stage=stage,
                                         level=level,
+                                        color=color,
                                         max_team_count=100,
                                         max_institution_team_count=100,
                                         datetime_start=date,
@@ -324,6 +327,10 @@ def saveChampionship():
                 db.session.add(tcp)
                 db.session.flush()
 
+            for institution in institutions:
+                ci = ChampionshipInstitution(championship=championship.id, institution=institution)
+                db.session.add(ci)
+
             db.session.commit()
         except Exception as e:
             db.session.rollback()
@@ -332,7 +339,119 @@ def saveChampionship():
         return jsonify(response_object)
 
 
+
+@app.route('/deleteChampionship', methods=['POST'])
+def deleteChampionship():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        id = data['id']
+        try:
+            # 0. championship
+            championship = db.session.query(Championship).filter_by(id=id).first()
+            allTeamPlatforms = db.session.query(TeamChampionshipPlatform).filter_by(championship=id).all()
+            allInstitutions = db.session.query(ChampionshipInstitution).filter_by(championship=id).all()
+
+            platformIds = [i.platform for i in allTeamPlatforms]
+            allTasks = [i for i in db.session.query(Task).all() if i.platform in platformIds]
+            allPlatform = [i for i in db.session.query(Platform).all() if i.id in platformIds]
+            mapPlatform = db.session.query(MapPlatform).filter_by(id=allPlatform[0].map).first()
+
+            for i in allTeamPlatforms:
+                db.session.delete(i)
+            db.session.flush()
+
+            for i in allTasks:
+                db.session.delete(i)
+            db.session.flush()
+
+            for i in allPlatform:
+                db.session.delete(i)
+            db.session.flush()
+
+            db.session.delete(mapPlatform)
+            db.session.flush()
+
+            for i in allInstitutions:
+                db.session.delete(i)
+            db.session.flush()
+
+            db.session.delete(championship)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            raise e
+
+        return jsonify(response_object)
+
+
+
+@app.route('/allChampionships', methods=['GET'])
+def allChampionships():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['championships'] = []
+        for ch in db.session.query(Championship).all():
+            allTeamPlatforms = db.session.query(TeamChampionshipPlatform).filter_by(championship=ch.id).all()
+            platform = db.session.query(Platform).filter_by(id=allTeamPlatforms[0].platform).first()
+            mapPlatform = db.session.query(MapPlatform).filter_by(id=platform.map).first()
+            allTeamIds = [i.team for i in allTeamPlatforms]
+            allInstitutionIds = [i.institution for i in db.session.query(ChampionshipInstitution).filter_by(championship=ch.id).all()]
+            allTeams = [i for i in db.session.query(Team).all() if i.id in allTeamIds and not (i.institution in allInstitutionIds)]
+            allInstitutions = [i for i in db.session.query(Institution).all() if i.id in allInstitutionIds]
+            mapTemp = db.session.query(Map).filter_by(id=mapPlatform.map).first()
+            mapCreator = db.session.query(Users).filter_by(id=mapTemp.author).first()
+            mapJSON = {
+                'id': mapTemp.id,
+                'name': mapTemp.name,
+                'map': mapTemp.map,
+                'sizeX': mapTemp.sizeX,
+                'sizeY': mapTemp.sizeY,
+                'taskCellCount': mapTemp.task_cell_count,
+                'author': mapCreator.name + ' ' + mapCreator.surname,
+                'authorId': mapCreator.id,
+                'datetime': mapTemp.datetime_created.strftime('%d.%m.%Y'),
+            }
+            allTasks = []
+            for taskId in [i.task_content for i in db.session.query(Task).filter_by(platform=platform.id).all()]:
+                task = db.session.query(TaskContent).filter_by(id=taskId).first()
+                taskCreator = db.session.query(Users).filter_by(id=task.created_by).first()
+                allTasks.append({
+                    'id': task.id,
+                    'name': task.name,
+                    'content': task.content.decode('ascii'),
+                    'answer': json.loads(task.answer),
+                    'complexity': task.complexity,
+                    'typeOfResponse': task.type_of_response,
+                    'author': taskCreator.name + ' ' + taskCreator.surname,
+                    'authorId': taskCreator.id,
+                    'datetime': task.datetime_created.strftime('%d.%m.%Y'),
+                })
+
+            user = db.session.query(Users).filter_by(id=ch.created_by).first()
+            response_object['championships'].append({
+                'id': ch.id,
+                'name': ch.name,
+                'stage': ch.stage,
+                'level': ch.level,
+                'color': ch.color,
+                'date': ch.datetime_start,
+                'time': ch.time_long,
+
+                'taskCount': mapPlatform.task_count,
+                'taskCellCount': mapPlatform.task_cell_count,
+                'teams': [{'text': i.name, 'value': i.id} for i in allTeams],
+                'institutions': [{'text': i.name, 'value': i.id} for i in allInstitutions],
+                'map': mapJSON,
+                'tasks': allTasks,
+
+                'author': user.name + ' ' + user.surname,
+                'authorId': user.id,
+            })
+        return jsonify(response_object)
+
+
 if __name__ == '__main__':
-    app.run(port=5050)
+    app.run(port=5050, host='0.0.0.0')
 
 

@@ -32,7 +32,7 @@ export default {
     championships: Championships },
   data() {
     return {
-      tab: 'profile',
+      tab: 'championships',
       user: {},
       userInitials: '',
     };
@@ -65,7 +65,7 @@ export default {
     this.userInitials = '\''.concat(this.user.name[0], this.user.surname[0], '\'').toUpperCase();
     this.tab = this.$route.path.slice(1);
     if (this.tab === 'main') {
-      this.tab = 'profile';
+      this.tab = 'championships';
     }
     window.onbeforeunload = null;
     this.$emit('changeTab', { tab: this.tab });

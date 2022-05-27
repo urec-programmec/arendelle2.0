@@ -3,12 +3,14 @@
     <div class="champ-header">
       <custom-input :placeholder="'Название чемпионата'"
                     :icon-right-class="'bx-check'"
-                    :icon-left-class="'bx-x-circle'"
+                    :icon-left-class="'bx-undo'"
                     :clear-on-left-click="false"
                     :default-value="championship.name"
+                    :triple-actions="!championship.isNew"
                     @do="changeName"
                     @leftClick="closeCh"
                     @rightClick="saveCh"
+                    @tripleClick="deleteCh"
                     style="margin: 0"/>
       <div class="champ-content" style="margin-top: 50px">
         <p>количество задач</p>
@@ -51,11 +53,6 @@
                       :options="stagesChItems"
                       placeholder="Этап чемпионата"
                       v-model="championship.stage" />
-<!--        <multi-select placeholder="Этапы чемпионата"-->
-<!--                      v-if="championship.level === '1'"-->
-<!--                      :options="stagesChItems"-->
-<!--                      :selected-options="championship.stages"-->
-<!--                      @select="changeStages"/>-->
         <div v-if="championship.level === '1' && championship.stage.text !== ''">
           <div class="hr"/>
           <p style="font-size: 0.9rem">{{ championship.stage.text }}</p>
@@ -66,6 +63,7 @@
                            :minute-step="10"
                            :placeholder="'Дата'"
                            :type="'datetime'"
+                           :style="{ width: '100%' }"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -76,6 +74,7 @@
                            :default-value="new Date().setHours(2, 0, 0, 0)"
                            :placeholder="'Длительность, ч'"
                            :type="'time'"
+                           :style="{ width: '100%' }"
                            @change="changeTime"/>
 
         </div>
@@ -88,6 +87,7 @@
                            :minute-step="10"
                            :placeholder="'Дата'"
                            :type="'datetime'"
+                           :style="{ width: '100%' }"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -98,6 +98,7 @@
                            :default-value="new Date().setHours(2, 0, 0, 0)"
                            :placeholder="'Длительность, ч'"
                            :type="'time'"
+                           :style="{ width: '100%' }"
                            @change="changeTime"/>
         </div>
       </div>
@@ -281,8 +282,8 @@ export default {
       this.$emit('mainClick', { event: event.event });
     },
     closeCh() {
-      this.showMessage('отменить создание',
-        'прервать создание чемпионата?',
+      this.showMessage('отменить все изменения',
+        'прервать ' + (this.championship.isNew ? 'создание' : 'редактирование') + ' чемпионата?',
         'confirm-error',
         15000,
         this.sendCloseCh);
@@ -291,8 +292,20 @@ export default {
       this.$emit('closeCh');
       this.$emit('closeMessage');
     },
+    deleteCh() {
+      this.showMessage('удалить чемпионат?',
+        '',
+        'confirm-error',
+        15000,
+        this.sendDeleteCh);
+    },
+    sendDeleteCh() {
+      this.$emit('deleteCh', { id: this.championship.id });
+      this.$emit('closeMessage');
+    },
     saveCh() {
-      this.showMessage('сохранить чемпионат',
+      console.log(this.championship);
+      this.showMessage('сохранить все изменения',
         'закончить редактирование и сохранить чемпионат?',
         'confirm',
         15000,
@@ -306,7 +319,7 @@ export default {
           5000);
         return;
       }
-      if (this.championship.stage === null || this.championship.stage.text === '') {
+      if (this.championship.level === '1' && (this.championship.stage === null || this.championship.stage.text === '')) {
         this.showMessage('ошибка сохранения',
           'у глобального чемпионата должен быть выбран этап',
           'error',
@@ -412,7 +425,7 @@ export default {
             'чемпионат добавлен успешно',
             'success',
             5000);
-          this.$emit('closeCh');
+          this.$emit('saveCh');
         })
         .catch((error) => {
           for (let y = 0; y < sizeY; y++) {
@@ -581,6 +594,9 @@ export default {
       'special',
       15000);
     this.championship = this.defaultChampionship;
+    if (this.championship.map) {
+      this.maxTaskCellCount = this.championship.map.taskCellCount;
+    }
 
     this.$parent.$on('mainClick', this.mainClick);
     axios.get(this.pathGetInstitutions)
@@ -589,7 +605,7 @@ export default {
       })
       .catch((error) => {
         console.error(error);
-        this.showMessage('ошибка при загрузке',
+        this.showMessage('ошибка при загрузке институтов',
           'подробности в консоли браузера',
           'error',
           5000);
@@ -601,7 +617,7 @@ export default {
       })
       .catch((error) => {
         console.error(error);
-        this.showMessage('ошибка при загрузке',
+        this.showMessage('ошибка при загрузке команд',
           'подробности в консоли браузера',
           'error',
           5000);

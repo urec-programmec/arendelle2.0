@@ -14,6 +14,7 @@ class Championship(Base):
     name = Column(String(100), nullable=False)
     stage = Column(String(100), nullable=False)
     level = Column(Integer, nullable=True)
+    color = Column(String(60), nullable=False)
     max_team_count = Column(Integer, nullable=True)
     max_institution_team_count = Column(Integer, nullable=True)
     datetime_start = Column(DATETIME, nullable=False)
@@ -105,7 +106,7 @@ class NotificationType(Base):
 class Platform(Base):
     __tablename__ = 'platform'
     id = Column(BigInteger, primary_key=True)
-    color = Column(String(30), nullable=False)
+    color = Column(String(60), nullable=False)
     map = Column(BigInteger, ForeignKey('map_platform.id'))
     created_by = Column(BigInteger, ForeignKey('users.id'))
     platform_status = Column(BigInteger, ForeignKey('platform_status.id'))
