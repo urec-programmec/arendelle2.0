@@ -1,12 +1,13 @@
 import os
 import json
 from random import random
+from hashlib import md5
+from datetime import datetime, timedelta
+import pytz
 
 from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-
-from hashlib import md5
 
 from db.db import *
 
@@ -17,6 +18,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 CORS(app)
+
+
+@app.route('/checkState', methods=['GET'])
+def checkState():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        utc = pytz.UTC
+        for ch in db.session.query(Championship).all():
+            if ch.championship_status == 1 and ch.datetime_start.replace(tzinfo=utc) < datetime.now().replace(tzinfo=utc):
+                ch.championship_status = 2
+
+            delta = timedelta(milliseconds=ch.time_long)
+            if ch.championship_status == 2 and (ch.datetime_start + delta).replace(tzinfo=utc) < datetime.now().replace(tzinfo=utc):
+                ch.championship_status = 3
+
+        db.session.commit()
+        return jsonify(response_object)
 
 
 @app.route('/deleteMap', methods=['POST'])
@@ -256,6 +274,7 @@ def saveChampionship():
     if request.method == 'POST':
         data = request.get_json()
 
+        id = data['id']
         name = data['name']
         stage = data['stage']
         date = data['date']
@@ -437,6 +456,7 @@ def allChampionships():
                 'color': ch.color,
                 'date': ch.datetime_start,
                 'time': ch.time_long,
+                'status': ch.championship_status,
 
                 'taskCount': mapPlatform.task_count,
                 'taskCellCount': mapPlatform.task_cell_count,
@@ -452,6 +472,6 @@ def allChampionships():
 
 
 if __name__ == '__main__':
-    app.run(port=5050, host='0.0.0.0')
+    app.run(port=5050)
 
 

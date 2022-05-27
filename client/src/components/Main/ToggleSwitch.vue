@@ -26,8 +26,10 @@ export default {
   },
   methods: {
     select(type) {
-      this.selected = type;
-      this.$emit('changeSelection', { 'selection': this.selected });
+      if (!this.disabled) {
+        this.selected = type;
+        this.$emit('changeSelection', { 'selection': this.selected });
+      }
     },
   },
   props: {
@@ -58,6 +60,10 @@ export default {
     borderColor: {
       type: String,
       default: 'rgba(0,0,0,0.5)',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   mounted() {

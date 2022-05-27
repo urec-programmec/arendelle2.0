@@ -13,6 +13,7 @@
       </div>
       <input v-model="searchValue" type="text"
              class="form-control"
+             :disabled="disabled"
              :placeholder="placeholder"
              :style="focus ? { '--background-color': backgroundSecondColor,
                                  '--text-color': textSecondColor,
@@ -61,7 +62,9 @@ export default {
       this.$emit('leftClick', { 'value': this.searchValue });
     },
     rightClick() {
-      this.$emit('rightClick', { 'value': this.searchValue });
+      if (!this.disabled) {
+        this.$emit('rightClick', { 'value': this.searchValue });
+      }
     },
     tripleClick() {
       this.$emit('tripleClick', { 'value': this.searchValue });
@@ -136,6 +139,10 @@ export default {
     placeholder: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     defaultValue: {
       type: String,

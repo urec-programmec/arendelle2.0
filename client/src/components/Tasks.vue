@@ -21,9 +21,9 @@
            @mouseenter="hoverTask = 'task-' + index">
         <div @click="renameTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['task-item-rename', 'bx', 'bx-rename', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
         <div @click="deleteTask(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['task-item-delete', 'bx', 'bx-x', { 'task-item-hovered': hoverTask === 'task-' + index }]"></div>
-        <div @click="watchTask(task)" v-if="loadedAll" :class="['task-item-watch', 'bx', 'bx-fullscreen', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="searchSettings.showing !== 'all' || clear ? {} : { height: '100%', top: 0,   borderRadius: '0.25rem' }"></div>
-        <div @click="sendTask(index)" v-if="loadedAll && clear && !preloaded" :class="['task-item-watch', 'bx', 'bx-select-multiple', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
-        <div @click="sendDeleteTask(index)" v-if="loadedAll && preloaded" :class="['task-item-watch', 'bx', 'bx-refresh', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
+        <div @click="watchTask(task)" v-if="loadedAll" :class="['task-item-watch', 'bx', 'bx-fullscreen', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="searchSettings.showing !== 'all' || clear && !disabled ? {} : { height: '100%', top: 0,   borderRadius: '0.25rem' }"></div>
+        <div @click="sendTask(index)" v-if="loadedAll && clear && !preloaded && !disabled" :class="['task-item-watch', 'bx', 'bx-select-multiple', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
+        <div @click="sendDeleteTask(index)" v-if="loadedAll && preloaded && !disabled" :class="['task-item-watch', 'bx', 'bx-refresh', { 'task-item-hovered': hoverTask === 'task-' + index }]" :style="{ height: '50%', top: 0, borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderTopLeftRadius: '0.25rem', borderTopRightRadius: '0.25rem' }"></div>
         <div class="task-description task-name">
           {{ task.name }}
         </div>
@@ -278,6 +278,10 @@ export default {
       default: true,
     },
     preloaded: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

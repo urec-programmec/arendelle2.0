@@ -7,6 +7,7 @@
                     :clear-on-left-click="false"
                     :default-value="championship.name"
                     :triple-actions="!championship.isNew"
+                    :disabled="championship.status !== 1"
                     @do="changeName"
                     @leftClick="closeCh"
                     @rightClick="saveCh"
@@ -15,6 +16,7 @@
       <div class="champ-content" style="margin-top: 50px">
         <p>количество задач</p>
         <vue-slider v-model="championship.taskCount"
+                    :disabled="championship.status !== 1"
                     :min="1"
                     :max="10"
                     :marks="true"
@@ -28,6 +30,7 @@
         <div class="hr" style="margin: 1.5rem 0 0.5rem"/>
         <p>количество ячеек для задач</p>
         <vue-slider v-model="championship.taskCellCount"
+                    :disabled="championship.status !== 1"
                     :min="10"
                     :max="maxTaskCellCount"
                     :style="{ margin: '0 10px' }"
@@ -45,12 +48,14 @@
                        :text-first-color="'#F5F5F5'"
                        :text-second-color="'#F5F5F5'"
                        :border-color="'rgba(0,0,0,0.5)'"
+                       :disabled="championship.status !== 1"
                        style="position: relative; width: 100%"
                        @changeSelection="changeLevelCh"/>
         <div class="hr"/>
         <p v-if="championship.level === '1'">этап чемпионата</p>
         <model-select v-if="championship.level === '1'"
                       :options="stagesChItems"
+                      :isDisabled="championship.status !== 1"
                       placeholder="Этап чемпионата"
                       v-model="championship.stage" />
         <div v-if="championship.level === '1' && championship.stage.text !== ''">
@@ -64,6 +69,7 @@
                            :placeholder="'Дата'"
                            :type="'datetime'"
                            :style="{ width: '100%' }"
+                           :disabled="championship.status !== 1"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -75,6 +81,7 @@
                            :placeholder="'Длительность, ч'"
                            :type="'time'"
                            :style="{ width: '100%' }"
+                           :disabled="championship.status !== 1"
                            @change="changeTime"/>
 
         </div>
@@ -88,6 +95,7 @@
                            :placeholder="'Дата'"
                            :type="'datetime'"
                            :style="{ width: '100%' }"
+                           :disabled="championship.status !== 1"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -99,6 +107,7 @@
                            :placeholder="'Длительность, ч'"
                            :type="'time'"
                            :style="{ width: '100%' }"
+                           :disabled="championship.status !== 1"
                            @change="changeTime"/>
         </div>
       </div>
@@ -122,6 +131,7 @@
           <multi-select placeholder="Учебные заведения"
                         :options="allInstitutions"
                         :selected-options="championship.institutions"
+                        :isDisabled="championship.status !== 1"
                         style="margin: 0 20px 20px; width: unset"
                         @select="changeInstitution"/>
           <div class="hr"/>
@@ -129,6 +139,7 @@
           <multi-select placeholder="Отдельные команды"
                         :options="allTeams"
                         :selected-options="championship.teams"
+                        :isDisabled="championship.status !== 1"
                         style="margin: 0 20px 20px; width: unset"
                         @select="changeTeam"/>
         </div>
@@ -140,10 +151,12 @@
                 :preloaded-map="this.championship.map"
                 :preloaded="true"
                 :show-search="false"
+                :disabled="championship.status !== 1"
                 @deleteMap="changeMap"/>
-          <div v-if="Object.keys(championship.map).length !== 0" class="hr"/>
-          <p>доступные карты</p>
-          <maps :clear="true"
+          <div v-if="Object.keys(championship.map).length !== 0 && championship.status === 1" class="hr"/>
+          <p v-if="championship.status === 1">доступные карты</p>
+          <maps v-if="championship.status === 1"
+                :clear="true"
                 :canvas-size="100"
                 @addMap="changeMap"/>
         </div>
@@ -156,10 +169,12 @@
                 :preloaded="true"
                 :show-search="false"
                 :canvas-size="100"
+                :disabled="championship.status !== 1"
                 @deleteTask="deleteTask"/>
-          <div v-if="championship.tasks.length !== 0" class="hr"/>
-          <p>доступные задания</p>
-          <tasks :clear="true"
+          <div v-if="championship.tasks.length !== 0 && championship.status === 1" class="hr"/>
+          <p v-if="championship.status === 1">доступные задания</p>
+          <tasks v-if="championship.status === 1"
+                 :clear="true"
                  :canvas-size="100"
                  @addTask="changeTask"/>
         </div>
@@ -253,28 +268,13 @@ export default {
           name: 'личный',
         },
       ],
-      // levelCh: '1',
-
       stagesChItems: [
         { value: 1, text: 'отборочный тур' },
         { value: 2, text: 'основной тур' },
         { value: 3, text: 'финальный тур' },
       ],
-      // stagesCh: [],
-
-      // specialStage: {},
-
       allInstitutions: [],
-      // selectedInstitutions: [],
-
       allTeams: [],
-      // selectedTeams: [],
-
-      // taskCount: 5,
-      // taskCellCount: 50,
-
-      // map: {},
-      // tasks: [],
     };
   },
   methods: {
@@ -404,6 +404,7 @@ export default {
       }
 
       let data = {
+        id: this.championship.id,
         name: this.championship.name.trim(),
         stage: this.championship.stage.text,
         date: this.championship.date,

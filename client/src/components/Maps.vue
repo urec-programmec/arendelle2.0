@@ -22,8 +22,8 @@
         <div @click="renameMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['map-item-rename', 'bx', 'bx-rename', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
         <div @click="deleteMap(index)" v-if="searchSettings.showing !== 'all' && loadedAll && !clear" :class="['map-item-delete', 'bx', 'bx-x', { 'map-item-hovered': hoverMap === 'map-' + index }]"></div>
         <div @click="copyMap(index)" v-if="loadedAll && !clear" :class="['map-item-copy', 'bx', 'bx-copy', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="searchSettings.showing !== 'all' ? {} : { height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
-        <div @click="sendMap(index)" v-if="loadedAll && clear && !preloaded" :class="['map-item-copy', 'bx', 'bx-check-square', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
-        <div @click="sendDeleteMap()" v-if="loadedAll && preloaded" :class="['map-item-copy', 'bx', 'bx-refresh', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
+        <div @click="sendMap(index)" v-if="loadedAll && clear && !preloaded && !disabled" :class="['map-item-copy', 'bx', 'bx-check-square', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
+        <div @click="sendDeleteMap()" v-if="loadedAll && preloaded && !disabled" :class="['map-item-copy', 'bx', 'bx-refresh', { 'map-item-hovered': hoverMap === 'map-' + index }]" :style="{ height: '100%', top: 0,  borderRadius: '0.25rem' }"></div>
         <div class="map-description map-name">
           {{ map.name }}
         </div>
@@ -320,6 +320,10 @@ export default {
       default: true,
     },
     preloaded: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

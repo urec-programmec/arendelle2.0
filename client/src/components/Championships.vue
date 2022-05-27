@@ -87,9 +87,9 @@ export default {
           // if (ch.end < new Date()) {
           //   return;
           // }
-          let title = ch.end < new Date() ? 'просмотр чемпионата' : 'управление чемпионатом'
-          let message = ch.end < new Date() ? 'перейти в режим просмотра чемпионата?' : 'перейти в режим управления чемпионатом?'
-          let messageType = ch.end < new Date() ? 'confirm-info' : 'confirm-special';
+          let title = ch.status !== 1 ? 'просмотр чемпионата' : 'управление чемпионатом'
+          let message = ch.status !== 1 ? 'перейти в режим просмотра чемпионата?' : 'перейти в режим управления чемпионатом?'
+          let messageType = ch.status !== 1 ? 'confirm-info' : 'confirm-special';
           this.showMessage(title,
             message,
             messageType,
@@ -131,6 +131,7 @@ export default {
             value: stagesCh[ch.stage],
             text: ch.stage,
           },
+          status: ch.status,
           date: ch.start,
           time,
           institutions: ch.institutions,
@@ -153,6 +154,7 @@ export default {
           value: 0,
           text: '',
         },
+        status: 1,
         date: null,
         time: 0,
         institutions: [],
@@ -235,6 +237,7 @@ export default {
           end,
           levelCh: ch.level,
           stage: ch.stage,
+          status: ch.status,
           time: ch.time,
           taskCount: ch.taskCount,
           taskCellCount: ch.taskCellCount,
