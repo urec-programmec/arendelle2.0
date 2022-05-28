@@ -289,10 +289,16 @@ def saveChampionship():
         map_id = data['mapId']
         created_by = data['author']
 
-        try:
-            # 0. championship
+        championship = db.session.query(Championship).filter_by(id=id).first()
+        if championship != None:
+            color = championship.color
+            deleteChampionshipMethod(id)
+        else:
             color = 'hsla(' + str(random() * 100 + 170) + ', 50%, 50%, 1)' if random() < 0.9 else 'hsla(' + str(
                 random() * 30) + ', 50%, 50%, 1)'
+
+        try:
+            # 0. championship
             championship = Championship(name=name,
                                         stage=stage,
                                         level=level,
@@ -358,51 +364,51 @@ def saveChampionship():
         return jsonify(response_object)
 
 
-
 @app.route('/deleteChampionship', methods=['POST'])
 def deleteChampionship():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         data = request.get_json()
-        id = data['id']
-        try:
-            # 0. championship
-            championship = db.session.query(Championship).filter_by(id=id).first()
-            allTeamPlatforms = db.session.query(TeamChampionshipPlatform).filter_by(championship=id).all()
-            allInstitutions = db.session.query(ChampionshipInstitution).filter_by(championship=id).all()
-
-            platformIds = [i.platform for i in allTeamPlatforms]
-            allTasks = [i for i in db.session.query(Task).all() if i.platform in platformIds]
-            allPlatform = [i for i in db.session.query(Platform).all() if i.id in platformIds]
-            mapPlatform = db.session.query(MapPlatform).filter_by(id=allPlatform[0].map).first()
-
-            for i in allTeamPlatforms:
-                db.session.delete(i)
-            db.session.flush()
-
-            for i in allTasks:
-                db.session.delete(i)
-            db.session.flush()
-
-            for i in allPlatform:
-                db.session.delete(i)
-            db.session.flush()
-
-            db.session.delete(mapPlatform)
-            db.session.flush()
-
-            for i in allInstitutions:
-                db.session.delete(i)
-            db.session.flush()
-
-            db.session.delete(championship)
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            raise e
-
+        deleteChampionshipMethod(data['id'])
         return jsonify(response_object)
 
+
+def deleteChampionshipMethod(id):
+    try:
+        # 0. championship
+        championship = db.session.query(Championship).filter_by(id=id).first()
+        allTeamPlatforms = db.session.query(TeamChampionshipPlatform).filter_by(championship=id).all()
+        allInstitutions = db.session.query(ChampionshipInstitution).filter_by(championship=id).all()
+
+        platformIds = [i.platform for i in allTeamPlatforms]
+        allTasks = [i for i in db.session.query(Task).all() if i.platform in platformIds]
+        allPlatform = [i for i in db.session.query(Platform).all() if i.id in platformIds]
+        mapPlatform = db.session.query(MapPlatform).filter_by(id=allPlatform[0].map).first()
+
+        for i in allTeamPlatforms:
+            db.session.delete(i)
+        db.session.flush()
+
+        for i in allTasks:
+            db.session.delete(i)
+        db.session.flush()
+
+        for i in allPlatform:
+            db.session.delete(i)
+        db.session.flush()
+
+        db.session.delete(mapPlatform)
+        db.session.flush()
+
+        for i in allInstitutions:
+            db.session.delete(i)
+        db.session.flush()
+
+        db.session.delete(championship)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        raise e
 
 
 @app.route('/allChampionships', methods=['GET'])

@@ -8,8 +8,8 @@
     <div>
       <i :class="['bx', 'bx-flip-horizontal ', messageTypeClass]"/>
       <div :style="{ display: 'flex', flexDirection: 'column', minWidth: isFixed ? '205px' : '164px'  }">
-        <p style="font-size: 0.9em">{{ title }}</p>
-        <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }">{{ message }}</p>
+        <p :style="{fontSize: '0.9em', maxWidth: isFixed ? '225px' : '170px'}">{{ title }}</p>
+        <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em', maxWidth: isFixed ? '225px' : '170px' }">{{ message }}</p>
         <div v-if="messageTypesConfirm.includes(messageType)" style="display: flex; flex-direction: row; margin-right: 50px">
           <p :style="{ fontSize: isFixed ? '0.7em' : '0.82em' }"
              class="button button-error"
@@ -105,7 +105,6 @@ export default {
   display: block;
   margin: 0;
   width: max-content;
-  max-width: 225px;
 }
 .message div {
   display: flex;

@@ -73,6 +73,12 @@ export default {
           name: 'личные чемпионаты',
         },
       ],
+      stagesCh: {
+        '': 0,
+        'отборочный тур': 1,
+        'основной тур': 2,
+        'финальный тур': 3,
+      },
       stage: '1',
       events: [],
       config: {
@@ -87,8 +93,8 @@ export default {
           // if (ch.end < new Date()) {
           //   return;
           // }
-          let title = ch.status !== 1 ? 'просмотр чемпионата' : 'управление чемпионатом'
-          let message = ch.status !== 1 ? 'перейти в режим просмотра чемпионата?' : 'перейти в режим управления чемпионатом?'
+          let title = ch.status !== 1 ? 'просмотр чемпионата' : 'управление чемпионатом';
+          let message = ch.status !== 1 ? 'перейти в режим просмотра чемпионата?' : 'перейти в режим управления чемпионатом?';
           let messageType = ch.status !== 1 ? 'confirm-info' : 'confirm-special';
           this.showMessage(title,
             message,
@@ -107,17 +113,14 @@ export default {
   methods: {
     changeStage(data) {
       this.stage = data['selection'];
+      this.events = [];
+      this.$emit('initTimeline');
+      setTimeout(this.loadCh, 0);
     },
     setCh(ch) {
       // console.log(ch);
       this.closeCh();
       setTimeout(() => {
-        let stagesCh = {
-          '': 0,
-          'отборочный тур': 1,
-          'основной тур': 2,
-          'финальный тур': 3,
-        }
         let time = new Date();
         time.setHours(0);
         time.setMinutes(0);
@@ -128,7 +131,7 @@ export default {
           name: ch.name,
           level: ch.levelCh + '',
           stage: {
-            value: stagesCh[ch.stage],
+            value: this.stagesCh[ch.stage],
             text: ch.stage,
           },
           status: ch.status,
@@ -142,7 +145,7 @@ export default {
           tasks: ch.tasks,
           isNew: this.championshipIsNew,
         };
-      }, 0)
+      }, 0);
       this.$emit('closeMessage');
     },
     resetCh() {
@@ -206,7 +209,7 @@ export default {
     },
 
     preloadCh() {
-      this.events = []
+      this.events = [];
       this.$emit('initTimeline');
       axios.get(this.pathGetChampionships)
         .then((res) => {
@@ -223,29 +226,32 @@ export default {
     },
     loadCh() {
       for (let ch of this.championships) {
-        let date = new Date(ch.date);
-        let hours = Math.floor(ch.time / 3600000);
-        let minutes = (ch.time - hours * 3600000) / 60000;
-        let start = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), Math.random() * 10, Math.random() * 1000)
-        let end = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours() + hours, date.getMinutes() + minutes, Math.random() * 10, Math.random() * 1000)
-        this.events.push({
-          id: ch.id,
-          name: ch.name,
-          text: ch.name,
-          color: ch.color,
-          start,
-          end,
-          levelCh: ch.level,
-          stage: ch.stage,
-          status: ch.status,
-          time: ch.time,
-          taskCount: ch.taskCount,
-          taskCellCount: ch.taskCellCount,
-          teams: ch.teams,
-          institutions: ch.institutions,
-          map: ch.map,
-          tasks: ch.tasks,
-        });
+        if (this.stagesCh[ch.stage] === parseInt(this.stage, 10) ||
+          this.stagesCh[ch.stage] === 0 && this.stage === '4' && ch.authorId === JSON.parse(localStorage.getItem('user')).id) {
+          let date = new Date(ch.date);
+          let hours = Math.floor(ch.time / 3600000);
+          let minutes = (ch.time - hours * 3600000) / 60000;
+          let start = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), Math.random() * 10, Math.random() * 1000);
+          let end = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours() + hours, date.getMinutes() + minutes, Math.random() * 10, Math.random() * 1000);
+          this.events.push({
+            id: ch.id,
+            name: ch.name,
+            text: ch.name,
+            color: ch.color,
+            start,
+            end,
+            levelCh: ch.level,
+            stage: ch.stage,
+            status: ch.status,
+            time: ch.time,
+            taskCount: ch.taskCount,
+            taskCellCount: ch.taskCellCount,
+            teams: ch.teams,
+            institutions: ch.institutions,
+            map: ch.map,
+            tasks: ch.tasks,
+          });
+        }
         // this.config.viewHeight = this.events.length * 22 + 60;
       }
       this.$emit('initTimeline');

@@ -191,8 +191,7 @@ import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/antd.css';
 import 'vue-search-select/dist/VueSearchSelect.css';
 import 'vue2-datepicker/index.css';
-import { MultiSelect } from 'vue-search-select';
-import { ModelSelect } from 'vue-search-select';
+import { MultiSelect, ModelSelect } from 'vue-search-select';
 import CustomInput from '../Main/CustomInput';
 import ToggleSwitch from '../Main/ToggleSwitch';
 import Maps from '../Maps';
@@ -304,7 +303,7 @@ export default {
       this.$emit('closeMessage');
     },
     saveCh() {
-      console.log(this.championship);
+      // console.log(this.championship);
       this.showMessage('сохранить все изменения',
         'закончить редактирование и сохранить чемпионат?',
         'confirm',
@@ -384,7 +383,7 @@ export default {
         for (let x = 0; x < sizeX; x++) {
           if (map[y][x].type === this.borderType &&
             (y !== 0 && map[y - 1][x].type === this.roomType ||
-              y !== sizeY - 1 && map[y + 1][x].type === this.roomType||
+              y !== sizeY - 1 && map[y + 1][x].type === this.roomType ||
               x !== 0 && map[y][x - 1].type === this.roomType ||
               x !== sizeX - 1 && map[y][x + 1].type === this.roomType)) {
             taskCells.push({ x, y });

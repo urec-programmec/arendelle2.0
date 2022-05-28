@@ -23,7 +23,7 @@ export default config => (selection) => {
       '9': 'октября',
       '10': 'ноября',
       '11': 'декабря',
-    }
+    };
 
     let g = events
         .enter()
@@ -77,7 +77,6 @@ export default config => (selection) => {
           //   .style('pointer-events', 'none')
           //   .style('stroke', 'red')
           //   .style('stroke-width', 2);
-
         })
         .on('mouseout', function (d, i) {
           d3.select(this).transition()
