@@ -755,7 +755,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при сохранении',
+          this.showMessage('ошибка при сохранении карты',
             'подробности в консоли браузера',
             'error',
             5000);

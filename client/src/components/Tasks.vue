@@ -6,6 +6,7 @@
             @search="search"
             @changeFilterParameners="changeFilterParameters"
             :placeholder="'Поиск по задачам'"
+            :isTask="true"
             :style="clear ? { position: 'inherit', boxShadow: 'none' } : {}"
             :settings="searchSettings"/>
     <div class="content" :style="{ margin: clear ? 0 : '80px 0 20px 80px',
@@ -78,6 +79,8 @@ export default {
         searchBy: 'name',
         showing: 'all',
       },
+      searchComplexity: [],
+      searchTags: [],
       searchTimeout: null,
       hoverTask: '',
       renameIndex: -1,
@@ -91,6 +94,8 @@ export default {
     search(data) {
       this.searchValue = data['searchValue'].toLowerCase();
       this.searchSettings = data['settings'];
+      this.searchComplexity = data['complexity'];
+      this.searchTags = data['tags'];
       if (this.searchTimeout) {
         clearTimeout(this.searchTimeout);
       }
@@ -203,7 +208,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при удалении',
+          this.showMessage('ошибка при удалении задачи',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -220,7 +225,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при переименовании',
+          this.showMessage('ошибка при переименовании задачи',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -234,7 +239,10 @@ export default {
     filterTasks() {
       let newTasks = [];
       for (let task of this.defaultTasks) {
-        if (task[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) && (this.searchSettings.showing === 'all' || task.authorId === this.user.id)) {
+        if (task[this.searchSettings.searchBy].toLowerCase().includes(this.searchValue) &&
+          (this.searchSettings.showing === 'all' || task.authorId === this.user.id) &&
+          (this.searchComplexity.length === 0 || this.searchComplexity.includes(task.complexity)) &&
+          (this.searchTags.length === 0 || this.searchTags.filter(x => task.tags.includes(x)).length !== 0)) {
           newTasks.push(task);
         }
       }

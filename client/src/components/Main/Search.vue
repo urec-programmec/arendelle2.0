@@ -39,19 +39,37 @@
           <toggle-switch :defaultItems="showingItems" :selectedItem="settingsValues.showing"
                          @changeSelection="changeShowing"/>
         </div>
+        <div class="settings-row" v-if="isTask">
+          <p>сложность</p>
+          <multi-select placeholder="сложность"
+                        :options="complexityOptions"
+                        :selected-options="complexity"
+                        @select="changeComplexity"/>
+        </div>
+        <div class="settings-row" v-if="isTask">
+          <p>теги</p>
+          <multi-select placeholder="теги"
+                        :options="tagsOptions"
+                        :selected-options="tags"
+                        @select="changeTags"/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import { MultiSelect } from 'vue-search-select';
 import ToggleSwitch from './ToggleSwitch';
 
 export default {
   name: 'Search',
-  components: { 'toggle-switch': ToggleSwitch },
+  components: { 'toggle-switch': ToggleSwitch, 'multi-select': MultiSelect },
   data() {
     return {
+      pathGetTags: 'http://localhost:5050/allTags',
+
       searchValue: '',
       settingsValues: {},
       searchByItems: [
@@ -76,9 +94,42 @@ export default {
       ],
       focus: false,
       settingsOpened: false,
+
+      complexityOptions: [
+        { value: 1, text: 'сложность 1' },
+        { value: 2, text: 'сложность 2' },
+        { value: 3, text: 'сложность 3' },
+        { value: 4, text: 'сложность 4' },
+        { value: 5, text: 'сложность 5' },
+      ],
+      complexity: [],
+
+      tagsOptions: [],
+      tags: [],
     };
   },
   methods: {
+    changeComplexity(items) {
+      this.complexity = items;
+      this.search();
+    },
+    changeTags(items) {
+      this.tags = items;
+      this.search();
+    },
+    getTags() {
+      axios.get(this.pathGetTags)
+        .then((res) => {
+          this.tagsOptions = res.data.tags;
+        })
+        .catch((error) => {
+          console.error(error);
+          this.showMessage('ошибка при загрузке тегов',
+            'подробности в консоли браузера',
+            'error',
+            5000);
+        });
+    },
     clear() {
       this.searchValue = '';
       this.search();
@@ -95,7 +146,12 @@ export default {
       this.settingsOpened = false;
     },
     search() {
-      this.$emit('search', { 'searchValue': this.searchValue, settings: this.settingsValues });
+      this.$emit('search',
+        { 'searchValue': this.searchValue,
+          settings: this.settingsValues,
+          complexity: this.complexity.map(comp => comp.value),
+          tags: this.tags.map(tag => tag.text),
+        });
     },
     changeSearchBy(data) {
       this.settingsValues.searchBy = data['selection'];
@@ -135,6 +191,10 @@ export default {
       type: String,
       default: '',
     },
+    isTask: {
+      type: Boolean,
+      default: false,
+    },
     settings: {
       type: Object,
       default: () => {
@@ -148,6 +208,7 @@ export default {
   mounted() {
     this.$parent.$on('mainClick', this.mainClick);
     this.settingsValues = this.settings;
+    this.getTags();
   },
 };
 </script>

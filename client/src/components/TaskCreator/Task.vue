@@ -190,29 +190,29 @@ export default {
     addTag() {
       ModalWizard.open(modalDialog, {
         props: {
-          title: 'добавить тэг',
-          placeholder: 'новый тэг',
+          title: 'добавить тег',
+          placeholder: 'новый тег',
           submit: this.submitAddTag,
         },
       });
     },
     submitAddTag(name) {
       if (name === null || name === undefined || name.trim() === '') {
-        this.showMessage('ошибка создания тэга',
+        this.showMessage('ошибка создания тега',
           'значение не может быть пустым',
           'error',
           5000);
         return;
       }
       if (name.trim().length < 2) {
-        this.showMessage('ошибка создания тэга',
+        this.showMessage('ошибка создания тега',
           'слишком короткое значение (от 2х символов)',
           'error',
           5000);
         return;
       }
       if (name.trim().length > 40) {
-        this.showMessage('ошибка создания тэга',
+        this.showMessage('ошибка создания тега',
           'слишком длинное значение (до 40 символов)',
           'error',
           5000);
@@ -225,7 +225,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при создании тэга',
+          this.showMessage('ошибка при создании тега',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -330,7 +330,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при загрузке тэгов',
+          this.showMessage('ошибка при загрузке тегов',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -373,7 +373,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при сохранении',
+          this.showMessage('ошибка при сохранении задачи',
             'подробности в консоли браузера',
             'error',
             5000);

@@ -192,7 +192,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при удалении',
+          this.showMessage('ошибка при удалении чемпионата',
             'подробности в консоли браузера',
             'error',
             5000);

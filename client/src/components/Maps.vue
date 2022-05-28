@@ -234,7 +234,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при удалении',
+          this.showMessage('ошибка при удалении карты',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -251,7 +251,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при переименовании',
+          this.showMessage('ошибка при переименовании карты',
             'подробности в консоли браузера',
             'error',
             5000);

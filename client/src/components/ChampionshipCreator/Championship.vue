@@ -70,6 +70,7 @@
                            :type="'datetime'"
                            :style="{ width: '100%' }"
                            :disabled="championship.status !== 1"
+                           :disabled-date="checkDate"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -96,6 +97,7 @@
                            :type="'datetime'"
                            :style="{ width: '100%' }"
                            :disabled="championship.status !== 1"
+                           :disabled-date="checkDate"
                            @change="changeDate"/>
           <p>длительность чемпионата</p>
           <datetime-picker v-model="championship.time"
@@ -436,7 +438,7 @@ export default {
             }
           }
           console.error(error);
-          this.showMessage('ошибка при сохранении',
+          this.showMessage('ошибка при сохранении чемпионата',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -577,6 +579,15 @@ export default {
     },
     checkTime(date) {
       return date.getHours() > 10;
+    },
+    checkDate(date) {
+      let newDate = new Date();
+      newDate.setHours(0);
+      newDate.setMinutes(0);
+      newDate.setSeconds(0);
+      newDate.setMilliseconds(0);
+
+      return newDate > date;
     },
     updateTasks(index, count) {
       this.championship.tasks.splice(index, count);
