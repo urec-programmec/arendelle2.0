@@ -190,9 +190,18 @@ def deleteTask():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         data = request.get_json()
-        task = db.session.query(TaskContent).filter_by(id=data['id']).first()
-        db.session.delete(task)
-        db.session.commit()
+        try:
+            task = db.session.query(TaskContent).filter_by(id=data['id']).first()
+            for taskTag in db.session.query(TaskTags).all():
+                if taskTag.task == task.id:
+                    db.session.delete(taskTag)
+            db.session.flush()
+
+            db.session.delete(task)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            raise e
         return jsonify(response_object)
 
 
@@ -207,6 +216,33 @@ def renameTask():
         return jsonify(response_object)
 
 
+@app.route('/saveTag', methods=['POST'])
+def saveTag():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        tag = data['tag']
+        newTag = Tags(name=tag)
+        db.session.add(newTag)
+        db.session.commit()
+
+        return jsonify(response_object)
+
+
+@app.route('/allTags', methods=['GET'])
+def allTags():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['tags'] = []
+        for tag in sorted(db.session.query(Tags).all(), key=lambda m: m.name):
+            response_object['tags'].append({
+                'value': tag.id,
+                'text': tag.name,
+            })
+
+        return jsonify(response_object)
+
+
 @app.route('/saveTask', methods=['POST'])
 def saveTask():
     response_object = {'status': 'success'}
@@ -218,9 +254,16 @@ def saveTask():
         type_of_response = data['typeOfResponse']
         created_by = data['createdBy']
         name = data['name']
+        tags = [i['value'] for i in json.loads(data['tags'])]
 
         newTask = TaskContent(content=content, answer=answer, complexity=complexity, type_of_response=type_of_response, created_by=created_by, name=name)
         db.session.add(newTask)
+        db.session.flush()
+
+        for tag in tags:
+            newTag = TaskTags(task=newTask.id, tag=tag)
+            db.session.add(newTag)
+
         db.session.commit()
 
         return jsonify(response_object)
@@ -233,6 +276,7 @@ def allTasks():
         response_object['tasks'] = []
         for task in sorted(db.session.query(TaskContent).all(), key=lambda m: m.datetime_created, reverse=True):
             user = db.session.query(Users).filter_by(id=task.created_by).first()
+            tags = [db.session.query(Tags).filter_by(id=i.tag).first().name for i in db.session.query(TaskTags).filter_by(task=task.id).all()]
             response_object['tasks'].append({
                 'id': task.id,
                 'name': task.name,
@@ -243,6 +287,7 @@ def allTasks():
                 'author': user.name + ' ' + user.surname,
                 'authorId': user.id,
                 'datetime': task.datetime_created.strftime('%d.%m.%Y'),
+                'tags': tags,
             })
         return jsonify(response_object)
 

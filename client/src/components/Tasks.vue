@@ -31,6 +31,9 @@
               :style="{ height: canvasSize + 'px' }">
           <img :src="task.content" class="img-responsive img-thumbnail">
         </div>
+        <div class="task-description task-tags">
+          <p v-for="(tag, tagIndex) in task.tags" :key="tagIndex">{{ tag }}</p>
+        </div>
         <div class="task-description task-size">
           <i :class="['bx', `bx-dice-${task.complexity}`]"/>
         </div>
@@ -105,7 +108,7 @@ export default {
       const promises = this.tasks.map(task => this.getImage(new Blob(['data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(task.content)))]))
         .catch((err) => {
           console.error(err);
-          this.showMessage('ошибка при загрузке',
+          this.showMessage('ошибка при загрузке задач',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -247,7 +250,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при загрузке',
+          this.showMessage('ошибка при загрузке задач',
             'подробности в консоли браузера',
             'error',
             5000);
@@ -397,6 +400,21 @@ export default {
   margin: 0.5rem calc(50px + 0.5rem) 0.5rem 0;
   overflow: hidden;
   word-wrap: break-word;
+}
+.task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  position: relative;
+  margin-top: 0.5rem;
+}
+.task-tags p {
+  margin: 0 5px 5px 0;
+  padding: 5px;
+  background: rgba(241,243,244,0.05) !important;
+  color: rgba(245, 245, 245, 0.8) !important;
+  font-size: 0.8em;
+  border-radius: 5px;
 }
 .task-size {
   top: 0.4rem;

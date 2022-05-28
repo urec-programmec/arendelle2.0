@@ -19,7 +19,20 @@
           <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ value }}</div>
         </template>
       </vue-slider>
-      <p style="margin-top: 35px; margin-bottom: 5px;">ответ</p>
+      <p style="margin-top: 35px; margin-bottom: 5px;">теги</p>
+      <multi-select placeholder="теги"
+                    :options="tagsOptions"
+                    :selected-options="tags"
+                    style="margin-bottom: 5px"
+                    @select="changeTags"/>
+      <p class="task-settings-hint tag" @click="addTag">+ новый тег</p>
+<!--      <div :style="{ width: '100%', display: 'flex', flexDirection: 'row' }">-->
+<!--        -->
+<!--        <i :class="['bx', 'bx-plus-circle']" style="font-size: 40px"/>-->
+<!--      </div>-->
+
+
+      <p style="margin-top: 20px; margin-bottom: 5px;">ответ</p>
       <p class="task-settings-hint">
         {{ answerTabs[answerTab].hint }}
         <a class="task-settings-hint" v-if="answerTabs[answerTab].hintLink" :href="answerTabs[answerTab].hintLink.href">
@@ -92,6 +105,7 @@ import axios from 'axios';
 import VueSlider from 'vue-slider-component';
 import { MultiSelect } from 'vue-search-select';
 import ModalWizard from 'vue-modal-wizard';
+import modalDialog from '../Main/Dialog';
 import Menu from './Menu';
 import modal from '../Main/TaskDialog';
 import TestTask from './TestTask';
@@ -114,6 +128,8 @@ export default {
     'multi-select': MultiSelect },
   data() {
     return {
+      pathGetTags: 'http://localhost:5050/allTags',
+      pathSaveTag: 'http://localhost:5050/saveTag',
       pathSaveTask: 'http://localhost:5050/saveTask',
       documentTitle: 'Создание задачи',
       taskSizeX: 0,
@@ -157,6 +173,13 @@ export default {
       answerRegexp: '',
       answerRegexpCheck: '',
 
+      tags: [],
+      tagsOptions: [
+        { value: 1, text: 'отборочный тур' },
+        { value: 2, text: 'основной тур' },
+        { value: 3, text: 'финальный тур' },
+      ],
+
       taskСomplexity: 1,
 
       url: '',
@@ -164,6 +187,50 @@ export default {
     };
   },
   methods: {
+    addTag() {
+      ModalWizard.open(modalDialog, {
+        props: {
+          title: 'добавить тэг',
+          placeholder: 'новый тэг',
+          submit: this.submitAddTag,
+        },
+      });
+    },
+    submitAddTag(name) {
+      if (name === null || name === undefined || name.trim() === '') {
+        this.showMessage('ошибка создания тэга',
+          'значение не может быть пустым',
+          'error',
+          5000);
+        return;
+      }
+      if (name.trim().length < 2) {
+        this.showMessage('ошибка создания тэга',
+          'слишком короткое значение (от 2х символов)',
+          'error',
+          5000);
+        return;
+      }
+      if (name.trim().length > 40) {
+        this.showMessage('ошибка создания тэга',
+          'слишком длинное значение (до 40 символов)',
+          'error',
+          5000);
+        return;
+      }
+      this.$modal.close();
+      axios.post(this.pathSaveTag, { tag: name.trim() })
+        .then(() => {
+          this.getTags();
+        })
+        .catch((error) => {
+          console.error(error);
+          this.showMessage('ошибка при создании тэга',
+            'подробности в консоли браузера',
+            'error',
+            5000);
+        });
+    },
     changeAnswerTab(data) {
       this.answerOne = '';
       this.answerOneCheck = '';
@@ -235,6 +302,9 @@ export default {
       }
       this.answersManyCheckOptions.push({ value: this.answersManyCheckOptions.length, text });
     },
+    changeTags(items) {
+      this.tags = items;
+    },
     onSelect(items) {
       this.answersMany = items;
       this.check();
@@ -252,6 +322,19 @@ export default {
         'загрузите картинку с шаблоном задачи, выберите сложность и способ ответа',
         'special',
         12000);
+    },
+    getTags() {
+      axios.get(this.pathGetTags)
+        .then((res) => {
+          this.tagsOptions = res.data.tags;
+        })
+        .catch((error) => {
+          console.error(error);
+          this.showMessage('ошибка при загрузке тэгов',
+            'подробности в консоли браузера',
+            'error',
+            5000);
+        });
     },
     onDrawEnd() {
       this.isDrawing = false;
@@ -281,6 +364,7 @@ export default {
         'name': this.currentTaskName.trim(),
         'complexity': this.taskСomplexity,
         'createdBy': JSON.parse(localStorage.getItem('user')).id,
+        'tags': JSON.stringify(this.tags),
       };
 
       axios.post(this.pathSaveTask, data)
@@ -380,6 +464,7 @@ export default {
     } else {
       // window.onbeforeunload = () => true;
       this.getTask();
+      this.getTags();
     }
   },
   destroyed() {
@@ -420,7 +505,9 @@ export default {
   width: 30%;
   height: fit-content;
   min-height: 100px;
+  max-height: 80%;
   padding: 20px;
+  overflow: scroll;
 }
 .task-settings a,
 .task-settings p {
@@ -449,6 +536,13 @@ export default {
   background: rgba(241,243,244,0.05) !important;
   color: rgba(245, 245, 245, 0.8) !important;
   font-size: 0.8em;
+}
+.task-settings-hint.tag {
+  transition: all 0.2s ease;
+}
+.task-settings-hint.tag:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 .task-settings-hint a {
   font-size: inherit;

@@ -288,7 +288,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          this.showMessage('ошибка при загрузке',
+          this.showMessage('ошибка при загрузке карт',
             'подробности в консоли браузера',
             'error',
             5000);

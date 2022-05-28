@@ -217,3 +217,16 @@ class UserRole(Base):
     __tablename__ = 'user_role'
     id = Column(BigInteger, primary_key=True)
     name = Column(String(100), primary_key=False)
+
+
+class Tags(Base):
+    __tablename__ = 'tags'
+    id = Column(BigInteger, primary_key=True)
+    name = Column(String(100), primary_key=False)
+
+
+class TaskTags(Base):
+    __tablename__ = 'task_tags'
+    task = Column(BigInteger, ForeignKey('task_content.id'), primary_key=True)
+    tag = Column(BigInteger, ForeignKey('tags.id'), primary_key=True)
+
