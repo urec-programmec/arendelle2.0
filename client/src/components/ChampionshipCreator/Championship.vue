@@ -1,5 +1,5 @@
 <template>
-  <div class="champ">
+  <div class="champ" :style="{ gridTemplateColumns: championship.isNew ? '347px 1fr' : '347px 1fr 100px' }">
     <div class="champ-header">
       <custom-input :placeholder="'Название чемпионата'"
                     :icon-right-class="'bx-check'"
@@ -182,6 +182,12 @@
         </div>
       </div>
     </div>
+    <div v-if="!championship.isNew"
+         class="champ-body champ-statistic"
+         @click="showStatistic">
+      <span class="bx bxs-bar-chart-alt-2"/>
+      <p>статистика</p>
+    </div>
     <message/>
   </div>
 </template>
@@ -247,14 +253,17 @@ export default {
         {
           type: '1',
           name: 'участники',
+          disabled: false,
         },
         {
           type: '2',
           name: 'карта',
+          disabled: false,
         },
         {
           type: '3',
           name: 'задачи',
+          disabled: false,
         },
       ],
       editCh: '1',
@@ -263,10 +272,12 @@ export default {
         {
           type: '1',
           name: 'глобальный',
+          disabled: false,
         },
         {
           type: '2',
           name: 'личный',
+          disabled: false,
         },
       ],
       stagesChItems: [
@@ -282,9 +293,20 @@ export default {
     mainClick(event) {
       this.$emit('mainClick', { event: event.event });
     },
+    showStatistic() {
+      this.showMessage('просмотр статистики',
+        'открыть таблицу лидеров и положения команд в чемпионате?',
+        'confirm-info',
+        15000,
+        this.sendShowStatistic);
+    },
+    sendShowStatistic() {
+      let params = { championship: this.championship.id };
+      this.$router.push({ name: 'statistic', params });
+    },
     closeCh() {
-      this.showMessage('отменить все изменения',
-        'прервать ' + (this.championship.isNew ? 'создание' : 'редактирование') + ' чемпионата?',
+      this.showMessage((this.championship.status === 1 ? 'отменить все изменения' : 'выйти'),
+        'прервать ' + (this.championship.isNew ? 'создание' : (this.championship.status === 1 ? 'редактирование' : 'просмотр')) + ' чемпионата?',
         'confirm-error',
         15000,
         this.sendCloseCh);
@@ -669,7 +691,6 @@ export default {
   margin-left: 10px;
   position: relative;
   display: grid;
-  grid-template-columns: 347px 1fr;
   gap: 0 10px;
 }
 .champ-content {
@@ -719,15 +740,27 @@ export default {
   /*display: grid;*/
   /*grid-template-columns: 5fr 3fr;*/
 }
-.champ-body-header-events {
-  width: 100%;
+.champ-statistic {
+  /*background: rgba(33, 37, 41, 0.6);*/
+  border: 1px solid;
+  color: rgba(245, 245, 245, 0.7);
   display: flex;
-  flex-direction: column;
-  justify-content: left;
+  justify-content: center;
+  align-items: center;
 }
-.champ-body-header-events p {
-  margin: 0;
+.champ-statistic p {
   font-size: 0.8em;
+}
+.champ-statistic span {
+  font-size: 2em;
+}
+.champ-statistic:hover span {
+  animation: scaling 0.8s cubic-bezier(0.4, 0, 1, 1) infinite alternate;
+}
+.champ-statistic:hover {
+  background: rgba(33, 37, 41, 0.9);
+  color: rgba(245, 245, 245, 1);
+  cursor: pointer;
 }
 .hr {
   height: 1px;
@@ -758,5 +791,9 @@ export default {
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(241,243,244,0.6);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+@keyframes scaling {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.4); }
 }
 </style>

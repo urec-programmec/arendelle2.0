@@ -140,10 +140,12 @@ export default {
         {
           type: '1',
           name: 'студент',
+          disabled: false,
         },
         {
           type: '2',
           name: 'преподаватель',
+          disabled: false,
         },
       ],
       role: '1',

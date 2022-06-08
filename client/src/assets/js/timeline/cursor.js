@@ -6,6 +6,12 @@ export default config => (selection) => {
 
    // if (!showCursor) return //issue with zoom
 
+    // console.log('cursor', timeScale(Date.now()));
+
+    // if (isNaN(timeScale(Date.now()))) {
+    //   return;
+    // }
+
     let now = timeScale(Date.now());
 
     let cursor = selection.selectAll('.cursor').data(d => d);

@@ -1,5 +1,5 @@
 <template>
-  <div class="test-map"
+  <div class="test-task"
        :style="{width: '48px'}"
        @click.stop="test"
        @mouseenter="isHover = true"
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.test-map {
+.test-task {
   position: fixed;
   height: 40px;
   right: 0;
@@ -38,14 +38,14 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.test-map i {
+.test-task i {
   font-size: 28px;
   text-align: center;
   margin: 0 12px;
   color: rgba(255,255,255,1);
   transition: all .2s ease;
 }
-.test-map:hover i {
+.test-task:hover i {
   cursor: pointer;
 }
 .hovered-to-test {

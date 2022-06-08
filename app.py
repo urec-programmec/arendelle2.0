@@ -522,6 +522,14 @@ def allChampionships():
         return jsonify(response_object)
 
 
+@app.route('/getResults', methods=['GET'])
+def getResults():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        response_object['results'] = []
+        return jsonify(response_object)
+
+
 if __name__ == '__main__':
     app.run(port=5050)
 

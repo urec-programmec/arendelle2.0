@@ -76,20 +76,24 @@ export default {
         {
           type: 'name',
           name: 'название',
+          disabled: false,
         },
         {
           type: 'author',
           name: 'автор',
+          disabled: false,
         },
       ],
       showingItems: [
         {
           type: 'all',
           name: 'все',
+          disabled: false,
         },
         {
           type: 'own',
           name: 'только свои',
+          disabled: false,
         },
       ],
       focus: false,

@@ -29,7 +29,7 @@ export default (config) => {
   }
 
   function init(selection) {
-    // console.log('hello')
+    // console.log('init', selection);
     selection.selectAll('svg').remove();
 
     let data = selection.data();
@@ -76,12 +76,11 @@ export default (config) => {
       ])
       .range([0, width]);
 
-    // debugger;
-    // setTimeout(() => {
-    //   console.log(timeScale(Date.now()));
-    // }, 300)
-    // return;
-    // console.log(timeScale(Date.now()));
+    // console.log('timeline', timeScale(Date.now()));
+
+    if (isNaN(timeScale(Date.now())) || data === undefined) {
+      return;
+    }
 
     let graph = svg
       .append('g')
@@ -106,11 +105,11 @@ export default (config) => {
 
 
   function chart(selection) {
-      // console.log('timeline constructor')
       chart._init = () => init(selection);
       chart._init();
 
       if (config.widthResizable) {
+          global.removeEventListener('resize', chart._init);
           global.addEventListener('resize', chart._init, true);
       }
   }

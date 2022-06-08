@@ -24,6 +24,8 @@ export default config => (selection) => {
 
     let axe = selection.selectAll('.axe').data(d => d);
 
+    // console.log('axis', timeScale(Date.now()));
+
     let ay = d3.axisTop()
             .scale(timeScale)
             .tickSize(height)

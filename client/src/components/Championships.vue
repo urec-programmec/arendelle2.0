@@ -14,6 +14,10 @@
     </div>
     <div class="content">
       <timeline class="timeline-container" :data="events" :config="config"/>
+      <div v-if="events.length === 0" class="timeline-container-empty">
+        <p>{{ getEmptyMessage }}</p>
+      </div>
+
       <custom-input v-if="championship === null"
                     :placeholder="'Новый чемпионат'"
                     style="box-shadow: unset; margin: 20px"
@@ -57,20 +61,29 @@ export default {
       user: {},
       stageItems: [
         {
+          type: '0',
+          name: 'прошедшие',
+          disabled: false,
+        },
+        {
           type: '1',
-          name: 'отборочный тур',
+          name: 'отборочные',
+          disabled: false,
         },
         {
           type: '2',
-          name: 'основной тур',
+          name: 'основные',
+          disabled: false,
         },
         {
           type: '3',
-          name: 'финальный тур',
+          name: 'финальные',
+          disabled: false,
         },
         {
           type: '4',
-          name: 'личные чемпионаты',
+          name: 'личные',
+          disabled: false,
         },
       ],
       stagesCh: {
@@ -108,13 +121,13 @@ export default {
       championshipIsNew: false,
       championship: null,
       championships: [],
+      emptyMessage: '',
     };
   },
   methods: {
     changeStage(data) {
       this.stage = data['selection'];
       this.events = [];
-      this.$emit('initTimeline');
       setTimeout(this.loadCh, 0);
     },
     setCh(ch) {
@@ -210,7 +223,6 @@ export default {
 
     preloadCh() {
       this.events = [];
-      this.$emit('initTimeline');
       axios.get(this.pathGetChampionships)
         .then((res) => {
           this.championships = res.data.championships;
@@ -226,31 +238,38 @@ export default {
     },
     loadCh() {
       for (let ch of this.championships) {
-        if (this.stagesCh[ch.stage] === parseInt(this.stage, 10) ||
-          this.stagesCh[ch.stage] === 0 && this.stage === '4' && ch.authorId === JSON.parse(localStorage.getItem('user')).id) {
+        let isGlobal = this.stagesCh[ch.stage] === parseInt(this.stage, 10);
+        let isLocal = this.stagesCh[ch.stage] === 0 && this.stage === '4' &&
+          ch.authorId === JSON.parse(localStorage.getItem('user')).id;
+        let isPassed = this.stage === '0';
+
+        if (isGlobal || isLocal || isPassed) {
           let date = new Date(ch.date);
           let hours = Math.floor(ch.time / 3600000);
           let minutes = (ch.time - hours * 3600000) / 60000;
-          let start = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), Math.random() * 10, Math.random() * 1000);
           let end = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours() + hours, date.getMinutes() + minutes, Math.random() * 10, Math.random() * 1000);
-          this.events.push({
-            id: ch.id,
-            name: ch.name,
-            text: ch.name,
-            color: ch.color,
-            start,
-            end,
-            levelCh: ch.level,
-            stage: ch.stage,
-            status: ch.status,
-            time: ch.time,
-            taskCount: ch.taskCount,
-            taskCellCount: ch.taskCellCount,
-            teams: ch.teams,
-            institutions: ch.institutions,
-            map: ch.map,
-            tasks: ch.tasks,
-          });
+
+          if (isGlobal && end > new Date() || isLocal && end > new Date() || isPassed && end <= new Date()) {
+            let start = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), Math.random() * 10, Math.random() * 1000);
+            this.events.push({
+              id: ch.id,
+              name: ch.name,
+              text: ch.name,
+              color: ch.color,
+              start,
+              end,
+              levelCh: ch.level,
+              stage: ch.stage,
+              status: ch.status,
+              time: ch.time,
+              taskCount: ch.taskCount,
+              taskCellCount: ch.taskCellCount,
+              teams: ch.teams,
+              institutions: ch.institutions,
+              map: ch.map,
+              tasks: ch.tasks,
+            });
+          }
         }
         // this.config.viewHeight = this.events.length * 22 + 60;
       }
@@ -265,6 +284,24 @@ export default {
       this.user = JSON.parse(localStorage.getItem('user'));
       this.preloadCh();
     }
+  },
+  computed: {
+    getEmptyMessage() {
+      switch (this.stage) {
+        case '0':
+          return 'Нет данных о прошедших чемпионатах';
+        case '1':
+          return 'Нет данных о чемпионатах отборочного тура';
+        case '2':
+          return 'Нет данных о чемпионатах основного тура';
+        case '3':
+          return 'Нет данных о чемпионатах финального тура';
+        case '4':
+          return 'Нет данных о личных чемпионатах';
+        default:
+          return '';
+      }
+    },
   },
 };
 </script>
@@ -322,7 +359,25 @@ export default {
   justify-content: center;
 }
 .timeline-container {
+  height: 260px;
   fill: #F5F5F5;
   color: #F5F5F5 !important;
+}
+.timeline-container-empty {
+  position: absolute;
+  height: 250px;
+  left: 0;
+  top: 10px;
+  width: 100%;
+  background: rgba(33, 37, 41, 0.7);
+  border-radius: 0.25rem;
+  border: 1px solid rgb(33, 37, 41);
+  padding: 10px;
+  transition: all 0.2s ease;
+  color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

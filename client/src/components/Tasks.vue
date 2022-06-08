@@ -67,7 +67,15 @@ export default {
   data() {
     return {
       user: {},
-      tasks: [],
+      tasks: [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+      ],
       defaultTasks: [],
 
       pathGetTasks: 'http://localhost:5050/allTasks',

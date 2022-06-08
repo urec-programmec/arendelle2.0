@@ -25,6 +25,8 @@ export default config => (selection) => {
       '11': 'декабря',
     };
 
+    // console.log('events', timeScale(Date.now()));
+
     let g = events
         .enter()
         .append('g')
@@ -90,7 +92,9 @@ export default config => (selection) => {
         .attr('width', d => (d.end ? (timeScale(d.end) - timeScale(d.start) + h) : 10))
         .attr('height', h)
         .attr('fill', d => (d.end < new Date() ? 'rgba(241,243,244,0.3)' : d.color))
-        .attr('ry', 6);
+        // .attr('fill', d => d.color)
+        .attr('ry', 6)
+        .style('cursor', 'pointer');
 
     g.append('text')
         // .attr('dy', -4)

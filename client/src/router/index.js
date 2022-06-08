@@ -4,6 +4,7 @@ import Main from '@/components/Main/Main';
 import Login from '@/components/Login/Login';
 import Map from '@/components/MapCreator/Map';
 import Task from '@/components/TaskCreator/Task';
+import Statistic from '@/components/Statistic/Statistic';
 
 Vue.use(Router);
 
@@ -26,6 +27,12 @@ export default new Router({
       path: '/task-creator',
       name: 'task-creator',
       component: Task,
+      props: true,
+    },
+    {
+      path: '/statistic',
+      name: 'statistic',
+      component: Statistic,
       props: true,
     },
     {

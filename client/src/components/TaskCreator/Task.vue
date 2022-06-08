@@ -142,11 +142,13 @@ export default {
           type: 'one',
           name: 'один',
           hint: 'точное совпадение с единственным значением',
+          disabled: false,
         },
         {
           type: 'many',
           name: 'несколько',
           hint: 'точное совпадение со всеми значениями',
+          disabled: false,
         },
         {
           type: 'regexp',
@@ -156,6 +158,7 @@ export default {
             name: 'справка',
             href: 'https://support.google.com/a/answer/1371415?hl=ru',
           },
+          disabled: false,
         },
       ],
       answerTab: 0,

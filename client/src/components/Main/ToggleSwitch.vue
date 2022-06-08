@@ -11,7 +11,7 @@
                      '--text-first-color' : textFirstColor,
                      '--text-second-color' : textSecondColor,
                      '--border-color' : borderColor }"
-          @click="select(item.type)">{{ item.name }}</div>
+          @click="select(item)">{{ item.name }}</div>
   </div>
 </template>
 
@@ -25,9 +25,9 @@ export default {
     };
   },
   methods: {
-    select(type) {
-      if (!this.disabled) {
-        this.selected = type;
+    select(item) {
+      if (!this.disabled && !item.disabled) {
+        this.selected = item.type;
         this.$emit('changeSelection', { 'selection': this.selected });
       }
     },
