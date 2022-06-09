@@ -6,7 +6,6 @@ dnspython==1.16.0
 eventlet==0.31.0
 Faker==8.4.0
 Flask==2.0.1
-flask-alchemydumps==0.0.13
 Flask-Cors==3.0.4
 Flask-MySQL==1.5.2
 Flask-SocketIO==5.1.0
