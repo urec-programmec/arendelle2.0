@@ -39,6 +39,7 @@ class Institution(Base):
     __tablename__ = 'institution'
     id = Column(BigInteger, primary_key=True)
     name = Column(String(200), nullable=False)
+    short_name = Column(String(100), nullable=False)
     sity = Column(BigInteger, ForeignKey('sity.id'))
     institution_status = Column(BigInteger, ForeignKey('institution_status.id'))
     institution_type = Column(BigInteger, ForeignKey('institution_type.id'))
@@ -131,6 +132,7 @@ class Task(Base):
     time_for_answer = Column(Integer, nullable=True)
     time_found = Column(DATETIME, nullable=True)
     time_solved = Column(DATETIME, nullable=True)
+    count_solved = Column(Integer, nullable=False)
     platform = Column(BigInteger, ForeignKey('platform.id'))
     task_type = Column(BigInteger, ForeignKey('task_type.id'))
     task_content = Column(BigInteger, ForeignKey('task_content.id'))

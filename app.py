@@ -522,11 +522,56 @@ def allChampionships():
         return jsonify(response_object)
 
 
-@app.route('/getResults', methods=['GET'])
+@app.route('/getResults', methods=['POST'])
 def getResults():
+    global sorted
     response_object = {'status': 'success'}
-    if request.method == 'GET':
-        response_object['results'] = []
+    if request.method == 'POST':
+        response_object['rows'] = []
+        response_object['tasks'] = []
+        id = request.get_json()['championship']
+        for teamsCh in db.session.query(TeamChampionshipPlatform).filter_by(championship=id).all():
+            team = db.session.query(Team).filter_by(id=teamsCh.team).first()
+            institution = db.session.query(Institution).filter_by(id=team.institution).first()
+            tasksPlatform = db.session.query(Task).filter_by(platform=teamsCh.platform).all()
+            tasks = [db.session.query(TaskContent).filter_by(id=i.task_content).first() for i in tasksPlatform]
+
+            tasks, tasksPlatform = zip(*sorted(zip(tasks, tasksPlatform), key=lambda m: m[0].complexity))
+
+            letter = ord('A')
+
+            if not response_object['tasks']:
+                for task in tasks:
+                    response_object['tasks'].append({
+                        'id': task.id,
+                        'name': task.name,
+                        'letter': chr(letter),
+                        'content': task.content.decode('ascii'),
+                    })
+                    letter += 1
+
+            tasksTeam = []
+            solves = 0
+            for task in tasksPlatform:
+                if task.count_solved == 0:
+                    tasksTeam.append({'status': '', 'ok': False})
+                elif task.task_status != 3:
+                    tasksTeam.append({'status': '–' + str(task.count_solved), 'ok': False})
+                elif task.task_status == 3 and task.count_solved == 1:
+                    solves += 1
+                    tasksTeam.append({'status': '+', 'ok': True})
+                elif task.task_status == 3:
+                    solves += 1
+                    tasksTeam.append({'status': '+' + str(task.count_solved), 'ok': True})
+                else:
+                    tasksTeam.append({'status': '', 'ok': False})
+
+            response_object['rows'].append({
+                'teamName': team.name,
+                'institution': institution.short_name,
+                'solves': solves,
+                'tasks': tasksTeam
+            })
         return jsonify(response_object)
 
 

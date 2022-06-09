@@ -12,25 +12,28 @@
     <div class="header">
       <img :src="taskName">
     </div>
-    <input v-if="taskAnswerType === 1"
+    <input v-if="taskAnswerType === 1 && !isShowing"
            placeholder="одиночный ответ"
            @input="check"
            v-model="answerOne"/>
 
-    <div id="multiInputTask" @keyup="multiInputTask" v-if="taskAnswerType === 2">
+    <div id="multiInputTask" @keyup="multiInputTask" v-if="taskAnswerType === 2 && !isShowing">
       <multi-select placeholder="множественный ответ"
                     :options="answersManyTaskOptions"
                     :selected-options="answersManyTask"
                     @select="onSelect"/>
     </div>
 
-    <input v-if="taskAnswerType === 3"
+    <input v-if="taskAnswerType === 3 && !isShowing"
            placeholder="одиночный ответ по шаблону"
            @input="check"
            v-model="answerRegexp"/>
 
     <div class="footer">
-      <button class="send-answer" :disabled="!isAnswer" @click="onSubmit">отправить</button>
+      <button v-if="!isShowing"
+              class="send-answer"
+              :disabled="!isAnswer"
+              @click="onSubmit">отправить</button>
     </div>
   </div>
 </template>
@@ -202,6 +205,10 @@ export default {
     hintDelayInitial: {
       type: Number,
       default: 5000,
+    },
+    isShowing: {
+      type: Boolean,
+      default: false,
     },
   },
 };

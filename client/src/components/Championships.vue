@@ -369,7 +369,7 @@ export default {
   left: 0;
   top: 10px;
   width: 100%;
-  background: rgba(33, 37, 41, 0.7);
+  background: rgba(33, 37, 41, 0.6);
   border-radius: 0.25rem;
   border: 1px solid rgb(33, 37, 41);
   padding: 10px;

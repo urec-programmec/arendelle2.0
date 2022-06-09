@@ -95,7 +95,7 @@ export default {
   background: rgba(17, 16, 29, 0.85);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
-  z-index: 10;
+  z-index: 1000;
   color: #F5F5F5;
   box-shadow: 0 0 6px 6px rgba(54, 171, 255, 0.2);
   padding: 10px;

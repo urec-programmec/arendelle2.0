@@ -25,7 +25,8 @@
     "vue-router": "^3.0.1",
     "vue-search-select": "^2.9.5",
     "vue-slider-component": "^3.2.15",
-    "vue2-datepicker": "^3.10.4"
+    "vue2-datepicker": "^3.10.4",
+    "vuejs-smart-table": "^0.0.8"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
