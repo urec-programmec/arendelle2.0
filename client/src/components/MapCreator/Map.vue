@@ -15,6 +15,7 @@
                      maxWidth: getMapSizeX() + 'px',
                      minHeight: getMapSizeY() + 'px',
                      maxHeight: getMapSizeY() + 'px',
+                     position: isTesting ? 'relative' : '',
                      margin: isTesting ? 0 : '15px'}">
         <canvas id="mapCanvas"
                 :style="{width: getMapSizeX() + 'px',
@@ -22,6 +23,11 @@
                 @mousemove="move"
                 @mouseleave="clearSelection"
                 @mousedown="draw"/>
+        <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
+                                          top: heroTop + 'px',
+                                          left: heroLeft + 'px',
+                                          '--hero-url': 'url(' + require(`../../assets/images/${heroDirections[heroDirection]}`) + ')'}"/>
+
       </div>
     </div>
     <test-map @testMap="testMap"/>
@@ -60,11 +66,7 @@
       <i class="bx bx-log-in save-map"
         @click="saveMap"/>
     </span>
-    <div ref="hero" class="hero" :style="{display: isTesting ? 'block' : 'none',
-                                          top: heroTop + 'px',
-                                          left: heroLeft + 'px',
-                                          '--hero-url': 'url(' + require(`../../assets/images/${heroDirections[heroDirection]}`) + ')'}"/>
-  </main>
+    </main>
 </template>
 
 <script>
