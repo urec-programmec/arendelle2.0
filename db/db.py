@@ -2,7 +2,7 @@ from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/arendelle2.0'
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:999@localhost/arendelle'
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(bind=engine)
 db = Session()
