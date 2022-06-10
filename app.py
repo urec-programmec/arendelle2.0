@@ -388,6 +388,7 @@ def saveChampionship():
                                 task_type=1,
                                 task_content=taskId,
                                 task_status=1,
+                                count_solved=0,
                                 created_by=created_by)
                     db.session.add(task)
                     db.session.flush()
