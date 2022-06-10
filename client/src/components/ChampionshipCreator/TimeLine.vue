@@ -37,5 +37,8 @@ export default {
   mounted() {
     this.$parent.$on('initTimeline', this.init);
   },
+  beforeDestroy() {
+    global.removeEventListener('resize', timeline._init);
+  },
 };
 </script>
