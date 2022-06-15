@@ -528,9 +528,10 @@ def getResults():
     global sorted
     response_object = {'status': 'success'}
     if request.method == 'POST':
+        id = request.get_json()['championship']
         response_object['rows'] = []
         response_object['tasks'] = []
-        id = request.get_json()['championship']
+        response_object['championshipName'] = db.session.query(Championship).filter_by(id=id).first().name
         for teamsCh in db.session.query(TeamChampionshipPlatform).filter_by(championship=id).all():
             team = db.session.query(Team).filter_by(id=teamsCh.team).first()
             institution = db.session.query(Institution).filter_by(id=team.institution).first()

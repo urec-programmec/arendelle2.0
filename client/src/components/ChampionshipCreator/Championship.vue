@@ -742,7 +742,7 @@ export default {
 }
 .champ-statistic {
   /*background: rgba(33, 37, 41, 0.6);*/
-  border: 1px solid;
+  border: 1px solid rgba(245, 245, 245, 0.3);
   color: rgba(245, 245, 245, 0.7);
   display: flex;
   justify-content: center;

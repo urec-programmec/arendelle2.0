@@ -5,6 +5,7 @@
                @exit="exit"/>
 
     <div class="statistic-container">
+      <h2>{{ championshipName }}</h2>
       <v-table :data="rows" class="table table-bordered">
         <thead slot="head">
           <tr>
@@ -70,6 +71,7 @@ export default {
 
       rows: [],
       tasks: [],
+      championshipName: '',
 
       currentTaskName: '',
       isMenuOpen: false,
@@ -87,6 +89,7 @@ export default {
         .then((res) => {
           this.rows = res.data.rows;
           this.tasks = res.data.tasks;
+          this.championshipName = res.data.championshipName;
           this.$emit('refreshEnd');
         })
         .catch((error) => {
@@ -159,7 +162,7 @@ export default {
   z-index: 100;
 }
 .show-task:before {
-  font-size: 1.9em;
+  font-size: 1.8em;
   display: flex;
   align-items: center;
   justify-content: center;
