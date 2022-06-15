@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      pathGetResults: 'http://localhost:5050/getResults',
+      pathGetResults: 'http://85.193.85.25:5050/getResults',
       documentTitle: 'Статистика чемпионата',
 
       rows: [],

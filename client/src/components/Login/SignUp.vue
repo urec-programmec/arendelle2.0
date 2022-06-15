@@ -45,7 +45,7 @@ export default {
   name: 'SignUp',
   data() {
     return {
-      pathCheckSignUp: 'http://localhost:5050/checkSignUp',
+      pathCheckSignUp: 'http://85.193.85.25:5050/checkSignUp',
       items: [],
       errorMessage: '',
       email: '',

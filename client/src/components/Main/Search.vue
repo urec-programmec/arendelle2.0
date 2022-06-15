@@ -68,7 +68,7 @@ export default {
   components: { 'toggle-switch': ToggleSwitch, 'multi-select': MultiSelect },
   data() {
     return {
-      pathGetTags: 'http://localhost:5050/allTags',
+      pathGetTags: 'http://85.193.85.25:5050/allTags',
 
       searchValue: '',
       settingsValues: {},

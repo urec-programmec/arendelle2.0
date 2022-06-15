@@ -55,8 +55,8 @@ export default {
     'toggle-switch': ToggleSwitch },
   data() {
     return {
-      pathGetChampionships: 'http://localhost:5050/allChampionships',
-      pathDeleteCh: 'http://localhost:5050/deleteChampionship',
+      pathGetChampionships: 'http://85.193.85.25:5050/allChampionships',
+      pathDeleteCh: 'http://85.193.85.25:5050/deleteChampionship',
 
       user: {},
       stageItems: [

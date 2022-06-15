@@ -61,9 +61,9 @@ export default {
   components: { 'search': Search, message: Message },
   data() {
     return {
-      pathGetMap: 'http://localhost:5050/allMaps',
-      pathRenameMap: 'http://localhost:5050/renameMap',
-      pathDeleteMap: 'http://localhost:5050/deleteMap',
+      pathGetMap: 'http://85.193.85.25:5050/allMaps',
+      pathRenameMap: 'http://85.193.85.25:5050/renameMap',
+      pathDeleteMap: 'http://85.193.85.25:5050/deleteMap',
       user: {},
       maps: [
         {},

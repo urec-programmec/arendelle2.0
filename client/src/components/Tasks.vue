@@ -78,9 +78,9 @@ export default {
       ],
       defaultTasks: [],
 
-      pathGetTasks: 'http://localhost:5050/allTasks',
-      pathRenameTask: 'http://localhost:5050/renameTask',
-      pathDeleteTask: 'http://localhost:5050/deleteTask',
+      pathGetTasks: 'http://85.193.85.25:5050/allTasks',
+      pathRenameTask: 'http://85.193.85.25:5050/renameTask',
+      pathDeleteTask: 'http://85.193.85.25:5050/deleteTask',
 
       searchValue: '',
       searchSettings: {

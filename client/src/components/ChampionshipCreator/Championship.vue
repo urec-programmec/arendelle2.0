@@ -222,9 +222,9 @@ export default {
   },
   data() {
     return {
-      pathGetInstitutions: 'http://localhost:5050/allInstitutionsText',
-      pathGetTeams: 'http://localhost:5050/allTeamsText',
-      pathSaveChampionship: 'http://localhost:5050/saveChampionship',
+      pathGetInstitutions: 'http://85.193.85.25:5050/allInstitutionsText',
+      pathGetTeams: 'http://85.193.85.25:5050/allTeamsText',
+      pathSaveChampionship: 'http://85.193.85.25:5050/saveChampionship',
 
       championship: {},
       borderType: 'border',

@@ -117,10 +117,10 @@ export default {
   components: { 'toggle-switch': ToggleSwitch, 'model-select': ModelSelect },
   data() {
     return {
-      pathGetInstitutions: 'http://localhost:5050/allInstitutionsText',
-      pathCheckEmail: 'http://localhost:5050/checkEmail',
-      pathCheckNickname: 'http://localhost:5050/checkNickname',
-      pathSaveUser: 'http://localhost:5050/saveUser',
+      pathGetInstitutions: 'http://85.193.85.25:5050/allInstitutionsText',
+      pathCheckEmail: 'http://85.193.85.25:5050/checkEmail',
+      pathCheckNickname: 'http://85.193.85.25:5050/checkNickname',
+      pathSaveUser: 'http://85.193.85.25:5050/saveUser',
       items: [],
       errorMessage: '',
 

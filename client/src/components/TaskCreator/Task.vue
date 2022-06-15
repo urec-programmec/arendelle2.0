@@ -128,9 +128,9 @@ export default {
     'multi-select': MultiSelect },
   data() {
     return {
-      pathGetTags: 'http://localhost:5050/allTags',
-      pathSaveTag: 'http://localhost:5050/saveTag',
-      pathSaveTask: 'http://localhost:5050/saveTask',
+      pathGetTags: 'http://85.193.85.25:5050/allTags',
+      pathSaveTag: 'http://85.193.85.25:5050/saveTag',
+      pathSaveTask: 'http://85.193.85.25:5050/saveTask',
       documentTitle: 'Создание задачи',
       taskSizeX: 0,
       taskSizeY: 0,

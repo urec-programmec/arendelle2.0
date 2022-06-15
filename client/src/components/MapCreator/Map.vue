@@ -89,7 +89,7 @@ export default {
   components: { 'vue-slider': VueSlider, 'left-menu': Menu, 'instrument-panel': InstrumentPanel, 'test-map': TestMap, 'message': Message, ModalWizard },
   data() {
     return {
-      pathSaveMap: 'http://localhost:5050/saveMap',
+      pathSaveMap: 'http://85.193.85.25:5050/saveMap',
       documentTitle: 'Создание карты',
       mapSizeX: 50,
       mapSizeY: 50,
