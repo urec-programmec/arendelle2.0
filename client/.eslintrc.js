@@ -67,5 +67,6 @@ module.exports = {
     'no-mutable-exports': 'off',
     'no-nested-ternary': 'off',
     'import/no-dynamic-require': 'off',
+    'linebreak-style': 'off',
   }
 }

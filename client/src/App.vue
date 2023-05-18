@@ -40,8 +40,8 @@ export default {
 
 /* Let's get this party started */
 *::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   display: none;
 }
 
@@ -50,20 +50,19 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  margin: 15px 15px 15px 93px;
+  margin: 15px 5px 5px 15px;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  padding: 2px;
-  background: hsl(210, 60%, 30%);
+  background: hsl(0, 0%, 76%);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: hsl(210, 48%, 48%);
+  background: hsl(0, 7%, 89%);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
