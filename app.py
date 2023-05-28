@@ -75,6 +75,75 @@ def saveMap():
         return jsonify(response_object)
 
 
+@app.route('/saveDair', methods=['POST'])
+def saveDair():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        data = request.get_json()
+        veil = db.session.query(Veil).filter_by(id=1).first()
+        if veil != None:
+            veil.map=data['map']
+            veil.dair1=data['dair1']
+            veil.dair2=data['dair2']
+            veil.dair3=data['dair3']
+            veil.dair4=data['dair4']
+            veil.dair5=data['dair5']
+            veil.meisters=data['meisters']
+            veil.business=data['business']
+            veil.period=data['period']
+        else:
+            newMap = Veil(map=data['map'],
+                     dair1=data['dair1'],
+                     dair2=data['dair2'],
+                     dair3=data['dair3'],
+                     dair4=data['dair4'],
+                     dair5=data['dair5'],
+                     meisters=data['meisters'],
+                     period=data['period'],
+                     business=data['business'])
+            db.session.add(newMap)
+        for i in data['history']:
+            history = db.session.query(History).filter_by(date=i['date']).first()
+            if history == None:
+                newHistory = History(dair=i['dair'],
+                        resource=i['resource'],
+                        count=i['count'],
+                        period=i['period'],
+                        date=i['date'])
+                db.session.add(newHistory)
+        db.session.commit()
+        return jsonify(response_object)
+
+
+@app.route('/getDair', methods=['GET'])
+def getDair():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        veil = db.session.query(Veil).filter_by(id=1).first()
+        date = []
+        for history in db.session.query(History).all():
+            date.append({
+                'dair': history.dair,
+                'resource': history.resource,
+                'count': history.count,
+                'date': history.date,
+                'period': history.period,
+            })
+        response_object['data'] = {
+                'map': veil.map,
+                'dair1': veil.dair1,
+                'dair2': veil.dair2,
+                'dair3': veil.dair3,
+                'dair4': veil.dair4,
+                'dair5': veil.dair5,
+                'meisters': veil.meisters,
+                'business': veil.business,
+                'period': veil.period,
+                'history': date,
+            }
+        return jsonify(response_object)
+
+
 @app.route('/allMaps', methods=['GET'])
 def allMaps():
     response_object = {'status': 'success'}

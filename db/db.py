@@ -2,7 +2,7 @@ from sqlalchemy import Column, BigInteger, String, Integer, DATETIME, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:admin@localhost/arendelle2.0'
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:password@localhost:5432/veil'
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(bind=engine)
 db = Session()
@@ -68,6 +68,29 @@ class Map(Base):
     task_cell_count = Column(Integer, nullable=False)
     author = Column(BigInteger, nullable=False)
     datetime_created = Column(DATETIME, nullable=False)
+
+class Veil(Base):
+    __tablename__ = 'veil'
+    id = Column(BigInteger, primary_key=True)
+    map = Column(JSON, nullable=False)
+    dair1 = Column(JSON, nullable=False)
+    dair2 = Column(JSON, nullable=False)
+    dair3 = Column(JSON, nullable=False)
+    dair4 = Column(JSON, nullable=False)
+    dair5 = Column(JSON, nullable=False)
+    meisters = Column(JSON, nullable=False)
+    business = Column(JSON, nullable=False)
+    period = Column(Integer, nullable=False)
+
+
+class History(Base):
+    __tablename__ = 'history'
+    id = Column(BigInteger, primary_key=True)
+    dair = Column(Integer, nullable=False)
+    resource = Column(Integer, nullable=False)
+    count = Column(Integer, nullable=False)
+    period = Column(Integer, nullable=False)
+    date = Column(String(256), nullable=False)
 
 
 class MapPlatform(Base):

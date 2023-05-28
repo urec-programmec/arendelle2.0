@@ -50,7 +50,7 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  margin: 15px 5px 5px 15px;
+  /*margin: 15px 5px 5px 15px;*/
 }
 
 /* Handle */
