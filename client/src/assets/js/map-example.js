@@ -4,15101 +4,15101 @@ const MAP_TEMPLATE = [
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
+      'src': 'border/dungeon/1.gif'
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
-    },
-    {
-      'type': 'room',
-      'location': 'forest',
-      'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'room',
       'location': 'forest',
       'task': false,
-      'src': 'room/forest/1.png',
+      'src': 'room/forest/1.png'
+    },
+    {
+      'type': 'room',
+      'location': 'forest',
+      'task': false,
+      'src': 'room/forest/1.png'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': 'border',
       'location': 'dungeon',
       'task': false,
-      'src': 'border/dungeon/1.gif',
+      'src': 'border/dungeon/1.gif'
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
+      'src': ''
+    }
   ],
   [
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
+      'src': ''
     },
     {
       'type': '',
       'location': '',
       'task': false,
-      'src': '',
-    },
-  ],
-];
+      'src': ''
+    }
+  ]
+]
 
-export default MAP_TEMPLATE;
+export default MAP_TEMPLATE
