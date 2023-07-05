@@ -2,7 +2,7 @@
   <div class="pole">
     <div class="row" v-for="(row, i) in table" :key="i">
       <div class="poloc_centr" @click="click(item)" v-for="(item, j) in row" :key="j">
-          <div class="krug" :style="{'background': item.c , opacity: getOpacity(item.v)}"></div>
+          <div class="krug" :style="{'background': item.c === 1 ? 'red' : 'blue' , opacity: getOpacity(item.v)}"></div>
       </div>
     </div>
   </div>
