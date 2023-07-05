@@ -62,47 +62,81 @@ export default {
   methods: {
 
     naved (id) {
-
       if (id === 1) {
-        this.v1 = 1
-        this.c1 = this.colorr
+        if (this.v1 === 0) {
+          this.v1 = 1
+          this.c1 = this.colorr
+        } else {
+          return
+        }
       }
       if (id === 2) {
-        this.v2 = 2
-        this.c2 = this.colorr
+        if (this.v2 === 0) {
+          this.v2 = 1
+          this.c2 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 3) {
-        this.v3 = 3
-        this.c3 = this.colorr
+        if (this.v3 === 0) {
+          this.v3 = 1
+          this.c3 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 4) {
-        this.v4 = 4
-        this.c4 = this.colorr
+        if (this.v4 === 0) {
+          this.v4 = 1
+          this.c4 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 5) {
-        this.v5 = 5
-        this.c5 = this.colorr
+        if (this.v5 === 0) {
+          this.v5 = 1
+          this.c5 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 6) {
-        this.v6 = 6
-        this.c6 = this.colorr
+        if (this.v6 === 0) {
+          this.v6 = 1
+          this.c6 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 7) {
-        this.v7 = 7
-        this.c7 = this.colorr
+        if (this.v7 === 0) {
+          this.v7 = 1
+          this.c7 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 8) {
-        this.v8 = 8
-        this.c8 = this.colorr
+        if (this.v8 === 0) {
+          this.v8 = 1
+          this.c8 = this.colorr
+        } else {
+          return;
+        }
       }
       if (id === 9) {
-        this.v9 = 9
-        this.c9 = this.colorr
+        if (this.v9 === 0) {
+          this.v9 = 1
+          this.c9 = this.colorr
+        } else {
+          return;
+        }
       }
-      if (this.colorr === 'red'){
+      if (this.colorr === 'red') {
         this.colorr = 'blue'
-      }
-      else{
+      } else {
         this.colorr = 'red'
       }
     }
@@ -114,57 +148,58 @@ export default {
 </script>
 
 <style scoped>
-.poloc_centr:hover {
+.poloc_centr:hover, .poloc_right:hover, .poloc_bottom:hover, .poloc_top:hover, .poloc_left:hover {
   cursor: pointer;
 }
 .poloc_centr {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 33%;
-  height: 33%;
+  width: 300px;
+  height: 300px;
   background: whitesmoke;
+  border: 5px solid rgba(0, 0, 0, 0);
 }.poloc_bottom {
    display: flex;
    align-items: center;
    justify-content: center;
-  width: 33%;
-  height: 33%;
+  width: 300px;
+  height: 300px;
   background: whitesmoke;
   border: 5px solid black;
-  border-bottom: none;
+  border-bottom-color: rgba(0, 0, 0, 0);
 }.poloc_right {
     display: flex;
     align-items: center;
     justify-content: center;
-  width: 33%;
-  height: 33%;
+  width: 300px;
+  height: 300px;
   background: whitesmoke;
   border: 5px solid black;
-  border-right: none;
+  border-right-color: rgba(0, 0, 0, 0);
 }.poloc_left {
      display: flex;
      align-items: center;
      justify-content: center;
-  width: 33%;
-  height: 33%;
+  width: 300px;
+  height: 300px;
   background: whitesmoke;
   border: 5px solid black;
-  border-left: none;
+  border-left-color: rgba(0, 0, 0, 0);
 }.poloc_top {
       display: flex;
       align-items: center;
       justify-content: center;
-   width: 33%;
-   height: 33%;
+   width: 300px;
+   height: 300px;
    background: whitesmoke;
    border: 5px solid black;
-   border-top: none;
+   border-top-color: rgba(0, 0, 0, 0);
  }
  .krug {
    border-radius: 50%;
-   width: 50px;
-   height: 50px;
+   width: 200px;
+   height: 200px;
  }
 
 .pole {
@@ -174,12 +209,13 @@ export default {
   transform: translate(-50%, -50%);
   background: whitesmoke;
 
-  width: 80%;
-  height: 80%;
+  width: 930px;
+  height: 930px;
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+
 }
 </style>
