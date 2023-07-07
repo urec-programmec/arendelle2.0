@@ -1,22 +1,45 @@
 <template>
   <div class="pole">
     <div class="row" v-for="(row, i) in table" :key="i">
-      <div class="poloc_centr" @click="click(item)" v-for="(item, j) in row" :key="j">
-          <div class="krug" :style="{'background': item.c === 1 ? 'red' : 'blue' , opacity: getOpacity(item.v)}"></div>
+      <div class="poloc_centr" v-for="(item, j) in row" :key="j" :style="{background: estz(item)}">
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel_pust"></div>
+      <div class="panel_class" @click="sneik_napr('t')">
+        <i class='bx bxs-up-arrow-alt' ></i>
+      </div>
+      <div class="panel_pust"></div>
+      <div class="panel_class" @click="sneik_napr('l')">
+        <i class='bx bxs-left-arrow-alt' ></i>
+      </div>
+      <div class="panel_class" @click="sneik_napr('b')">
+        <i class='bx bxs-down-arrow-alt' ></i>
+      </div>
+      <div class="panel_class" @click="sneik_napr('r')">
+        <i class='bx bxs-right-arrow-alt' ></i>
       </div>
     </div>
   </div>
 </template>
-
 <script>
-
 export default {
   name: 'Game',
   data () {
     return {
       type: 1,
       table: [],
-      size: 3
+      size: 20,
+      time: 250,
+      zmey: {
+        x: -1,
+        y: -1,
+        napr: 'r'
+      },
+      yabloko: {
+        xya: -1,
+        yya: -1
+      }
     }
   },
   methods: {
@@ -27,103 +50,119 @@ export default {
         let row = []
         for (let j = 0; j < this.size; j++) {
           row.push({
-            v: false,
-            c: '',
             x: j,
             y: i
           })
         }
         this.table.push(row)
       }
+      this.zmey.x = Math.floor(Math.random() * this.size)
+      this.zmey.y = Math.floor(Math.random() * this.size)
+      this.poedan()
     },
-    click (item) {
-      if (!item.v) {
-        item.c = this.type
-        item.v = true
+    estz (item) {
+      if (item.y === this.zmey.y && item.x === this.zmey.x) {
+        return 'black'
+      } else if (item.y === this.yabloko.yya && item.x === this.yabloko.xya) {
+        return 'red'
       } else {
-        return
+        return 'white'
       }
-      if (this.type === 1) {
-        this.type = 2
-      } else {
-        this.type = 1
-      }
-      this.win2_0(item.x, item.y)
     },
-    win2_0 (x, y) {
-      return this.win(x, y, x, y + 1, x, y + 2) ||
-        this.win(x, y, x, y - 1, x, y - 2) ||
-        this.win(x, y, x + 1, y, x + 2, y) ||
-        this.win(x, y, x - 1, y, x - 2, y) ||
-        this.win(x, y, x + 1, y + 1, x + 2, y + 2) ||
-        this.win(x, y, x - 1, y + 1, x - 2, y + 2) ||
-        this.win(x, y, x + 1, y - 1, x + 2, y - 2) ||
-        this.win(x, y, x - 1, y - 1, x - 2, y - 2) ||
-        this.win(x, y + 1, x, y, x, y - 1) ||
-        this.win(x + 1, y, x, y, x - 1, y) ||
-        this.win(x + 1, y + 1, x, y, x - 1, y - 1) ||
-        this.win(x - 1, y + 1, x, y, x + 1, y - 1)
-    },
-    win (x1, y1, x2, y2, x3, y3) {
-      if (x1 < 0 || x1 >= this.size || x2 < 0 || x2 >= this.size || x3 < 0 || x3 >= this.size || y1 < 0 || y1 >= this.size || y2 < 0 || y2 >= this.size || y3 < 0 || y3 >= this.size) {
-        return false
-      }
-      let itr1 = this.table[y1][x1]
-      let itr2 = this.table[y2][x2]
-      let itr3 = this.table[y3][x3]
-      if (itr1.v && itr2.v && itr3.v) {
-        if (itr1.c === 1 && itr2.c === 1 && itr3.c === 1) {
-          setTimeout(() => {
-            alert('Победил красный петух')
-            this.reset()
-          }, 0)
+    sneik_pereh () {
+      setInterval(() => {
+        if (this.zmey.y === this.yabloko.yya && this.zmey.x === this.yabloko.xya) {
+          this.poedan()
         }
-        if (itr1.c === 2 && itr2.c === 2 && itr3.c === 2) {
-          setTimeout(() => {
-            alert('Победил синий петух')
-            this.reset()
-          }, 0)
+        if (this.zmey.napr === 'r') {
+          if (this.zmey.x === this.size - 1) {
+            this.zmey.x = 0
+          } else {
+            this.zmey.x++
+          }
         }
-      }
+        if (this.zmey.napr === 'l') {
+          if (this.zmey.x === 0) {
+            this.zmey.x = this.size - 1
+          } else {
+            this.zmey.x--
+          }
+        }
+        if (this.zmey.napr === 'b') {
+          if (this.zmey.y === this.size - 1) {
+            this.zmey.y = 0
+          } else {
+            this.zmey.y++
+          }
+        }
+        if (this.zmey.napr === 't') {
+          if (this.zmey.y === 0) {
+            this.zmey.y = this.size - 1
+          } else {
+            this.zmey.y--
+          }
+        }
+      }, this.time)
     },
-    getOpacity (a) {
-      if (a === true) {
-        return 1
-      } else {
-        return 0
-      }
+    sneik_napr (napr) {
+      this.zmey.napr = napr
+    },
+    poedan () {
+      this.yabloko.xya = Math.floor(Math.random() * this.size)
+      this.yabloko.yya = Math.floor(Math.random() * this.size)
+      console.log(this.yabloko.xya, this.yabloko.yya)
     }
   },
   mounted () {
     this.reset()
+    this.sneik_pereh()
   }
 }
 </script>
 
 <style scoped>
+@import url('https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css');
+
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.poloc_centr:hover, .poloc_right:hover, .poloc_bottom:hover, .poloc_top:hover, .poloc_left:hover {
+.panel_pust {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border: 2px solid whitesmoke;
+  background: whitesmoke;
+}
+.panel_class {
+  border: 2px solid black;
+  background: #26f5b7;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  border-radius: 20%;
+  font-size: 100px;
+}
+.panel {
+  width: 312px;
+  height: 212px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+
+}
+.poloc_centr:hover, .panel_class:hover{
   cursor: pointer;
 }
 .poloc_centr {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 130px;
-  background: whitesmoke;
+  width: 30px;
+  height: 30px;
   border: 1px solid black;
 }
- .krug {
-   border-radius: 50%;
-   width: 70%;
-   height: 70%;
- }
-
 .pole {
   position: absolute;
   top: 50%;
