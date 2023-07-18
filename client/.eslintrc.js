@@ -68,5 +68,6 @@ module.exports = {
     'no-nested-ternary': 'off',
     'import/no-dynamic-require': 'off',
     'linebreak-style': 'off',
+    'new-cap': 'off',
   }
 }
