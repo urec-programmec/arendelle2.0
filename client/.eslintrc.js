@@ -69,5 +69,6 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'linebreak-style': 'off',
     'new-cap': 'off',
+    'no-param-reassign': 'off',
   }
 }

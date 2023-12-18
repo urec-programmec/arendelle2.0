@@ -52,6 +52,46 @@
         </div>
       </div>
     </span>
+    <div id="itemMenu" :style="{ 'opacity' : menu.visible ? '1' : '0', 'right' : menu.visible ? '30px' : '-300px',
+                      'overflow': collapsedMenu ? 'hidden' : 'scroll',
+                      'width' : collapsedMenu ? '60px' : '320px',
+                      'max-height': 'calc(100% - 100px)',
+                      'height': 'fit-content',
+                      'min-height': '31px',
+                      '--first-color': isEmpty(menu.room) ? '2px solid rgba(0, 0, 0, 0)' : '2px solid ' + menu.room.color,
+                      '--second-color': isEmpty(menu.room) ? '' : '0 0 0 5px ' + menu.room.colorSecond }" @click="stopPropagation">
+      <i @click="up" class='bx bx-x close' style="margin: 0 5px 0 5px !important; font-size: 1.1em; transform: scale(1.4); position: absolute; right: 0;"/>
+      <i @click="collapseMenu" :class="['bx', collapsedMenu ? 'bx-window' : 'bx-windows', 'close']" style="margin: 0 5px 0 5px !important; font-size: 1.1em; position: absolute; right: 1.3em;"/>
+      <p style="margin-bottom: 1em;" v-if="!collapsedMenu">параметры комнаты</p>
+
+      <div class="itemMenuInfo" v-if="!collapsedMenu">
+        <input @keyup="renameRoom" class="title" style="margin-bottom: 0.5em; background: transparent; border: none;" v-model="menu.room.name">
+        <div :class="['instrument-panel-item']" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+          <div v-for="(d, index) in colors" :key="index"
+               :style="{'--first-color': '1px solid ' + d.color, '--second-color': '1px solid ' + d.colorSecond}"
+               :class="['instrument-panel-item-hover', 'instrument-panel-item-dair', menu.room.color === d.id ? 'instrument-panel-item-dair-selected' : '']"
+               @click="setColor(d.id)">
+            <div class="instrument-panel-item-dair-text" :style="{ '--first-color': d.color, '--second-color':  d.colorSecond }"></div>
+          </div>
+        </div>
+<!--        <div class="monster" :style="{ backgroundImage: `url(${require('../assets/images/units/scout.png')})` }" v-if="hasScoutAccess"/>-->
+
+<!--        <div class="title" v-if="hasKnightAccess">Информация о лорде</div>-->
+<!--        <div class="itemMenuContainer" v-if="hasKnightManageAccess" :style="{ 'margin-bottom': selectedGlobalAction.id === 4 ? '0' : '1.3em' }">-->
+<!--          <i :class="['bx', menuKnight[1].i]"/>-->
+<!--          <div class="itemMenuText">{{ menuKnight[1].text }}</div>-->
+<!--          <div class="itemMenuValue" :style="{'color' : menu.units.knight.stepsCount === 0 ? '#ff4242' : '' }">{{ menu.units.knight.stepsCount }}</div>-->
+<!--        </div>-->
+      </div>
+
+      <div class="itemMenuSubActions" v-if="!collapsedMenu">
+        <div class="actions"
+             :style="{ 'margin-top': '10px' }">
+<!--          <div class="title">Специальные места</div>-->
+          <div @click="deleteRoom" class="itemMenuSubActionsManage deleteResource">Удалить комнату</div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -81,6 +121,7 @@ export default {
       dairSizeY: 25,
       dairSizeX: 40,
       isDrawing: false,
+      collapsedMenu: false,
 
       preSelectedGlobalAction: {},
       preSelectedGlobalSubAction1: {},
@@ -160,8 +201,46 @@ export default {
       defaultRoomW: 150,
       defaultRoomH: 150,
       defaultRoomS: 6,
+      defaultFont: '18px serif',
+      defaultSelectedColor: 'rgba(76, 185, 231, 0.3)',
+      defaultCircleColor: 'rgba(76, 185, 231, 0.9)',
       defaultCircleSize: 3,
       minRoomSize: 40,
+
+      color: 0,
+      colors: {
+        1: {
+          id: 1,
+          color: '#e18ffd',
+          colorSecond: 'rgba(185,54,255,0.26)',
+        },
+        2: {
+          id: 2,
+          color: '#91ff8f',
+          colorSecond: 'rgba(74,255,54,0.26)',
+        },
+        3: {
+          id: 3,
+          color: '#8ad3fd',
+          colorSecond: 'rgba(54,171,255,0.25)',
+        },
+        4: {
+          id: 4,
+          color: '#fdc98d',
+          colorSecond: 'rgba(255,188,54,0.26)',
+        },
+        5: {
+          id: 5,
+          color: '#fd8d8d',
+          colorSecond: 'rgba(255,54,54,0.26)',
+        },
+        6: {
+          id: 6,
+          // color: 'white',
+          color: 'rgb(222,222,222)',
+          colorSecond: 'rgba(180, 180, 179, 0.3)',
+        },
+      },
     };
   },
   methods: {
@@ -175,50 +254,58 @@ export default {
     },
     newRoom() {
       let num = this.rooms.length + 1;
-      this.rooms.push({
+      let room = {
         x: this.canvas.width / 2 - this.defaultRoomW / 2,
         y: this.canvas.height / 2 - this.defaultRoomH / 2,
         name: 'Комната ' + num,
         width: this.defaultRoomW,
         height: this.defaultRoomH,
-      });
+        color: 6,
+        minRoomSize: 0,
+      };
+      this.updateRoomFont(room);
+      this.rooms.push(room);
+      this.selectedRoom = room;
       this.redraw();
     },
     drawRooms() {
       for (let i = 0; i < this.rooms.length; i++) {
         let room = this.rooms[i];
-        this.context.fillStyle = (room === this.selectedRoom) ? 'rgba(76, 185, 231, 0.3)' : 'rgba(180, 180, 179, 0.2)';
+        this.context.fillStyle = (room === this.selectedRoom) ? this.defaultSelectedColor : this.colors[room.color].colorSecond;
         this.context.fill(new Path2D(this.roundedRectPath(room.x - this.defaultRoomS, room.y - this.defaultRoomS, room.width + this.defaultRoomS * 2, room.height + this.defaultRoomS * 2, 5)));
         this.context.fillStyle = 'white';
         this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
-        this.context.fillStyle = 'rgba(180, 180, 179, 0.3)';
+        this.context.fillStyle = this.colors[room.color].color;
         this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
         this.context.fillStyle = 'black';
+        this.context.font = this.defaultFont;
+        let text = this.context.measureText(room.name);
+        this.context.fillText(room.name, room.x + (room.width - text.width) / 2, room.y + (room.height) / 2 - text.ideographicBaseline);
         this.context.stroke(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
         if (room === this.selectedRoom && !this.moving && !this.isEmpty(this.selectedRoom)) {
           this.context.beginPath();
-          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.fillStyle = this.defaultCircleColor;
           this.context.arc(room.x, room.y, this.defaultCircleSize, 0, Math.PI * 2, false);
           this.context.fill();
           this.context.fillStyle = 'black';
           this.context.stroke();
 
           this.context.beginPath();
-          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.fillStyle = this.defaultCircleColor;
           this.context.arc(room.x + room.width, room.y, this.defaultCircleSize, 0, Math.PI * 2, false);
           this.context.fill();
           this.context.fillStyle = 'black';
           this.context.stroke();
 
           this.context.beginPath();
-          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.fillStyle = this.defaultCircleColor;
           this.context.arc(room.x + room.width, room.y + room.height, this.defaultCircleSize, 0, Math.PI * 2, false);
           this.context.fill();
           this.context.fillStyle = 'black';
           this.context.stroke();
 
           this.context.beginPath();
-          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.fillStyle = this.defaultCircleColor;
           this.context.arc(room.x, room.y + room.height, this.defaultCircleSize, 0, Math.PI * 2, false);
           this.context.fill();
           this.context.fillStyle = 'black';
@@ -239,7 +326,7 @@ export default {
         this.redraw();
       } else if (this.cursor.upLeft && this.moving) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width - e.movementX >= this.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.minRoomSize / 4) {
+        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minRoomSize / 4) {
           this.selectedRoom.x += e.movementX;
           this.selectedRoom.width -= e.movementX;
         }
@@ -250,7 +337,7 @@ export default {
         this.redraw();
       } else if (this.cursor.upRight && this.moving) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width + e.movementX >= this.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.minRoomSize / 4) {
+        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minRoomSize / 4) {
           this.selectedRoom.width += e.movementX;
         }
         if (this.selectedRoom.height - e.movementY >= this.minRoomSize && params.y <= this.selectedRoom.y + e.movementY + this.minRoomSize / 4) {
@@ -260,7 +347,7 @@ export default {
         this.redraw();
       } else if (this.cursor.downRight && this.moving) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width + e.movementX >= this.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.minRoomSize / 4) {
+        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minRoomSize / 4) {
           this.selectedRoom.width += e.movementX;
         }
         if (this.selectedRoom.height + e.movementY >= this.minRoomSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minRoomSize / 4) {
@@ -269,7 +356,7 @@ export default {
         this.redraw();
       } else if (this.cursor.downLeft && this.moving) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width - e.movementX >= this.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.minRoomSize / 4) {
+        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minRoomSize / 4) {
           this.selectedRoom.x += e.movementX;
           this.selectedRoom.width -= e.movementX;
         }
@@ -298,6 +385,32 @@ export default {
         this.moving = true;
         this.redraw();
       }
+    },
+    setColor(color) {
+      this.selectedRoom.color = color;
+      this.redraw();
+    },
+    renameRoom() {
+      this.updateRoomFont(this.selectedRoom);
+      if (this.selectedRoom.width < this.selectedRoom.minRoomSize) {
+        if (this.selectedRoom.x + this.selectedRoom.minRoomSize > this.canvas.width) {
+          this.selectedRoom.x -= (this.selectedRoom.x + this.selectedRoom.minRoomSize) - this.canvas.width + 10;
+        }
+        this.selectedRoom.width = this.selectedRoom.minRoomSize;
+      }
+      this.redraw();
+    },
+    deleteRoom() {
+      let index = this.rooms.indexOf(this.selectedRoom);
+      this.rooms.splice(index, 1);
+      this.up();
+    },
+    collapseMenu() {
+      this.collapsedMenu = !this.collapsedMenu;
+    },
+    updateRoomFont(room) {
+      this.context.font = this.defaultFont;
+      room.minRoomSize = this.context.measureText(room.name).width + 20;
     },
     isRoomSelected(room, params) {
       return params.x >= room.x && params.x <= room.x + room.width &&
@@ -430,6 +543,12 @@ export default {
         result = 'move';
       }
       return result;
+    },
+    menu() {
+      return {
+        visible: !this.isEmpty(this.selectedRoom),
+        room: this.selectedRoom,
+      };
     },
   },
   created() {
@@ -606,6 +725,18 @@ export default {
 .close:hover {
   color: #F5F5F5;
 }
+.save {
+  font-size: 1.8em;
+  position: absolute;
+  right: 15px;
+  opacity: .5;
+  color: #F5F5F5;
+}
+.save:hover {
+  opacity: 1;
+  cursor: pointer;
+  color: #46cd42 !important;
+}
 .itemMenuInfo {
   width: 100%;
   /*height: 100%;*/
@@ -642,7 +773,7 @@ export default {
   border-radius: 8px;
   display: flex;
   justify-content: center;
-  width: 70%;
+  width: 90%;
   padding: 1px 5px;
   position: relative;
   transition: all 0.1s ease;
@@ -687,6 +818,79 @@ export default {
   margin-bottom: 15px;
   width: 100%;
   text-align: center;
+}
+.instrument-panel-title {
+  position: relative;
+  height: 0;
+  padding-left: 10px;
+  line-height: 0;
+  font-size: 0.6em;
+}
+.instrument-panel-item {
+  width: 100%;
+  height: fit-content;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  min-height: 30px;
+  background: rgba(17, 16, 29, 0.5);
+}
+.instrument-panel-item-hover {
+  transition: all 0.15s ease;
+}
+.instrument-panel-item-hover:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+  opacity: 1;
+}
+.instrument-panel-item-right:hover {
+  cursor: pointer;
+}
+.instrument-panel-title-right {
+  left: 50%;
+  top: -10px;
+  padding-left: 0;
+  width: calc(100% + 20px);
+  transform: translate(-50%, 0);
+  font-size: 0.6em;
+  text-align: center
+}
+.instrument-panel-item i {
+  height: 32px;
+  min-width: 32px;
+  font-size: 32px;
+  opacity: 0.5;
+}
+.instrument-panel-item-hover {
+  transition: all 0.15s ease;
+}
+.instrument-panel-item-dair-selected {
+  /*border: 1px solid #F5F5F5 !important;*/
+  border: var(--first-color) !important;
+}
+.instrument-panel-item-dair-selected .instrument-panel-item-dair-text, .instrument-panel-item-dair-text:hover {
+  background: var(--first-color);
+}
+.instrument-panel-item-dair:hover .instrument-panel-item-dair-text {
+  border: var(--second-color);
+}
+.instrument-panel-item-dair-text {
+  background: var(--second-color);
+  border-radius: 3px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+.instrument-panel-item-dair {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  /*transition: none;*/
 }
 .monster {
   background-position: center;
