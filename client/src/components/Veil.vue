@@ -34,40 +34,23 @@
       </div>
     </span>
     <div class="dairMap-container">
-      <div :style="{ minWidth: getDairSizeX() + 'px',
-                     // display: 'none',
-                     // marginTop: '5px',
-                     maxWidth: getDairSizeX() + 'px',
-                     minHeight: getDairSizeY() + 'px',
-                     maxHeight: getDairSizeY() + 'px'}">
-        <canvas id="dairCanvas"
-                :style="{width: getDairSizeX() + 'px',
-                         height: getDairSizeY() + 'px'}"
+      <div id="container" :style="{ width: '100%',
+                     height: '100%'}">
+        <canvas id="canvas"
+                v-bind:style="{cursor: cursorForm}"
                 @mousemove="move"
-                @mouseleave="clear"
-                @mousedown="tryDo"/>
+                @mouseleave="leave"
+                @mouseup="up"
+                @mousedown="down"/>
       </div>
     </div>
     <span class="footer">
-      <div v-if="selectedGlobalAction.id === 2" class= "footerResources">
-         <div class="footerResourcesSettings">
-          <i :class="['bx', 'bx-download', 'bx-rotate-270']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
-          <div style="color: inherit">Следующий период</div>
+      <div v-if="selectedGlobalAction.id === 1" class= "footerResources">
+         <div class="footerResourcesSettings" @click="newRoom">
+          <i :class="['bx', 'bx-plus']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
+          <div style="color: inherit">Комната</div>
         </div>
       </div>
-      <vue-slider v-model="dairZoom"
-                  :tooltip-formatter="val => (Math.round((val / minDairZoom) * 10) / 10) + 'x'"
-                  :min="minDairZoom"
-                  :max="maxDairZoom"
-                  :style="{margin: '0',
-                           width: '260px'}"
-                  @drag-start="() => isResizing = true"
-                  @drag-end="() => {isResizing = false; drawCanvas(true);}"
-                  @change="() => {if(!isResizing) drawCanvas(true)}">
-        <template #dot="{ value, focus }" style="display: flex; justify-content: center;">
-          <div :class="['custom-dot', { 'custom-dot-focus': focus }]">{{ Math.round((value / minDairZoom) * 10) / 10 }}</div>
-        </template>
-      </vue-slider>
     </span>
   </main>
 </template>
@@ -95,10 +78,8 @@ export default {
       canvas: null,
       context: null,
       isResizing: false,
-
       dairSizeY: 25,
       dairSizeX: 40,
-
       isDrawing: false,
 
       preSelectedGlobalAction: {},
@@ -107,15 +88,12 @@ export default {
       selectedGlobalAction: {
         id: 1,
       },
-
       selectedGlobalSubAction1: {
         id: 1,
       },
-
       selectedGlobalSubAction2: {
         id: 1,
       },
-
       globalSubActions1: {
         1: {
           id: 1,
@@ -128,7 +106,6 @@ export default {
           url: `url(${require('../assets/images/subactions/units.png')})`,
         },
       },
-
       globalSubActions2: {
         1: {
           id: 1,
@@ -156,7 +133,6 @@ export default {
           url: `url(${require('../assets/images/subactions/units.png')})`,
         },
       },
-
       globalActions: {
         1: {
           id: 1,
@@ -169,36 +145,259 @@ export default {
           url: `url(${require('../assets/images/subactions/resources.jpg')})`,
         },
       },
+
+      rooms: [],
+      selectedRoom: {},
+      preSelectedRoom: {},
+      cursor: {
+        selected: false,
+        upLeft: false,
+        upRight: false,
+        downRight: false,
+        downLeft: false,
+      },
+      moving: false,
+      defaultRoomW: 150,
+      defaultRoomH: 150,
+      defaultRoomS: 6,
+      defaultCircleSize: 3,
+      minRoomSize: 40,
     };
   },
   methods: {
     loadAll() {
-      this.canvas = document.getElementById('dairCanvas');
+      let container = document.getElementById('container');
+      this.canvas = document.getElementById('canvas');
       this.context = this.canvas.getContext('2d');
+      this.canvas.width = container.clientWidth;
+      this.canvas.height = container.clientHeight;
+      this.redraw();
     },
-    stopPropagation(event) {
-      event.stopPropagation();
+    newRoom() {
+      let num = this.rooms.length + 1;
+      this.rooms.push({
+        x: this.canvas.width / 2 - this.defaultRoomW / 2,
+        y: this.canvas.height / 2 - this.defaultRoomH / 2,
+        name: 'Комната ' + num,
+        width: this.defaultRoomW,
+        height: this.defaultRoomH,
+      });
+      this.redraw();
     },
-    move(e) {},
-    clear() {},
-    draw() {},
-    onDrawEnd(event) {},
-    tryDo() {},
-    getDairSizeX() {
-      return this.dairSizeX * this.dairZoom;
-    },
-    getDairSizeY() {
-      return this.dairSizeY * this.dairZoom;
-    },
-    drawCanvas(isClear) {},
-    exists(x, y) {
-      if (x < 0 || x >= this.dairSizeX) {
-        return false;
+    drawRooms() {
+      for (let i = 0; i < this.rooms.length; i++) {
+        let room = this.rooms[i];
+        this.context.fillStyle = (room === this.selectedRoom) ? 'rgba(76, 185, 231, 0.3)' : 'rgba(180, 180, 179, 0.2)';
+        this.context.fill(new Path2D(this.roundedRectPath(room.x - this.defaultRoomS, room.y - this.defaultRoomS, room.width + this.defaultRoomS * 2, room.height + this.defaultRoomS * 2, 5)));
+        this.context.fillStyle = 'white';
+        this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
+        this.context.fillStyle = 'rgba(180, 180, 179, 0.3)';
+        this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
+        this.context.fillStyle = 'black';
+        this.context.stroke(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
+        if (room === this.selectedRoom && !this.moving && !this.isEmpty(this.selectedRoom)) {
+          this.context.beginPath();
+          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.arc(room.x, room.y, this.defaultCircleSize, 0, Math.PI * 2, false);
+          this.context.fill();
+          this.context.fillStyle = 'black';
+          this.context.stroke();
+
+          this.context.beginPath();
+          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.arc(room.x + room.width, room.y, this.defaultCircleSize, 0, Math.PI * 2, false);
+          this.context.fill();
+          this.context.fillStyle = 'black';
+          this.context.stroke();
+
+          this.context.beginPath();
+          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.arc(room.x + room.width, room.y + room.height, this.defaultCircleSize, 0, Math.PI * 2, false);
+          this.context.fill();
+          this.context.fillStyle = 'black';
+          this.context.stroke();
+
+          this.context.beginPath();
+          this.context.fillStyle = 'rgba(76, 185, 231, 0.9)';
+          this.context.arc(room.x, room.y + room.height, this.defaultCircleSize, 0, Math.PI * 2, false);
+          this.context.fill();
+          this.context.fillStyle = 'black';
+          this.context.stroke();
+        }
       }
-      if (y < 0 || y >= this.dairSizeY) {
-        return false;
+    },
+    move(e) {
+      if (this.cursor.selected && this.moving) {
+        let x = this.selectedRoom.x + e.movementX;
+        let y = this.selectedRoom.y + e.movementY;
+        if (x >= 0 && x + this.selectedRoom.width <= this.canvas.width) {
+          this.selectedRoom.x += e.movementX;
+        }
+        if (y >= 0 && y + this.selectedRoom.height <= this.canvas.height) {
+          this.selectedRoom.y += e.movementY;
+        }
+        this.redraw();
+      } else if (this.cursor.upLeft && this.moving) {
+        let params = this.getMousePosition(e);
+        if (this.selectedRoom.width - e.movementX >= this.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.minRoomSize / 4) {
+          this.selectedRoom.x += e.movementX;
+          this.selectedRoom.width -= e.movementX;
+        }
+        if (this.selectedRoom.height - e.movementY >= this.minRoomSize && params.y <= this.selectedRoom.y + e.movementY + this.minRoomSize / 4) {
+          this.selectedRoom.y += e.movementY;
+          this.selectedRoom.height -= e.movementY;
+        }
+        this.redraw();
+      } else if (this.cursor.upRight && this.moving) {
+        let params = this.getMousePosition(e);
+        if (this.selectedRoom.width + e.movementX >= this.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.minRoomSize / 4) {
+          this.selectedRoom.width += e.movementX;
+        }
+        if (this.selectedRoom.height - e.movementY >= this.minRoomSize && params.y <= this.selectedRoom.y + e.movementY + this.minRoomSize / 4) {
+          this.selectedRoom.y += e.movementY;
+          this.selectedRoom.height -= e.movementY;
+        }
+        this.redraw();
+      } else if (this.cursor.downRight && this.moving) {
+        let params = this.getMousePosition(e);
+        if (this.selectedRoom.width + e.movementX >= this.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.minRoomSize / 4) {
+          this.selectedRoom.width += e.movementX;
+        }
+        if (this.selectedRoom.height + e.movementY >= this.minRoomSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minRoomSize / 4) {
+          this.selectedRoom.height += e.movementY;
+        }
+        this.redraw();
+      } else if (this.cursor.downLeft && this.moving) {
+        let params = this.getMousePosition(e);
+        if (this.selectedRoom.width - e.movementX >= this.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.minRoomSize / 4) {
+          this.selectedRoom.x += e.movementX;
+          this.selectedRoom.width -= e.movementX;
+        }
+        if (this.selectedRoom.height + e.movementY >= this.minRoomSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minRoomSize / 4) {
+          this.selectedRoom.height += e.movementY;
+        }
+        this.redraw();
+      } else {
+        this.updateCursor(e);
       }
-      return true;
+    },
+    leave() {
+      this.moving = false;
+      this.redraw();
+    },
+    up() {
+      if (!this.cursor.selected && !this.cursor.upLeft && !this.cursor.upRight && !this.cursor.downRight && !this.cursor.downLeft) {
+        this.selectedRoom = {};
+        this.preSelectedRoom = {};
+      }
+      this.leave();
+    },
+    down() {
+      if (this.cursor.selected || this.cursor.upLeft || this.cursor.upRight || this.cursor.downRight || this.cursor.downLeft) {
+        this.selectedRoom = this.preSelectedRoom;
+        this.moving = true;
+        this.redraw();
+      }
+    },
+    isRoomSelected(room, params) {
+      return params.x >= room.x && params.x <= room.x + room.width &&
+        params.y >= room.y && params.y <= room.y + room.height;
+    },
+    isTopLeftSelected(room, params) {
+      return params.x >= room.x - (this.defaultCircleSize + 2) && params.x <= room.x + (this.defaultCircleSize + 2) &&
+        params.y >= room.y - (this.defaultCircleSize + 2) && params.y <= room.y + (this.defaultCircleSize + 2);
+    },
+    isTopRightSelected(room, params) {
+      return params.x >= room.x + room.width - (this.defaultCircleSize + 2) && params.x <= room.x + room.width + (this.defaultCircleSize + 2) &&
+        params.y >= room.y - (this.defaultCircleSize + 2) && params.y <= room.y + (this.defaultCircleSize + 2);
+    },
+    isBottomRightSelected(room, params) {
+      return params.x >= room.x + room.width - (this.defaultCircleSize + 2) && params.x <= room.x + room.width + (this.defaultCircleSize + 2) &&
+        params.y >= room.y + room.height - (this.defaultCircleSize + 2) && params.y <= room.y + room.height + (this.defaultCircleSize + 2);
+    },
+    isBottomLeftSelected(room, params) {
+      return params.x >= room.x - (this.defaultCircleSize + 2) && params.x <= room.x + (this.defaultCircleSize + 2) &&
+        params.y >= room.y + room.height - (this.defaultCircleSize + 2) && params.y <= room.y + room.height + (this.defaultCircleSize + 2);
+    },
+    updateCursor(e) {
+      let params = this.getMousePosition(e);
+      this.cursor.upLeft = false;
+      this.cursor.upRight = false;
+      this.cursor.downRight = false;
+      this.cursor.downLeft = false;
+      this.cursor.selected = false;
+      for (let i = 0; i < this.rooms.length; i++) {
+        let room = this.rooms[i];
+        if (this.isTopLeftSelected(room, params)) {
+          this.cursor.upLeft = true;
+          this.cursor.upRight = false;
+          this.cursor.downRight = false;
+          this.cursor.downLeft = false;
+          this.cursor.selected = false;
+          this.preSelectedRoom = room;
+        } else if (this.isTopRightSelected(room, params)) {
+          this.cursor.upLeft = false;
+          this.cursor.upRight = true;
+          this.cursor.downRight = false;
+          this.cursor.downLeft = false;
+          this.cursor.selected = false;
+          this.preSelectedRoom = room;
+        } else if (this.isBottomRightSelected(room, params)) {
+          this.cursor.upLeft = false;
+          this.cursor.upRight = false;
+          this.cursor.downRight = true;
+          this.cursor.downLeft = false;
+          this.cursor.selected = false;
+          this.preSelectedRoom = room;
+        } else if (this.isBottomLeftSelected(room, params)) {
+          this.cursor.upLeft = false;
+          this.cursor.upRight = false;
+          this.cursor.downRight = false;
+          this.cursor.downLeft = true;
+          this.cursor.selected = false;
+          this.preSelectedRoom = room;
+        } else if (this.isRoomSelected(room, params)) {
+          this.cursor.upLeft = false;
+          this.cursor.upRight = false;
+          this.cursor.downRight = false;
+          this.cursor.downLeft = false;
+          this.cursor.selected = true;
+          this.preSelectedRoom = room;
+        }
+      }
+    },
+    getMousePosition(e) {
+      let x;
+      let y;
+      if (e.pageX !== undefined && e.pageY !== undefined) {
+        x = e.pageX;
+        y = e.pageY;
+      } else {
+        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+      }
+
+      x -= this.canvas.getBoundingClientRect().left;
+      y -= this.canvas.getBoundingClientRect().top;
+
+      return { x, y };
+    },
+    roundedRectPath(x, y, w, h, ro) {
+      let r = (Math.min(w, h) / 2 > ro) ? ro : Math.min(w, h) / 2;
+      return `M ${x + r} ${y} l ${w - 2 * r} 0 q ${r} 0 ${r} ${r}
+        l 0 ${h - 2 * r} q 0 ${r} ${-r} ${r}
+        l ${-w + 2 * r} 0 q ${-r} 0 ${-r} ${-r}
+        l 0 ${-h + 2 * r} q 0 ${-r} ${r} ${-r}`;
+    },
+    isEmpty(object) {
+      return object === undefined || Object.keys(object).length === 0;
+    },
+    redraw() {
+      this.context.fillStyle = 'rgba(255, 255, 255, 1)';
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      this.context.fill();
+      this.drawRooms();
     },
     selectGlobalAction() {
       this.selectedGlobalAction = this.preSelectedGlobalAction;
@@ -210,19 +409,34 @@ export default {
     },
     selectGlobalSubAction2() {
       this.selectedGlobalSubAction2 = this.preSelectedGlobalSubAction2;
-      this.drawCanvas(false);
     },
-    globalClick(event) {
-      this.onDrawEnd(event);
+    globalClick(event) {},
+    stopPropagation(event) {
+      event.stopPropagation();
     },
   },
   computed: {
+    cursorForm() {
+      let result = '';
+      if (this.cursor.upLeft) {
+        result = 'nw-resize';
+      } else if (this.cursor.upRight) {
+        result = 'ne-resize';
+      } else if (this.cursor.downRight) {
+        result = 'nw-resize';
+      } else if (this.cursor.downLeft) {
+        result = 'ne-resize';
+      } else if (this.cursor.selected) {
+        result = 'move';
+      }
+      return result;
+    },
   },
   created() {
     document.title = this.documentTitle;
+    window.addEventListener('resize', this.loadAll);
   },
   mounted() {
-    // window.onbeforeunload = () => true;
     this.loadAll();
   },
 };
@@ -242,12 +456,23 @@ export default {
 }
 .dairMap-container {
   display: -webkit-box;
-  overflow: scroll;
-  padding-top: 10px;
+  overflow: hidden;
+  /*padding-top: 10px;*/
   min-width: 100%;
   height: 100%;
   justify-content: center;
   align-items: start;
+}
+.dairMap-rooms {
+  /*display: -webkit-box;*/
+  /*overflow: scroll;*/
+  /*padding-top: 10px;*/
+  min-width: 100%;
+  height: calc(100% - 50px);
+  position: absolute;
+  background: rebeccapurple;
+  /*justify-content: center;*/
+  /*align-items: start;*/
 }
 .dairMap-container::-webkit-scrollbar {
   display: block !important;
@@ -697,7 +922,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 25px;
-  padding: 5px 20px;
+  padding: 5px 10px;
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.35);
   transition: all 0.15s ease;
@@ -731,6 +956,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: right;
+  z-index: 10;
 }
 .footer i {
   margin: 0 10px;
