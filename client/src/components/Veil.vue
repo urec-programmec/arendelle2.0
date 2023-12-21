@@ -238,15 +238,14 @@ export default {
       defaultRoomW: 150,
       defaultRoomH: 150,
       defaultItemR: 30,
-      defaultLineH: 20,
+      defaultLineH: 18,
       defaultRoomS: 6,
       defaultItemS: 6,
       defaultFont: '18px serif',
       defaultItemFont: '14px serif',
       defaultSelectedColor: 'rgba(76, 185, 231, 0.3)',
       defaultCircleColor: 'rgba(76, 185, 231, 0.9)',
-      defaultSelectedCircleColor: 'rgba(255,72,72,0.82)',
-      defaultSubCircleColor: 'rgba(76, 185, 231, 0.5)',
+      defaultSubCircleColor: 'rgba(76, 185, 231, 0.17)',
       defaultCircleSize: 3,
       minSize: 40,
 
@@ -382,7 +381,7 @@ export default {
           }
           if (line === this.selectedLine && !this.movingLine) {
             this.context.beginPath();
-            this.context.fillStyle = this.selectedDot === line.dots[j] ? this.defaultCircleColor : this.defaultSelectedColor;
+            this.context.fillStyle = this.selectedDot === line.dots[j] ? this.defaultCircleColor : this.defaultSubCircleColor;
             this.context.arc(line.dots[j].x, line.dots[j].y, this.defaultLineH / 2, 0, Math.PI * 2, false);
             this.context.fill();
           }
