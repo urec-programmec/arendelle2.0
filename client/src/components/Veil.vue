@@ -54,6 +54,10 @@
           <i :class="['bx', 'bx-plus']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
           <div style="color: inherit">Переход</div>
         </div>
+        <div class="footerResourcesSettings" @click="newItem">
+          <i :class="['bx', 'bx-plus']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
+          <div style="color: inherit">Предмет</div>
+        </div>
       </div>
     </span>
     <div id="itemMenu" :style="{ 'opacity' : menu.visible ? '1' : '0', 'right' : menu.visible ? '30px' : '-300px',
@@ -64,10 +68,11 @@
                       'min-height': '31px',
                       '--first-color': isEmpty(menu.room) ? '2px solid rgba(0, 0, 0, 0)' : '2px solid ' + menu.room.color,
                       '--second-color': isEmpty(menu.room) ? '' : '0 0 0 5px ' + menu.room.colorSecond }" @click="stopPropagation">
-      <i @click="up" class='bx bx-x close' style="margin: 0 5px 0 5px !important; font-size: 1.1em; transform: scale(1.4); position: absolute; right: 0;"/>
+      <i @click="close" class='bx bx-x close' style="margin: 0 5px 0 5px !important; font-size: 1.1em; transform: scale(1.4); position: absolute; right: 0;"/>
       <i @click="collapseMenu" :class="['bx', collapsedMenu ? 'bx-window' : 'bx-windows', 'close']" style="margin: 0 5px 0 5px !important; font-size: 1.1em; position: absolute; right: 1.3em;"/>
       <p style="margin-bottom: 1em;" v-if="!collapsedMenu && !isEmpty(menu.room)">параметры комнаты</p>
-      <p style="margin-bottom: 0em;" v-if="!collapsedMenu && !isEmpty(menu.dot)">точка</p>
+      <p style="margin-bottom: 0;" v-if="!collapsedMenu && !isEmpty(menu.dot)">точка</p>
+      <p style="margin-bottom: 1em;" v-if="!collapsedMenu && !isEmpty(menu.item)">параметры предмета</p>
 
       <div class="itemMenuInfo" v-if="!collapsedMenu && !isEmpty(menu.room)">
         <input @keyup="renameRoom" class="title" style="margin-bottom: 0.5em; background: transparent; border: none;" v-model="menu.room.name">
@@ -80,17 +85,34 @@
           </div>
         </div>
       </div>
+      <div class="itemMenuInfo" v-if="!collapsedMenu && !isEmpty(menu.item)">
+        <input @keyup="renameItem" class="title" style="margin-bottom: 0.5em; background: transparent; border: none;" v-model="menu.item.name">
+        <div :class="['instrument-panel-item']" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+          <div v-for="(d, index) in colors" :key="index"
+               :style="{'--first-color': '1px solid ' + d.color, '--second-color': '1px solid ' + d.colorSecond}"
+               :class="['instrument-panel-item-hover', 'instrument-panel-item-dair', menu.item.color === d.id ? 'instrument-panel-item-dair-selected' : '']"
+               @click="setColorItem(d.id)">
+            <div class="instrument-panel-item-dair-text" :style="{ '--first-color': d.color, '--second-color':  d.colorSecond }"></div>
+          </div>
+        </div>
+      </div>
       <div class="itemMenuSubActions" v-if="!collapsedMenu && !isEmpty(menu.room)">
         <div class="actions"
              :style="{ 'margin-top': '10px' }">
           <div @click="deleteRoom" class="itemMenuSubActionsManage deleteResource">Удалить комнату</div>
-          <div @click="clearRoomLines" class="itemMenuSubActionsManage deleteResource">Отвязать переходы</div>
+          <div v-if="menu.room.dots.size !== 0" @click="clearRoomLines" class="itemMenuSubActionsManage deleteResource">Отвязать переходы</div>
         </div>
       </div>
       <div class="itemMenuSubActions" v-if="!collapsedMenu && !isEmpty(menu.dot)">
         <div class="actions"
              :style="{ 'margin-top': '10px' }">
           <div @click="deleteLine" class="itemMenuSubActionsManage deleteResource">Удалить точку</div>
+        </div>
+      </div>
+      <div class="itemMenuSubActions" v-if="!collapsedMenu && !isEmpty(menu.item)">
+        <div class="actions"
+             :style="{ 'margin-top': '10px' }">
+          <div @click="deleteItem" class="itemMenuSubActionsManage deleteResource">Удалить предмет</div>
         </div>
       </div>
     </div>
@@ -191,13 +213,16 @@ export default {
 
       rooms: [],
       lines: [],
+      items: [],
       selectedRoom: {},
       selectedLine: {},
       selectedDot: {},
+      selectedItem: {},
       preSelectedRoom: {},
       preSelectedLine: {},
       preSelectedDot: {},
       preSelectedIndex: -1,
+      preSelectedItem: {},
       cursor: {
         selected: false,
         dot: false,
@@ -209,17 +234,21 @@ export default {
       },
       movingRoom: false,
       movingLine: false,
+      movingItem: false,
       defaultRoomW: 150,
       defaultRoomH: 150,
-      defaultLineH: 10,
+      defaultItemR: 30,
+      defaultLineH: 20,
       defaultRoomS: 6,
+      defaultItemS: 6,
       defaultFont: '18px serif',
+      defaultItemFont: '14px serif',
       defaultSelectedColor: 'rgba(76, 185, 231, 0.3)',
       defaultCircleColor: 'rgba(76, 185, 231, 0.9)',
       defaultSelectedCircleColor: 'rgba(255,72,72,0.82)',
       defaultSubCircleColor: 'rgba(76, 185, 231, 0.5)',
       defaultCircleSize: 3,
-      minRoomSize: 40,
+      minSize: 40,
 
       color: 0,
       colors: {
@@ -281,9 +310,9 @@ export default {
         width: this.defaultRoomW,
         height: this.defaultRoomH,
         color: 6,
-        minRoomSize: 0,
+        minSize: 0,
       };
-      this.updateRoomFont(room);
+      this.updateFontSize(room);
       this.rooms.push(room);
       this.selectedRoom = room;
       this.redraw();
@@ -306,6 +335,22 @@ export default {
       };
       this.lines.push(line);
       this.selectedLine = line;
+      this.redraw();
+    },
+    newItem() {
+      this.up();
+      let num = this.items.length + 1;
+      let item = {
+        x: (num) * this.defaultItemR * 2,
+        y: this.canvas.height - this.defaultItemR * 2,
+        name: 'Предмет ' + num,
+        radius: this.defaultItemR,
+        color: 6,
+        minSize: 0,
+      };
+      this.updateItemFontSize(item);
+      this.items.push(item);
+      this.selectedItem = item;
       this.redraw();
     },
     drawLines() {
@@ -361,7 +406,7 @@ export default {
         this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
         this.context.fillStyle = 'black';
         this.context.font = this.defaultFont;
-        let text = this.context.measureText(room.name);
+        let text = this.context.measureText(room.name.trim());
         this.context.fillText(room.name, room.x + (room.width - text.width) / 2, room.y + (room.height) / 2 - text.ideographicBaseline);
         this.context.strokeStyle = 'black';
         this.context.stroke(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
@@ -392,6 +437,30 @@ export default {
         }
       }
     },
+    drawItems() {
+      for (let i = 0; i < this.items.length; i++) {
+        let item = this.items[i];
+        this.context.beginPath();
+        this.context.fillStyle = (item === this.selectedItem) ? this.defaultSelectedColor : this.colors[item.color].colorSecond;
+        this.context.arc(item.x, item.y, (item.radius + this.defaultItemS), 0, Math.PI * 2, false);
+        this.context.fill();
+        this.context.beginPath();
+        this.context.fillStyle = 'white';
+        this.context.arc(item.x, item.y, item.radius, 0, Math.PI * 2, false);
+        this.context.fill();
+        this.context.beginPath();
+        this.context.fillStyle = this.colors[item.color].color;
+        this.context.strokeStyle = 'black';
+        this.context.arc(item.x, item.y, item.radius, 0, Math.PI * 2, false);
+        this.context.fill();
+        this.context.stroke();
+        this.context.beginPath();
+        this.context.fillStyle = 'black';
+        this.context.font = this.defaultItemFont;
+        let text = this.context.measureText(item.name.trim());
+        this.context.fillText(item.name, item.x - (text.width) / 2, item.y - text.ideographicBaseline);
+      }
+    },
     move(e) {
       if (this.cursor.selected && this.movingRoom) {
         let x = this.selectedRoom.x + e.movementX;
@@ -402,51 +471,55 @@ export default {
         if (y >= 0 && y + this.selectedRoom.height <= this.canvas.height) {
           this.selectedRoom.y += e.movementY;
         }
-        if (this.selectedRoom.dots.size !== 0) {
-          for (let [line, dot] of this.selectedRoom.dots) {
-            dot.x = this.selectedRoom.x + this.selectedRoom.width / 2;
-            dot.y = this.selectedRoom.y + this.selectedRoom.height / 2;
-          }
-        }
         this.redraw();
       } else if (this.cursor.upLeft && this.movingRoom) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minRoomSize / 4) {
+        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minSize / 4) {
           this.selectedRoom.x += e.movementX;
           this.selectedRoom.width -= e.movementX;
         }
-        if (this.selectedRoom.height - e.movementY >= this.minRoomSize && params.y <= this.selectedRoom.y + e.movementY + this.minRoomSize / 4) {
+        if (this.selectedRoom.height - e.movementY >= this.minSize && params.y <= this.selectedRoom.y + e.movementY + this.minSize / 4) {
           this.selectedRoom.y += e.movementY;
           this.selectedRoom.height -= e.movementY;
         }
         this.redraw();
       } else if (this.cursor.upRight && this.movingRoom) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minRoomSize / 4) {
+        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minSize / 4) {
           this.selectedRoom.width += e.movementX;
         }
-        if (this.selectedRoom.height - e.movementY >= this.minRoomSize && params.y <= this.selectedRoom.y + e.movementY + this.minRoomSize / 4) {
+        if (this.selectedRoom.height - e.movementY >= this.minSize && params.y <= this.selectedRoom.y + e.movementY + this.minSize / 4) {
           this.selectedRoom.y += e.movementY;
           this.selectedRoom.height -= e.movementY;
         }
         this.redraw();
       } else if (this.cursor.downRight && this.movingRoom) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minRoomSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minRoomSize / 4) {
+        if (this.selectedRoom.width + e.movementX >= this.selectedRoom.minSize && params.x >= this.selectedRoom.x + this.selectedRoom.width + e.movementX - this.selectedRoom.minSize / 4) {
           this.selectedRoom.width += e.movementX;
         }
-        if (this.selectedRoom.height + e.movementY >= this.minRoomSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minRoomSize / 4) {
+        if (this.selectedRoom.height + e.movementY >= this.minSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minSize / 4) {
           this.selectedRoom.height += e.movementY;
         }
         this.redraw();
       } else if (this.cursor.downLeft && this.movingRoom) {
         let params = this.getMousePosition(e);
-        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minRoomSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minRoomSize / 4) {
+        if (this.selectedRoom.width - e.movementX >= this.selectedRoom.minSize && params.x <= this.selectedRoom.x + e.movementX + this.selectedRoom.minSize / 4) {
           this.selectedRoom.x += e.movementX;
           this.selectedRoom.width -= e.movementX;
         }
-        if (this.selectedRoom.height + e.movementY >= this.minRoomSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minRoomSize / 4) {
+        if (this.selectedRoom.height + e.movementY >= this.minSize && params.y >= this.selectedRoom.y + this.selectedRoom.height + e.movementY - this.minSize / 4) {
           this.selectedRoom.height += e.movementY;
+        }
+        this.redraw();
+      } else if (this.cursor.selected && this.movingItem) {
+        let x = this.selectedItem.x + e.movementX;
+        let y = this.selectedItem.y + e.movementY;
+        if (x - this.selectedItem.radius >= 0 && x + this.selectedItem.radius <= this.canvas.width) {
+          this.selectedItem.x += e.movementX;
+        }
+        if (y - this.selectedItem.radius >= 0 && y + this.selectedItem.radius <= this.canvas.height) {
+          this.selectedItem.y += e.movementY;
         }
         this.redraw();
       } else if ((this.cursor.dot || this.cursor.dotCenter) && this.movingLine) {
@@ -457,11 +530,28 @@ export default {
       } else {
         this.updateCursor(e);
       }
+      if (this.movingRoom && (this.cursor.selected || this.cursor.upLeft || this.cursor.upRight || this.cursor.downRight || this.cursor.downLeft)) {
+        if (this.selectedRoom.dots.size !== 0) {
+          for (let [line, dot] of this.selectedRoom.dots) {
+            dot.x = this.selectedRoom.x + this.selectedRoom.width / 2;
+            dot.y = this.selectedRoom.y + this.selectedRoom.height / 2;
+          }
+        }
+        this.redraw();
+      }
     },
     leave() {
       this.movingRoom = false;
       this.movingLine = false;
+      this.movingItem = false;
       this.redraw();
+    },
+    close() {
+      this.selectedRoom = {};
+      this.selectedItem = {};
+      this.selectedLine = {};
+      this.selectedDot = {};
+      this.leave();
     },
     up() {
       if ((this.cursor.dot || this.cursor.dotCenter) && !this.isEmpty(this.preSelectedRoom) && this.movingLine) {
@@ -472,6 +562,8 @@ export default {
       if (!this.cursor.selected && !this.cursor.upLeft && !this.cursor.upRight && !this.cursor.downRight && !this.cursor.downLeft) {
         this.selectedRoom = {};
         this.preSelectedRoom = {};
+        this.selectedItem = {};
+        this.preSelectedItem = {};
       }
       if (!this.cursor.dot && !this.cursor.dotCenter) {
         this.selectedLine = {};
@@ -484,7 +576,13 @@ export default {
     },
     down() {
       this.up();
-      if (this.cursor.selected || this.cursor.upLeft || this.cursor.upRight || this.cursor.downRight || this.cursor.downLeft) {
+      if (!this.isEmpty(this.preSelectedItem) && this.cursor.selected) {
+        this.selectedRoom = {};
+        this.selectedItem = this.preSelectedItem;
+        this.movingItem = true;
+        this.redraw();
+      } else if (!this.isEmpty(this.preSelectedRoom) && (this.cursor.selected || this.cursor.upLeft || this.cursor.upRight || this.cursor.downRight || this.cursor.downLeft)) {
+        this.selectedItem = {};
         this.selectedRoom = this.preSelectedRoom;
         this.movingRoom = true;
         this.redraw();
@@ -506,24 +604,38 @@ export default {
       this.context.fill();
       this.drawLines();
       this.drawRooms();
+      this.drawItems();
     },
     setColor(color) {
       this.selectedRoom.color = color;
       this.redraw();
     },
+    setColorItem(color) {
+      this.selectedItem.color = color;
+      this.redraw();
+    },
     renameRoom() {
-      this.updateRoomFont(this.selectedRoom);
-      if (this.selectedRoom.width < this.selectedRoom.minRoomSize) {
-        if (this.selectedRoom.x + this.selectedRoom.minRoomSize > this.canvas.width) {
-          this.selectedRoom.x -= (this.selectedRoom.x + this.selectedRoom.minRoomSize) - this.canvas.width + 10;
+      this.updateFontSize(this.selectedRoom);
+      if (this.selectedRoom.width < this.selectedRoom.minSize) {
+        if (this.selectedRoom.x + this.selectedRoom.minSize > this.canvas.width) {
+          this.selectedRoom.x -= (this.selectedRoom.x + this.selectedRoom.minSize) - this.canvas.width;
         }
-        this.selectedRoom.width = this.selectedRoom.minRoomSize;
+        this.selectedRoom.width = this.selectedRoom.minSize;
       }
+      this.redraw();
+    },
+    renameItem() {
+      this.updateItemFontSize(this.selectedItem);
       this.redraw();
     },
     deleteRoom() {
       let index = this.rooms.indexOf(this.selectedRoom);
       this.rooms.splice(index, 1);
+      this.up();
+    },
+    deleteItem() {
+      let index = this.items.indexOf(this.selectedItem);
+      this.items.splice(index, 1);
       this.up();
     },
     clearRoomLines() {
@@ -546,13 +658,24 @@ export default {
     collapseMenu() {
       this.collapsedMenu = !this.collapsedMenu;
     },
-    updateRoomFont(room) {
+    updateFontSize(object) {
       this.context.font = this.defaultFont;
-      room.minRoomSize = this.context.measureText(room.name).width + 20;
+      object.minSize = this.context.measureText(object.name.trim()).width + 20;
     },
-    isRoomSelected(room, params) {
-      return params.x >= room.x && params.x <= room.x + room.width &&
-        params.y >= room.y && params.y <= room.y + room.height;
+    updateItemFontSize(item) {
+      this.context.font = this.defaultItemFont;
+      item.minSize = this.context.measureText(item.name.trim()).width + 16;
+      if (item.x + item.minSize / 2 > this.canvas.width) {
+        item.x -= (item.x + item.minSize / 2) - this.canvas.width;
+      } else if (item.x - item.minSize / 2 < 0) {
+        item.x += (item.minSize / 2 - item.x);
+      }
+      if (item.y + item.minSize / 2 > this.canvas.height) {
+        item.y -= (item.y + item.minSize / 2) - this.canvas.height;
+      } else if (item.y - item.minSize / 2 < 0) {
+        item.y += (item.minSize / 2 - item.y);
+      }
+      item.radius = item.minSize / 2;
     },
     isDotSelected(dot, params) {
       return params.x >= dot.x - this.defaultLineH / 2 - 0.5 && params.x <= dot.x + this.defaultLineH / 2 + 0.5 &&
@@ -561,6 +684,10 @@ export default {
     isDotCenterSelected(x, y, params) {
       return params.x >= x - this.defaultLineH / 2 + 0.5 && params.x <= x + this.defaultLineH / 2 - 0.5 &&
         params.y >= y - this.defaultLineH / 2 + 0.5 && params.y <= y + this.defaultLineH / 2 - 0.5;
+    },
+    isRoomSelected(room, params) {
+      return params.x >= room.x && params.x <= room.x + room.width &&
+        params.y >= room.y && params.y <= room.y + room.height;
     },
     isTopLeftSelected(room, params) {
       return params.x >= room.x - (this.defaultCircleSize + 2) && params.x <= room.x + (this.defaultCircleSize + 2) &&
@@ -578,6 +705,10 @@ export default {
       return params.x >= room.x - (this.defaultCircleSize + 2) && params.x <= room.x + (this.defaultCircleSize + 2) &&
         params.y >= room.y + room.height - (this.defaultCircleSize + 2) && params.y <= room.y + room.height + (this.defaultCircleSize + 2);
     },
+    isItemSelected(item, params) {
+      let radius = Math.sqrt((params.x - item.x) ** 2 + (params.y - item.y) ** 2);
+      return radius <= item.radius;
+    },
     clearCursorParams() {
       this.cursor.upLeft = false;
       this.cursor.upRight = false;
@@ -586,6 +717,11 @@ export default {
       this.cursor.selected = false;
       this.cursor.dot = false;
       this.cursor.dotCenter = false;
+      this.preSelectedRoom = {};
+      this.preSelectedItem = {};
+      this.preSelectedLine = {};
+      this.preSelectedDot = {};
+      this.preSelectedIndex = -1;
     },
     isClearCursorParams() {
       return this.cursor.upLeft === false &&
@@ -609,6 +745,17 @@ export default {
     updateCursor(e) {
       let params = this.getMousePosition(e);
       this.clearCursorParams();
+      for (let i = 0; i < this.items.length; i++) {
+        let item = this.items[i];
+        if (this.isItemSelected(item, params)) {
+          this.clearCursorParams();
+          this.cursor.selected = true;
+          this.preSelectedItem = item;
+        }
+      }
+      if (!this.isClearCursorParams()) {
+        return;
+      }
       for (let i = 0; i < this.rooms.length; i++) {
         let room = this.rooms[i];
         if (this.isTopLeftSelected(room, params)) {
@@ -723,9 +870,10 @@ export default {
     },
     menu() {
       return {
-        visible: !this.isEmpty(this.selectedRoom) || !this.isEmpty(this.selectedDot),
+        visible: !this.isEmpty(this.selectedRoom) || !this.isEmpty(this.selectedDot) || !this.isEmpty(this.selectedItem),
         room: this.selectedRoom,
         dot: this.selectedDot,
+        item: this.selectedItem,
       };
     },
   },
