@@ -84,6 +84,7 @@
         <div class="actions"
              :style="{ 'margin-top': '10px' }">
           <div @click="deleteRoom" class="itemMenuSubActionsManage deleteResource">Удалить комнату</div>
+          <div @click="clearRoomLines" class="itemMenuSubActionsManage deleteResource">Отвязать переходы</div>
         </div>
       </div>
       <div class="itemMenuSubActions" v-if="!collapsedMenu && !isEmpty(menu.dot)">
@@ -276,6 +277,7 @@ export default {
         x: this.canvas.width / 2 - this.defaultRoomW / 2,
         y: this.canvas.height / 2 - this.defaultRoomH / 2,
         name: 'Комната ' + num,
+        dots: new Map(),
         width: this.defaultRoomW,
         height: this.defaultRoomH,
         color: 6,
@@ -291,11 +293,11 @@ export default {
       let line = {
         dots: [
           {
-            x: this.canvas.width / 2 - this.defaultRoomW / 2,
+            x: this.canvas.width / 2 - this.defaultRoomW,
             y: this.canvas.height / 2,
           },
           {
-            x: this.canvas.width / 2 + this.defaultRoomW / 2,
+            x: this.canvas.width / 2 + this.defaultRoomW,
             y: this.canvas.height / 2,
           },
         ],
@@ -322,16 +324,20 @@ export default {
         for (let j = 0; j < line.dots.length; j++) {
           if (line === this.selectedLine && j !== line.dots.length - 1) {
             this.context.beginPath();
-            this.context.lineWidth = 1;
             this.context.fillStyle = this.defaultSubCircleColor;
-            this.context.strokeStyle = 'black';
             this.context.arc((line.dots[j].x + line.dots[j + 1].x) / 2, (line.dots[j].y + line.dots[j + 1].y) / 2, this.defaultLineH / 2 - 1, 0, Math.PI * 2, false);
             this.context.fill();
+          }
+          if (j !== line.dots.length - 1) {
+            this.context.beginPath();
+            this.context.lineWidth = 1;
+            this.context.strokeStyle = 'black';
+            this.context.arc((line.dots[j].x + line.dots[j + 1].x) / 2, (line.dots[j].y + line.dots[j + 1].y) / 2, this.defaultLineH / 2 - 1, 0, Math.PI * 2, false);
             this.context.stroke();
           }
           if (line === this.selectedLine && !this.movingLine) {
             this.context.beginPath();
-            this.context.fillStyle = this.selectedDot === line.dots[j] ? this.defaultSelectedCircleColor : this.defaultCircleColor;
+            this.context.fillStyle = this.selectedDot === line.dots[j] ? this.defaultCircleColor : this.defaultSelectedColor;
             this.context.arc(line.dots[j].x, line.dots[j].y, this.defaultLineH / 2, 0, Math.PI * 2, false);
             this.context.fill();
           }
@@ -347,7 +353,7 @@ export default {
     drawRooms() {
       for (let i = 0; i < this.rooms.length; i++) {
         let room = this.rooms[i];
-        this.context.fillStyle = (room === this.selectedRoom) ? this.defaultSelectedColor : this.colors[room.color].colorSecond;
+        this.context.fillStyle = (room === this.selectedRoom || room === this.preSelectedRoom && !this.isEmpty(this.selectedDot)) ? this.defaultSelectedColor : this.colors[room.color].colorSecond;
         this.context.fill(new Path2D(this.roundedRectPath(room.x - this.defaultRoomS, room.y - this.defaultRoomS, room.width + this.defaultRoomS * 2, room.height + this.defaultRoomS * 2, 5)));
         this.context.fillStyle = 'white';
         this.context.fill(new Path2D(this.roundedRectPath(room.x, room.y, room.width, room.height, 5)));
@@ -396,6 +402,12 @@ export default {
         if (y >= 0 && y + this.selectedRoom.height <= this.canvas.height) {
           this.selectedRoom.y += e.movementY;
         }
+        if (this.selectedRoom.dots.size !== 0) {
+          for (let [line, dot] of this.selectedRoom.dots) {
+            dot.x = this.selectedRoom.x + this.selectedRoom.width / 2;
+            dot.y = this.selectedRoom.y + this.selectedRoom.height / 2;
+          }
+        }
         this.redraw();
       } else if (this.cursor.upLeft && this.movingRoom) {
         let params = this.getMousePosition(e);
@@ -438,6 +450,7 @@ export default {
         }
         this.redraw();
       } else if ((this.cursor.dot || this.cursor.dotCenter) && this.movingLine) {
+        this.updateRoomLineCursor(e);
         this.selectedDot.x += e.movementX;
         this.selectedDot.y += e.movementY;
         this.redraw();
@@ -451,6 +464,11 @@ export default {
       this.redraw();
     },
     up() {
+      if ((this.cursor.dot || this.cursor.dotCenter) && !this.isEmpty(this.preSelectedRoom) && this.movingLine) {
+        this.selectedDot.x = this.preSelectedRoom.x + this.preSelectedRoom.width / 2;
+        this.selectedDot.y = this.preSelectedRoom.y + this.preSelectedRoom.height / 2;
+        this.preSelectedRoom.dots.set(this.selectedLine, this.selectedDot);
+      }
       if (!this.cursor.selected && !this.cursor.upLeft && !this.cursor.upRight && !this.cursor.downRight && !this.cursor.downLeft) {
         this.selectedRoom = {};
         this.preSelectedRoom = {};
@@ -508,10 +526,17 @@ export default {
       this.rooms.splice(index, 1);
       this.up();
     },
+    clearRoomLines() {
+      this.selectedRoom.dots.clear();
+    },
     deleteLine() {
       if (this.selectedLine.dots.length === 2) {
         let index = this.lines.indexOf(this.selectedLine);
         this.lines.splice(index, 1);
+        for (let i = 0; i < this.rooms.length; i++) {
+          let room = this.rooms[i];
+          room.dots.delete(this.selectedLine);
+        }
       } else {
         let index = this.selectedLine.dots.indexOf(this.selectedDot);
         this.selectedLine.dots.splice(index, 1);
@@ -570,6 +595,16 @@ export default {
       this.cursor.selected === false &&
       this.cursor.dot === false &&
       this.cursor.dotCenter === false;
+    },
+    updateRoomLineCursor(e) {
+      let params = this.getMousePosition(e);
+      this.preSelectedRoom = {};
+      for (let i = 0; i < this.rooms.length; i++) {
+        let room = this.rooms[i];
+        if (this.isRoomSelected(room, params)) {
+          this.preSelectedRoom = room;
+        }
+      }
     },
     updateCursor(e) {
       let params = this.getMousePosition(e);
@@ -680,7 +715,7 @@ export default {
       } else if (this.cursor.selected) {
         result = 'move';
       } else if (this.cursor.dot) {
-        result = 'pointer';
+        result = 'crosshair';
       } else if (this.cursor.dotCenter) {
         result = 'crosshair';
       }
