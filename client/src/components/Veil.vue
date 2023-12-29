@@ -106,6 +106,7 @@
       <div class="itemMenuSubActions" v-if="!collapsedMenu && !isEmpty(menu.dot)">
         <div class="actions"
              :style="{ 'margin-top': '10px' }">
+          <div @click="specialLine" class="itemMenuSubActionsManage">Сделать линию{{ menu.line.isSpecial ? ' основной' : ' дополнительной' }}</div>
           <div @click="deleteLine" class="itemMenuSubActionsManage deleteResource">Удалить точку</div>
         </div>
       </div>
@@ -133,12 +134,13 @@ export default {
       documentTitle: 'DND',
       dairMap: [],
       backgroundImage: `url(${require('../assets/images/dairs/meisters.jpg')})`,
-      pathSave: 'http://localhost:5050/saveDair',
-      pathGet: 'http://localhost:5050/getDair',
+      pathSave: ' http://127.0.0.1:5050/saveDndMap',
+      pathGet: 'http://localhost:5050/getDndMap',
 
       minDairZoom: 30,
       dairZoom: 30,
       maxDairZoom: 90,
+      loaded: false,
       canvas: null,
       context: null,
       isResizing: false,
@@ -238,7 +240,11 @@ export default {
       defaultRoomW: 150,
       defaultRoomH: 150,
       defaultItemR: 30,
+      defaultSpecialLineH: 12,
       defaultLineH: 18,
+      defaultLineColor: 'rgb(153,153,153)',
+      defaultSpecialLineColor: 'rgb(179,179,179)',
+      defaultLineDash: [10, 20],
       defaultRoomS: 6,
       defaultItemS: 6,
       defaultFont: '18px serif',
@@ -281,22 +287,59 @@ export default {
           color: 'rgb(222,222,222)',
           colorSecond: 'rgba(180, 180, 179, 0.3)',
         },
-        7: {
-          id: 7,
-          color: 'rgb(153,153,153)',
-          colorSecond: 'rgba(180, 180, 179, 0.3)',
-        },
       },
     };
   },
   methods: {
     loadAll() {
-      let container = document.getElementById('container');
+      axios.get(this.pathGet)
+        .then((res) => {
+          this.rooms = res.data.data.rooms;
+          this.lines = res.data.data.lines;
+          this.items = res.data.data.items;
+
+          for (let room of this.rooms) {
+            let dots = new Map();
+            for (let dot of room.dots) {
+              let line = dot[0];
+              let lineDot = dot[1];
+              let newLine = {};
+              for (let xLine of this.lines) {
+                if (xLine.hash === line.hash) {
+                  newLine = xLine;
+                  break;
+                }
+              }
+              let newDot = {};
+              for (let xDot of newLine.dots) {
+                if (xDot.x === lineDot.x && xDot.y === lineDot.y) {
+                  newDot = xDot;
+                }
+              }
+              dots.set(newLine, newDot);
+            }
+            room.dots = dots;
+          }
+
+          this.loaded = true;
+          this.redrawSave(false);
+        });
+    },
+    initCanvas() {
       this.canvas = document.getElementById('canvas');
       this.context = this.canvas.getContext('2d');
+      let container = document.getElementById('container');
       this.canvas.width = container.clientWidth;
       this.canvas.height = container.clientHeight;
       this.redraw();
+    },
+    initAll() {
+      this.canvas = document.getElementById('canvas');
+      this.context = this.canvas.getContext('2d');
+      let container = document.getElementById('container');
+      this.canvas.width = container.clientWidth;
+      this.canvas.height = container.clientHeight;
+      this.loadAll();
     },
     newRoom() {
       this.up();
@@ -329,6 +372,8 @@ export default {
             y: this.canvas.height / 2,
           },
         ],
+        hash: this.uuidv4(),
+        isSpecial: false,
         color: 7,
         width: this.defaultLineH,
       };
@@ -357,22 +402,26 @@ export default {
         let line = this.lines[i];
         this.context.lineJoin = 'round';
         this.context.lineCap = 'round';
+        if (line.isSpecial) {
+          this.context.setLineDash(this.defaultLineDash);
+        }
         this.context.beginPath();
         this.context.moveTo(line.dots[0].x, line.dots[0].y);
         for (let j = 1; j < line.dots.length; j++) {
           this.context.lineWidth = line.width;
-          this.context.strokeStyle = this.colors[line.color].color;
+          this.context.strokeStyle = line.isSpecial ? this.defaultSpecialLineColor : this.defaultLineColor;
           this.context.lineTo(line.dots[j].x, line.dots[j].y);
           this.context.stroke();
         }
+        this.context.setLineDash([]);
         for (let j = 0; j < line.dots.length; j++) {
-          if (line === this.selectedLine && j !== line.dots.length - 1) {
+          if (!line.isSpecial && line === this.selectedLine && j !== line.dots.length - 1) {
             this.context.beginPath();
             this.context.fillStyle = this.defaultSubCircleColor;
             this.context.arc((line.dots[j].x + line.dots[j + 1].x) / 2, (line.dots[j].y + line.dots[j + 1].y) / 2, this.defaultLineH / 2 - 1, 0, Math.PI * 2, false);
             this.context.fill();
           }
-          if (j !== line.dots.length - 1) {
+          if ((!line.isSpecial || line === this.selectedLine) && j !== line.dots.length - 1) {
             this.context.beginPath();
             this.context.lineWidth = 1;
             this.context.strokeStyle = 'black';
@@ -597,6 +646,9 @@ export default {
       }
     },
     redraw() {
+      this.redrawSave(this.loaded);
+    },
+    redrawSave(isSave) {
       this.context.fillStyle = 'rgba(255, 255, 255, 1)';
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -604,6 +656,17 @@ export default {
       this.drawLines();
       this.drawRooms();
       this.drawItems();
+      if (isSave) {
+        // this.saveAll();
+      }
+    },
+    saveAll() {
+      let data = {
+        rooms: this.rooms,
+        lines: this.lines,
+        items: this.items,
+      };
+      axios.post(this.pathSave, data);
     },
     setColor(color) {
       this.selectedRoom.color = color;
@@ -639,6 +702,12 @@ export default {
     },
     clearRoomLines() {
       this.selectedRoom.dots.clear();
+      this.saveAll();
+    },
+    specialLine() {
+      this.selectedLine.isSpecial = !this.selectedLine.isSpecial;
+      this.selectedLine.width = this.selectedLine.isSpecial ? this.defaultSpecialLineH : this.defaultLineH;
+      this.redraw();
     },
     deleteLine() {
       if (this.selectedLine.dots.length === 2) {
@@ -846,7 +915,10 @@ export default {
     stopPropagation(event) {
       event.stopPropagation();
     },
-  },
+    uuidv4() {
+      return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+    },
+},
   computed: {
     cursorForm() {
       let result = '';
@@ -871,6 +943,7 @@ export default {
       return {
         visible: !this.isEmpty(this.selectedRoom) || !this.isEmpty(this.selectedDot) || !this.isEmpty(this.selectedItem),
         room: this.selectedRoom,
+        line: this.selectedLine,
         dot: this.selectedDot,
         item: this.selectedItem,
       };
@@ -878,10 +951,11 @@ export default {
   },
   created() {
     document.title = this.documentTitle;
-    window.addEventListener('resize', this.loadAll);
+    window.addEventListener('resize', this.initCanvas);
   },
   mounted() {
-    this.loadAll();
+    this.initAll();
+    // this.initCanvas();
   },
 };
 </script>
