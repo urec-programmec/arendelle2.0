@@ -121,7 +121,7 @@ def getDair():
     if request.method == 'GET':
         veil = db.session.query(Veil).filter_by(id=1).first()
         date = []
-        for history in db.session.query(History).all():
+        for history in db.session.query(History).order_by(History.date.desc()).all():
             date.append({
                 'dair': history.dair,
                 'resource': history.resource,
