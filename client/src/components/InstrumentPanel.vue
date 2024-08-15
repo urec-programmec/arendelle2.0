@@ -92,7 +92,7 @@ export default {
         }
         return val + ' блока';
       },
-      cursorSize: 3,
+      cursorSize: 1,
       cursorSolid: true,
       cursorForm: 'circle',
       place: 1,
