@@ -98,13 +98,13 @@
 <!--          <i :class="['bx', 'bx-download', 'bx-rotate-270']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>-->
 <!--          <div style="color: inherit">Следующий период</div>-->
 <!--        </div>-->
-        <div class="footerResourcesSettings" @click="nextPeriodPlus">
+        <div class="footerResourcesSettings" @click="nextPeriodPanelOpen">
           <i :class="['bx', 'bx-download', 'bx-rotate-270']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
-          <div style="color: inherit">Доход с периода</div>
+          <div style="color: inherit">Доход с периода (1)</div>
         </div>
-        <div class="footerResourcesSettings" @click="nextPeriodMinus">
+        <div class="footerResourcesSettings" @click="nextPeriodMinusPanelOpen">
           <i :class="['bx', 'bx-download', 'bx-rotate-270']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
-          <div style="color: inherit">Списание и переход</div>
+          <div style="color: inherit">Списание и переход (2)</div>
         </div>
         <div class="footerResourcesSettings" @click="marketPanelOpen">
           <i :class="['bx', 'bx-transfer']" style="font-size: 1.2em; margin-left: 0; color: inherit"/>
@@ -550,22 +550,22 @@
       <div class="modalContainer" @click="stopPropagation">
         <i @click="nextPeriodPanelClose" class='bx bx-x close' style="margin: 0 5px 0 5px !important; font-size: 1.4em; position: absolute; right: 0; top: 3px;"/>
         <div class="modalContainerContainer">
-          <div style="margin-bottom: 20px; font-size: 1.2em">{{'Ресурсы на следующий ' + (period + 1) + ' период'}}</div>
+          <div style="margin-bottom: 20px; font-size: 1.2em">{{'Доход в этот ' + period + ' период'}}</div>
           <div v-for="(id, index) in [1, 2, 3, 4, 5]" :key="index" class="nextPeriodContainerItem">
             <div :style="{ 'margin-bottom': '10px', 'color': dairs[id].color, 'font-size' : '1.3em' }">{{ dairs[id].name }}</div>
             <div class="nextPeriodContainerItemResources">
               <div class="nextPeriodContainerItemResourcesContainer" v-for="(resource, indexResource) in resourcesTypes" :key="indexResource">
                 <i :class="['bx', resource.i]" style="font-size: 1em"/>
                 <div style="font-size: 0.85em; margin-right: 0.5em; margin-left: 5px">{{resource.name + ':'}}</div>
-                <div :style="{ 'font-size': '0.9em', 'color' : getNextPeriodResource(id, indexResource) <= 0 ? '#ff4242' : '' }">
-                  {{ (getNextPeriodResource(id, indexResource) > 0 ? getNextPeriodResource(id, indexResource) : '0') + ' (' +  (getAdditionalNextPeriodResource(id, indexResource) > 0 ? '+' : '') + getAdditionalNextPeriodResource(id, indexResource) + ')'  }}
+                <div :style="{ 'font-size': '0.9em', 'color' : getNextPeriodResource(id, indexResource) <= 0 ? '#ff4242' : '' }"> <!-- 'background' : secondPhase ? 'rgba(255,54,54,0.2)' : 'rgba(201, 255, 54, 0.2)' -->
+                  {{ getNextPeriodResource(id, indexResource) + ', +' +  getAdditionalNextPeriodResource(id, indexResource) + (secondPhase ? ', -' + getAdditionalMinusNextPeriodResource(id, indexResource) : '') }}
                 </div>
               </div>
             </div>
           </div>
-          <div class="footerResourcesSettings" @click="nextPeriod" style="margin-bottom: 10px; margin-top: 30px">
+          <div class="footerResourcesSettings" @click="nextPeriodGo" style="margin-bottom: 10px; margin-top: 30px">
             <i :class="['bx', 'bx-download', 'bx-rotate-270']" style="font-size: 1.2em; margin-right: 10px; color: inherit"/>
-            <div style="color: inherit">Сменить период</div>
+            <div style="color: inherit">{{ secondPhase ? 'Списать все расходы и сменить период' : 'Получить доход и перейти к следующей фазе' }}</div>
           </div>
         </div>
       </div>
@@ -970,6 +970,7 @@ export default {
       },
       holeColor: '#ffd600',
       periodOpen: false,
+      secondPhase: false,
       marketOpen: false,
       businessOpen: false,
       stepsOpen: false,
@@ -1337,6 +1338,96 @@ export default {
       preSelectedGlobalSubAction2: {},
       preSelectedGlobalSubAction3: {},
       preSelectedGlobalSubAction4: {},
+
+      nextPeriodResourcesPlus: {
+        1: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        2: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        3: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        4: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        5: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        6: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+      },
+
+      nextPeriodResourcesMinus: {
+        1: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        2: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        3: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        4: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        5: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+        6: {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        },
+      },
 
       selectedDair: {
         id: 2,
@@ -3766,7 +3857,11 @@ export default {
       }
     },
     drawResources(x, y) {
-      if (this.selectedGlobalAction.id === 1 || this.selectedGlobalAction.id === 4 && this.selectedGlobalSubAction4.id === 0) {
+      if (this.selectedGlobalAction.id === 1 ||
+        this.selectedGlobalAction.id === 4 && this.selectedGlobalSubAction4.id === 0 ||
+        this.selectedGlobalAction.id === 2 && this.selectedGlobalSubAction2.id === 4 ||
+        this.selectedGlobalAction.id === 2 && this.selectedGlobalSubAction2.id === 5
+      ) {
         return;
       }
       if (this.dairMap[y][x].resourcesType !== -1 &&
@@ -4223,16 +4318,8 @@ export default {
       this.drawCanvas(false);
       this.saveAll();
     },
-    clearNextResources() {
-      for (let i of this.dairs) {
-        if (i.id !== 1) {
-          for (let j of [1, 2, 3, 5, 6]) {
-            i.nextResources[j] = 0;
-          }
-        }
-      }
-    },
     nextPeriodPlus() {
+      this.nextPeriodPanelClose();
       for (let y = 0; y < this.dairSizeY; y++) {
         for (let x = 0; x < this.dairSizeX; x++) {
           let dair = this.dairMap[y][x];
@@ -4290,7 +4377,15 @@ export default {
         }
       }
     },
+    nextPeriodGo() {
+      if (this.secondPhase) {
+        this.nextPeriodMinus();
+      } else {
+        this.nextPeriodPlus();
+      }
+    },
     nextPeriodMinus() {
+      this.nextPeriodPanelClose();
       for (let y = 0; y < this.dairSizeY; y++) {
         for (let x = 0; x < this.dairSizeX; x++) {
           let dair = this.dairMap[y][x];
@@ -4324,7 +4419,6 @@ export default {
       }
       this.period += 1;
       this.generateStepsOrder();
-      this.nextPeriodPanelClose();
       this.drawCanvas(true);
       this.saveAll();
     },
@@ -4347,99 +4441,94 @@ export default {
       this.drawCanvas(false);
       this.saveAll();
     },
+    nextPeriodMinusPanelOpen() {
+      this.periodOpen = true;
+      this.secondPhase = true;
+      for (let i of [1, 2, 3, 5, 6]) {
+        this.nextPeriodResourcesMinus[i] = {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        };
+      }
+
+      for (let y = 0; y < this.dairSizeY; y++) {
+        for (let x = 0; x < this.dairSizeX; x++) {
+          let dair = this.dairMap[y][x];
+          let owner = dair.owner;
+          if (owner !== -1 && dair.building !== -1 && dair.buildingActive) {
+            for (let i of [1, 2, 3, 5, 6]) {
+              this.nextPeriodResourcesMinus[owner][i] += this.buildings[dair.building].costPeriod[i];
+            }
+          }
+        }
+      }
+    },
     nextPeriodPanelOpen() {
       this.periodOpen = true;
-      for (let y = 0; y < this.dairSizeY; y++) {
-        for (let x = 0; x < this.dairSizeX; x++) {
-          let dair = this.dairMap[y][x];
-          if (dair.owner !== -1) {
-            let nextResources = this.dairs[dair.owner].nextResources;
-            if (dair.building !== -1 && this.buildings[dair.building].resource === dair.resourcesType) {
-              nextResources[dair.resourcesType] += dair.building === 3 || dair.building === 1 || dair.building === 4 ?
-                this.buildings[dair.building].performance :
-                Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
-            }
-          }
-        }
+      for (let i of [1, 2, 3, 5, 6]) {
+        this.nextPeriodResourcesPlus[i] = {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        };
+        this.nextPeriodResourcesMinus[i] = {
+          1: 0,
+          2: 0,
+          3: 0,
+          5: 0,
+          6: 0,
+        };
       }
       for (let y = 0; y < this.dairSizeY; y++) {
         for (let x = 0; x < this.dairSizeX; x++) {
           let dair = this.dairMap[y][x];
-          if (dair.owner !== -1) {
-            let nextResources = this.dairs[dair.owner].nextResources;
-            // ++
-            if (dair.resourcesType === 3 && dair.building !== 3) {
-              nextResources[dair.resourcesType] += Math.min(5, dair.resourcesCount);
+          let owner = dair.owner;
+          // доход с клеток
+          if (owner !== -1 && dair.resourcesActive) {
+            if (dair.resourcesType === 3 && (dair.building !== 3 || !dair.buildingActive)) {
+              this.nextPeriodResourcesPlus[owner][dair.resourcesType] += Math.min(5, dair.resourcesCount);
             }
-            if (dair.resourcesType === 1 && dair.building !== 1) {
+            if (dair.resourcesType === 1 && (dair.building !== 1 || !dair.buildingActive)) {
               if (dair.resourcesCount === 22) {
-                nextResources[dair.resourcesType] += 10;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 10;
               } else if (dair.resourcesCount === 12) {
-                nextResources[dair.resourcesType] += 7;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 7;
               } else if (dair.resourcesCount === 5) {
-                nextResources[dair.resourcesType] += 5;
-              } else {
-                nextResources[dair.resourcesType] += 1;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 5;
+              } else if (dair.resourcesCount !== 0) {
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 1;
               }
             }
-            if (dair.resourcesType === 5 && dair.building !== 4) {
+            if (dair.resourcesType === 5 && (dair.building !== 4 || !dair.buildingActive)) {
               if (dair.resourcesCount === 22) {
-                nextResources[dair.resourcesType] += 10;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 10;
               } else if (dair.resourcesCount === 12) {
-                nextResources[dair.resourcesType] += 7;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 7;
               } else if (dair.resourcesCount === 5) {
-                nextResources[dair.resourcesType] += 5;
-              } else {
-                nextResources[dair.resourcesType] += 1;
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 5;
+              } else if (dair.resourcesCount !== 0) {
+                this.nextPeriodResourcesPlus[owner][dair.resourcesType] += 1;
               }
             }
           }
-        }
-      }
-      for (let y = 0; y < this.dairSizeY; y++) {
-        for (let x = 0; x < this.dairSizeX; x++) {
-          let dair = this.dairMap[y][x];
-          if (dair.owner !== -1) {
-            let nextResources = this.dairs[dair.owner].nextResources;
-            // --
-            if (dair.building !== -1) {
-              let shouldPay = this.dairs[dair.owner].needPay;// || ![1, 2, 3, 4, 5, 6, 7, 9, 11, 16].includes(dair.building);
-              let notPayed = this.buildings[dair.building].costPeriod[1] > this.dairs[dair.owner].resources[1] ||
-                this.buildings[dair.building].costPeriod[2] > this.dairs[dair.owner].resources[2] ||
-                this.buildings[dair.building].costPeriod[3] > this.dairs[dair.owner].resources[3] ||
-                this.buildings[dair.building].costPeriod[5] > this.dairs[dair.owner].resources[5] ||
-                this.buildings[dair.building].costPeriod[6] > this.dairs[dair.owner].resources[6];
-              // console.log(this.dairs);
-              if (shouldPay && !notPayed && dair.building !== 10) {
-                for (let i = 1; i < 7; i++) {
-                  nextResources[i] -= this.buildings[dair.building].costPeriod[i];
-                }
-              }
-              if (dair.building === 10 && shouldPay) {
-                notPayed = this.buildings[dair.building].costPeriod[1] > this.dairs[dair.owner].resources[1] ||
-                  this.buildings[dair.building].costPeriod[2] > this.dairs[dair.owner].resources[2] ||
-                  this.buildings[dair.building].costPeriod[3] > this.dairs[dair.owner].resources[3] ||
-                  this.buildings[dair.building].costPeriod[5] > this.dairs[dair.owner].resources[5] ||
-                  this.buildings[dair.building].costPeriod[6] > this.dairs[dair.owner].resources[6];
-                if (!notPayed) {
-                  if (dair.units.knight.is) {
-                    nextResources = this.dairs[dair.units.knight.owner].nextResources;
-                  } else if (dair.units.warrior.is) {
-                    nextResources = this.dairs[dair.units.warrior.owner].nextResources;
-                  }
-                  for (let i = 1; i < 7; i++) {
-                    nextResources[i] -= this.buildings[dair.building].costPeriod[i];
-                  }
-                }
-              }
-            }
+          // доход со зданий
+          if (owner !== -1 && dair.building !== -1 && dair.buildingActive &&
+            this.buildings[dair.building].resource === dair.resourcesType) {
+            this.nextPeriodResourcesPlus[owner][dair.resourcesType] += dair.building === 3 || dair.building === 1 || dair.building === 4 ?
+              this.buildings[dair.building].performance :
+              Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
           }
         }
       }
     },
     nextPeriodPanelClose() {
       this.periodOpen = false;
-      this.clearNextResources();
+      this.secondPhase = false;
     },
     marketPanelOpen() {
       this.marketOpen = true;
@@ -4758,140 +4847,141 @@ export default {
         this.saveAll();
       }
     },
-    nextPeriod() {
-      for (let y = 0; y < this.dairSizeY; y++) {
-        for (let x = 0; x < this.dairSizeX; x++) {
-          let dair = this.dairMap[y][x];
-          let owner = dair.owner;
-          if (owner !== -1 && dair.building !== -1) {
-            if (this.buildings[dair.building].resource === dair.resourcesType) {
-              this.dairs[owner].resources[dair.resourcesType] += dair.building === 3 || dair.building === 1 || dair.building === 4 ?
-                this.buildings[dair.building].performance :
-                Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
-              dair.resourcesCount -= dair.building === 3 || dair.building === 1 || dair.building === 4 ?
-                0 :
-                Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
-              if (dair.resourcesCount === 0) {
-                dair.resourcesType = -1;
-              }
-            }
-            if (!dair.buildingActive) {
-              dair.buildingActive = true;
-            }
-          }
-          if (owner !== -1 && !dair.resourcesActive) {
-            dair.resourcesActive = true;
-          }
-        }
-      }
-      for (let y = 0; y < this.dairSizeY; y++) {
-        for (let x = 0; x < this.dairSizeX; x++) {
-          let dair = this.dairMap[y][x];
-          let owner = dair.owner;
-          if (owner !== -1) {
-            if (dair.resourcesType === 3 && dair.building !== 3) {
-              this.dairs[owner].resources[dair.resourcesType] += Math.min(5, dair.resourcesCount);
-              dair.resourcesCount -= Math.min(5, dair.resourcesCount);
-            }
-            if (dair.resourcesType === 1 && dair.building !== 1) {
-              if (dair.resourcesCount === 22) {
-                this.dairs[owner].resources[dair.resourcesType] += 10;
-                dair.resourcesCount -= 10;
-              } else if (dair.resourcesCount === 12) {
-                this.dairs[owner].resources[dair.resourcesType] += 7;
-                dair.resourcesCount -= 7;
-              } else if (dair.resourcesCount === 5) {
-                this.dairs[owner].resources[dair.resourcesType] += 5;
-                dair.resourcesCount -= 5;
-              } else {
-                this.dairs[owner].resources[dair.resourcesType] += 1;
-                dair.resourcesCount -= 1;
-              }
-            }
-            if (dair.resourcesType === 5 && dair.building !== 4) {
-              if (dair.resourcesCount === 22) {
-                this.dairs[owner].resources[dair.resourcesType] += 10;
-                dair.resourcesCount -= 10;
-              } else if (dair.resourcesCount === 12) {
-                this.dairs[owner].resources[dair.resourcesType] += 7;
-                dair.resourcesCount -= 7;
-              } else if (dair.resourcesCount === 5) {
-                this.dairs[owner].resources[dair.resourcesType] += 5;
-                dair.resourcesCount -= 5;
-              } else {
-                this.dairs[owner].resources[dair.resourcesType] += 1;
-                dair.resourcesCount -= 1;
-              }
-            }
-            if (dair.resourcesCount === 0) {
-              dair.resourcesType = -1;
-            }
-            // if (!dair.resourcesActive) {
-            //   dair.resourcesActive = true;
-            // }
-          }
-          if (dair.monster.type !== -1) {
-            dair.monster.stepsCount = dair.monster.storedStepsCount;
-          }
-          if (dair.units.knight.is) {
-            dair.units.knight.stepsCount = this.knightStepsCount + this.dairs[dair.units.knight.owner].additionalSteps.knight;
-          }
-          if (dair.units.warrior.is) {
-            dair.units.warrior.stepsCount = this.warriorStepsCount + this.dairs[dair.units.warrior.owner].additionalSteps.warrior;
-          }
-          for (let i = 1; i < 6; i++) {
-            if (dair.units.scouts[i].is) {
-              dair.units.scouts[i].stepsCount = this.scoutStepsCount + this.dairs[i].additionalSteps.scout;
-            }
-          }
-        }
-      }
-      for (let y = 0; y < this.dairSizeY; y++) {
-        for (let x = 0; x < this.dairSizeX; x++) {
-          let dair = this.dairMap[y][x];
-          let owner = dair.owner;
-          if (owner !== -1 && dair.building !== -1) {
-            let shouldPay = this.dairs[owner].needPay;// || ![1, 2, 3, 4, 5, 6, 7, 9, 11, 16].includes(dair.building);
-            let notPayed = this.buildings[dair.building].costPeriod[1] > this.dairs[owner].resources[1] ||
-              this.buildings[dair.building].costPeriod[2] > this.dairs[owner].resources[2] ||
-              this.buildings[dair.building].costPeriod[3] > this.dairs[owner].resources[3] ||
-              this.buildings[dair.building].costPeriod[5] > this.dairs[owner].resources[5] ||
-              this.buildings[dair.building].costPeriod[6] > this.dairs[owner].resources[6];
-            if (shouldPay && notPayed) {
-              if (dair.building === 6) {
-                dair.buildingLife = 1;
-              } else {
-                dair.buildingLife -= 1;
-                if (dair.buildingLife === 0) {
-                  dair.building = -1;
-                  dair.buildingLife = 2;
-                }
-              }
-            } else if (!notPayed) {
-              dair.buildingLife = 2;
-              if (shouldPay) {
-                for (let i of [1, 2, 3, 5, 6]) {
-                  this.dairs[owner].resources[i] -= this.buildings[dair.building].costPeriod[i];
-                }
-              }
-            }
-          }
-        }
-      }
-      this.period += 1;
-      this.generateStepsOrder();
-      this.nextPeriodPanelClose();
-      this.drawCanvas(true);
-      this.saveAll();
-    },
+    // nextPeriod() {
+    //   for (let y = 0; y < this.dairSizeY; y++) {
+    //     for (let x = 0; x < this.dairSizeX; x++) {
+    //       let dair = this.dairMap[y][x];
+    //       let owner = dair.owner;
+    //       if (owner !== -1 && dair.building !== -1) {
+    //         if (this.buildings[dair.building].resource === dair.resourcesType) {
+    //           this.dairs[owner].resources[dair.resourcesType] += dair.building === 3 || dair.building === 1 || dair.building === 4 ?
+    //             this.buildings[dair.building].performance :
+    //             Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
+    //           dair.resourcesCount -= dair.building === 3 || dair.building === 1 || dair.building === 4 ?
+    //             0 :
+    //             Math.min(this.buildings[dair.building].performance, dair.resourcesCount);
+    //           if (dair.resourcesCount === 0) {
+    //             dair.resourcesType = -1;
+    //           }
+    //         }
+    //         if (!dair.buildingActive) {
+    //           dair.buildingActive = true;
+    //         }
+    //       }
+    //       if (owner !== -1 && !dair.resourcesActive) {
+    //         dair.resourcesActive = true;
+    //       }
+    //     }
+    //   }
+    //   for (let y = 0; y < this.dairSizeY; y++) {
+    //     for (let x = 0; x < this.dairSizeX; x++) {
+    //       let dair = this.dairMap[y][x];
+    //       let owner = dair.owner;
+    //       if (owner !== -1) {
+    //         if (dair.resourcesType === 3 && dair.building !== 3) {
+    //           this.dairs[owner].resources[dair.resourcesType] += Math.min(5, dair.resourcesCount);
+    //           dair.resourcesCount -= Math.min(5, dair.resourcesCount);
+    //         }
+    //         if (dair.resourcesType === 1 && dair.building !== 1) {
+    //           if (dair.resourcesCount === 22) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 10;
+    //             dair.resourcesCount -= 10;
+    //           } else if (dair.resourcesCount === 12) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 7;
+    //             dair.resourcesCount -= 7;
+    //           } else if (dair.resourcesCount === 5) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 5;
+    //             dair.resourcesCount -= 5;
+    //           } else {
+    //             this.dairs[owner].resources[dair.resourcesType] += 1;
+    //             dair.resourcesCount -= 1;
+    //           }
+    //         }
+    //         if (dair.resourcesType === 5 && dair.building !== 4) {
+    //           if (dair.resourcesCount === 22) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 10;
+    //             dair.resourcesCount -= 10;
+    //           } else if (dair.resourcesCount === 12) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 7;
+    //             dair.resourcesCount -= 7;
+    //           } else if (dair.resourcesCount === 5) {
+    //             this.dairs[owner].resources[dair.resourcesType] += 5;
+    //             dair.resourcesCount -= 5;
+    //           } else {
+    //             this.dairs[owner].resources[dair.resourcesType] += 1;
+    //             dair.resourcesCount -= 1;
+    //           }
+    //         }
+    //         if (dair.resourcesCount === 0) {
+    //           dair.resourcesType = -1;
+    //         }
+    //         // if (!dair.resourcesActive) {
+    //         //   dair.resourcesActive = true;
+    //         // }
+    //       }
+    //       if (dair.monster.type !== -1) {
+    //         dair.monster.stepsCount = dair.monster.storedStepsCount;
+    //       }
+    //       if (dair.units.knight.is) {
+    //         dair.units.knight.stepsCount = this.knightStepsCount + this.dairs[dair.units.knight.owner].additionalSteps.knight;
+    //       }
+    //       if (dair.units.warrior.is) {
+    //         dair.units.warrior.stepsCount = this.warriorStepsCount + this.dairs[dair.units.warrior.owner].additionalSteps.warrior;
+    //       }
+    //       for (let i = 1; i < 6; i++) {
+    //         if (dair.units.scouts[i].is) {
+    //           dair.units.scouts[i].stepsCount = this.scoutStepsCount + this.dairs[i].additionalSteps.scout;
+    //         }
+    //       }
+    //     }
+    //   }
+    //   for (let y = 0; y < this.dairSizeY; y++) {
+    //     for (let x = 0; x < this.dairSizeX; x++) {
+    //       let dair = this.dairMap[y][x];
+    //       let owner = dair.owner;
+    //       if (owner !== -1 && dair.building !== -1) {
+    //         let shouldPay = this.dairs[owner].needPay;// || ![1, 2, 3, 4, 5, 6, 7, 9, 11, 16].includes(dair.building);
+    //         let notPayed = this.buildings[dair.building].costPeriod[1] > this.dairs[owner].resources[1] ||
+    //           this.buildings[dair.building].costPeriod[2] > this.dairs[owner].resources[2] ||
+    //           this.buildings[dair.building].costPeriod[3] > this.dairs[owner].resources[3] ||
+    //           this.buildings[dair.building].costPeriod[5] > this.dairs[owner].resources[5] ||
+    //           this.buildings[dair.building].costPeriod[6] > this.dairs[owner].resources[6];
+    //         if (shouldPay && notPayed) {
+    //           if (dair.building === 6) {
+    //             dair.buildingLife = 1;
+    //           } else {
+    //             dair.buildingLife -= 1;
+    //             if (dair.buildingLife === 0) {
+    //               dair.building = -1;
+    //               dair.buildingLife = 2;
+    //             }
+    //           }
+    //         } else if (!notPayed) {
+    //           dair.buildingLife = 2;
+    //           if (shouldPay) {
+    //             for (let i of [1, 2, 3, 5, 6]) {
+    //               this.dairs[owner].resources[i] -= this.buildings[dair.building].costPeriod[i];
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   this.period += 1;
+    //   this.generateStepsOrder();
+    //   this.nextPeriodPanelClose();
+    //   this.drawCanvas(true);
+    //   this.saveAll();
+    // },
     getAdditionalNextPeriodResource(dairId, resourceId) {
-      return this.getNextPeriodResource(dairId, resourceId) - this.dairs[dairId].resources[resourceId];
+      return this.nextPeriodResourcesPlus[dairId][resourceId];
+    },
+    getAdditionalMinusNextPeriodResource(dairId, resourceId) {
+      return this.nextPeriodResourcesMinus[dairId][resourceId];
     },
     getNextPeriodResource(dairId, resourceId) {
       let dair = this.dairs[dairId];
-      return (dair.resources[resourceId] + dair.nextResources[resourceId] < 0) ?
-        0 :
-        (dair.resources[resourceId] + dair.nextResources[resourceId]);
+      return dair.resources[resourceId];
     },
     getBuildings() {
       if (this.isEmpty(this.selectedItem) || this.dairMap[this.selectedItem.y][this.selectedItem.x].specialType > 2) {
