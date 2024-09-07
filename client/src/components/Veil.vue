@@ -469,7 +469,7 @@
              :style="{ 'opacity': hasBuildingsAccess ? 1 : 0 }">
           <div class="title">Здания</div>
           <div class="itemMenuSubActionsManage deleteResource" @click="manageBuilding(-1)" style="margin-bottom: 5px" v-if="!hasBuildingsManageAccess">Разрушить здание</div>
-          <div v-for="(building, index) in getBuildings()" :class="['itemMenuSubActionsManage', !canBuild(building) ? 'cannotBuild' : '']" @click="manageBuilding(building)" :key="index" :style="{ 'margin': hasBuildingsManageAccess ? '3px 0 20px 0' :  '5px' }">
+          <div v-for="(building, index) in getBuildings()" :class="['itemMenuSubActionsManage', !canBuild(building) ? '' : '']" @click="manageBuilding(building)" :key="index" :style="{ 'margin': hasBuildingsManageAccess ? '3px 0 20px 0' :  '5px' }">
             <div style="color: inherit">{{getBuildingManageString(buildings[building], true)}}</div>
             <div class="itemMenuSubActionsResourcesContainer" v-if="hasBuildingsManageAccess">
               <div v-for="(cost, i) in getBuildingCost(building)" :key="i">
@@ -550,7 +550,7 @@
       <div class="modalContainer" @click="stopPropagation">
         <i @click="nextPeriodPanelClose" class='bx bx-x close' style="margin: 0 5px 0 5px !important; font-size: 1.4em; position: absolute; right: 0; top: 3px;"/>
         <div class="modalContainerContainer">
-          <div style="margin-bottom: 20px; font-size: 1.2em">{{'Доход в этот ' + period + ' период'}}</div>
+          <div style="margin-bottom: 20px; font-size: 1.2em">{{(secondPhase ? 'Расход в этот ' : 'Доход в этот ') + period + ' период'}}</div>
           <div v-for="(id, index) in [1, 2, 3, 4, 5]" :key="index" class="nextPeriodContainerItem">
             <div :style="{ 'margin-bottom': '10px', 'color': dairs[id].color, 'font-size' : '1.3em' }">{{ dairs[id].name }}</div>
             <div class="nextPeriodContainerItemResources">
@@ -2066,7 +2066,7 @@ export default {
           type: 2,
           name: 'Казарма',
           size: 5,
-          isWar: false,
+          isWar: true,
           cost: {
             1: 20,
             2: 0,
@@ -2108,7 +2108,7 @@ export default {
           type: 4,
           name: 'Снекка',
           resourcesCount: 0,
-          isWar: false,
+          isWar: true,
           cost: {
             1: 0,
             2: 5,
@@ -4459,6 +4459,8 @@ export default {
           let dair = this.dairMap[y][x];
           let owner = dair.owner;
           if (owner !== -1 && dair.building !== -1 && dair.buildingActive) {
+            // console.log(dair);
+            // console.log(this.buildings[dair.building]);
             for (let i of [1, 2, 3, 5, 6]) {
               this.nextPeriodResourcesMinus[owner][i] += this.buildings[dair.building].costPeriod[i];
             }
@@ -4484,6 +4486,127 @@ export default {
           6: 0,
         };
       }
+
+      let res = {
+        1: {
+          territory: 0,
+          territoryPercent: 0,
+          territoryGround: 0,
+          territoryGroundPercent: 0,
+          territoryWater: 0,
+          territoryWaterPercent: 0,
+          territoryOpen: 0,
+          territoryOpenPercent: 0,
+          building: 0,
+          buildingGet: 0,
+          buildingWar: 0,
+          res: 0,
+          name: '',
+        },
+        2: {
+          territory: 0,
+          territoryPercent: 0,
+          territoryGround: 0,
+          territoryGroundPercent: 0,
+          territoryWater: 0,
+          territoryWaterPercent: 0,
+          territoryOpen: 0,
+          territoryOpenPercent: 0,
+          building: 0,
+          buildingGet: 0,
+          buildingWar: 0,
+          res: 0,
+          name: '',
+        },
+        3: {
+          territory: 0,
+          territoryPercent: 0,
+          territoryGround: 0,
+          territoryGroundPercent: 0,
+          territoryWater: 0,
+          territoryWaterPercent: 0,
+          territoryOpen: 0,
+          territoryOpenPercent: 0,
+          building: 0,
+          buildingGet: 0,
+          buildingWar: 0,
+          res: 0,
+          name: '',
+        },
+        4: {
+          territory: 0,
+          territoryPercent: 0,
+          territoryGround: 0,
+          territoryGroundPercent: 0,
+          territoryWater: 0,
+          territoryWaterPercent: 0,
+          territoryOpen: 0,
+          territoryOpenPercent: 0,
+          building: 0,
+          buildingGet: 0,
+          buildingWar: 0,
+          res: 0,
+          name: '',
+        },
+        5: {
+          territory: 0,
+          territoryPercent: 0,
+          territoryGround: 0,
+          territoryGroundPercent: 0,
+          territoryWater: 0,
+          territoryWaterPercent: 0,
+          territoryOpen: 0,
+          territoryOpenPercent: 0,
+          building: 0,
+          buildingGet: 0,
+          buildingWar: 0,
+          res: 0,
+          name: '',
+        },
+      };
+
+      for (let y = 0; y < this.dairSizeY; y++) {
+        for (let x = 0; x < this.dairSizeX; x++) {
+          let dair = this.dairMap[y][x];
+          let owner = dair.owner;
+          for (let a of dair.hasAccess) {
+            if (a !== -1) {
+              res[a]['territoryOpen'] += 1;
+              res[a]['territoryOpenPercent'] = res[a]['territoryOpen'] / 10;
+            }
+          }
+          if (owner !== -1) {
+            res[owner]['territory'] += 1;
+            res[owner]['territoryPercent'] = res[owner]['territory'] / 10;
+            if (dair.groundType !== 4) {
+              res[owner]['territoryGround'] += 1;
+              res[owner]['territoryGroundPercent'] = res[owner]['territoryGround'] / res[owner]['territory'] * 100;
+            } else {
+              res[owner]['territoryWater'] += 1;
+              res[owner]['territoryWaterPercent'] = res[owner]['territoryWater'] / res[owner]['territory'] * 100;
+            }
+            res[owner]['name'] = this.dairs[owner].name;
+            if (dair.building !== -1) {
+              res[owner]['building'] += 1;
+              if (this.buildings[dair.building].type === 1) {
+                res[owner]['buildingGet'] += 1;
+              }
+              if (this.buildings[dair.building].isWar) {
+                res[owner]['buildingWar'] += 1;
+              }
+            }
+          }
+        }
+      }
+
+      res['1']['res'] = this.dairs[1].resources[1] + this.dairs[1].resources[2] + this.dairs[1].resources[3] + this.dairs[1].resources[5] + this.dairs[1].resources[6];
+      res['2']['res'] = this.dairs[2].resources[1] + this.dairs[2].resources[2] + this.dairs[2].resources[3] + this.dairs[2].resources[5] + this.dairs[2].resources[6];
+      res['3']['res'] = this.dairs[3].resources[1] + this.dairs[3].resources[2] + this.dairs[3].resources[3] + this.dairs[3].resources[5] + this.dairs[3].resources[6];
+      res['4']['res'] = this.dairs[4].resources[1] + this.dairs[4].resources[2] + this.dairs[4].resources[3] + this.dairs[4].resources[5] + this.dairs[4].resources[6];
+      res['5']['res'] = this.dairs[5].resources[1] + this.dairs[5].resources[2] + this.dairs[5].resources[3] + this.dairs[5].resources[5] + this.dairs[5].resources[6];
+
+      console.log(res);
+
       for (let y = 0; y < this.dairSizeY; y++) {
         for (let x = 0; x < this.dairSizeX; x++) {
           let dair = this.dairMap[y][x];
@@ -5017,13 +5140,14 @@ export default {
       return this.selectedDair.resources[type] >= cost;
     },
     canBuild(buildingId) {
-      let needed = this.buildings[buildingId].cost;
-      return !this.hasBuildingsManageAccess ||
-        this.selectedDair.resources[1] >= needed[1] &&
-        this.selectedDair.resources[2] >= needed[2] &&
-        this.selectedDair.resources[3] >= needed[3] &&
-        this.selectedDair.resources[5] >= needed[5] &&
-        this.selectedDair.resources[6] >= needed[6];
+      return true;
+      // let needed = this.buildings[buildingId].cost;
+      // return !this.hasBuildingsManageAccess ||
+      //   this.selectedDair.resources[1] >= needed[1] &&
+      //   this.selectedDair.resources[2] >= needed[2] &&
+      //   this.selectedDair.resources[3] >= needed[3] &&
+      //   this.selectedDair.resources[5] >= needed[5] &&
+      //   this.selectedDair.resources[6] >= needed[6];
     },
     manageResources(id) {
       this.itemMenu.dairMap.resourcesActive = true;
